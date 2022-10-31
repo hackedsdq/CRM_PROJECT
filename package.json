@@ -22,7 +22,6 @@
         "@inertiajs/inertia": "^0.11.1",
         "@inertiajs/inertia-react": "^0.8.1",
         "@inertiajs/progress": "^0.2.7",
-        "admin-lte": "^3.2.0",
         "require": "^2.4.20"
     }
 }

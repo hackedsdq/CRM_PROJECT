@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+
+
 class HomeController extends Controller
 {
     public function index(){
@@ -11,7 +13,10 @@ class HomeController extends Controller
             'name'=> 'Hakim Abdallaoui'
         ]);
     }
-    public function test(){
-        return Inertia::render('Contact');
+    public function signin(){
+        return Inertia::render('Signin');
+    }
+    public function signup(){
+        return Inertia::render('Signup');
     }
 }

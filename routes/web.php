@@ -18,6 +18,5 @@ use Illuminate\Support\Facades\Route;
 });*/
 
 Route::get('/',[\App\Http\Controllers\HomeController::class, 'index']);
-Route::get('/contact',[\App\Http\Controllers\HomeController::class, 'test']);
-
-
+Route::get('/signin',[\App\Http\Controllers\HomeController::class, 'signin']);
+Route::get('/signup',[\App\Http\Controllers\HomeController::class, 'signup']);

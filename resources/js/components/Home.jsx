@@ -6,7 +6,6 @@ import Main from './home_components/Main';
 import SideBar from './home_components/SideBar';
 
 
-import { Inertia } from '@inertiajs/inertia';
 
  
 function Home({name}) {
@@ -28,7 +27,6 @@ function Home({name}) {
 
     return (
         <div className="wrapper">
-            {/*<Header />*/}
             <SideBar />
             <Main />
         </div>

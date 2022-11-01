@@ -8,7 +8,6 @@ import SideBar from './home_components/SideBar';
 
 import { Inertia } from '@inertiajs/inertia';
 
-import {Helmet} from "react-helmet"
  
 function Home({name}) {
 

@@ -20,3 +20,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[\App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/signin',[\App\Http\Controllers\HomeController::class, 'signin']);
 Route::get('/signup',[\App\Http\Controllers\HomeController::class, 'signup']);
+Route::get('/prospects',[\App\Http\Controllers\HomeController::class, 'prospects']);
+Route::get('/clients',[\App\Http\Controllers\HomeController::class, 'clients']);

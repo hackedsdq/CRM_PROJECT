@@ -1,10 +1,6 @@
-import { InertiaHead, InertiaLink } from '@inertiajs/inertia-react';
 import React, { useEffect } from 'react';
-import Footer from './home_components/Footer';
-import Header from './home_components/Header';
-import Main from './home_components/Main';
-import SideBar from './home_components/SideBar';
-
+import Main from './static_components/Main';
+import SideBar from './static_components/SideBar';
 
 
  

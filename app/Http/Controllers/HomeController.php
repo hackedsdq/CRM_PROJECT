@@ -25,4 +25,7 @@ class HomeController extends Controller
     public function clients(){
         return Inertia::render('Clients');
     }
+    public function Opportunités(){
+        return Inertia::render('Opportunités');
+    }
 }

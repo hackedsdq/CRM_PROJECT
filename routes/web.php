@@ -22,3 +22,4 @@ Route::get('/signin',[\App\Http\Controllers\HomeController::class, 'signin']);
 Route::get('/signup',[\App\Http\Controllers\HomeController::class, 'signup']);
 Route::get('/prospects',[\App\Http\Controllers\HomeController::class, 'prospects']);
 Route::get('/clients',[\App\Http\Controllers\HomeController::class, 'clients']);
+Route::get('/Opportunités',[\App\Http\Controllers\HomeController::class, 'Opportunités']);

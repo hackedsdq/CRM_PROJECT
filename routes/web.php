@@ -25,3 +25,4 @@ Route::get('/clients',[\App\Http\Controllers\HomeController::class, 'clients']);
 Route::get('/opportunities',[\App\Http\Controllers\HomeController::class, 'opportunities']);
 Route::get('/contacts',[\App\Http\Controllers\HomeController::class, 'contacts']);
 Route::get('/users',[\App\Http\Controllers\HomeController::class, 'users']);
+Route::get('/calendar',[\App\Http\Controllers\HomeController::class, 'calendar']);

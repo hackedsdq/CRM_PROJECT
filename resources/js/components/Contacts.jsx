@@ -8,9 +8,9 @@ import EditModal from './static_components/EditModal'
 import UserActions from './user_actions/UserActions'
 import DataGridTable from './static_components/DataGridTable'
 
-export default function Opportunités() {
+export default function Contacts() {
 
-  let title = "Opportunités"
+  let title = "contact"
 
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
@@ -79,7 +79,3 @@ export default function Opportunités() {
     </div>
   )
 }
-
-
-
-

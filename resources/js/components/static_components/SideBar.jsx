@@ -204,7 +204,7 @@ export default function SideBar() {
               <div className="collapse" id="sidebarPagesAuth">
                 <ul className="side-nav-third-level">
                   <li>
-                    <InertiaLink href='/signin' >
+                    <InertiaLink href='/users' >
                       Signin
                     </InertiaLink>
                   </li>

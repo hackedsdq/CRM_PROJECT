@@ -8,9 +8,9 @@ import EditModal from './static_components/EditModal'
 import UserActions from './user_actions/UserActions'
 import DataGridTable from './static_components/DataGridTable'
 
-export default function Contact() {
+export default function Clients() {
 
-  let title = "contact"
+  let title = "Clients"
 
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
@@ -37,6 +37,8 @@ export default function Contact() {
     { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
     { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
   ];
+
+
 
   //const [open,setOpen]=useState(false);
 
@@ -79,3 +81,7 @@ export default function Contact() {
     </div>
   )
 }
+
+
+
+

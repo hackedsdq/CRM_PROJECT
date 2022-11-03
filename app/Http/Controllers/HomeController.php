@@ -19,4 +19,13 @@ class HomeController extends Controller
     public function signup(){
         return Inertia::render('Signup');
     }
+    public function prospects(){
+        return Inertia::render('Prospects');
+    }
+    public function clients(){
+        return Inertia::render('Clients');
+    }
+    public function Opportunités(){
+        return Inertia::render('Opportunités');
+    }
 }

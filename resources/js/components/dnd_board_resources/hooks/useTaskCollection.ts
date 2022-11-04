@@ -8,7 +8,7 @@ function useTaskCollection() {
   return useLocalStorage<{
     [key in ColumnType]: TaskModel[];
   }>('tasks', {
-    Todo: [
+    Prospection: [
       {
         id: uuidv4(),
         column: ColumnType.TO_DO,
@@ -16,7 +16,7 @@ function useTaskCollection() {
         color: 'blue.300',
       },
     ],
-    'In Progress': [
+    'Proposition/Devis': [
       {
         id: uuidv4(),
         column: ColumnType.IN_PROGRESS,
@@ -24,7 +24,7 @@ function useTaskCollection() {
         color: 'yellow.300',
       },
     ],
-    Blocked: [
+    Perdue: [
       {
         id: uuidv4(),
         column: ColumnType.BLOCKED,
@@ -32,8 +32,14 @@ function useTaskCollection() {
         color: 'red.300',
       },
     ],
-    Completed: [
+    'Gagnée': [
       {
+        id: uuidv4(),
+        column: ColumnType.COMPLETED,
+        title: 'Task 4',
+        color: 'green.300',
+      },
+            {
         id: uuidv4(),
         column: ColumnType.COMPLETED,
         title: 'Task 4',

@@ -14,10 +14,10 @@ import { ColumnType } from '../utils/enums';
 import Task from './Task';
 
 const ColumnColorScheme: Record<ColumnType, string> = {
-  Todo: 'gray',
-  'In Progress': 'blue',
-  Blocked: 'red',
-  Completed: 'green',
+  Prospection: 'gray',
+  'Proposition/Devis': 'blue',
+  Perdue: 'red',
+  'Gagnée': 'green',
 };
 
 function Column({ column }: { column: ColumnType }) {
@@ -44,7 +44,7 @@ function Column({ column }: { column: ColumnType }) {
   ));
 
   return (
-    <Box>
+    <Box >
       <Heading fontSize="md" mb={4} letterSpacing="wide">
         <Badge
           px={2}
@@ -72,7 +72,7 @@ function Column({ column }: { column: ColumnType }) {
         ref={dropRef}
         direction={{ base: 'row', md: 'column' }}
         h={{ base: 300, md: 600 }}
-        p={4}
+        p={0}
         mt={2}
         spacing={4}
         bgColor={useColorModeValue('gray.50', 'gray.900')}

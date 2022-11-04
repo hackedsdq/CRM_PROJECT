@@ -11,10 +11,10 @@ function DndBoard() {
     <div>
 
     <DndProvider backend={HTML5Backend}>
-      <Container maxWidth="container.lg" px={4} py={10}>
+      <Container maxWidth="container.lg" px={0} py={10}>
         <SimpleGrid
           columns={{ base: 1, md: 4 }}
-          spacing={{ base: 16, md: 4 }}
+          spacing={{ base: 16, md: 0 }}
         >
           <Column column={ColumnType.TO_DO} />
           <Column column={ColumnType.IN_PROGRESS} />

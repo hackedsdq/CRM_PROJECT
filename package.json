@@ -20,8 +20,6 @@
     "dependencies": {
         "@babel/plugin-syntax-dynamic-import": "^7.8.3",
         "@devexpress/dx-react-core": "^3.0.6",
-        "@devexpress/dx-react-scheduler": "^3.0.6",
-        "@devexpress/dx-react-scheduler-material-ui": "^3.0.6",
         "@emotion/react": "^11.10.5",
         "@emotion/styled": "^11.10.5",
         "@inertiajs/inertia": "^0.11.1",
@@ -31,6 +29,7 @@
         "@mui/lab": "^5.0.0-alpha.106",
         "@mui/material": "^5.10.12",
         "@mui/x-data-grid": "^5.17.9",
+        "@syncfusion/ej2-react-schedule": "^20.3.52",
         "react-router-dom": "^6.4.3",
         "require": "^2.4.20"
     }

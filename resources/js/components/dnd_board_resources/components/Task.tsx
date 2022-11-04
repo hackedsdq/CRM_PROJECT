@@ -1,5 +1,5 @@
 import { AiFillDelete as DeleteIcon } from 'react-icons/ai';
-
+import EditModal from '../../static_components/EditModal';
 import { Box, IconButton, ScaleFade } from '@chakra-ui/react';
 import _ from 'lodash';
 import { memo } from 'react';
@@ -31,10 +31,17 @@ function Task({
   const handleTitleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newTitle = e.target.value;
     handleUpdate(task.id, { ...task, title: newTitle });
+    console.log("clicked")
   };
+
+  const handleOpenModal = () => {
+    console.log("clicked"+task.title)
+  };
+
 
   const handleDeleteClick = () => {
     handleDelete(task.id);
+    console.log(`${task.id} deleted`)
   };
 
   return (
@@ -45,7 +52,7 @@ function Task({
         role="group"
         position="relative"
         rounded="lg"
-        w={200}
+        w={100}
         pl={3}
         pr={7}
         pt={3}
@@ -73,19 +80,24 @@ function Task({
           }}
           onClick={handleDeleteClick}
         />
-        <AutoResizeTextarea
-          value={task.title}
-          fontWeight="semibold"
-          cursor="inherit"
-          border="none"
-          p={0}
-          resize="none"
-          minH={70}
-          maxH={200}
-          focusBorderColor="none"
-          color="gray.700"
-          onChange={handleTitleChange}
-        />
+        <div  data-bs-toggle="modal" data-bs-target="#scrollable-modal">
+          <AutoResizeTextarea
+            value={task.title}
+            fontWeight="semibold"
+            cursor="inherit"
+            border="none"
+            p={0}
+            resize="none"
+            minH={70}
+            maxH={200}
+            focusBorderColor="none"
+            color="gray.700"
+            onChange={handleTitleChange}
+            onClick={handleOpenModal}
+          />
+          {/* ------------------------ edit modal ------------------ */}
+          <EditModal />
+        </div>
       </Box>
     </ScaleFade>
   );

@@ -73,12 +73,19 @@ function useColumnTasks(column: ColumnType) {
         const fromColumnTasks = allTasks[from];
         const toColumnTasks = allTasks[column];
         const movingTask = fromColumnTasks.find((task) => task.id === id);
-
+        
         console.log(`Moving task ${movingTask?.id} from ${from} to ${column}`);
 
         if (!movingTask) {
           return allTasks;
         }
+
+        // if the task from TO_DO don't dragit . @hackedsdq
+        /*
+        if(from === ColumnType.TO_DO)
+        return allTasks;
+        */
+
 
         // remove the task from the original column and copy it within the destination column
         return {

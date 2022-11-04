@@ -5,10 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Produit;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-<<<<<<< HEAD
-
-=======
->>>>>>> DevloppementNihel
 class ProduitController extends Controller
 {
     /**

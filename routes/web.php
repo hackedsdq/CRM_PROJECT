@@ -27,3 +27,4 @@ Route::get('/contacts',[\App\Http\Controllers\HomeController::class, 'contacts']
 Route::get('/users',[\App\Http\Controllers\HomeController::class, 'users']);
 Route::get('/SigninCostumer',[\App\Http\Controllers\HomeController::class, 'SigninCostumer']);
 Route::get('/Profile',[\App\Http\Controllers\HomeController::class, 'Profile']);
+Route::get('/Produits',[\App\Http\Controllers\ProduitController::class, 'index']);

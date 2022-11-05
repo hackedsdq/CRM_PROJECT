@@ -26,3 +26,4 @@ Route::get('/opportunities',[\App\Http\Controllers\HomeController::class, 'oppor
 Route::get('/contacts',[\App\Http\Controllers\HomeController::class, 'contacts']);
 Route::get('/users',[\App\Http\Controllers\HomeController::class, 'users']);
 Route::get('/Produits',[\App\Http\Controllers\ProduitController::class, 'index']);
+Route::get('/Utilisateur',[\App\Http\Controllers\UtilisateurController::class, 'index']);

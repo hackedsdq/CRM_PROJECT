@@ -30,7 +30,7 @@ export default function DataGridTable(props) {
                 <DataGrid
                       rows={props.rows}
                       columns={props.columns}
-                      pageSize={5}
+                      pageSize={6}
                       rowsPerPageOptions={[5]}
                       checkboxSelection
                 />  

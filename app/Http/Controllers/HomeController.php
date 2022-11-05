@@ -42,4 +42,5 @@ class HomeController extends Controller
     public function Profile(){
         return Inertia::render('Profile');
     }
+    
 }

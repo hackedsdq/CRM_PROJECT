@@ -14,14 +14,7 @@ export default function EditModalClient(props) {
  
  {/*   bodyyyyy of the modal    */}
 
-            <div className="mb-3">
-                <label htmlFor="simpleinput" className="form-label">First Name</label>
-                <input type="text" className="form-control" />
-            </div>
-            <div className="mb-3">
-                <label htmlFor="simpleinput" className="form-label">Last Name</label>
-                <input type="text" className="form-control" />
-            </div>
+        
             <div className="mb-3">
                 <label htmlFor="simpleinput" className="form-label">Society</label>
                 <input type="text"  className="form-control" />

@@ -41,16 +41,6 @@ export default function Utilisateur() {
   //const [open,setOpen]=useState(false);
 
 
-  useEffect(()=>{
-    var loadScript = function (src) {
-        var tag = document.createElement('script');
-        tag.async = false;
-        tag.src = src;
-        var body = document.getElementsByTagName('body')[0];
-        body.appendChild(tag);
-      }
-    loadScript('./assets/js/vendor.min.js')
-},[])
 
 
 

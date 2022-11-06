@@ -20,17 +20,8 @@ export default function EditModalClient(props) {
                 <input type="text"  className="form-control" />
             </div>
             <div className="mb-3">
-                <label htmlFor="simpleinput" className="form-label">Fonction</label>
+                <label htmlFor="simpleinput" className="form-label">Client</label>
                 <input type="text"  className="form-control" />
-            </div>
-
-           <div className="mb-3">
-                <label htmlFor="example-email" className="form-label">Email</label>
-                <input type="text" className="form-control" placeholder="Email" />
-            </div>
-            <div className="mb-3">
-                <label htmlFor="example-palaceholder" className="form-label">Placeholder</label>
-                <input type="text" className="form-control" placeholder="placeholder" />
             </div>
             <div className="mb-3">
                 <label htmlFor="example-palaceholder" className="form-label">Telephone</label>
@@ -45,13 +36,7 @@ export default function EditModalClient(props) {
                 <input type="text" className="form-control" placeholder="Https://" />
             </div>
             
-            <div className="mb-3">
-                <label htmlFor="example-select" className="form-label">Status</label>
-                <select className="form-select" id="example-select">
-                <option>Hot</option>
-                <option>Cold</option>
-                </select>
-            </div>
+          
             
            
           

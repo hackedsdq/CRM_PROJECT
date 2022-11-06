@@ -1,13 +1,13 @@
 import React from 'react'
 
-export default function EditModal(props) {
+export default function EditModalClient(props) {
   return (
 <div>
 <div className="modal fade" id="scrollable-modal" tabIndex={-1} role="dialog" aria-labelledby="scrollableModalTitle" aria-hidden="true">
   <div className="modal-dialog modal-dialog-scrollable" role="document">
     <div className="modal-content">
       <div className="modal-header">
-        <h5 className="modal-title" id="scrollableModalTitle">Add Prospects</h5>
+        <h5 className="modal-title" id="scrollableModalTitle">Add Client</h5>
         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-hidden="true" />
       </div>
       <div className="modal-body">

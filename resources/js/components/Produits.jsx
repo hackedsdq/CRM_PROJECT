@@ -16,7 +16,14 @@ export default function Produits() {
     { field: 'id', headerName: 'ID', width: 70 },
     { field: 'nom', headerName: 'Nom', width: 130 },
     { field: 'description', headerName: 'Description', width: 130},
-    { field: 'photo', headerName: 'Photo',type:Image, width: 130 },
+    {  field: 'photo', headerName:'photo',
+    Cell: tableProps => (
+      <img
+        src={tableProps.row.original.PlayerImageURL}
+        width={60}
+        alt='Player'
+      />
+    )},
     {
       field: 'quantité',
       headerName: 'Quantité',
@@ -34,7 +41,8 @@ export default function Produits() {
   ];
   
   const rows = [
-    { id: 2, nom: 'Lannister', description: 'Cersei', quantité: 4 ,prix:'4000dA' },
+    { id: 2, nom: 'Lannister', description: 'Cersei',photo:"https://i.ytimg.com/vi/uRXmA10PYM0/maxresdefault.jpg"
+    , quantité: 4 ,prix:'4000dA' },
     { id: 3, nom: 'Lannister', description: 'Jaime', quantité: 5,prix:'4000dA' },
     { id: 4, nom: 'Stark', description: 'Arya', quantité: 16, prix:'4000dA' },
     { id: 5, nom: 'Targaryen', description: 'Daenerys', quantité: null,prix:'4000dA' },

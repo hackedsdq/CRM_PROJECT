@@ -26,49 +26,21 @@ export default function EditModalProduits(props) {
             </div>   
           
             <div class="col-xl-6">
-                                                <div class="mb-3 mt-3 mt-xl-0">
-                                                    <label for="projectname" class="mb-0">Avatar</label>
-                                                    <p class="text-muted font-14">Recommended thumbnail size 800x400 (px).</p>
+              <div class="mb-3 mt-3 mt-xl-0">
+                  <label for="projectname" class="mb-0">Photo</label>
+                  <p class="text-muted font-14">Recommended thumbnail size 800x400 (px).</p>
 
-                                                    <form action="/" method="post" class="dropzone" id="myAwesomeDropzone" data-plugin="dropzone" data-previews-container="#file-previews" data-upload-preview-template="#uploadPreviewTemplate">
-                                                        <div class="fallback">
-                                                            <input name="file" type="file"/>
-                                                        </div>
+                  <form action="/" method="post" class="dropzone"  data-plugin="dropzone" data-previews-container="#file-previews" data-upload-preview-template="#uploadPreviewTemplate">
+                      <div>
+                          <input name="file" type="file"/>
+                      </div>
 
-                                                        <div class="dz-message needsclick">
-                                                            <i class="h3 text-muted dripicons-cloud-upload"></i>
-                                                            <h4>Drop files here or click to upload.</h4>
-                                                        </div>
-                                                    </form>
-
-                                                  
-                                                    <div class="dropzone-previews mt-3" id="file-previews"></div>
-
-                                                    
-                                                    <div class="d-none" id="uploadPreviewTemplate">
-                                                        <div class="card mt-1 mb-0 shadow-none border">
-                                                            <div class="p-2">
-                                                                <div class="row align-items-center">
-                                                                    <div class="col-auto">
-                                                                        <img data-dz-thumbnail="" src="#" class="avatar-sm rounded bg-light" alt=""/>
-                                                                    </div>
-                                                                    <div class="col ps-0">
-                                                                        <a href="javascript:void(0);" class="text-muted fw-bold" data-dz-name=""></a>
-                                                                        <p class="mb-0" data-dz-size=""></p>
-                                                                    </div>
-                                                                    <div class="col-auto">
-                                                                       
-                                                                        <a href="" class="btn btn-link btn-lg text-muted" data-dz-remove="">
-                                                                            <i class="dripicons-cross"></i>
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                  
-                                                </div>
-           </div>
+                      <div class="dz-message needsclick">
+                          <i class="h3 text-muted dripicons-cloud-upload"></i>
+                          <h4>Drop files here or click to upload.</h4>
+                      </div>
+            </form>
+                </div></div>
            
             <div className="mb-3">
                 <label htmlFor="simpleinput" className="form-label">Price</label>

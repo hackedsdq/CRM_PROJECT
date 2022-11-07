@@ -4,7 +4,7 @@ import SideBar from './static_components/SideBar'
 import { Box, Modal, Button } from '@mui/material'
 import { DataGrid } from '@mui/x-data-grid'
 import PageTitle from './static_components/PageTitle'
-import EditModalClient from './static_components/EditModal'
+import EditModalClient from './static_components/EditModalClient'
 import UserActions from './user_actions/UserActions'
 import DataGridTable from './static_components/DataGridTable'
 

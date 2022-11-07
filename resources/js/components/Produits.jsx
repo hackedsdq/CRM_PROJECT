@@ -4,7 +4,7 @@ import SideBar from './static_components/SideBar'
 import {Box,Modal,Button} from '@mui/material'
 import {DataGrid} from '@mui/x-data-grid'
 import PageTitle from './static_components/PageTitle'
-import EditModalProduits from './static_components/EditModal'
+import EditModalProduits from './static_components/EditModalProduits'
 import UserActions from './user_actions/UserActions'
 import DataGridTable from './static_components/DataGridTable'
 
@@ -34,7 +34,7 @@ export default function Produits() {
   ];
   
   const rows = [
-    { id: 2, nom: 'Lannister', description: 'Cersei',photo:"img.", quantité: 4 ,prix:'4000dA' },
+    { id: 2, nom: 'Lannister', description: 'Cersei', quantité: 4 ,prix:'4000dA' },
     { id: 3, nom: 'Lannister', description: 'Jaime', quantité: 5,prix:'4000dA' },
     { id: 4, nom: 'Stark', description: 'Arya', quantité: 16, prix:'4000dA' },
     { id: 5, nom: 'Targaryen', description: 'Daenerys', quantité: null,prix:'4000dA' },

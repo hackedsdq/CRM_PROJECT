@@ -59,8 +59,7 @@ export default function EditModal(props) {
                 <option>Cold</option>
                 </select>
             </div>
-            
-           
+         
           
 
  {/*   end  of the modal  body    */}

@@ -25,11 +25,12 @@ export default function SideBar() {
   <div className="h-100" id="leftside-menu-container" data-simplebar>
     {/*- Sidemenu */}
     <ul className="side-nav">
+      {/*
       <li className="side-nav-title side-nav-item">Navigation</li>
+      
       <li className="side-nav-item">
         <a data-bs-toggle="collapse" href="#sidebarDashboards" aria-expanded="false" aria-controls="sidebarDashboards" className="side-nav-link">
           <i className="uil-home-alt" />
-          <span className="badge bg-success float-end">4</span>
           <span> Dashboards </span>
         </a>
         <div className="collapse" id="sidebarDashboards">
@@ -47,15 +48,30 @@ export default function SideBar() {
               <a href="dashboard-projects.html">Projects</a>
             </li>
           </ul>
-        </div>
+  </div>
       </li>
+      */}
+      <li className="side-nav-title side-nav-item">Navigation</li>
+      <li className="side-nav-item">
+        <InertiaLink href='/' className="side-nav-link" >
+        <i className="uil-home-alt" />
+          <span>
+          Dashboard
+          </span>
+        </InertiaLink>
+      </li>
+
+
       <li className="side-nav-title side-nav-item">Apps</li>
       <li className="side-nav-item">
-        <a href="apps-calendar.html" className="side-nav-link">
-          <i className="uil-calender" />
-          <span> Calendar </span>
-        </a>
+        <InertiaLink href='/calendar' className="side-nav-link" >
+        <i className="uil-calender" />
+          <span>
+          Calendar
+          </span>
+        </InertiaLink>
       </li>
+      
       <li className="side-nav-item">
         <a href="apps-chat.html" className="side-nav-link">
           <i className="uil-comments-alt" />

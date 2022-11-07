@@ -34,5 +34,15 @@ class HomeController extends Controller
     public function users(){
         return Inertia::render('Utilisateur');
     }
+    public function calendar(){
+        return Inertia::render('Calendar');
+    }
+    public function SigninCostumer(){
+        return Inertia::render('SigninCostumer');
+    }
+    
+    public function Profile(){
+        return Inertia::render('Profile');
+    }
     
 }

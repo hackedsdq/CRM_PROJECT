@@ -4,9 +4,10 @@ import SideBar from './static_components/SideBar'
 import {Box,Modal,Button} from '@mui/material'
 import {DataGrid} from '@mui/x-data-grid'
 import PageTitle from './static_components/PageTitle'
-import EditModal from './static_components/EditModal'
+import EditModalContacts from './static_components/EditModal'
 import UserActions from './user_actions/UserActions'
 import DataGridTable from './static_components/DataGridTable'
+import EditModalContacts from './static_components/EditModalContacts'
 
 export default function Contacts() {
 
@@ -25,6 +26,7 @@ export default function Contacts() {
     { field: 'Email', headerName: 'Email', width: 200 },
     { field: 'Password', headerName: 'Password', width: 150 },
     { field: 'Client', headerName: 'Client', width: 150 },
+    
     { field: 'delete', headerName: 'Delete', width: 70, renderCell:(params)=> <UserActions user={params.row} action="delete"/>  },
     { field: 'modify', headerName: 'Modify', width: 70, renderCell:(params)=> <UserActions user={params.row} action="modify"/> },
   ];
@@ -57,7 +59,7 @@ export default function Contacts() {
               {/* end page title */} 
 
               {/* ------------------------ edit modal ------------------ */}
-              <EditModal />
+              <EditModalContacts />
                {/* ------------------------ show datagrid table search ------------------ */}
               <DataGridTable title={title} columns={columns} rows={rows}  />
               {/* end row */}

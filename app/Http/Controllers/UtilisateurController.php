@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Produit;
+use App\Models\Utilisateur;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class ProduitController extends Controller
+class UtilisateurController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class ProduitController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Produits');
+        return Inertia::render('Utilisateur');
     }
 
     /**
@@ -42,10 +42,10 @@ class ProduitController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Produit  $produit
+     * @param  \App\Models\Utilisateur  $utilisateur
      * @return \Illuminate\Http\Response
      */
-    public function show(Produit $produit)
+    public function show(Utilisateur $utilisateur)
     {
         //
     }
@@ -53,10 +53,10 @@ class ProduitController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Produit  $produit
+     * @param  \App\Models\Utilisateur  $utilisateur
      * @return \Illuminate\Http\Response
      */
-    public function edit(Produit $produit)
+    public function edit(Utilisateur $utilisateur)
     {
         //
     }
@@ -65,10 +65,10 @@ class ProduitController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Produit  $produit
+     * @param  \App\Models\Utilisateur  $utilisateur
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Produit $produit)
+    public function update(Request $request, Utilisateur $utilisateur)
     {
         //
     }
@@ -76,10 +76,10 @@ class ProduitController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Produit  $produit
+     * @param  \App\Models\Utilisateur  $utilisateur
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Produit $produit)
+    public function destroy(Utilisateur $utilisateur)
     {
         //
     }

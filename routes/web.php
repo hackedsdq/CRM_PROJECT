@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 });*/
 
 Route::get('/',[\App\Http\Controllers\HomeController::class, 'index']);
-Route::get('/signin',[\App\Http\Controllers\HomeController::class, 'signin']);
+Route::get('/signin',[\App\Http\Controllers\SigninController::class, 'index']);
 Route::get('/signup',[\App\Http\Controllers\HomeController::class, 'signup']);
 Route::get('/prospects',[\App\Http\Controllers\ProspectController::class, 'index']);
 Route::get('/clients',[\App\Http\Controllers\ClientController::class, 'index']);

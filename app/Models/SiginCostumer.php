@@ -5,19 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Prospect extends Model
+class SiginCostumer extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'nom',
-        'prenom',
-        'société',
-        'fonction',
+        
         'email',
-        'téléphone',
-        'adresse',
-        'site_web',
-        'statut',
-        'source'
+        'password',
     ];
+
 }

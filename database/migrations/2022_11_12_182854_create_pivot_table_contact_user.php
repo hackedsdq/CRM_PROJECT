@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('pivot_table_contact_user', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('prenom');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->date('Date');
+            $table->time('heure');
+            $table->string('compte_rendu');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('contacts_id')->constrained('contacts')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('pivot_table_contact_user');
     }
 };

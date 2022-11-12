@@ -16,6 +16,7 @@ return array(
     'App\\Http\\Controllers\\OpportunitiesController' => $baseDir . '/app/Http/Controllers/OpportunitiesController.php',
     'App\\Http\\Controllers\\ProduitController' => $baseDir . '/app/Http/Controllers/ProduitController.php',
     'App\\Http\\Controllers\\ProspectController' => $baseDir . '/app/Http/Controllers/ProspectController.php',
+    'App\\Http\\Controllers\\SiginCostumerController' => $baseDir . '/app/Http/Controllers/SiginCostumerController.php',
     'App\\Http\\Controllers\\SigninController' => $baseDir . '/app/Http/Controllers/SigninController.php',
     'App\\Http\\Controllers\\UtilisateurController' => $baseDir . '/app/Http/Controllers/UtilisateurController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',

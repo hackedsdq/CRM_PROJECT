@@ -23,4 +23,8 @@ public function opputunites (){
     return $this->belongsTo(opputunites::class);
 
 }
+public function prospects()
+{
+    return $this->hasOne(Prospect::class);
+}
 }

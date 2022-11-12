@@ -20,4 +20,8 @@ class Prospect extends Model
         'statut',
         'source'
     ];
+    public function clients()
+    {
+        return $this->belongsTo(Client::class);
+    }
 }

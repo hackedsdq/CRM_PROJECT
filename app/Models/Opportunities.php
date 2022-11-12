@@ -21,4 +21,8 @@ class Opportunities extends Model
 
         return $this->hasMany(Client::class);
     }
+    public function produits()
+    {
+        return $this->belongsToMany(Produit::class);
+    }
 }

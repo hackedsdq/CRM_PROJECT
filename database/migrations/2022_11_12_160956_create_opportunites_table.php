@@ -15,7 +15,12 @@ return new class extends Migration
     {
         Schema::create('opportunites', function (Blueprint $table) {
             $table->id();
+            $table->string('nom');
+            $table->double('montant');
+            $table->enum('étape',['','']);
+            $table->date('date_de_clôture');
             $table->unsignedBigInteger('Client_id');
+
             $table->foreign('Client_id')->references('id')->on('clients');
             $table->timestamps();
         });

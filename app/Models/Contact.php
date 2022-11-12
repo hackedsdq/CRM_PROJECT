@@ -15,5 +15,8 @@ class Contact extends Model
     'telephone'
     
 ];
+public function client(){
 
+    return $this->hasMany(Client::class);
+}
 }

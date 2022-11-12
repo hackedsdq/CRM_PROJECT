@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('clients', function (Blueprint $table) {
+        Schema::create('opportunite_produit', function (Blueprint $table) {
             $table->id();
-            $table->string('société');
-            $table->integer('téléphone');
-            $table->string('adresse');
-            $table->string('site_web');
+            $table->foreignId('produits_id')->constrained('produits')->onDelete('cascade');
+            $table->foreignId('opportunites_id')->constrained('opportunites')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('pivot_table_opportunite_produit');
     }
 };

@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('nom');
             $table->string('prenom');
-            $table->string('société');
+            $table->string('société')->unique();
             $table->string('fonction');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->integer('téléphone');
             $table->string('adresse');
             $table->string('site_web');

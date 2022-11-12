@@ -16,4 +16,11 @@ class Client extends Model
     'site_web'
     
 ];
+public function contact (){
+    return $this->belongsTo(Contact::class);
+}
+public function opputunites (){
+    return $this->belongsTo(opputunites::class);
+
+}
 }

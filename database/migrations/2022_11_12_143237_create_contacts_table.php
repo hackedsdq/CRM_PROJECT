@@ -13,8 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('opportunities', function (Blueprint $table) {
+        Schema::create('contacts', function (Blueprint $table) {
             $table->id();
+            $table->nom();
+            $table->prenom();
+            $table->email();
+            $table->password();
+            $table->fonction();
+            $table->telephone();
+            $table->unsignedBigInteger('Client_id');
+            $table->foreign('Client_id')->references('id')->on('clients');
             $table->timestamps();
         });
     }
@@ -26,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('opportunities');
+        Schema::dropIfExists('contacts');
     }
 };

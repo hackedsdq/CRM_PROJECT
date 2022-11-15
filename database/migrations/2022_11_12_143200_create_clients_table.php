@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('adresse');
             $table->string('site_web');
             $table->timestamps();
-            $table->foreignId('prospect_id')->constrained('prospects');
+            $table->foreignId('prospect_id')->constrained();
         });
     }
 

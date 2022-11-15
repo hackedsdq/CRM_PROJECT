@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('opportunite_produit', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->foreignId('produits_id')->constrained()->onDelete('cascade');
             $table->foreignId('opportunites_id')->constrained()->onDelete('cascade');
             $table->integer('quantité');

@@ -25,7 +25,6 @@ return new class extends Migration
             $table->string('site_web');
             $table->enum('Statut',['chaud', 'froid']);
             $table->string('Source');
-            $table->foreignId('clients_id')->constrained('clients')->onDelete('cascade');
 
 
             $table->timestamps();

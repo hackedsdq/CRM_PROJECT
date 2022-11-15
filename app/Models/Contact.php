@@ -19,4 +19,8 @@ public function client(){
 
     return $this->hasMany(Client::class);
 }
+public function user(){
+
+    return $this->belongsToMany(User::class);
+}
 }

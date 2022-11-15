@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('téléphone');
             $table->string('adresse');
             $table->string('site_web');
-            $table->foreignId('prospects_id')->constrained('prospects')->onDelete('cascade');
+            $table->foreignId('prospects_id')->constrained('')->onDelete('cascade');
 
             $table->timestamps();
         });

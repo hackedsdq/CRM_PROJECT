@@ -15,10 +15,8 @@ return new class extends Migration
     {
         Schema::create('opportunite_produit', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('produits_id');
-            $table->foreign('produits_id')->references('id')->on('produits')->onDelete('cascade');
-            $table->unsignedBigInteger('opportunites_id');
-            $table->foreign('opportunites_id')->references('id')->on('opportunites')->onDelete('cascade');
+            $table->foreignId('produits_id')->constrained()->onDelete('cascade');
+            $table->foreignId('opportunites_id')->constrained()->onDelete('cascade');
             $table->integer('quantité');
            
             $table->timestamps();

@@ -18,11 +18,8 @@ return new class extends Migration
             $table->date('Date');
             $table->time('heure');
             $table->string('compte_rendu');
-            $table->unsignedBigInteger('users_id');
-            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
-            $table->unsignedBigInteger('contacts_id');
-            $table->foreign('contacts_id')->references('id')->on('contacts')->onDelete('cascade');
-
+            $table->foreignId('users_id')->constrained()->onDelete('cascade');
+            $table->foreignId('contacts_id')->constrained()->onDelete('cascade');
 
             $table->timestamps();
         });

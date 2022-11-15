@@ -19,8 +19,9 @@ return new class extends Migration
             $table->integer('téléphone');
             $table->string('adresse');
             $table->string('site_web');
-            $table->foreignId('prospects_id')->constrained('')->onDelete('cascade');
-
+            $table->unsignedBigInteger('prospects_id');
+ 
+ $table->foreign('prospects_id')->references('id')->on('prospects');
             $table->timestamps();
         });
     }

@@ -14,15 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('clients', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('société');
             $table->integer('téléphone');
             $table->string('adresse');
             $table->string('site_web');
-            $table->unsignedBigInteger('prospects_id');
- 
- $table->foreign('prospects_id')->references('id')->on('prospects');
             $table->timestamps();
+            $table->foreignId('prospect_id')->constrained('prospects');
         });
     }
 

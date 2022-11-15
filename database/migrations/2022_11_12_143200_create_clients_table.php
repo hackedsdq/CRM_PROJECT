@@ -20,7 +20,10 @@ return new class extends Migration
             $table->string('adresse');
             $table->string('site_web');
             $table->timestamps();
-        
+            $table->foreignId('prospects_id')
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
         });
     }
 

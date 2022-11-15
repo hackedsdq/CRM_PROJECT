@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('opportunites', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('nom');
             $table->double('montant');
             $table->enum('étape',['','']);

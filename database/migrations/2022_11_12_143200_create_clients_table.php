@@ -14,13 +14,16 @@ return new class extends Migration
     public function up()
     {
         Schema::create('clients', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('société');
             $table->integer('téléphone');
             $table->string('adresse');
             $table->string('site_web');
             $table->timestamps();
-            $table->foreignId('prospect_id')->constrained();
+            $table->foreignId('user_id')
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
         });
     }
 

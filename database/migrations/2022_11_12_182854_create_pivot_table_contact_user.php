@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('pivot_table_contact_user', function (Blueprint $table) {
             $table->id();
+            
             $table->date('Date');
             $table->time('heure');
             $table->string('compte_rendu');

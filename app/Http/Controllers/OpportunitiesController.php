@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Utilisateur;
+use App\Models\Opportunities;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class UtilisateurController extends Controller
+class OpportunitiesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class UtilisateurController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Utilisateur');
+        return Inertia::render('Opportunities');
     }
 
     /**
@@ -42,10 +42,10 @@ class UtilisateurController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Utilisateur  $utilisateur
+     * @param  \App\Models\Opportunities  $opportunities
      * @return \Illuminate\Http\Response
      */
-    public function show(Utilisateur $utilisateur)
+    public function show(Opportunities $opportunities)
     {
         //
     }
@@ -53,10 +53,10 @@ class UtilisateurController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Utilisateur  $utilisateur
+     * @param  \App\Models\Opportunities  $opportunities
      * @return \Illuminate\Http\Response
      */
-    public function edit(Utilisateur $utilisateur)
+    public function edit(Opportunities $opportunities)
     {
         //
     }
@@ -65,10 +65,10 @@ class UtilisateurController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Utilisateur  $utilisateur
+     * @param  \App\Models\Opportunities  $opportunities
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Utilisateur $utilisateur)
+    public function update(Request $request, Opportunities $opportunities)
     {
         //
     }
@@ -76,10 +76,10 @@ class UtilisateurController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Utilisateur  $utilisateur
+     * @param  \App\Models\Opportunities  $opportunities
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Utilisateur $utilisateur)
+    public function destroy(Opportunities $opportunities)
     {
         //
     }

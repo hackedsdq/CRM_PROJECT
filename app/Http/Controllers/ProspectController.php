@@ -15,6 +15,7 @@ class ProspectController extends Controller
      */
     public function index()
     {
+        
         return Inertia::render('Prospects');
     }
 

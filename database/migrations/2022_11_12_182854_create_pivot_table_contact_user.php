@@ -14,7 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pivot_table_contact_user', function (Blueprint $table) {
-            $table->bigIncrements('id');
+
+            $table->id();
+            
             $table->date('Date');
             $table->time('heure');
             $table->string('compte_rendu');

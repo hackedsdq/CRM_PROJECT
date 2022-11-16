@@ -51,7 +51,7 @@ export default function SideBar() {
   </div>
       </li>
       */}
-      <li className="side-nav-title side-nav-item">Navigation</li>
+      <li className="side-nav-title side-nav-item">Home</li>
       <li className="side-nav-item">
         <InertiaLink href='/' className="side-nav-link" >
         <i className="uil-home-alt" />

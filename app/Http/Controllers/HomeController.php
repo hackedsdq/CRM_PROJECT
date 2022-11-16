@@ -36,6 +36,18 @@ class HomeController extends Controller
     }
     public function calendar(){
         return Inertia::render('Calendar');
+<<<<<<< HEAD
     }
     
+=======
+    }
+    public function SigninCostumer(){
+        return Inertia::render('SigninCostumer');
+    }
+    
+    public function Profile(){
+        return Inertia::render('Profile');
+    }
+    
+>>>>>>> 7eb4c45225b1a2ee002bbce51c1f88b773263b8b
 }

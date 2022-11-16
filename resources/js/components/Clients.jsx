@@ -1,10 +1,10 @@
-import React,{useState,useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from './static_components/Header'
 import SideBar from './static_components/SideBar'
-import {Box,Modal,Button} from '@mui/material'
-import {DataGrid} from '@mui/x-data-grid'
+import { Box, Modal, Button } from '@mui/material'
+import { DataGrid } from '@mui/x-data-grid'
 import PageTitle from './static_components/PageTitle'
-import EditModal from './static_components/EditModal'
+import EditModalClient from './static_components/EditModalClient'
 import UserActions from './user_actions/UserActions'
 import DataGridTable from './static_components/DataGridTable'
 
@@ -14,28 +14,26 @@ export default function Clients() {
 
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'firstName', headerName: 'First name', width: 130 },
-    { field: 'lastName', headerName: 'Last name', width: 130 },
+    { field: 'Society', headerName: 'Society', width: 130 },
+    { field: 'Adress', headerName: 'Adress', width: 400 },
     {
-      field: 'age',
-      headerName: 'Age',
+      field: 'Telephone',
+      headerName: 'Telephone',
       type: 'number',
-      width: 90,
+      width: 150,
     },
-    { field: 'delete', headerName: 'Delete', width: 70, renderCell:(params)=> <UserActions user={params.row} action="delete"/>  },
-    { field: 'modify', headerName: 'Modify', width: 70, renderCell:(params)=> <UserActions user={params.row} action="modify"/> },
+    { field: 'Website', headerName: 'Website', width: 200 },
+    { field: 'delete', headerName: 'Delete', width: 70, renderCell: (params) => <UserActions user={params.row} action="delete" /> },
+    { field: 'modify', headerName: 'Modify', width: 70, renderCell: (params) => <UserActions user={params.row} action="modify" /> },
   ];
-  
+
   const rows = [
-    { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-    { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-    { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-    { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-    { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-    { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-    { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-    { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-    { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+    { id: 1, Society: 'SOGERHWIT', Adress: 'B.P 869 Abou Tachfine Tlemcen 13000, Tlemcen, Algeria', Telephone: '043 22 82 46', Website: 'http://www.sogerhwit.net/' },
+    { id: 2, Society: 'SAA', Adress: '05, rue Belhadi Boucif,Tlemcen,Algérie', Telephone: '043 26 71 65', Website: 'https://www.saa.dz/' },
+    { id: 3, Society: 'SARL CYLEXX', Adress: 'Bd Ain Sbaa Ali, Tlemcen 13000, Tlemcen, Algeria', Telephone: '0542 28 83 85', Website: 'http://cylexx-tlemcen.com/' },
+    { id: 4, Society: 'DHL', Adress: ' Boulevard Colonel Lotfi, Tlemcen, Algeria', Telephone: '043 27 35 80', Website: 'www.dhl.fr/fr.html' },
+    { id: 5, Society: 'SARLPROCARTON', Adress: 'Zone industrielle desserte n4, Tlemcen 13000, Algeria', Telephone: '0550 67 26 01', Website: '/' },
+
   ];
 
 
@@ -48,25 +46,25 @@ export default function Clients() {
 
   return (
     <div className='wrapper' >
-        <SideBar />
-        <Header />
-        
-        <div className="content-page">
-          <div className="content">
-            {/* Start Content*/}
-            <div className="container-fluid">
-              {/* start page title */}
-              <PageTitle title={title} />
-              {/* end page title */} 
+      <SideBar />
+      <Header />
 
-              {/* ------------------------ edit modal ------------------ */}
-              <EditModal />
-               {/* ------------------------ show datagrid table search ------------------ */}
-              <DataGridTable title={title} columns={columns} rows={rows}  />
-              {/* end row */}
-            </div> {/* container */}
-          </div> {/* content */}
-        </div>
+      <div className="content-page">
+        <div className="content">
+          {/* Start Content*/}
+          <div className="container-fluid">
+            {/* start page title */}
+            <PageTitle title={title} />
+            {/* end page title */}
+
+            {/* ------------------------ edit modalClient ------------------ */}
+            <EditModalClient />
+            {/* ------------------------ show datagrid table search ------------------ */}
+            <DataGridTable title={title} columns={columns} rows={rows} />
+            {/* end row */}
+          </div> {/* container */}
+        </div> {/* content */}
+      </div>
 
     </div>
   )

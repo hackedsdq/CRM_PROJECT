@@ -8,13 +8,19 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Http\\Controllers\\CalendarController' => $baseDir . '/app/Http/Controllers/CalendarController.php',
+
     'App\\Http\\Controllers\\ClientController' => $baseDir . '/app/Http/Controllers/ClientController.php',
     'App\\Http\\Controllers\\ContactController' => $baseDir . '/app/Http/Controllers/ContactController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
-    'App\\Http\\Controllers\\OpputunitiesController' => $baseDir . '/app/Http/Controllers/OpputunitiesController.php',
+
+    'App\\Http\\Controllers\\OpportunitiesController' => $baseDir . '/app/Http/Controllers/OpportunitiesController.php',
     'App\\Http\\Controllers\\ProduitController' => $baseDir . '/app/Http/Controllers/ProduitController.php',
-    'App\\Http\\Controllers\\UtilisateurController' => $baseDir . '/app/Http/Controllers/UtilisateurController.php',
+    'App\\Http\\Controllers\\ProspectController' => $baseDir . '/app/Http/Controllers/ProspectController.php',
+    'App\\Http\\Controllers\\SiginCostumerController' => $baseDir . '/app/Http/Controllers/SiginCostumerController.php',
+    'App\\Http\\Controllers\\SigninController' => $baseDir . '/app/Http/Controllers/SigninController.php',
+
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',
@@ -26,10 +32,15 @@ return array(
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\ValidateSignature' => $baseDir . '/app/Http/Middleware/ValidateSignature.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
+    'App\\Models\\Calendar' => $baseDir . '/app/Models/Calendar.php',
     'App\\Models\\Client' => $baseDir . '/app/Models/Client.php',
     'App\\Models\\Contact' => $baseDir . '/app/Models/Contact.php',
-    'App\\Models\\Opputunities' => $baseDir . '/app/Models/Opputunities.php',
+    'App\\Models\\Opportunities' => $baseDir . '/app/Models/Opportunities.php',
     'App\\Models\\Produit' => $baseDir . '/app/Models/Produit.php',
+    'App\\Models\\Prospect' => $baseDir . '/app/Models/Prospect.php',
+    'App\\Models\\SiginCostumer' => $baseDir . '/app/Models/SiginCostumer.php',
+    'App\\Models\\Signin' => $baseDir . '/app/Models/Signin.php',
+
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Models\\Utilisateur' => $baseDir . '/app/Models/Utilisateur.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',

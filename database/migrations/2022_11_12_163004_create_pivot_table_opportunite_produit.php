@@ -13,17 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('contacts', function (Blueprint $table) {
+        Schema::create('opportunite_produit', function (Blueprint $table) {
+
             $table->id();
-            $table->nom();
-            $table->prenom();
-            $table->fonction();
-            $table->telephone();
-            $table->email()->require;
-            $table->password()->require;
-            $table->timestamps();
-        });
-    }
+            $table->string('nom');
+            $table->double('montant');
+            $table->enum('étape',['first','two']);
+            $table->date('date_de_clôture');
+            $table->unsignedBigInteger('Client_id');
+
+            $table->foreign('client_id')->references('id')->on('clients');
+
+    });
+}
 
     /**
      * Reverse the migrations.
@@ -32,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contacts');
+
     }
 };

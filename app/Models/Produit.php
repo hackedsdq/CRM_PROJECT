@@ -15,4 +15,8 @@ class Produit extends Model
         'prix'
       
     ];
+    public function Opportunities()
+    {
+        return $this->belongsToMany(Opportunities::class);
+    }
 }

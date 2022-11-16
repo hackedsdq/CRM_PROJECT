@@ -13,13 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('produits', function (Blueprint $table) {
+        Schema::create('pivot_table_contact_user', function (Blueprint $table) {
+
             $table->id();
-            $table->id();
-            $table->nom();
-            $table->description();
-            $table->quantité();
-            $table->prix();
+            
+            $table->date('Date');
+            $table->time('heure');
+            $table->string('compte_rendu');
+            $table->foreignId('users_id')->constrained()->onDelete('cascade');
+            $table->foreignId('contacts_id')->constrained()->onDelete('cascade');
+
             $table->timestamps();
         });
     }
@@ -31,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('produits');
+        Schema::dropIfExists('pivot_table_contact_user');
     }
 };

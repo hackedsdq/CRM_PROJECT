@@ -7,7 +7,7 @@ import PageTitle from './static_components/PageTitle'
 import EditModalProduits from './static_components/EditModalProduits'
 import UserActions from './user_actions/UserActions'
 import DataGridTable from './static_components/DataGridTable'
-
+import EditModalShowProduits from './static_components/EditModalShowProduits'
 export default function Produits() {
 
   let title = "Produits"
@@ -38,6 +38,8 @@ export default function Produits() {
       },
     { field: 'delete', headerName: 'Delete', width: 70, renderCell:(params)=> <UserActions user={params.row} action="delete"/>  },
     { field: 'modify', headerName: 'Modify', width: 70, renderCell:(params)=> <UserActions user={params.row} action="modify"/> },
+    { field: 'show', headerName: 'show', width: 70, renderCell:(params)=> <UserActions user={params.row} action="show"/> },
+ 
   ];
   
   const rows = [
@@ -85,6 +87,7 @@ export default function Produits() {
 
               {/* ------------------------ edit modal ------------------ */}
               <EditModalProduits />
+              <EditModalShowProduits/>
                {/* ------------------------ show datagrid table search ------------------ */}
               <DataGridTable title={title} columns={columns} rows={rows}  />
               {/* end row */}

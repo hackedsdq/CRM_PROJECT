@@ -31,6 +31,9 @@ export default function EditModalShow(props) {
                     <tr>
                     <td><b>Client:</b></td>
                     </tr>
+                    <tr>
+                    <td><b>Password:</b></td>
+                    </tr>
                 </table>
             </div>
             <div class="modal-body">

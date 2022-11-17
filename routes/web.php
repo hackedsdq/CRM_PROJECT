@@ -26,7 +26,21 @@ Route::get('/opportunities',[\App\Http\Controllers\OpportunitiesController::clas
 
 Route::get('/contacts',[\App\Http\Controllers\ContactController::class, 'index']);
 Route::get('/users',[\App\Http\Controllers\HomeController::class, 'users']);
+
+Route::get('/SigninCostumer',[\App\Http\Controllers\HomeController::class, 'SigninCostumer']);
+Route::get('/Profile',[\App\Http\Controllers\HomeController::class, 'Profile']);
+Route::get('/Produits',[\App\Http\Controllers\ProduitController::class, 'index']);
+Route::get('/calendar',[\App\Http\Controllers\HomeController::class, 'calendar']);
+
+
+Route::get('/calendar',[\App\Http\Controllers\HomeController::class, 'calendar']);
+Route::get('/SigninCostumer',[\App\Http\Controllers\HomeController::class, 'SigninCostumer']);
+Route::get('/Profile',[\App\Http\Controllers\HomeController::class, 'Profile']);
+Route::get('/Produits',[\App\Http\Controllers\ProduitController::class, 'index']);
+Route::get('/Utilisateur',[\App\Http\Controllers\UtilisateurController::class, 'index']);
+
 Route::get('/calendar',[\App\Http\Controllers\CalendarController::class, 'index']);
 Route::get('/SigninCostumer',[\App\Http\Controllers\SiginCostumerController::class, 'index']);
 Route::get('/Profile',[\App\Http\Controllers\HomeController::class, 'Profile']);
 Route::get('/Produits',[\App\Http\Controllers\ProduitController::class, 'index']);
+

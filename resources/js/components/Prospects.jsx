@@ -7,6 +7,7 @@ import PageTitle from './static_components/PageTitle'
 import EditModal from './static_components/EditModal'
 import UserActions from './user_actions/UserActions'
 import DataGridTable from './static_components/DataGridTable'
+import EditModalShowProspects from './static_components/EditModalShowProspects'
 
 export default function Prospects() {
 
@@ -32,6 +33,7 @@ export default function Prospects() {
 
     { field: 'delete', headerName: 'Delete', width: 70, renderCell:(params)=> <UserActions user={params.row} action="delete"/>  },
     { field: 'modify', headerName: 'Modify', width: 70, renderCell:(params)=> <UserActions user={params.row} action="modify"/> },
+    { field: 'show', headerName: 'show', width: 70, renderCell:(params)=> <UserActions user={params.row} action="show"/> },
   ];
   
   const rows = [
@@ -62,6 +64,7 @@ export default function Prospects() {
 
               {/* ------------------------ edit modal ------------------ */}
               <EditModal />
+              <EditModalShowProspects/>
                {/* ------------------------ show datagrid table search ------------------ */}
               <DataGridTable title={title} columns={columns} rows={rows}  />
               {/* end row */}

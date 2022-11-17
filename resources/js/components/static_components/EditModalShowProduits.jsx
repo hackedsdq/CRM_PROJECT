@@ -12,11 +12,7 @@ export default function EditModalShowProduits(props) {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
             </div>
             <div class="modal-body">
-    
             </div>
- 
-
-
             <div>
                 <table center>
                     <tr center>

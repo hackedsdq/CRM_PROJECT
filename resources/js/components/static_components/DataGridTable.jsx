@@ -20,10 +20,12 @@ export default function DataGridTable(props) {
                 <button type="button" className="btn btn-success mb-2 me-1"><i className="mdi mdi-cog" /></button>
                 <button type="button" className="btn btn-light mb-2 me-1">Import</button>
                 <button type="button" className="btn btn-light mb-2" data-bs-toggle="modal" data-bs-target="#scrollable-modal">Export</button>
-
+<div><button class="btn  btn-sm" data-bs-toggle="modal" data-bs-target="#scrollable-modal"><i class="mdi mdi-square-edit-outline"></i></button></div>
               </div>
             </div>{/* end col*/}
           </div>
+
+          <div><button class="btn  btn-sm" data-bs-toggle="modal" data-bs-target="#scrollable-modal"><i class="mdi mdi-square-edit-outline"></i></button></div>
           <div className="table-responsive">
             {/* ----------------------------------------   DATA GRID TABLE ADDED ------------------------------------------ */}
             <div style={{ height: 400, width: '100%' }}>

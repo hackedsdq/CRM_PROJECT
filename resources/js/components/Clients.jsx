@@ -7,6 +7,7 @@ import PageTitle from './static_components/PageTitle'
 import EditModalClient from './static_components/EditModalClient'
 import UserActions from './user_actions/UserActions'
 import DataGridTable from './static_components/DataGridTable'
+import EditModalShowClient from './static_components/EditModalShowClient'
 
 export default function Clients() {
 
@@ -25,6 +26,9 @@ export default function Clients() {
     { field: 'Website', headerName: 'Website', width: 200 },
     { field: 'delete', headerName: 'Delete', width: 70, renderCell: (params) => <UserActions user={params.row} action="delete" /> },
     { field: 'modify', headerName: 'Modify', width: 70, renderCell: (params) => <UserActions user={params.row} action="modify" /> },
+    { field: 'show', headerName: 'show', width: 70, renderCell:(params)=> <UserActions user={params.row} action="show"/> },
+ 
+ 
   ];
 
   const rows = [
@@ -59,6 +63,7 @@ export default function Clients() {
 
             {/* ------------------------ edit modalClient ------------------ */}
             <EditModalClient />
+            <EditModalShowClient/>
             {/* ------------------------ show datagrid table search ------------------ */}
             <DataGridTable title={title} columns={columns} rows={rows} />
             {/* end row */}

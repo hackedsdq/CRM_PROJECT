@@ -7,7 +7,7 @@ import PageTitle from './static_components/PageTitle'
 import EditModalContacts from './static_components/EditModalContacts'
 import UserActions from './user_actions/UserActions'
 import DataGridTable from './static_components/DataGridTable'
-import EditModalShow from './static_components/EditModalShow'
+import EditModalShowContacts from './static_components/EditModalShowContacts'
 
 
 
@@ -61,7 +61,7 @@ export default function Contacts() {
 
               {/* ------------------------ edit modal ------------------ */}
               <EditModalContacts />
-              <EditModalShow/>
+              <EditModalShowContacts/>
                {/* ------------------------ show datagrid table search ------------------ */}
               <DataGridTable title={title} columns={columns} rows={rows}  />
               {/* end row */}

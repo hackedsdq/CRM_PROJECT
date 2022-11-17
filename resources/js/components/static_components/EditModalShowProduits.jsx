@@ -20,7 +20,7 @@ export default function EditModalShowProduits(props) {
                     <td><b>Description:</b></td>
                     </tr>
                     <tr>
-                    <td><b>Photo:</b></td>
+                    <td><b>Photo: (Affichage)</b></td>
                     </tr>
                     <tr>
                     <td><b>Price:</b></td>

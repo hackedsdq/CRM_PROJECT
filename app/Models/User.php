@@ -12,7 +12,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
     public function contact(){
-
         return $this->belongsToMany(Contact::class);
     }
     /**
@@ -25,6 +24,7 @@ class User extends Authenticatable
         'prenom',
         'email',
         'password',
+        'role',
     ];
 
     /**

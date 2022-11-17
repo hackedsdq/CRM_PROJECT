@@ -9,6 +9,7 @@ class Signin extends Model
 {
     use HasFactory;
     protected $fillable = [
+
         'email',
         'password',
     ];

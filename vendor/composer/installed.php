@@ -7,6 +7,8 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
+        'reference' => 'e9abaf4a76e49c082ae9f826af91c1658e864802',
+        'name' => 'laravel/laravel',
         'dev' => true,
     ),
     'versions' => array(

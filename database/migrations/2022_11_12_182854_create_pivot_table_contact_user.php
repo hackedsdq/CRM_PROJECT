@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pivot_table_contact_user', function (Blueprint $table) {
+
             $table->id();
             
             $table->date('Date');

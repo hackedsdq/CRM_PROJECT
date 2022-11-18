@@ -16,10 +16,6 @@ return new class extends Migration
 
         Schema::create('opportunites', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('produits_id')->constrained()->onDelete('cascade');
-            $table->foreignId('opportunites_id')->constrained()->onDelete('cascade');
-            $table->integer('quantité');
-            $table->timestamps();
             $table->string('nom');
             $table->double('montant');
             $table->enum('étape',['first','two']);

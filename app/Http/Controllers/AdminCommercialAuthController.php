@@ -7,8 +7,10 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminCommercialAuthController extends Controller
 {
-    public function index()
+    public function index(Request $req)
     {
+        $value = $req->user();
+        //return $value;
         return Inertia::render('Home');
     }
 
@@ -19,18 +21,17 @@ class AdminCommercialAuthController extends Controller
 
     public function handleLogin(Request $req)
     {
-        if(Auth::guard('webadmin')->attempt($req->only(['email', 'password'])))
+        if(Auth::guard('webadcom')->attempt($req->only(['email', 'password'])))
         {
-            return redirect()->route('admin.home');
+            return redirect()->route('adcom.home');
         }
-
         return redirect()->back()->with('error', 'Invalid Credentials');
     }
 
     public function logout()
     {
-        Auth::guard('webadmin')->logout();
+        Auth::guard('webadcom')->logout();
 
-        return redirect()->route('admin.login');
+        return redirect()->route('adcom.login');
     }
 }

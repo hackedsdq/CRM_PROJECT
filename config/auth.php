@@ -38,7 +38,11 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'contacts',
+        ],
+        'webadcom' => [
+            'driver' => 'session',
+            'provider' => 'adcom',
         ],
     ],
 
@@ -60,11 +64,14 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'contacts' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Contact::class,
+        ],
+        'adcom' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

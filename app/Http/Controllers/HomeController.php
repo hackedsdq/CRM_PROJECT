@@ -19,6 +19,15 @@ class HomeController extends Controller
     public function signup(){
         return Inertia::render('Signup');
     }
+   
+    public function SigninCostumer(){
+        return Inertia::render('SigninCostumer');
+    }
+    
+    public function Profile(){
+        return Inertia::render('Profile');
+    }
+    
     public function prospects(){
         return Inertia::render('Prospects');
     }
@@ -37,12 +46,5 @@ class HomeController extends Controller
     public function calendar(){
         return Inertia::render('Calendar');
     }
-    public function SigninCostumer(){
-        return Inertia::render('SigninCostumer');
-    }
     
-    public function Profile(){
-        return Inertia::render('Profile');
-    }
-
 }

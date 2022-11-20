@@ -17,6 +17,7 @@ class ContactController extends Controller
     public function index()
     {
         return Inertia::render('Contacts');
+        return Contact::select('id','nom','prenom','email','password','fonction','telephone')->get();
     }
 
     /**
@@ -37,8 +38,26 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nom'=>'required',
+            'prenom'=>'required',
+            'email'=>'required|integer',
+            'password'=>'required|integer',
+            'fonction'=>'required',
+            'telephone'=>'required|integer'
+        ]);
+        try{return response()->json([
+            'message'=>'contact Created Successfully!!'
+        ]);
+    }catch(\Exception $e){
+        \Log::error($e->getMessage());
+        return response()->json([
+            'message'=>'Something goes wrong while creating a contact!!'
+        ],500);
     }
+    }
+       
+    
 
     /**
      * Display the specified resource.
@@ -48,7 +67,9 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
-        //
+        return response()->json([
+            'contact'=>$contact
+        ]);
     }
 
     /**
@@ -70,8 +91,28 @@ class ContactController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Contact $contact)
-    {
-        //
+    {/*by soundouss*/
+       $request->validate([
+            'nom'=>'required',
+            'prenom'=>'required',
+            'email'=>'required',
+            'password'=>'required',
+            'fonction'=>'required',
+            'telephone'=>'required'
+        ]);
+        try{
+
+            $contact->fill($request->post())->update();
+            return response()->json([
+                'message'=>'contact Updated Successfully!!'
+            ]); }
+            catch(\Exception $e){
+                \Log::error($e->getMessage());
+                return response()->json([
+                    'message'=>'Something goes wrong while updating a contact!!'
+                ],500);
+            }
+
     }
 
     /**
@@ -82,6 +123,19 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        try {
+            $contact->delete();
+
+            return response()->json([
+                'message'=>'contact Deleted Successfully!!'
+            ]);
+            
+        } catch (\Exception $e) {
+            \Log::error($e->getMessage());
+            return response()->json([
+                'message'=>'Something goes wrong while deleting a contact!!'
+            ]);
+        }
     }
+    
 }

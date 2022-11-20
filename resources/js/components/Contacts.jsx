@@ -16,15 +16,19 @@ export default function Contacts() {
   let title = "contact"
 
   const columns = [
+    { field: 'id', headerName: 'ID', width: 70 },
+    { field: 'firstName', headerName: 'First name', width: 130 },
+    { field: 'lastName', headerName: 'Last name', width: 130 },
+    {
+      field: 'Telephone',
+      headerName: 'Telephone',
+      type: 'number',
+      width: 150,
+    },
+    { field: 'Email', headerName: 'Email', width: 200 },
+    { field: 'Password', headerName: 'Password', width: 150 },
+    { field: 'Client', headerName: 'Client', width: 150 },
     
-    
-    { field: 'lastName', headerName: 'Nom', width: 130 },
-    { field: 'firstName', headerName: 'Prenom', width: 130 },
-    { field: 'Email', headerName: 'Email', width: 130 },
-    { field: 'Password', headerName: 'Password', width: 130 },
-    { field: 'Telephone', headerName: 'Telephone', width: 130 },
-    { field: 'Fonction', headerName: 'Fonction', width: 130 },
-    { field: 'Client', headerName: 'Client', width: 130 },
     { field: 'delete', headerName: 'Delete', width: 70, renderCell:(params)=> <UserActions user={params.row} action="delete"/>  },
     { field: 'modify', headerName: 'Modify', width: 70, renderCell:(params)=> <UserActions user={params.row} action="modify"/> },
     { field: 'show', headerName: 'show', width: 70, renderCell:(params)=> <UserActions user={params.row} action="show"/> },
@@ -38,7 +42,6 @@ export default function Contacts() {
     { id: 4, lastName: 'Stark', firstName: 'Arya', Telephone:"043 27 35 80",Email:"/",Password:"0P1A2Z7U",Client:"/" },
     { id: 5, lastName: 'Frances', firstName: 'Rossini', Telephone:"0550 67 26 01",Email:"sarlprocartonemballage@gmail.com",Password:"8I5T0P3E",Client:"/" },
    
-
   ];
 
   //const [open,setOpen]=useState(false);

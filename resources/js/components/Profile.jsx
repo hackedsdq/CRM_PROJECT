@@ -4,7 +4,7 @@ import React from 'react';
 function  Profile() {
 return (
 
-         
+
 
             <div className="wrapper">
   <div className="leftside-menu">
@@ -1135,7 +1135,14 @@ return (
   </div>
 </div>
 
-  );
+         
+    
+    
+          
+
+    
+    
+);
 }
 
 export default Profile;

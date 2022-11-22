@@ -61,8 +61,11 @@ Route::get('adcom/Produits',[\App\Http\Controllers\ProduitController::class, 'in
 Route::get('adcom/', [\App\Http\Controllers\AdminCommercialAuthController::class, 'index'])->name('adcom.home')->middleware('auth:webadcom');
 Route::get('/', [\App\Http\Controllers\ContactsAuthController::class, 'index'])->middleware('auth:web');
 
-//Produits
-Route::post('store',[ProduitController::class,'store'])->name('Produits.store');
-Route::get('listeProduit',[ProduitController::class,'listeProduit'])->name('Produits.listeProduit');
-Route::post('update',[ProduitController::class,'update'])->name('Produits.update');
-Route::post('delete',[ProduitController::class,'destroy'])->name('Produits.delete');
+
+
+// add prospect
+Route::post('/adcom/prospects',[\App\Http\Controllers\ProspectController::class, 'create']);
+Route::post('/adcom/prospects/{id}',[\App\Http\Controllers\ProspectController::class, 'conversion']);
+
+//delete prospect
+Route::delete('/adcom/prospects/{id}',[\App\Http\Controllers\ProspectController::class, 'delete']);

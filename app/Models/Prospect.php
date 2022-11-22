@@ -17,11 +17,11 @@ class Prospect extends Model
         'téléphone',
         'adresse',
         'site_web',
-        'statut',
-        'source'
+        'Statut',
+        'Source'
     ];
     public function clients()
     {
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(Client::class, 'prospects_id');
     }
 }

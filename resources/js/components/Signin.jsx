@@ -1,7 +1,18 @@
-import React from 'react';
-
+import React,{useState} from 'react';
+import { Inertia } from '@inertiajs/inertia';
  
 function Signin() {
+  const [values, setValues] = useState({
+    email:"hinozaidz@admin.com",
+    password:"12345678",
+  })
+
+const  handleSubmit = (e) => {
+    e.preventDefault()
+    Inertia.post('/adcom/login', values)
+    console.log('submitted')
+  }
+
 return (
 <div className="loading authentication-bg" data-layout-config="{&quot;leftSideBarTheme&quot;:&quot;dark&quot;,&quot;layoutBoxed&quot;:false, &quot;leftSidebarCondensed&quot;:false, &quot;leftSidebarScrollable&quot;:false,&quot;darkMode&quot;:false, &quot;showRightSidebarOnStart&quot;: true}">
   <div className="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5">
@@ -20,7 +31,7 @@ return (
                 <h4 className="text-dark-50 text-center pb-0 fw-bold">Sign In</h4>
                 <p className="text-muted mb-4">Enter your email address and password to access admin panel.</p>
               </div>
-              <form action="#">
+              <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                   <label htmlFor="emailaddress" className="form-label">Email address</label>
                   <input className="form-control" type="email" id="emailaddress" required placeholder="Enter your email" />

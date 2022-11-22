@@ -1,7 +1,19 @@
-import React from 'react';
+import React,{useState} from 'react';
+import { Inertia } from '@inertiajs/inertia';
 
  
 function SigninCostumer() {
+  const [values, setValues] = useState({
+    email:"hnad@gmail.com",
+    password:"12345678",
+  })
+
+const  handleSubmit = (e) => {
+    e.preventDefault()
+    Inertia.post('/login', values)
+    console.log('submitted')
+  }
+
 return (
   <div class="auth-fluid">
 
@@ -40,7 +52,7 @@ return (
                       </div>
                   </div>
                   <div class="d-grid mb-0 text-center">
-                      <button class="btn btn-primary" type="submit"><i class="mdi mdi-login"></i> Log In </button>
+                      <button onClick={handleSubmit} class="btn btn-primary" type="submit"><i class="mdi mdi-login"></i> Log In </button>
                   </div>
                   
                   <div class="text-center mt-4">

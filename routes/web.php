@@ -53,3 +53,5 @@ Route::get('adcom/Produits',[\App\Http\Controllers\ProduitController::class, 'in
 // auth middlewares
 Route::get('adcom/', [\App\Http\Controllers\AdminCommercialAuthController::class, 'index'])->name('adcom.home')->middleware('auth:webadcom');
 Route::get('/', [\App\Http\Controllers\ContactsAuthController::class, 'index'])->middleware('auth:web');
+Route::get('adcom/show',[\App\Http\Controllers\showController::class, 'index'])->name('adcom.show');
+Route::get('/show',[\App\Http\Controllers\ShowController::class, 'show']);

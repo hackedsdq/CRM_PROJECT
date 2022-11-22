@@ -14,8 +14,8 @@ class ProduitController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return Inertia::render('Produits');
+    {   $produits= Produit::all();
+        return Inertia::render('Produits', [ 'produits' => $produits]);
     }
 
     /**
@@ -27,6 +27,8 @@ class ProduitController extends Controller
     {
         //
     }
+   
+
 
     /**
      * Store a newly created resource in storage.
@@ -35,8 +37,23 @@ class ProduitController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {    $request->validate([
+        'nom'=>'required',
+       // 'description'=>'required',
+        'photo'=>'required',
+        'quantité'=>'required|integer',
+        'prix'=>'required|double'
+        
+    ]);
+       Produit::create([
+        'nom'=> $request->nom,
+        'description'=>$request->description,
+        'photo'=>$request->photo,
+        'quantité'=>$request->quantité,
+        'prix'=>$request->prix
+      
+       ]);
+       return Inertia::render('Produits');
     }
 
     /**
@@ -47,7 +64,7 @@ class ProduitController extends Controller
      */
     public function show(Produit $produit)
     {
-        //
+       
     }
 
     /**
@@ -69,8 +86,22 @@ class ProduitController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Produit $produit)
-    {
-        //
+    {   $request->validate([
+        'nom'=>'required',
+        'description'=>'required',
+        'photo'=>'required',
+        'quantité'=>'required|integer',
+        'prix'=>'required|double'
+        
+    ]);
+        $produit->update([
+            'nom'=> $request->nom,
+            'description'=>$request->description,
+            'quantité'=>$request->quantité,
+            'prix'=>$request->prix
+        ]);
+        return Inertia::render('Produits');
+
     }
 
     /**
@@ -81,6 +112,7 @@ class ProduitController extends Controller
      */
     public function destroy(Produit $produit)
     {
-        //
+        $produit->delete();
+        return Inertia::render('Produits');
     }
 }

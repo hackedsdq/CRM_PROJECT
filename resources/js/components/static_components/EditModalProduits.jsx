@@ -1,6 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 export default function EditModalProduits(props) {
+  const [firstname, setfirstname] = useState("");
+
+const handlesubmit= (e) => {
+     
+}
+
   return (
 <div>
 <div className="modal fade" id="scrollable-modal" tabIndex={-1} role="dialog" aria-labelledby="scrollableModalTitle" aria-hidden="true">
@@ -55,7 +61,7 @@ export default function EditModalProduits(props) {
       </div>
       <div className="modal-footer">
         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" className="btn btn-primary">Save changes</button>
+       <button type="button" className="btn btn-primary" onClick="">Save changes</button>
       </div>
     </div>{/* /.modal-content */}
   </div>{/* /.modal-dialog */}

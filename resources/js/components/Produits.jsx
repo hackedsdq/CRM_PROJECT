@@ -11,6 +11,9 @@ import EditModalShowProduits from './static_components/EditModalShowProduits'
 export default function Produits() {
 
   let title = "Produits"
+  const [pageLoaded, setPageLoaded]=useState(false)
+
+  const [allProduits, setProduitq]=useState([]);
 
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },

@@ -17,7 +17,8 @@ class Contact extends Authenticatable
     'email',
     'password',
     'fonction',
-    'telephone'
+    'telephone',
+    'Client_id'
     ];
     /**
      * The attributes that should be hidden for serialization.
@@ -40,7 +41,7 @@ class Contact extends Authenticatable
 
 public function client(){
 
-    return $this->hasMany(Client::class);
+    return $this->hasMany(Client::class, 'Client_id');
 }
 public function user(){
 

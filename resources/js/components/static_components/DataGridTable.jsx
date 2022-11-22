@@ -1,10 +1,35 @@
 import React from 'react'
 import { DataGrid } from '@mui/x-data-grid'
-
+import { useState } from 'react'
+import { Inertia } from '@inertiajs/inertia';
 
 export default function DataGridTable(props) {
-  return (
 
+  const [selectedRows,setSelectedRows]=useState([]);
+
+  const getId = (id) =>{
+    console.log("this is the mf " + id)
+  }
+
+  const handleDelete = () =>{
+  console.log(selectedRows)
+  if(selectedRows.length > 0){
+    selectedRows.map((id)=>{
+      Inertia.delete(`/adcom/prospects/${id}`);
+    })
+  }
+  }
+
+  const handleConversion = () =>{
+    console.log(selectedRows)
+    if(selectedRows.length > 0){
+      selectedRows.map((id)=>{
+        Inertia.post(`/adcom/prospects/${id}`);
+      })
+    }
+  }
+
+  return (
     <div className="row">
     <div className="col-12">
       <div className="card">
@@ -18,12 +43,16 @@ export default function DataGridTable(props) {
             <div className="col-sm-8">
               <div className="text-sm-end">
                 <button type="button" className="btn btn-success mb-2 me-1"><i className="mdi mdi-cog" /></button>
-                <button type="button" className="btn btn-light mb-2 me-1">Import</button>
-                <button type="button" className="btn btn-light mb-2" data-bs-toggle="modal" data-bs-target="#scrollable-modal">Export</button>
+                <button type="button" className="btn btn-light mb-2 me-1" onClick={handleDelete} >Delete</button>
+                <button onClick={handleConversion} type="button" className="btn btn-light mb-2 me-1" >convert</button>
 
+                <button  type="button" className="btn btn-light mb-2" data-bs-toggle="modal" data-bs-target="#scrollable-modal">export</button>
+<div><button class="btn  btn-sm" data-bs-toggle="modal" data-bs-target="#scrollable-modal"><i class="mdi mdi-square-edit-outline"></i></button></div>
               </div>
             </div>{/* end col*/}
           </div>
+
+          <div><button class="btn  btn-sm" data-bs-toggle="modal" data-bs-target="#scrollable-modal"><i class="mdi mdi-square-edit-outline"></i></button></div>
           <div className="table-responsive">
             {/* ----------------------------------------   DATA GRID TABLE ADDED ------------------------------------------ */}
             <div style={{ height: 400, width: '100%' }}>
@@ -33,6 +62,8 @@ export default function DataGridTable(props) {
                       pageSize={6}
                       rowsPerPageOptions={[5]}
                       checkboxSelection
+                      onRowClick={(params)=>handleDelete(params.row.id)}
+                      onSelectionModelChange={(selectedRow)=> setSelectedRows(selectedRow)}
                 />  
             </div>
           </div>

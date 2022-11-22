@@ -523,13 +523,15 @@ class ComposerStaticInitca5e2d1d9a6bb56870c192cdca7173bc
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\AdminCommercialAuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminCommercialAuthController.php',
         'App\\Http\\Controllers\\CalendarController' => __DIR__ . '/../..' . '/app/Http/Controllers/CalendarController.php',
-
         'App\\Http\\Controllers\\ClientController' => __DIR__ . '/../..' . '/app/Http/Controllers/ClientController.php',
         'App\\Http\\Controllers\\ContactController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContactController.php',
+        'App\\Http\\Controllers\\ContactsAuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContactsAuthController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\OpportunitiesController' => __DIR__ . '/../..' . '/app/Http/Controllers/OpportunitiesController.php',
+        'App\\Http\\Controllers\\OpputunitiesController' => __DIR__ . '/../..' . '/app/Http/Controllers/OpputunitiesController.php',
         'App\\Http\\Controllers\\ProduitController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProduitController.php',
         'App\\Http\\Controllers\\ProspectController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProspectController.php',
         'App\\Http\\Controllers\\SiginCostumerController' => __DIR__ . '/../..' . '/app/Http/Controllers/SiginCostumerController.php',
@@ -553,7 +555,6 @@ class ComposerStaticInitca5e2d1d9a6bb56870c192cdca7173bc
         'App\\Models\\Prospect' => __DIR__ . '/../..' . '/app/Models/Prospect.php',
         'App\\Models\\SiginCostumer' => __DIR__ . '/../..' . '/app/Models/SiginCostumer.php',
         'App\\Models\\Signin' => __DIR__ . '/../..' . '/app/Models/Signin.php',
-
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',

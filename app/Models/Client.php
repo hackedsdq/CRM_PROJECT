@@ -7,24 +7,27 @@ use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model
 { 
-
-
     use HasFactory;
-     protected $fillable = [  'société',
+     protected $fillable = [  
+    'société',
     'téléphone',
     'adresse',
-    'site_web'
-    
+    'site_web',
+    'prospects_id'
 ];
-public function contact (){
-    return $this->belongsTo(Contact::class);
+
+
+// protected = $guarded[];
+public function contact(){
+    return $this->belongsTo(Contact::class, 'Client_id');
 }
+
 public function opputunites (){
     return $this->belongsTo(opputunites::class);
 
 }
 public function prospects()
 {
-    return $this->hasOne(Prospect::class);
+    return $this->hasOne(Prospect::class, 'prospects_id');
 }
 }

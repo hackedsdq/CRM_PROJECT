@@ -7,6 +7,8 @@ import PageTitle from './static_components/PageTitle'
 import EditModalContacts from './static_components/EditModalContacts'
 import UserActions from './user_actions/UserActions'
 import DataGridTable from './static_components/DataGridTable'
+import EditModalShowContacts from './static_components/EditModalShowContacts'
+
 
 
 export default function Contacts() {
@@ -14,21 +16,19 @@ export default function Contacts() {
   let title = "contact"
 
   const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'firstName', headerName: 'First name', width: 130 },
-    { field: 'lastName', headerName: 'Last name', width: 130 },
-    {
-      field: 'Telephone',
-      headerName: 'Telephone',
-      type: 'number',
-      width: 150,
-    },
-    { field: 'Email', headerName: 'Email', width: 200 },
-    { field: 'Password', headerName: 'Password', width: 150 },
-    { field: 'Client', headerName: 'Client', width: 150 },
     
+    
+    { field: 'lastName', headerName: 'Nom', width: 130 },
+    { field: 'firstName', headerName: 'Prenom', width: 130 },
+    { field: 'Email', headerName: 'Email', width: 130 },
+    { field: 'Password', headerName: 'Password', width: 130 },
+    { field: 'Telephone', headerName: 'Telephone', width: 130 },
+    { field: 'Fonction', headerName: 'Fonction', width: 130 },
+    { field: 'Client', headerName: 'Client', width: 130 },
     { field: 'delete', headerName: 'Delete', width: 70, renderCell:(params)=> <UserActions user={params.row} action="delete"/>  },
     { field: 'modify', headerName: 'Modify', width: 70, renderCell:(params)=> <UserActions user={params.row} action="modify"/> },
+    { field: 'show', headerName: 'show', width: 70, renderCell:(params)=> <UserActions user={params.row} action="show"/> },
+ 
   ];
   
   const rows = [
@@ -60,6 +60,7 @@ export default function Contacts() {
 
               {/* ------------------------ edit modal ------------------ */}
               <EditModalContacts />
+              <EditModalShowContacts/>
                {/* ------------------------ show datagrid table search ------------------ */}
               <DataGridTable title={title} columns={columns} rows={rows}  />
               {/* end row */}

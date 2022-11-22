@@ -59,3 +59,12 @@ Route::get('adcom/Produits',[\App\Http\Controllers\ProduitController::class, 'in
 // auth middlewares
 Route::get('adcom/', [\App\Http\Controllers\AdminCommercialAuthController::class, 'index'])->name('adcom.home')->middleware('auth:webadcom');
 Route::get('/', [\App\Http\Controllers\ContactsAuthController::class, 'index'])->middleware('auth:web');
+
+
+
+// add prospect
+Route::post('/adcom/prospects',[\App\Http\Controllers\ProspectController::class, 'create']);
+Route::post('/adcom/prospects/{id}',[\App\Http\Controllers\ProspectController::class, 'conversion']);
+
+//delete prospect
+Route::delete('/adcom/prospects/{id}',[\App\Http\Controllers\ProspectController::class, 'delete']);

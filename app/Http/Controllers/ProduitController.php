@@ -94,16 +94,22 @@ class ProduitController extends Controller
      * @param  \App\Models\Prospect  $prospect
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Produit $prospect)
+    public function update(Request $request, Produit $produits)
     {
         $request->validate([
-            'nom'=> 'required',
-            // 'description'=> 'required',
+            'nom'=> 'required| min:20',
+            'description'=> 'required',
              'prix'=> 'required',
              'quantité'=> 'required',
         ]
         );
-        
+        $produits->update([
+            'nom'=> $request->nom,
+            'description'=> $request->prenom,
+            'prix'=> $request->date_naiss,
+            'quantité'=> $request->email
+        ]);
+        return Redirect::route('adcom.produits');        
     }
 
    

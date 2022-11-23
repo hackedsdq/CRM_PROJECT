@@ -13,30 +13,23 @@ export default function DataGridTable(props) {
 
   const handleDelete = () =>{
     const titrePage= props.title;
-  console.log("1:"+selectedRows)
   if(selectedRows.length > 0){
-    console.log("5:"+selectedRows)
 
     if(titrePage =="Prospects"){
-      console.log("2:"+selectedRows)
     selectedRows.map((id)=>{
-      console.log("3:"+selectedRows)
       Inertia.delete(`/adcom/prospects/${id}`);
     })
   }else if(props.title =="Produits"){
-    console.log("2:"+selectedRows)
 
     selectedRows.map((id)=>{
       Inertia.delete(`/adcom/produits/${id}`);
     })
   }else if(props.title =="contact"){
-    console.log("2:"+selectedRows)
 
     selectedRows.map((id)=>{
       Inertia.delete(`/adcom/contact/${id}`);
     })
   }else if(props.title =="Clients"){
-    console.log("2:"+selectedRows)
 
     selectedRows.map((id)=>{
       Inertia.delete(`/adcom/clients/${id}`);

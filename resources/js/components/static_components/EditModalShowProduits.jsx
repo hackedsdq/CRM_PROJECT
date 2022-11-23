@@ -2,6 +2,30 @@
 import React from 'react'
 
 export default function EditModalShowProduits(props) {
+    const handleModifyOneItem = () =>{
+        const titrePage= props.title;
+     
+    
+        if(titrePage =="Prospects"){
+    
+          Inertia.update(`/adcom/prospects/${id}`);
+        
+      }else if(props.title =="Produits"){
+    
+      
+          Inertia.update(`/adcom/produits/${id}`);
+        
+      }else if(props.title =="contact"){
+    
+      
+          Inertia.update(`/adcom/contact/${id}`);
+      
+      }else if(props.title =="Clients"){
+    
+          Inertia.update(`/adcom/clients/${id}`);
+        
+      }
+    }
   return (
 <div>
 <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -38,6 +62,7 @@ export default function EditModalShowProduits(props) {
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal" onClick={handleModifyOneItem}>Save Change</button>
             </div>
         </div>
     </div>

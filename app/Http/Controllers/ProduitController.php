@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Produit;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Redirect;
 
 class ProduitController extends Controller
 {
@@ -110,5 +111,7 @@ class ProduitController extends Controller
    public function delete($id)
    {
     $produits = Produit::whereIn('id',[$id])->delete();
+    return Redirect::route('adcom.produits');
+
    }
 }

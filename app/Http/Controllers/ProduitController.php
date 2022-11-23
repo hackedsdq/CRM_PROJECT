@@ -18,10 +18,8 @@ class ProduitController extends Controller
      */
     public function index()
     {
-        $produits = Produit::all();
-        return Inertia::render('Produits',[
-            'produits'=>$produits,
-        ]);
+       // $produits = Produit::all();
+        return Inertia::render('Produits');
     }
 
     /**

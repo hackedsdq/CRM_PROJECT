@@ -69,5 +69,4 @@ Route::post('/adcom/prospects/{id}',[\App\Http\Controllers\ProspectController::c
 //delete prospect
 Route::delete('/adcom/prospects/{id}',[\App\Http\Controllers\ProspectController::class, 'delete']);
 
-//add Produit
-Route::post('/adcom/produits',[\App\Http\Controllers\ProduitController::class, 'create']);
+

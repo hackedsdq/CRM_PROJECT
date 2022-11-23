@@ -3,9 +3,8 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Support\Facades\Hash;
-use App\Models\Prospect;
-use App\Models\Client;
-use App\Models\Contact;
+
+
 use App\Models\Produit;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -71,7 +70,7 @@ class ProduitController extends Controller
      * @param  \App\Models\Prospect  $prospect
      * @return \Illuminate\Http\Response
      */
-    public function show(Prospect $prospect)
+    public function show(Produit $produit)
     {
         //
     }
@@ -82,7 +81,7 @@ class ProduitController extends Controller
      * @param  \App\Models\Prospect  $prospect
      * @return \Illuminate\Http\Response
      */
-    public function edit(Prospect $prospect)
+    public function edit(Produit $produit)
     {
         //
     }
@@ -94,7 +93,7 @@ class ProduitController extends Controller
      * @param  \App\Models\Prospect  $prospect
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Prospect $prospect)
+    public function update(Request $request, Produit $prospect)
     {
         //
     }

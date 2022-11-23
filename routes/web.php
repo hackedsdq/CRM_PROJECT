@@ -52,7 +52,7 @@ Route::get('adcom/opportunities',[\App\Http\Controllers\OpportunitiesController:
 Route::get('adcom/contacts',[\App\Http\Controllers\ContactController::class, 'index'])->name('adcom.contacts');
 Route::get('adcom/users',[\App\Http\Controllers\HomeController::class, 'users'])->name('adcom.users');
 Route::get('adcom/calendar',[\App\Http\Controllers\CalendarController::class, 'index'])->name('adcom.calendar');
-Route::get('adcom/Produits',[\App\Http\Controllers\ProduitController::class, 'index'])->name('adcom.produits');
+Route::get('adcom/produits',[\App\Http\Controllers\ProduitController::class, 'index'])->name('adcom.produits');
 // end of admins and commercials routes
 
 

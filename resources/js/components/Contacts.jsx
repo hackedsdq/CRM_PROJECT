@@ -11,45 +11,51 @@ import EditModalShowContacts from './static_components/EditModalShowContacts'
 
 
 
-export default function Contacts() {
 
-  let title = "contact"
+export default function Contacts({contacts}) {
+
+  let title = "contacts"
+  const [pageLoaded, setPageLoaded]=useState(false)
+
+  const [allContacts, setContacts]=useState([]);
 
   const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'firstName', headerName: 'First name', width: 130 },
-    { field: 'lastName', headerName: 'Last name', width: 130 },
-    {
-      field: 'Telephone',
-      headerName: 'Telephone',
-      type: 'number',
-      width: 150,
-    },
-    { field: 'Email', headerName: 'Email', width: 200 },
-    { field: 'Password', headerName: 'Password', width: 150 },
-    { field: 'Client', headerName: 'Client', width: 150 },
     
-    { field: 'delete', headerName: 'Delete', width: 70, renderCell:(params)=> <UserActions user={params.row} action="delete"/>  },
-    { field: 'modify', headerName: 'Modify', width: 70, renderCell:(params)=> <UserActions user={params.row} action="modify"/> },
-    { field: 'show', headerName: 'show', width: 70, renderCell:(params)=> <UserActions user={params.row} action="show"/> },
+    
+    { field: 'nom', headerName: 'nom', width: 130 },
+    { field: 'prenom', headerName: 'prenom', width: 130 },
+    { field: 'email', headerName: 'email', width: 130 },
+    { field: 'password', headerName: 'password', width: 130 },
+    { field: 'téléphone', headerName: 'téléphone', width: 130 },
+    { field: 'fonction', headerName: 'fonction', width: 130 },
+    { field: 'client', headerName: 'client', width: 130 },
+    { field: 'delete', headerName: 'Delete', width: 70, renderCell:(params)=> <UserActions user={params.row} action="delete" title={title}/>  },
+    { field: 'modify', headerName: 'Modify', width: 70, renderCell:(params)=> <UserActions user={params.row} action="modify"title={title}/> },
+    { field: 'show', headerName: 'show', width: 70, renderCell:(params)=> <UserActions user={params.row} action="show"title={title}/> },
  
   ];
   
-  const rows = [
-    { id: 1, lastName: 'abdelwahed', firstName: 'yagoub', Telephone:"043 22 82 46",Email:"abdelwahed.yagoub@gmail.com",Password:"1A2Z3E4R",Client:"/" },
+  /*const rows = [
+    { id:'' , lastName: '', firstName:'' , Telephone:"",Email:"",Password:"",Client:"" },
     { id: 2, lastName: 'Lannister', firstName: 'Cersei', Telephone:"043 26 71 65",Email:"market.sa.tlm@gmail.com",Password:"4R5T6Y7U",Client:"/"  },
     { id: 3,  lastName: 'Arslane', firstName: 'Chakib', Telephone:"0542 28 83 85",Email:"/",Password:"7U8I9O0P",Client:"/"},
     { id: 4, lastName: 'Stark', firstName: 'Arya', Telephone:"043 27 35 80",Email:"/",Password:"0P1A2Z7U",Client:"/" },
     { id: 5, lastName: 'Frances', firstName: 'Rossini', Telephone:"0550 67 26 01",Email:"sarlprocartonemballage@gmail.com",Password:"8I5T0P3E",Client:"/" },
    
-  ];
+  ];*/
 
-  //const [open,setOpen]=useState(false);
-
-
-
-
-  return (
+  useEffect(()=>{
+    contacts.map((prc)=> allContacts.push(prc))
+    setPageLoaded(true)
+  },[])
+  
+  
+  const getAllContacts = () =>{
+    console.log(allContacts)
+  }
+  
+if(pageLoaded){
+return (
     <div className='wrapper' >
         <SideBar />
         <Header />
@@ -66,7 +72,7 @@ export default function Contacts() {
               <EditModalContacts />
               <EditModalShowContacts/>
                {/* ------------------------ show datagrid table search ------------------ */}
-              <DataGridTable title={title} columns={columns} rows={rows}  />
+              <DataGridTable title={title} columns={columns} rows={allContacts}  />
               {/* end row */}
             </div> {/* container */}
           </div> {/* content */}
@@ -74,4 +80,7 @@ export default function Contacts() {
 
     </div>
   )
+}
+else return(
+  <div></div>)
 }

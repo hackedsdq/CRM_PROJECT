@@ -16,8 +16,10 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Contacts');
-        return Contact::select('id','nom','prenom','email','password','fonction','telephone')->get();
+     
+        $contacts = Contact::all();
+        return Inertia::render('Contacts',['contacts'=>$contacts]);
+
     }
 
     /**
@@ -67,9 +69,8 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
-        return response()->json([
-            'contact'=>$contact
-        ]);
+        return Inertia::render('ContactShow')
+        ->with('contact',$contact);
     }
 
     /**
@@ -93,8 +94,8 @@ class ContactController extends Controller
     public function update(Request $request, Contact $contact)
     {/*by soundouss*/
        $request->validate([
-            'nom'=>'required',
-            'prenom'=>'required',
+            'nom'=>'required|min:3|max:255',
+            'prenom'=>'required|min:3|max:255',
             'email'=>'required',
             'password'=>'required',
             'fonction'=>'required',
@@ -121,21 +122,12 @@ class ContactController extends Controller
      * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Contact $contact)
+    public function delete($id)
     {
-        try {
-            $contact->delete();
-
-            return response()->json([
-                'message'=>'contact Deleted Successfully!!'
-            ]);
-            
-        } catch (\Exception $e) {
-            \Log::error($e->getMessage());
-            return response()->json([
-                'message'=>'Something goes wrong while deleting a contact!!'
-            ]);
-        }
+        $request=Contact::find($id);
+        $request->delete();
+        
+        //  $contact = Contact::whereIn('id',[$id])->delete();
     }
     
 }

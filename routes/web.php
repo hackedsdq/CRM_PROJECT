@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
     return view('welcome');
 });*/
 
+
+
+// guest routes
 Route::get('/signin',[\App\Http\Controllers\SigninController::class, 'index'])->name('guest.signin');
 Route::get('/SigninCostumer',[\App\Http\Controllers\SiginCostumerController::class, 'index'])->name('guest.signincostumer');
 // end of guest routes
@@ -53,5 +56,14 @@ Route::get('adcom/Produits',[\App\Http\Controllers\ProduitController::class, 'in
 // auth middlewares
 Route::get('adcom/', [\App\Http\Controllers\AdminCommercialAuthController::class, 'index'])->name('adcom.home')->middleware('auth:webadcom');
 Route::get('/', [\App\Http\Controllers\ContactsAuthController::class, 'index'])->middleware('auth:web');
-Route::get('adcom/show',[\App\Http\Controllers\showController::class, 'index'])->name('adcom.show');
-Route::get('/show',[\App\Http\Controllers\ShowController::class, 'show']);
+
+
+
+// add prospect
+Route::post('/adcom/prospects',[\App\Http\Controllers\ProspectController::class, 'create']);
+Route::post('/adcom/prospects/{id}',[\App\Http\Controllers\ProspectController::class, 'conversion']);
+
+//delete prospect
+Route::delete('/adcom/prospects/{id}',[\App\Http\Controllers\ProspectController::class, 'delete']);
+//delete contact
+Route::delete('/adcom/contacts/{id}',[\App\Http\Controllers\ContactController::class, 'delete']);

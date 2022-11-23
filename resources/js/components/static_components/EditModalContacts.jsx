@@ -1,8 +1,38 @@
 import React from 'react';
-import axios from 'axios';
+import {useForm}  from "@inertiajs/inertia-react"
 
 
 export default function EditModalContacts(props) {
+  const { data, setData, post, processing, errors } = useForm({
+    nom: "",
+    prenom :"",  
+    password:'', 
+    email : "" , 
+    téléphone:''  
+})
+const handleChange = (e) =>{
+  let inputType = e.target.name
+  let inputValue = e.target.value
+
+  if( inputType === "nom")
+  setData(data.nom = inputValue )
+
+  else if(inputType === "prenom")
+  setData(data.prenom = inputValue)
+
+  else if(inputType === "fonction")
+  setData(data.fonction = inputValue)
+
+  else if(inputType === "email")
+  setData(data.email = inputValue)
+
+  else if(inputType === "téléphone")
+  setData(data.téléphone = inputValue)
+
+  else if(inputType === "adresse")
+  setData(data.adresse = inputValue)
+
+}
 /*by soundouss*/
 /* const navigate = useNavigate();
 
@@ -83,28 +113,25 @@ export default function EditModalContacts(props) {
         
             <div className="mb-3">
                 <label htmlFor="simpleinput" className="form-label">First Name</label>
-                <input type="text"  className="form-control" />
+                <input type="text"  className="form-control" onChange={(e)=>handleChange(e)} value={data.nom} name="nom"/>
             </div>
             <div className="mb-3">
                 <label htmlFor="simpleinput" className="form-label">Last Name</label>
-                <input type="text"  className="form-control" />
+                <input type="text"  className="form-control" onChange={(e)=>handleChange(e)} value={data.prenom} name="prenom"/>
             </div>
             <div className="mb-3">
                 <label htmlFor="example-palaceholder" className="form-label">Telephone</label>
-                <input type="text" className="form-control" placeholder="Telephone" />
+                <input type="text" className="form-control" placeholder="Telephone"onChange={(e)=>handleChange(e)} value={data.téléphone} name="téléphone" />
             </div>
             <div className="mb-3">
                 <label htmlFor="example-textarea" className="form-label">Email</label>
-                <textarea className="form-control"  placeholder="Adress..."  />
+                <textarea className="form-control"  placeholder="Adress..." onChange={(e)=>handleChange(e)} value={data.email} name="email" />
             </div>
             <div className="mb-3">
                 <label htmlFor="example-password" className="form-label">Password</label>
-                <input type="password" className="form-control" defaultValue="password" />
+                <input type="password" className="form-control" defaultValue="password" onChange={(e)=>handleChange(e)} value={data.password} name="password"/>
             </div>
-            <div className="mb-3">
-                <label htmlFor="example-Website" className="form-label">Client</label>
-                <input type="text" className="form-control"  />
-            </div>
+           
             
           
             

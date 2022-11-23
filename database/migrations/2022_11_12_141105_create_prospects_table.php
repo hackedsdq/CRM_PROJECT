@@ -18,15 +18,14 @@ return new class extends Migration
             $table->id();
             $table->string('nom');
             $table->string('prenom');
-            $table->string('société')->unique();
+            $table->string('société');
             $table->string('fonction');
             $table->string('email')->unique();
-            $table->integer('téléphone');
+            $table->integer('téléphone')->unique();
             $table->string('adresse');
             $table->string('site_web');
             $table->enum('Statut',['chaud', 'froid']);
             $table->string('Source');
-
             $table->timestamps();
         });
     }

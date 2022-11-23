@@ -23,16 +23,18 @@ var loadScript = function (src) {
   body.appendChild(tag);
 }
 
+loadScript('./assets/js/pages/demo.dashboard-crm.js')
 loadScript('./assets/js/ui/component.todo.js')
 loadScript('./assets/js/vendor/apexcharts.min.js')
-loadScript('./assets/js/pages/demo.dashboard-crm.js')
-//loadScript('./assets/js/app.min.js')
+loadScript('./assets/js/app.min.js')
 loadScript('./assets/js/vendor.min.js')
 
 
 createInertiaApp({
   resolve: name => import(`./components/${name}`),
   setup({ el, App, props }) {
-    render(<App {...props}  />, el)
+    render(<App {...props}  />
+    
+    , el)
   },
 })

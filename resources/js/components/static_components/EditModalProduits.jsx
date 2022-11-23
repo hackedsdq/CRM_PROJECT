@@ -1,14 +1,18 @@
 import React from 'react'
+import {useForm}  from "@inertiajs/inertia-react"
+import { Inertia } from '@inertiajs/inertia'
+
+
 
 export default function EditModalProduits(props) {
   const { data, setData, post, processing, errors } = useForm({
     nom: "",
     description :"", 
-    prix: 0, 
-    quantité:0, 
+    prix: "",
+    quantité:""
+   
    
 })
-
 
 const  handleSubmit = (e) => {
 e.preventDefault()
@@ -49,12 +53,14 @@ const handleChange = (e) =>{
         
             <div className="mb-3">
                 <label htmlFor="simpleinput" className="form-label">Name</label>
-                <input  onChange={(e)=>handleChange(e)} type="text"   className="form-control" name="nom"/>
+                <input  onChange={(e)=>handleChange(e)} value={data.nom} name="nom" type="text"   className="form-control" />
+                {errors.nom && <h6 style={{color:"red"}}>{errors.nom}</h6>}
             </div>
           
             <div className="mb-3">
                 <label htmlFor="example-textarea" className="form-label">Description</label>
-                <textarea  onChange={(e)=>handleChange(e)} className="form-control" id="example-textarea" rows={5} defaultValue={""} placeholder="Adress..." name="description" />
+                <textarea  onChange={(e)=>handleChange(e)} value={data.description} name="description" className="form-control" id="example-textarea" rows={5} defaultValue={""} placeholder="Adress..."  />
+                  {errors.description && <h6 style={{color:"red"}}>{errors.description}</h6>}
             </div>   
           
             <div class="col-xl-6">
@@ -62,25 +68,29 @@ const handleChange = (e) =>{
                   <label for="projectname" class="mb-0">Photo</label>
                   <p  class="text-muted font-14">Recommended thumbnail size 800x400 (px).</p>
 
-                  <form action="/" method="post" class="dropzone"  data-plugin="dropzone" data-previews-container="#file-previews" data-upload-preview-template="#uploadPreviewTemplate">
+                  <div class="dropzone"  data-plugin="dropzone" data-previews-container="#file-previews" data-upload-preview-template="#uploadPreviewTemplate">
                       <div>
-                          <input  onChange={(e)=>handleChange(e)} name="file" type="file"/>
+                          <input   name="file" type="file"/>
                       </div>
 
                       <div class="dz-message needsclick">
                           <i class="h3 text-muted dripicons-cloud-upload"></i>
                           <h4>Drop files here or click to upload.</h4>
                       </div>
-            </form>
+            </div>
                 </div></div>
            
             <div className="mb-3">
                 <label htmlFor="simpleinput" className="form-label">Price</label>
-                <input   onChange={(e)=>handleChange(e)} type="text"  className="form-control" name="prix" />
+                <input   onChange={(e)=>handleChange(e)} value={data.prix} name="prix" type="text"  className="form-control"/>
+                {errors.prix && <h6 style={{color:"red"}}>{errors.prix}</h6>}
+
             </div>
             <div className="mb-3">
                 <label htmlFor="simpleinput" className="form-label">Quantity</label>
-                <input  onChange={(e)=>handleChange(e)}  type="text"  className="form-control" name="quantité" />
+                <input  onChange={(e)=>handleChange(e)} value={data.quantité} name="quantité" type="text"  className="form-control"  />
+                {errors.quantité && <h6 style={{color:"red"}}>{errors.quantité}</h6>}
+
             </div>
  {/*   end  of the modal  body    */}
 

@@ -18,8 +18,10 @@ class ProduitController extends Controller
      */
     public function index()
     {
-       // $produits = Produit::all();
-        return Inertia::render('Produits');
+       $produits = Produit::all();
+        return Inertia::render('Produits',[
+            'produits'=>$produits,
+        ]);
     }
 
     /**
@@ -93,7 +95,14 @@ class ProduitController extends Controller
      */
     public function update(Request $request, Produit $prospect)
     {
-        //
+        $request->validate([
+            'nom'=> 'required',
+            // 'description'=> 'required',
+             'prix'=> 'required',
+             'quantité'=> 'required',
+        ]
+        );
+        
     }
 
    

@@ -18,7 +18,6 @@ return new class extends Migration
             $table->foreignId('produits_id')->constrained()->onDelete('cascade');
             $table->foreignId('opportunites_id')->constrained()->onDelete('cascade');
             $table->integer('quantité');
-           
             $table->timestamps();
             
           

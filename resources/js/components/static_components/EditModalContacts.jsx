@@ -8,7 +8,8 @@ export default function EditModalContacts(props) {
     prenom :"",  
     password:'', 
     email : "" , 
-    téléphone:''  
+    téléphone:'',
+    fonction:""
 })
 const handleChange = (e) =>{
   let inputType = e.target.name
@@ -29,7 +30,7 @@ const handleChange = (e) =>{
   else if(inputType === "téléphone")
   setData(data.téléphone = inputValue)
 
-  else if(inputType === "adresse")
+  else if(inputType === "fonction")
   setData(data.adresse = inputValue)
 
 }

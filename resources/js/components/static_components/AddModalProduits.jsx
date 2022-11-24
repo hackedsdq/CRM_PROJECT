@@ -1,12 +1,6 @@
 import React, { useState } from 'react'
 
-export default function EditModalProduits(props) {
-  const [firstname, setfirstname] = useState("");
-
-const handlesubmit= (e) => {
-     
-}
-
+export default function AddModalProduits(props) {
   return (
 <div>
 <div className="modal fade" id="scrollable-modal" tabIndex={-1} role="dialog" aria-labelledby="scrollableModalTitle" aria-hidden="true">

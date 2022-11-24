@@ -3,12 +3,8 @@ import React from 'react';
  
 function  Profile() {
 return (
+          <div className="wrapper">
 
-<<<<<<< HEAD
-           <div className="wrapper">
-=======
-            <div className="wrapper">
->>>>>>> 7eb4c45225b1a2ee002bbce51c1f88b773263b8b
   <div className="leftside-menu">
     <a href="index.html" className="logo text-center logo-light">
       <span className="logo-lg">
@@ -1141,11 +1137,10 @@ return (
     
     
           
-<<<<<<< HEAD
 
-=======
->>>>>>> 7eb4c45225b1a2ee002bbce51c1f88b773263b8b
-    
+
+
+
     
 );
 }

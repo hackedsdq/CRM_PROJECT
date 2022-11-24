@@ -17,8 +17,8 @@ class Prospect extends Model
         'téléphone',
         'adresse',
         'site_web',
-        'statut',
-        'source'
+        'Statut',
+        'Source'
     ];
     public function clients()
     {

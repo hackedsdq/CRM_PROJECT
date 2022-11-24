@@ -8,16 +8,8 @@ use Inertia\Inertia;
 
 class ClientController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        
-        return Inertia::render('Clients');
-    }
+
+    
 
     /**
      * Show the form for creating a new resource.
@@ -26,8 +18,18 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        return view('adcom.clients.create');
     }
+
+    public function index()
+    {
+        $client = Client::all();
+        
+        return Inertia::render('Clients',[
+            'clients' => $client
+        ]);
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -35,9 +37,23 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function editClient(Request $request, $id)
     {
-        //
+
+        $request->validate([
+            'Society'=>'required',
+            'Adress'=>'required',
+            'Telephone'=>'required | integer',
+            'Website'=>'required'
+        ]); 
+        $client = Client::find($id);
+        $client->Society =  $request->get('Society');
+        $client->Adress = $request->get('Adress');
+        $client->Telephone = $request->get('Telephone');
+        $client->Website = $request->get('Website');
+        $client->save();
+ 
+        return redirect('adcom.clients');
     }
 
     /**
@@ -46,42 +62,24 @@ class ClientController extends Controller
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function show(Client $client)
+    /* public function getAll(Client $client)
     {
-        //
-    }
 
+        $index = Client::findOrFail($client);
+        
+        return Inertia::render('Clients',[
+            'clients' => $client[$index]
+        ]);
+    } */
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function edit(Client $client)
+    public function deleteClient($id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Client  $client
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Client $client)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Client  $client
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Client $client)
-    {
-        //
+        $client->delete();
+        return redirect('adcom.clients');
     }
 }

@@ -1,10 +1,7 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import {useForm}  from "@inertiajs/inertia-react"
-import { Inertia } from '@inertiajs/inertia'
-import { color } from '@mui/system'
 
-
-export default function EditModal(props) {
+export default function ShowEditProspect({prospect,type})  {
 
   const { data, setData, post, processing, errors } = useForm({
     nom: "",
@@ -21,11 +18,28 @@ export default function EditModal(props) {
 
 
 const  handleSubmit = (e) => {
-e.preventDefault()
+ e.preventDefault()
 console.log(data)
-post('/adcom/prospects')
+post(`/adcom/prospects/update/${prospect.id}`) 
 }
 
+useEffect(()=>{
+  handleGetProspect()
+},[])
+
+
+const handleGetProspect = ()=>{
+  setData(data.nom = prospect.nom )
+  setData(data.prenom = prospect.prenom)
+  setData(data.société = prospect.société)
+  setData(data.fonction = prospect.fonction)
+  setData(data.email = prospect.email)
+  setData(data.téléphone = prospect.téléphone)
+  setData(data.adresse = prospect.adresse)
+  setData(data.site_web = prospect.site_web)
+  setData(data.Statut = prospect.site_web)
+  setData(data.Source = prospect.Source)
+}
 
 const handleChange = (e) =>{
   let inputType = e.target.name
@@ -63,74 +77,67 @@ const handleChange = (e) =>{
 }
 
 
+
 return (
 <form onSubmit={(e)=>handleSubmit(e)} >
-<div className="modal fade" id="scrollable-modal" tabIndex={-1} role="dialog" aria-labelledby="scrollableModalTitle" aria-hidden="true">
-  <div className="modal-dialog modal-dialog-scrollable" role="document">
     <div className="modal-content">
-      <div className="modal-header">
-        <h5 className="modal-title" id="scrollableModalTitle">Add Prospects</h5>
-        <button  type="button" className="btn-close" data-bs-dismiss="modal" aria-hidden="true" />
-      </div>
-
-
       <div className="modal-body">
  
  {/*   bodyyyyy of the modal    */}
 
             <div className="mb-3">
                 <label htmlFor="simpleinput" className="form-label">First Name</label>
-                <input onChange={(e)=>handleChange(e)} value={data.nom} name="nom"  type="text" className="form-control" />
+                <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data.nom} name="nom"  type="text" className="form-control" />
                 {errors.nom && <h6 style={{color:"red"}}>{errors.nom}</h6>}
             </div>
             <div className="mb-3">
                 <label htmlFor="simpleinput" className="form-label">Last Name</label>
-                <input onChange={(e)=>handleChange(e)} value={data.prenom} name="prenom" type="text" className="form-control" />
+                <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data.prenom} name="prenom" type="text" className="form-control" />
                 {errors.prenom && <h6 style={{color:"red"}}>{errors.prenom}</h6>}
 
             </div>
             <div className="mb-3">
                 <label htmlFor="simpleinput" className="form-label">Society</label>
-                <input onChange={(e)=>handleChange(e)} value={data.société} name="société" type="text"  className="form-control" />
+                <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data.société} name="société" type="text"  className="form-control" />
                 {errors.société && <h6 style={{color:"red"}}>{errors.société}</h6>}
 
             </div>
             <div className="mb-3">
                 <label htmlFor="simpleinput" className="form-label">Fonction</label>
-                <input onChange={(e)=>handleChange(e)} value={data.fonction} name="fonction" type="text"  className="form-control" />
+                <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data.fonction} name="fonction" type="text"  className="form-control" />
                 {errors.fonction && <h6 style={{color:"red"}}>{errors.fonction}</h6>}
             </div>
 
            <div className="mb-3">
                 <label htmlFor="example-email" className="form-label">Email</label>
-                <input onChange={(e)=>handleChange(e)} value={data.email} name="email" type="email" className="form-control" placeholder="Email" />
+                <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data.email} name="email" type="email" className="form-control" placeholder="Email" />
                 {errors.email && <h6 style={{color:"red"}}>{errors.email}</h6>}
             </div>
             <div className="mb-3">
                 <label htmlFor="example-palaceholder" className="form-label">Telephone</label>
-                <input onChange={(e)=>handleChange(e)} value={data.téléphone} name="téléphone" type="text" className="form-control" placeholder="Telephone" />
+                <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data.téléphone} name="téléphone" type="text" className="form-control" placeholder="Telephone" />
                 {errors.téléphone && <h6 style={{color:"red"}}>{errors.téléphone}</h6>}
             </div>
             <div className="mb-3">
                 <label htmlFor="example-textarea" className="form-label">Adresse</label>
-                <input onChange={(e)=>handleChange(e)} value={data.adresse} name="adresse" type="text" className="form-control" placeholder="Adresse" />
+                <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data.adresse} name="adresse" type="text" className="form-control" placeholder="Adresse" />
                 {errors.adresse && <h6 style={{color:"red"}}>{errors.adresse}</h6>}
             </div>
             <div className="mb-3">
                 <label htmlFor="example-Website" className="form-label">Website</label>
-                <input onChange={(e)=>handleChange(e)} value={data.site_web} name="site_web" type="text" className="form-control" placeholder="Https://" />
+                <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data.site_web} name="site_web" type="text" className="form-control" placeholder="Https://" />
                 {errors.site_web && <h6 style={{color:"red"}}>{errors.site_web}</h6>}
             </div>
 
             <div className="mb-3">
                 <label htmlFor="example-Website" className="form-label">Source</label>
-                <input onChange={(e)=>handleChange(e)} value={data.Source} name="Source" type="text" className="form-control" placeholder="Source" />
+                <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data.Source} name="Source" type="text" className="form-control" placeholder="Source" />
                 {errors.Source && <h6 style={{color:"red"}}>{errors.Source}</h6>}
             </div>
             
             <div className="mb-3">
                 <label htmlFor="example-select" className="form-label">Statut</label>
-                <select onChange={e => handleChange(e)} value={data.Statut} name="Statut" className="form-select" id="example-select">
+                <select disabled={type==="edit" ? false : true } onChange={e => handleChange(e)} value={data.Statut} name="Statut" className="form-select" id="example-select">
                   <option value="0">Hot</option>
                   <option value="1">Cold</option>
                 </select>
@@ -146,10 +153,9 @@ return (
 
 
     </div>{/* /.modal-content */}
-  </div>{/* /.modal-dialog */}
 
-</div>
 </form>
 
   )
 }
+

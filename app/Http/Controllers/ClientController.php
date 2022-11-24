@@ -15,10 +15,27 @@ class ClientController extends Controller
      */
     public function index()
     {
-        
-        return Inertia::render('Clients');
+        $clients = Client::all();
+        return Inertia::render('Clients',[
+            'clients' => $clients
+        ]);   
     }
 
+    public function editIndex($id){
+        $client = Client::find($id);
+        return Inertia::render('ShowEditClient',[
+            'client'=>$client,
+            'type'=>'edit',
+        ]);
+    }
+
+    public function showIndex($id){
+        $client = Client::find($id);
+        return Inertia::render('ShowEditClient',[
+            'client'=>$client,
+            'type'=>'show',
+        ]);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -69,9 +86,16 @@ class ClientController extends Controller
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(Request $request,$id)
     {
-        //
+        $client = Client::find($id);
+        $client->société =  $request->société;
+        $client->adresse = $request->adresse;
+        $client->téléphone = $request->téléphone;
+        $client->site_web = $request->site_web;
+        $client->save();
+
+        return $client;
     }
 
     /**

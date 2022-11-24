@@ -5,6 +5,7 @@ export default function UserActions(props) {
   let title = props.title;
   let user = props.user
   
+
 return(
 <div>
  {action==="delete" && <button className='btn  btn-sm' ><i className='mdi mdi-delete'></i> </button>}

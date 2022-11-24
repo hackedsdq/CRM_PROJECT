@@ -118,11 +118,11 @@ class ProspectController extends Controller
      */
     public function update(Request $request,$id)
     {
-        $request->validate([
-            'nom'=> 'required',
+/*         $request->validate([
+             'nom'=> 'required',
              'société'=> 'required',
              'fonction'=> 'required',
-            'email'=> 'required',
+             'email'=> 'required',
              'téléphone'=> 'required',
              'addresse'=> 'required',
              'site_web'=> 'required',
@@ -130,6 +130,7 @@ class ProspectController extends Controller
              'Source'=> 'required',
         ]
         );
+ */
 
         $prospect = Prospect::find($id);
         
@@ -141,8 +142,8 @@ class ProspectController extends Controller
         $prospect->téléphone =  $request->téléphone;
         $prospect->adresse = $request->adresse;
         $prospect->site_web = $request->site_web;
-        $prospect->Statut = $request->Statut;
         $prospect->Source = $request->Source;
+        $prospect->Statut = $request->Statut;
         $prospect->save();
     }
 

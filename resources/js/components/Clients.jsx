@@ -8,45 +8,34 @@ import UserActions from './user_actions/UserActions'
 import DataGridTable from './static_components/DataGridTable'
 import AddModalClient from './static_components/AddModalClient'
 
-export default function Clients() {
+export default function Clients({clients}) {
 
   let title = "Clients"
+  const [pageLoaded, setPageLoaded]=useState(false)
+  const [allClients, setProspects]=useState([]);
 
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'Society', headerName: 'Society', width: 130 },
-    { field: 'Adress', headerName: 'Adress', width: 400 },
-    {
-      field: 'Telephone',
-      headerName: 'Telephone',
-      type: 'number',
-      width: 150,
-    },
-    { field: 'Website', headerName: 'Website', width: 200 },
-    { field: 'delete', headerName: 'Delete', width: 70, renderCell: (params) => <UserActions user={params.row} action="delete" /> },
-    { field: 'modify', headerName: 'Modify', width: 70, renderCell: (params) => <UserActions user={params.row} action="modify" /> },
-    { field: 'show', headerName: 'show', width: 70, renderCell:(params)=> <UserActions user={params.row} action="show"/> },
- 
- 
+    { field: 'société', headerName: 'société', width: 130 },
+    { field: 'téléphone', headerName: 'téléphone', width: 400 },
+    { field: 'adresse',headerName: 'adresse',type: 'number',width: 150},
+    { field: 'site_web', headerName: 'site_web', width: 200 },
+    { field: 'delete', headerName: 'Delete', width: 70, renderCell: (params) => <UserActions title="clients" user={params.row} action="delete" /> },
+    { field: 'modify', headerName: 'Modify', width: 70, renderCell: (params) => <UserActions title="clients" user={params.row} action="modify" /> },
+    { field: 'show', headerName: 'show', width: 70, renderCell:(params)=> <UserActions title="clients" user={params.row} action="show"/> },
   ];
-
-  const rows = [
-    { id: 1, Society: 'SOGERHWIT', Adress: 'B.P 869 Abou Tachfine Tlemcen 13000, Tlemcen, Algeria', Telephone: '043 22 82 46', Website: 'http://www.sogerhwit.net/' },
-    { id: 2, Society: 'SAA', Adress: '05, rue Belhadi Boucif,Tlemcen,Algérie', Telephone: '043 26 71 65', Website: 'https://www.saa.dz/' },
-    { id: 3, Society: 'SARL CYLEXX', Adress: 'Bd Ain Sbaa Ali, Tlemcen 13000, Tlemcen, Algeria', Telephone: '0542 28 83 85', Website: 'http://cylexx-tlemcen.com/' },
-    { id: 4, Society: 'DHL', Adress: ' Boulevard Colonel Lotfi, Tlemcen, Algeria', Telephone: '043 27 35 80', Website: 'www.dhl.fr/fr.html' },
-    { id: 5, Society: 'SARLPROCARTON', Adress: 'Zone industrielle desserte n4, Tlemcen 13000, Algeria', Telephone: '0550 67 26 01', Website: '/' },
-
-  ];
-
-
 
   //const [open,setOpen]=useState(false);
 
+useEffect(()=>{
+  console.log(clients)
+  clients.map((prc)=> allClients.push(prc))
+  setPageLoaded(true)
+},[])
 
 
 
-
+if(pageLoaded){
   return (
     <div className='wrapper' >
       <SideBar />
@@ -60,16 +49,21 @@ export default function Clients() {
             <PageTitle title={title} />
             {/* end page title */}
 
-            {/* ------------------------ edit modalClient ------------------ */}
-            <AddModalClient />
+            {/* ------------------------ edit modalClient ------------------ 
+            <AddModalClient />*/}
             {/* ------------------------ show datagrid table search ------------------ */}
-            <DataGridTable title={title} columns={columns} rows={rows} />
+            <DataGridTable title={title} columns={columns} rows={allClients} />
             {/* end row */}
           </div> {/* container */}
         </div> {/* content */}
       </div>
 
     </div>
+  )
+  }
+  else 
+  return(
+    <div></div>
   )
 }
 

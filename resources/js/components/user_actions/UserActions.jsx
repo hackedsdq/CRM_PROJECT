@@ -1,29 +1,17 @@
 import React from 'react'
-import { useState } from 'react'
-import { Inertia } from '@inertiajs/inertia';
-
+import { InertiaLink } from '@inertiajs/inertia-react'
 export default function UserActions(props) {
-  const handleDelete = () =>{
-    console.log(selectedRows)
-    if(selectedRows.length > 0){
-      selectedRows.map((id)=>{
-        if( props.title==='contact')
-        Inertia.delete(`/adcom/contacts/${id}`);
-        //else if(props.title==='prospects')
-        //Inertia.delete(`/adcom/prospects/${id}`);
-        //else if(props.title==='produits')
-       // Inertia.delete(`/adcom/produits/${id}`);
-      })
-    }
-    }
-  return(
-    <div>
- {props.action==="delete" && <button className='btn  btn-sm' ><i className='mdi mdi-delete'></i> </button>}
-
- {props.action==="modify" && <button className='btn  btn-sm' data-bs-toggle="modal" data-bs-target="#scrollable-modal"><i className='mdi mdi-square-edit-outline'></i></button>}
- {props.action==="show" && <button type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#scrollable-modal"><i className='mdi mdi-eye'></i> </button>}
+  let action = props.action;
+  let title = props.title;
+  let user = props.user
+  
+return(
+<div>
+ {action==="delete" && <button className='btn  btn-sm' ><i className='mdi mdi-delete'></i> </button>}
+ {action==="modify" && <InertiaLink href={`/adcom/${title}/edit/${user.id}`}> <i className='mdi mdi-square-edit-outline'></i></InertiaLink>}
+ {action==="show" && <InertiaLink href={`/adcom/${title}/show/${user.id}`}> <i className='mdi mdi-square-edit-outline'></i></InertiaLink>}
 </div>
-  )
+)
 }
   
   /*return (

@@ -1,8 +1,7 @@
 import React from 'react';
 import {useForm}  from "@inertiajs/inertia-react"
 
-
-export default function EditModalContacts(props) {
+export default function AddModalContacts(props) { 
   const { data, setData, post, processing, errors } = useForm({
     nom: "",
     prenom :"",  
@@ -11,6 +10,11 @@ export default function EditModalContacts(props) {
     téléphone:'',
     fonction:""
 })
+const  handleSubmit = (e) => {
+  e.preventDefault()
+  console.log(data)
+  post('/adcom/contacts')
+  }
 const handleChange = (e) =>{
   let inputType = e.target.name
   let inputValue = e.target.value
@@ -98,15 +102,13 @@ const handleChange = (e) =>{
     })
   }
 */
+
   return (
-<div>
+<form onSubmit={(e)=>handleSubmit(e)} >
+<div >
 <div className="modal fade" id="scrollable-modal" tabIndex={-1} role="dialog" aria-labelledby="scrollableModalTitle" aria-hidden="true">
   <div className="modal-dialog modal-dialog-scrollable" role="document">
     <div className="modal-content">
-      <div className="modal-header">
-        <h5 className="modal-title" id="scrollableModalTitle">Add Contacts</h5>
-        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-hidden="true" />
-      </div>
       <div className="modal-body">
  
  {/*   bodyyyyy of the modal    */}
@@ -132,12 +134,6 @@ const handleChange = (e) =>{
                 <label htmlFor="example-password" className="form-label">Password</label>
                 <input type="password" className="form-control" defaultValue="password" onChange={(e)=>handleChange(e)} value={data.password} name="password"/>
             </div>
-           
-            
-          
-            
-           
-          
 
  {/*   end  of the modal  body    */}
 
@@ -150,6 +146,7 @@ const handleChange = (e) =>{
   </div>{/* /.modal-dialog */}
 </div>
 </div>
+</form>  
 
   )
 }

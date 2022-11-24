@@ -21,6 +21,21 @@ class ContactController extends Controller
         return Inertia::render('Contacts',['contacts'=>$contacts]);
 
     }
+    public function editIndex($id){
+        $contact = Contact::find($id);
+        return Inertia::render('ShowEditContact',[
+            'contact'=>$contact,
+            'type'=>'edit',
+        ]);
+    }
+
+    public function showIndex($id){
+        $contact = Contact::find($id);
+        return Inertia::render('ShowEditContact',[
+            'contact'=>$contact,
+            'type'=>'show',
+        ]);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -69,8 +84,7 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
-        return Inertia::render('ContactShow')
-        ->with('contact',$contact);
+          //
     }
 
     /**

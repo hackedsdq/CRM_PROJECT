@@ -1,15 +1,17 @@
 import React from 'react'
-
+import { InertiaLink } from '@inertiajs/inertia-react'
 export default function UserActions(props) {
-  return(
-    <div>
+  let action = props.action;
+  let title = props.title;
+  let user = props.user
   
- {props.action==="delete" && <button className='btn  btn-sm' ><i className='mdi mdi-delete'></i> </button>}
- 
- {props.action==="modify" && <button className='btn  btn-sm' data-bs-toggle="modal" data-bs-target="#scrollable-modal"><i className='mdi mdi-square-edit-outline'></i></button>}
- {props.action==="show" && <button type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg"><i className='mdi mdi-eye'></i> </button>}
+return(
+<div>
+ {action==="delete" && <button className='btn  btn-sm' ><i className='mdi mdi-delete'></i> </button>}
+ {action==="modify" && <InertiaLink href={`/adcom/${title}/edit/${user.id}`}> <i className='mdi mdi-square-edit-outline'></i></InertiaLink>}
+ {action==="show" && <InertiaLink href={`/adcom/${title}/show/${user.id}`}> <i className='mdi mdi-square-edit-outline'></i></InertiaLink>}
 </div>
-  )
+)
 }
   
   /*return (

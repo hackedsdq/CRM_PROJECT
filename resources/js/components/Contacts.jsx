@@ -4,37 +4,29 @@ import SideBar from './static_components/SideBar'
 import {Box,Modal,Button} from '@mui/material'
 import {DataGrid} from '@mui/x-data-grid'
 import PageTitle from './static_components/PageTitle'
-import EditModalContacts from './static_components/EditModalContacts'
 import UserActions from './user_actions/UserActions'
 import DataGridTable from './static_components/DataGridTable'
-import EditModalShowContacts from './static_components/EditModalShowContacts'
+import AddModalContacts from './static_components/AddModalContacts'
 
 
 
 export default function Contacts() {
-
   let title = "contact"
-
   const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'firstName', headerName: 'First name', width: 130 },
-    { field: 'lastName', headerName: 'Last name', width: 130 },
-    {
-      field: 'Telephone',
-      headerName: 'Telephone',
-      type: 'number',
-      width: 150,
-    },
-    { field: 'Email', headerName: 'Email', width: 200 },
-    { field: 'Password', headerName: 'Password', width: 150 },
-    { field: 'Client', headerName: 'Client', width: 150 },
     
+    
+    { field: 'lastName', headerName: 'Nom', width: 130 },
+    { field: 'firstName', headerName: 'Prenom', width: 130 },
+    { field: 'Email', headerName: 'Email', width: 130 },
+    { field: 'Password', headerName: 'Password', width: 130 },
+    { field: 'Telephone', headerName: 'Telephone', width: 130 },
+    { field: 'Fonction', headerName: 'Fonction', width: 130 },
+    { field: 'Client', headerName: 'Client', width: 130 },
     { field: 'delete', headerName: 'Delete', width: 70, renderCell:(params)=> <UserActions user={params.row} action="delete"/>  },
     { field: 'modify', headerName: 'Modify', width: 70, renderCell:(params)=> <UserActions user={params.row} action="modify"/> },
     { field: 'show', headerName: 'show', width: 70, renderCell:(params)=> <UserActions user={params.row} action="show"/> },
  
   ];
-  
   const rows = [
     { id: 1, lastName: 'abdelwahed', firstName: 'yagoub', Telephone:"043 22 82 46",Email:"abdelwahed.yagoub@gmail.com",Password:"1A2Z3E4R",Client:"/" },
     { id: 2, lastName: 'Lannister', firstName: 'Cersei', Telephone:"043 26 71 65",Email:"market.sa.tlm@gmail.com",Password:"4R5T6Y7U",Client:"/"  },
@@ -63,10 +55,9 @@ export default function Contacts() {
               {/* end page title */} 
 
               {/* ------------------------ edit modal ------------------ */}
-              <EditModalContacts />
-              <EditModalShowContacts/>
+              <AddModalContacts />
                {/* ------------------------ show datagrid table search ------------------ */}
-              <DataGridTable title={title} columns={columns} rows={rows}  />
+              <DataGridTable title={title} columns={columns} rows={rows}/>
               {/* end row */}
             </div> {/* container */}
           </div> {/* content */}

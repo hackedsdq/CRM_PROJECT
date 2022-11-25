@@ -22,6 +22,6 @@ class Prospect extends Model
     ];
     public function clients()
     {
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(Client::class, 'prospects_id');
     }
 }

@@ -4,10 +4,11 @@ import SideBar from './static_components/SideBar'
 import {Box,Modal,Button} from '@mui/material'
 import {DataGrid} from '@mui/x-data-grid'
 import PageTitle from './static_components/PageTitle'
-import EditModalProduits from './static_components/EditModalProduits'
 import UserActions from './user_actions/UserActions'
 import DataGridTable from './static_components/DataGridTable'
-import EditModalShowProduits from './static_components/EditModalShowProduits'
+import AddModalProduits from './static_components/AddModalProduits'
+
+
 export default function Produits() {
 
   let title = "Produits"
@@ -86,8 +87,7 @@ export default function Produits() {
               {/* end page title */} 
 
               {/* ------------------------ edit modal ------------------ */}
-              <EditModalProduits />
-              <EditModalShowProduits/>
+              <AddModalProduits />
                {/* ------------------------ show datagrid table search ------------------ */}
               <DataGridTable title={title} columns={columns} rows={rows}  />
               {/* end row */}

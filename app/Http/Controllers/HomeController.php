@@ -19,8 +19,8 @@ class HomeController extends Controller
     public function signup(){
         return Inertia::render('Signup');
     }
-<<<<<<< HEAD
-=======
+<<<<<<<<< Temporary merge branch 1
+=========
    
     public function SigninCostumer(){
         return Inertia::render('SigninCostumer');
@@ -30,7 +30,7 @@ class HomeController extends Controller
         return Inertia::render('Profile');
     }
     
->>>>>>> 933ff1ca53dcdcbbf4a9fb1fb45f1c93260fd030
+>>>>>>>>> Temporary merge branch 2
     public function prospects(){
         return Inertia::render('Prospects');
     }
@@ -49,7 +49,7 @@ class HomeController extends Controller
     public function calendar(){
         return Inertia::render('Calendar');
     }
-<<<<<<< HEAD
+<<<<<<<<< Temporary merge branch 1
     public function SigninCostumer(){
         return Inertia::render('SigninCostumer');
     }
@@ -58,7 +58,7 @@ class HomeController extends Controller
         return Inertia::render('Profile');
     }
 
-=======
+=========
     
->>>>>>> 933ff1ca53dcdcbbf4a9fb1fb45f1c93260fd030
+>>>>>>>>> Temporary merge branch 2
 }

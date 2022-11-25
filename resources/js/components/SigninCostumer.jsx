@@ -4,7 +4,7 @@ import { Inertia } from '@inertiajs/inertia';
  
 function SigninCostumer() {
   const [values, setValues] = useState({
-    email:"hamiddz@gmail.com",
+    email:"hnad@gmail.com",
     password:"12345678",
   })
 

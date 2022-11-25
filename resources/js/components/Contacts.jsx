@@ -22,7 +22,7 @@ export default function Contacts({contacts}) {
     { field: 'prenom', headerName: 'prenom', width: 130 },
     { field: 'email', headerName: 'email', width: 130 },
     { field: 'password', headerName: 'password', width: 130 },
-    { field: 'téléphone', headerName: 'téléphone', width: 130 },
+    { field: 'telephone', headerName: 'telephone', width: 130 },
     { field: 'fonction', headerName: 'fonction', width: 130 },
     { field: 'client', headerName: 'client', width: 130 },
     { field: 'delete', headerName: 'Delete', width: 70, renderCell:(params)=> <UserActions user={params.row} action="delete" title='contacts'/>  },

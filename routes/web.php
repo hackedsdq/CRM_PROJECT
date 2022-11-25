@@ -79,4 +79,4 @@ Route::delete('/adcom/contacts/{id}',[\App\Http\Controllers\ContactController::c
 Route::get('/adcom/contacts/edit/{id}',[\App\Http\Controllers\ContactController::class, 'editIndex']);
 // get contact with master details
 Route::get('/adcom/contacts/show/{id}',[\App\Http\Controllers\ContactController::class, 'showIndex']);
-Route::post('/adcom/contacts/update/${contact.id}',[\App\Http\Controllers\ContactController::class,'update']);
+Route::post('/adcom/contacts/update/{id}',[\App\Http\Controllers\ContactController::class,'update']);

@@ -8,7 +8,7 @@ export default function UserActions(props) {
   
   const handleDelete = () =>{
     Inertia.delete(`/adcom/${title}/${user.id}`);
-  
+   //Inertia.reload({only:['']});
     }
   
 return(

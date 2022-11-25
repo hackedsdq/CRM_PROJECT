@@ -34,74 +34,10 @@ const handleChange = (e) =>{
   else if(inputType === "telephone")
   setData(data.telephone = inputValue)
 
-  else if(inputType === "fonction")
-  setData(data.fonction = inputValue)
+  else if(inputType === "password")
+  setData(data.password = inputValue)
 
 }
-/*by soundouss*/
-/* const navigate = useNavigate();
-
-  const { id } = useParams()
-
-  const [nom, setNom] = useState("")
-  const [prenom, setPrenom] = useState("")
-  const [email,setEmail] = useState("")
-  const [password,setPassword]=useState("")
-  const [fonction,setFonction]=useState("")
-  const [telephone,setTelephone]=useState("")
-  const [validationError,setValidationError] = useState({})
-
-  useEffect(()=>{
-    fetchContacts()
-  },[])
-
-  const fetchContact = async () => {
-    await axios.get(`adcom/contacts/${id}`).then(({data})=>{
-      const { nom, prenom,email,password,fonction,telephone } = data.product
-      setNom(nom)
-      setPrenom(prenom)
-      setEmail(email)
-      setPassword(password)
-      setFonction(fonction)
-      setTelephone(telephone)
-    }).catch(({response:{data}})=>{
-      Swal.fire({
-        text:data.message,
-        icon:"error"
-      })
-    })
-  }
-
-  const updateContacts = async (e) => {
-    e.preventDefault();
-
-    const formData = new FormData()
-    formData.append('_method', 'PATCH');
-    formData.append('nom', nom)
-    formData.append('prenom', prenom)
-    formData.append('email', email)
-    formData.append('password', password)
-    formData.append('fonction', fonction)
-    formData.append('telephone', telephone)
-
-    await axios.post(`adcom/contacts/${id}`, formData).then(({data})=>{
-      Swal.fire({
-        icon:"success",
-        text:data.message
-      })
-      navigate("/")
-    }).catch(({response})=>{
-      if(response.status===422){
-        setValidationError(response.data.errors)
-      }else{
-        Swal.fire({
-          text:response.data.message,
-          icon:"error"
-        })
-      }
-    })
-  }
-*/
 
   return (
 <form onSubmit={(e)=>handleSubmit(e)} >

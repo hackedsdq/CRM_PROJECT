@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Http\RedirectResponse;
 
 
 class ContactController extends Controller
@@ -105,16 +106,17 @@ class ContactController extends Controller
      * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contact $id)
-    {/*by soundouss*/
+    public function update(Request $request,$id)
+    {
+
        $request->validate([
             'nom'=>'required|min:3|max:255',
             'prenom'=>'required|min:3|max:255',
             'email'=>'required',
-            'password'=>'required',
             'fonction'=>'required',
             'telephone'=>'required'
         ]);
+
         $contact = Contact::find($id);
         $contact->nom = $request->nom;
         $contact->prenom = $request->prenom ;
@@ -122,8 +124,9 @@ class ContactController extends Controller
         $contact->email = $request->email;
         $contact->telephone =  $request->telephone;
         $contact->save();
-
     }
+        
+    
 
     /**
      * Remove the specified resource from storage.
@@ -135,7 +138,8 @@ class ContactController extends Controller
     {
         $request=Contact::find($id);
         $request->delete();
-        return Inertia::render('adcom/contacts');
+        
+       // return redirect()->route('adcom.contacts');
         
         //  $contact = Contact::whereIn('id',[$id])->delete();
     }

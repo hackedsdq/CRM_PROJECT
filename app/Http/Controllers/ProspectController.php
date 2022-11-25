@@ -24,6 +24,22 @@ class ProspectController extends Controller
         ]);
     }
 
+    public function editIndex($id){
+        $prospect = Prospect::find($id);
+        return Inertia::render('ShowEditProspect',[
+            'prospect'=>$prospect,
+            'type'=>'edit',
+        ]);
+    }
+
+    public function showIndex($id){
+        $prospect = Prospect::find($id);
+        return Inertia::render('ShowEditProspect',[
+            'prospect'=>$prospect,
+            'type'=>'show',
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -56,21 +72,8 @@ class ProspectController extends Controller
         $newProspect->site_web = $request->site_web;
         $newProspect->Statut = $request->Statut;
         $newProspect->Source = $request->Source;
-
         $newProspect->save();
 
-        /*$query = Prospect::create([
-            'nom'=> $request->nom,
-            'prenom'=>$request->prenom, 
-            'société'=> 'hamiddz', 
-            'fonction'=>'said', 
-            'email' => $request->email, 
-            'téléphone'=>'0555924416', 
-            'adresse'=>'hai al rahma', 
-            'site_web'=>'facook.com', 
-            'Status'=>'froid', 
-            'Source'=>'socialmedia'
-        ]);*/
     }
 
     /**
@@ -113,9 +116,34 @@ class ProspectController extends Controller
      * @param  \App\Models\Prospect  $prospect
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Prospect $prospect)
+    public function update(Request $request,$id)
     {
-        //
+        $request->validate([
+            'nom'=> 'required',
+             'société'=> 'required',
+             'fonction'=> 'required',
+            'email'=> 'required',
+             'téléphone'=> 'required',
+             'addresse'=> 'required',
+             'site_web'=> 'required',
+             'Status'=> 'required',
+             'Source'=> 'required',
+        ]
+        );
+
+        $prospect = Prospect::find($id);
+        
+        $prospect->nom = $request->nom;
+        $prospect->prenom = $request->prenom ;
+        $prospect->société = $request->société;
+        $prospect->fonction = $request->fonction;
+        $prospect->email = $request->email;
+        $prospect->téléphone =  $request->téléphone;
+        $prospect->adresse = $request->adresse;
+        $prospect->site_web = $request->site_web;
+        $prospect->Statut = $request->Statut;
+        $prospect->Source = $request->Source;
+        $prospect->save();
     }
 
     public function conversion($id){

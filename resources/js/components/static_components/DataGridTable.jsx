@@ -80,7 +80,6 @@ export default function DataGridTable(props) {
                       pageSize={6}
                       rowsPerPageOptions={[5]}
                       checkboxSelection
-                      onRowClick={(params)=>handleDelete(params.row.id)}
                       onSelectionModelChange={(selectedRow)=> setSelectedRows(selectedRow)}
                 />  
             </div>

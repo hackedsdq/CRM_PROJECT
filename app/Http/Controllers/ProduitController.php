@@ -24,7 +24,21 @@ class ProduitController extends Controller
             'produits'=>$produits,
         ]);
     }
+    public function editIndex($id){
+        $produits = Produit::find($id);
+        return Inertia::render('ShowEditProduit',[
+            'produits'=>$produits,
+            'type'=>'edit',
+        ]);
+    }
 
+    public function showIndex($id){
+        $produits = Produit::find($id);
+        return Inertia::render('ShowEditProduit',[
+            'produits'=>$produits,
+            'type'=>'show',
+        ]);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -34,7 +48,7 @@ class ProduitController extends Controller
     {
         $request->validate([
             'nom'=> 'required',
-            // 'description'=> 'required',
+           'description'=> 'required',
              'prix'=> 'required',
              'quantité'=> 'required',
         ]
@@ -50,8 +64,7 @@ class ProduitController extends Controller
   
 
         $newProduit->save();
-
-       
+        return redirect()->route('adcom.produits');
     }
 
     /**
@@ -94,10 +107,10 @@ class ProduitController extends Controller
      * @param  \App\Models\Prospect  $prospect
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Produit $produits)
-    {
+    public function update(Request $request,  $id)
+    {$produits= Produit::find($id);
         $request->validate([
-            'nom'=> 'required| min:20',
+            'nom'=> 'required',
             'description'=> 'required',
              'prix'=> 'required',
              'quantité'=> 'required',
@@ -105,19 +118,19 @@ class ProduitController extends Controller
         );
         $produits->update([
             'nom'=> $request->nom,
-            'description'=> $request->prenom,
-            'prix'=> $request->date_naiss,
-            'quantité'=> $request->email
+            'description'=> $request->description,
+            'prix'=> $request->prix,
+            'quantité'=> $request->quantité,
+            
         ]);
-        return Redirect::route('adcom.produits');        
+        $produits->save();
+        return redirect()->route('adcom.produits');        
     }
 
    
 
    public function delete($id)
-   {
-    $produits = Produit::whereIn('id',[$id])->delete();
-    return Redirect::route('adcom.produits');
-
+   { $produits = Produit::whereIn('id',[$id])->delete();
+     
    }
 }

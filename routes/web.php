@@ -61,8 +61,8 @@ Route::get('/', [\App\Http\Controllers\ContactsAuthController::class, 'index'])-
 
 // add prospect
 Route::post('/adcom/prospects',[\App\Http\Controllers\ProspectController::class, 'create']);
+// convert prospect
 Route::post('/adcom/prospects/{id}',[\App\Http\Controllers\ProspectController::class, 'conversion']);
-
 //delete prospect
 Route::delete('/adcom/prospects/{id}',[\App\Http\Controllers\ProspectController::class, 'delete']);
 
@@ -83,6 +83,8 @@ Route::get('/adcom/clients/show/{id}',[\App\Http\Controllers\ClientController::c
 Route::post('/adcom/clients/update/{id}',[\App\Http\Controllers\ClientController::class, 'update']);
 // update clients data
 Route::post('/adcom/clients/update/{id}',[\App\Http\Controllers\ClientController::class, 'update']);
+// delete clients
+Route::delete('/adcom/clients/{id}',[\App\Http\Controllers\ClientController::class, 'delete']);
 
 
 

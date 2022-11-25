@@ -531,7 +531,6 @@ class ComposerStaticInitca5e2d1d9a6bb56870c192cdca7173bc
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\OpportunitiesController' => __DIR__ . '/../..' . '/app/Http/Controllers/OpportunitiesController.php',
-        'App\\Http\\Controllers\\OpputunitiesController' => __DIR__ . '/../..' . '/app/Http/Controllers/OpputunitiesController.php',
         'App\\Http\\Controllers\\ProduitController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProduitController.php',
         'App\\Http\\Controllers\\ProspectController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProspectController.php',
         'App\\Http\\Controllers\\SiginCostumerController' => __DIR__ . '/../..' . '/app/Http/Controllers/SiginCostumerController.php',

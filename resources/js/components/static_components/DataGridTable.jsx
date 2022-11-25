@@ -12,15 +12,18 @@ export default function DataGridTable(props) {
   }
 
   const handleDelete = () =>{
-    console.log(props.title)
     if(selectedRows.length > 0){
       selectedRows.map((id)=>{
        if(props.title==='contacts')
         Inertia.delete(`/adcom/contacts/${id}`);
         else if(props.title==='Prospects')
         Inertia.delete(`/adcom/prospects/${id}`);
-        //else if(props.title==='produits')
-        //Inertia.delete(`/adcom/produits/${id}`);
+        else if(props.title==='produits')
+        Inertia.delete(`/adcom/produits/${id}`);
+        else if (props.title === 'Clients'){
+          Inertia.delete(`/adcom/clients/${id}`);
+          console.log("hehe")
+        }
       })
     }
     }
@@ -54,7 +57,7 @@ export default function DataGridTable(props) {
     console.log(selectedRows)
     if(selectedRows.length > 0){
       selectedRows.map((id)=>{
-        Inertia.post(`/adcom/prospects/convert/${id}`);
+        Inertia.post(`/adcom/prospects/${id}`);
       })
     }
   }

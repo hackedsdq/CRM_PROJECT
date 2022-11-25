@@ -12,19 +12,24 @@ export default function DataGridTable(props) {
   }
 
   const handleDelete = () =>{
-  console.log(selectedRows)
-  if(selectedRows.length > 0){
-    selectedRows.map((id)=>{
-      Inertia.delete(`/adcom/prospects/${id}`);
-    })
-  }
-  }
+    console.log(props.title)
+    if(selectedRows.length > 0){
+      selectedRows.map((id)=>{
+       if(props.title==='contacts')
+        Inertia.delete(`/adcom/contacts/${id}`);
+        else if(props.title==='Prospects')
+        Inertia.delete(`/adcom/prospects/${id}`);
+        //else if(props.title==='produits')
+        //Inertia.delete(`/adcom/produits/${id}`);
+      })
+    }
+    }
 
   const handleConversion = () =>{
     console.log(selectedRows)
     if(selectedRows.length > 0){
       selectedRows.map((id)=>{
-        Inertia.post(`/adcom/prospects/${id}`);
+        Inertia.post(`/adcom/prospects/convert/${id}`);
       })
     }
   }

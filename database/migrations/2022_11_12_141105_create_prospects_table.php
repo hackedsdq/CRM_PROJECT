@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('société');
             $table->string('fonction');
             $table->string('email')->unique();
-            $table->integer('téléphone');
+            $table->integer('téléphone')->unique();
             $table->string('adresse');
             $table->string('site_web');
             $table->enum('Statut',['chaud', 'froid']);

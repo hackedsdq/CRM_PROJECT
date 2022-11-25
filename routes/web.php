@@ -24,9 +24,6 @@ Route::get('/signin',[\App\Http\Controllers\SigninController::class, 'index'])->
 Route::get('/SigninCostumer',[\App\Http\Controllers\SiginCostumerController::class, 'index'])->name('guest.signincostumer');
 // end of guest routes
 
-
-
-
 // contact routes
 Route::get('login/', [\App\Http\Controllers\ContactsAuthController::class, 'login'])->name('contacts.login');
 Route::post('login/', [\App\Http\Controllers\ContactsAuthController::class, 'handleLogin'])->name('contacts.handleLogin');
@@ -75,7 +72,8 @@ Route::get('/adcom/prospects/edit/{id}',[\App\Http\Controllers\ProspectControlle
 Route::get('/adcom/prospects/show/{id}',[\App\Http\Controllers\ProspectController::class, 'showIndex']);
 // update prospect data  
 Route::post('/adcom/prospects/update/{id}',[\App\Http\Controllers\ProspectController::class, 'update']);
-
+// post 
+Route::post('/adcom/prospects/update/{id}',[\App\Http\Controllers\ProspectController::class, 'update']);
 
 
 // get edit clients page
@@ -84,3 +82,14 @@ Route::get('/adcom/clients/edit/{id}',[\App\Http\Controllers\ClientController::c
 Route::get('/adcom/clients/show/{id}',[\App\Http\Controllers\ClientController::class, 'showIndex']);
 // update clients data  
 Route::post('/adcom/clients/update/{id}',[\App\Http\Controllers\ClientController::class, 'update']);
+
+
+
+// get edit contact page
+Route::get('/adcom/contacts/edit/{id}',[\App\Http\Controllers\ContactController::class, 'editIndex']);
+// get contact with master details
+Route::get('/adcom/contacts/show/{id}',[\App\Http\Controllers\ContactController::class, 'showIndex']);
+// update contact data  
+Route::post('/adcom/contacts/update/{id}',[\App\Http\Controllers\ContactController::class, 'update']);
+//delete contact
+Route::delete('/adcom/contacts/{id}',[\App\Http\Controllers\ContactController::class, 'delete']);

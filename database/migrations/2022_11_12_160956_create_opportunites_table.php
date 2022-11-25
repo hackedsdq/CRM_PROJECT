@@ -21,7 +21,6 @@ return new class extends Migration
             $table->enum('étape',['first','two']);
             $table->date('date_de_clôture');
             $table->unsignedBigInteger('Client_id');
-
             $table->foreign('client_id')->references('id')->on('clients');
         });
     }

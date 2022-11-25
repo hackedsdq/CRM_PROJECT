@@ -69,7 +69,7 @@ if(pageLoaded){
               {/* end page title */} 
               {/* ------------------------ edit modal ------------------ 
               <EditModalProspect type="edit" object={editedObject} />*/}
-              <AddModalProspect />
+             <AddModalProspect />
 {/*               <ShowProspect/>*/}             
   {/* ------------------------ show datagrid table search ------------------ */}
               <DataGridTable title={title} columns={columns} rows={allProspects}  />

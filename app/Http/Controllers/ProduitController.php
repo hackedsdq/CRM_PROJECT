@@ -1,10 +1,14 @@
 <?php
-
 namespace App\Http\Controllers;
+
+
+use Illuminate\Support\Facades\Hash;
+
 
 use App\Models\Produit;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Redirect;
 
 class ProduitController extends Controller
 {
@@ -14,17 +18,53 @@ class ProduitController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    { 
+    {
+       $produits = Produit::all();
+        return Inertia::render('Produits',[
+            'produits'=>$produits,
+        ]);
+    }
+    public function editIndex($id){
+        $produits = Produit::find($id);
+        return Inertia::render('ShowEditProduit',[
+            'produits'=>$produits,
+            'type'=>'edit',
+        ]);
     }
 
+    public function showIndex($id){
+        $produits = Produit::find($id);
+        return Inertia::render('ShowEditProduit',[
+            'produits'=>$produits,
+            'type'=>'show',
+        ]);
+    }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $request->validate([
+            'nom'=> 'required',
+           'description'=> 'required',
+             'prix'=> 'required',
+             'quantité'=> 'required',
+        ]
+        );
+
+        $newProduit = new Produit();
+        
+        $newProduit->nom = $request->nom;
+        $newProduit->description = $request->description ;
+        $newProduit->prix = $request->prix;
+        $newProduit->quantité = $request->quantité;
+   
+  
+
+        $newProduit->save();
+        return redirect()->route('adcom.produits');
     }
    
 
@@ -42,7 +82,7 @@ class ProduitController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Produit  $produit
+     * @param  \App\Models\Prospect  $prospect
      * @return \Illuminate\Http\Response
      */
     public function show(Produit $produit)
@@ -53,7 +93,7 @@ class ProduitController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Produit  $produit
+     * @param  \App\Models\Prospect  $prospect
      * @return \Illuminate\Http\Response
      */
     public function edit(Produit $produit)
@@ -65,21 +105,33 @@ class ProduitController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Produit  $produit
+     * @param  \App\Models\Prospect  $prospect
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Produit $produit)
-    {  
+    public function update(Request $request,  $id)
+    {$produits= Produit::find($id);
+        $request->validate([
+            'nom'=> 'required',
+            'description'=> 'required| min:20',
+             'prix'=> 'required',
+             'quantité'=> 'required',
+        ]
+        );
+        $produits->update([
+            'nom'=> $request->nom,
+            'description'=> $request->description,
+            'prix'=> $request->prix,
+            'quantité'=> $request->quantité,
+            
+        ]);
+        $produits->save();
+        return redirect()->route('adcom.produits');        
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Produit  $produit
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Produit $produit)
-    {
-      
-    }
+   
+
+   public function delete($id)
+   { $produits = Produit::whereIn('id',[$id])->delete();
+     
+   }
 }

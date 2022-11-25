@@ -18,7 +18,7 @@ class ProspectController extends Controller
      */
     public function index()
     {
-        $prospects = Prospect::all();
+       $prospects = Prospect::all();
         return Inertia::render('Prospects',[
             'prospects'=>$prospects,
         ]);

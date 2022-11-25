@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('nom');
             $table->string('description');
             $table->integer('prix');
+            $table->integer('quantité');
+
             $table->timestamps();
         });
     }

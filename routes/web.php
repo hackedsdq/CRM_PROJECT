@@ -49,7 +49,7 @@ Route::get('adcom/opportunities',[\App\Http\Controllers\OpportunitiesController:
 Route::get('adcom/contacts',[\App\Http\Controllers\ContactController::class, 'index'])->name('adcom.contacts');
 Route::get('adcom/users',[\App\Http\Controllers\HomeController::class, 'users'])->name('adcom.users');
 Route::get('adcom/calendar',[\App\Http\Controllers\CalendarController::class, 'index'])->name('adcom.calendar');
-Route::get('adcom/Produits',[\App\Http\Controllers\ProduitController::class, 'index'])->name('adcom.produits');
+Route::get('adcom/produits',[\App\Http\Controllers\ProduitController::class, 'index'])->name('adcom.produits');
 // end of admins and commercials routes
 
 
@@ -73,10 +73,6 @@ Route::get('/adcom/prospects/show/{id}',[\App\Http\Controllers\ProspectControlle
 // post 
 Route::post('/adcom/prospects/update/{id}',[\App\Http\Controllers\ProspectController::class, 'update']);
 
-//delete contact
-Route::delete('/adcom/contacts/{id}',[\App\Http\Controllers\ContactController::class, 'delete']);
-// get edit contact page
-Route::get('/adcom/contacts/edit/{id}',[\App\Http\Controllers\ContactController::class, 'editIndex']);
-// get contact with master details
-Route::get('/adcom/contacts/show/{id}',[\App\Http\Controllers\ContactController::class, 'showIndex']);
-Route::post('/adcom/contacts/update/{id}',[\App\Http\Controllers\ContactController::class,'update']);
+
+
+

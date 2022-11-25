@@ -2,24 +2,11 @@ import React from 'react'
 import { InertiaLink } from '@inertiajs/inertia-react'
 import { Inertia } from '@inertiajs/inertia';
 export default function UserActions(props) {
-  let action = props.action;
-  let title = props.title;
-  let user = props.user
-  
-  const handleDelete = () =>{
-    Inertia.delete(`/adcom/${title}/${user.id}`);
-   //Inertia.reload({only:['']});
-    }
-  
-return(
-<div>
- {action==="delete" && <button onClick={handleDelete} className='btn  btn-sm' ><i className='mdi mdi-delete'></i> </button>}
- {action==="modify" && <InertiaLink href={`/adcom/${title}/edit/${user.id}`}> <i className='mdi mdi-square-edit-outline'></i></InertiaLink>}
- {action==="show" && <InertiaLink href={`/adcom/${title}/show/${user.id}`}> <i className='mdi mdi-square-edit-outline'></i></InertiaLink>}
+
 </div>
 )
 }
-  
+
   /*return (
     
     <div>

@@ -10,11 +10,7 @@ import AddModalContacts from './static_components/AddModalContacts'
 
 
 
-export default function Contacts({contacts}) {
-  let title = "contacts"
-  const [pageLoaded, setPageLoaded]=useState(false)
-  const [allContacts, setContacts]=useState([]);
-  const [editedObject,setEditedObject]=useState(null);
+
   const columns = [
     
     
@@ -30,7 +26,7 @@ export default function Contacts({contacts}) {
     { field: 'show', headerName: 'show', width: 70, renderCell:(params)=> <UserActions user={params.row} action="show" title='contacts'/> },
  
   ];
-  /*const rows = [
+
     { id: 1, lastName: 'abdelwahed', firstName: 'yagoub', Telephone:"043 22 82 46",Email:"abdelwahed.yagoub@gmail.com",Password:"1A2Z3E4R",Client:"/" },
     { id: 2, lastName: 'Lannister', firstName: 'Cersei', Telephone:"043 26 71 65",Email:"market.sa.tlm@gmail.com",Password:"4R5T6Y7U",Client:"/"  },
     { id: 3,  lastName: 'Arslane', firstName: 'Chakib', Telephone:"0542 28 83 85",Email:"/",Password:"7U8I9O0P",Client:"/"},
@@ -65,7 +61,7 @@ return (
               {/* ------------------------ edit modal ------------------ */}
               <AddModalContacts />
                {/* ------------------------ show datagrid table search ------------------ */}
-              <DataGridTable title={title} columns={columns} rows={allContacts}/>
+
               {/* end row */}
             </div> {/* container */}
           </div> {/* content */}

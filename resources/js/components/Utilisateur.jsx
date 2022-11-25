@@ -18,7 +18,8 @@ export default function Utilisateur() {
     { field: 'prenom', headerName: 'Prenom', width: 130 },
     { field: 'email', headerName: 'Email', width: 130 },
     { field: 'password', headerName: 'Password', width: 130 },
-
+    
+    
     { field: 'delete', headerName: 'Delete', width: 70, renderCell:(params)=> <UserActions user={params.row} action="delete"/>  },
     { field: 'modify', headerName: 'Modify', width: 70, renderCell:(params)=> <UserActions user={params.row} action="modify"/> },
   ];

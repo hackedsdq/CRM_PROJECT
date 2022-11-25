@@ -258,7 +258,7 @@ class Mailable implements MailableContract, Renderable
      */
     protected function newQueuedJob()
     {
-        return (new SendQueuedMailable($this))
+        return Container::getInstance()->make(SendQueuedMailable::class, ['mailable' => $this])
                     ->through(array_merge(
                         method_exists($this, 'middleware') ? $this->middleware() : [],
                         $this->middleware ?? []
@@ -1653,6 +1653,10 @@ class Mailable implements MailableContract, Renderable
 
         if ($content->markdown) {
             $this->markdown($content->markdown);
+        }
+
+        if ($content->htmlString) {
+            $this->html($content->htmlString);
         }
 
         foreach ($content->with as $key => $value) {

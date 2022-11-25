@@ -13,14 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('produits', function (Blueprint $table) {
+
+        Schema::create('opportunites', function (Blueprint $table) {
             $table->id();
-            $table->id();
-            $table->nom();
-            $table->description();
-            $table->quantité();
-            $table->prix();
-            $table->timestamps();
+            $table->string('nom');
+            $table->double('montant');
+            $table->enum('étape',['first','two']);
+            $table->date('date_de_clôture');
+            $table->unsignedBigInteger('Client_id');
+
+            $table->foreign('client_id')->references('id')->on('clients');
         });
     }
 
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('produits');
+
     }
 };

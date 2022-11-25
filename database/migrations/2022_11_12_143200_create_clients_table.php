@@ -13,9 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sigin_costumers', function (Blueprint $table) {
+        Schema::create('clients', function (Blueprint $table) {
             $table->id();
+            $table->string('société');
+            $table->integer('téléphone');
+            $table->string('adresse');
+            $table->string('site_web');
             $table->timestamps();
+            $table->foreignId('prospects_id')
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
         });
     }
 
@@ -26,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sigin_costumers');
+        Schema::dropIfExists('clients');
     }
 };

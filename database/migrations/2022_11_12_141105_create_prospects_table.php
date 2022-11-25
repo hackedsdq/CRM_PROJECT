@@ -14,17 +14,18 @@ return new class extends Migration
     public function up()
     {
         Schema::create('prospects', function (Blueprint $table) {
+
             $table->id();
-            $table->nom();
-            $table->prenom();
-            $table->société();
-            $table->fonction();
-            $table->email();
-            $table->téléphone();
-            $table->adresse();
-            $table->site_web();
-            $table->statut();
-            $table->source();
+            $table->string('nom');
+            $table->string('prenom');
+            $table->string('société');
+            $table->string('fonction');
+            $table->string('email')->unique();
+            $table->integer('téléphone')->unique();
+            $table->string('adresse');
+            $table->string('site_web');
+            $table->enum('Statut',['chaud', 'froid']);
+            $table->string('Source');
             $table->timestamps();
         });
     }

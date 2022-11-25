@@ -51,9 +51,9 @@ export default function SideBar() {
   </div>
       </li>
       */}
-      <li className="side-nav-title side-nav-item">Navigation</li>
+      <li className="side-nav-title side-nav-item">Home</li>
       <li className="side-nav-item">
-        <InertiaLink href='/' className="side-nav-link" >
+        <InertiaLink href='/adcom/' className="side-nav-link" >
         <i className="uil-home-alt" />
           <span>
           Dashboard
@@ -64,7 +64,7 @@ export default function SideBar() {
 
       <li className="side-nav-title side-nav-item">Apps</li>
       <li className="side-nav-item">
-        <InertiaLink href='/calendar' className="side-nav-link" >
+        <InertiaLink href='/adcom/calendar' className="side-nav-link" >
         <i className="uil-calender" />
           <span>
           Calendar
@@ -73,24 +73,24 @@ export default function SideBar() {
       </li>
       
       <li className="side-nav-item">
-        <a href="apps-chat.html" className="side-nav-link">
+        <InertiaLink href="/adcom/clients" className="side-nav-link">
           <i className="uil-comments-alt" />
-          <span> Chat </span>
-        </a>
+          <span> Client</span>
+        </InertiaLink>
       </li>
       <li className="side-nav-item">
-        <a data-bs-toggle="collapse" href="#sidebarEcommerce" aria-expanded="false" aria-controls="sidebarEcommerce" className="side-nav-link">
+
+        <InertiaLink href="/Produits" className="side-nav-link">
           <i className="uil-store" />
-          <span> Ecommerce </span>
-          <span className="menu-arrow" />
-        </a>
-        <div className="collapse" id="sidebarEcommerce">
+          <span> Product</span>
+        </InertiaLink>
+       {/* <div className="collapse" id="sidebarEcommerce">
           <ul className="side-nav-second-level">
             <li>
               <a href="apps-ecommerce-products.html">Products</a>
             </li>
             <li>
-              <a href="apps-ecommerce-products-details.html">Products Details</a>
+               <a href="apps-ecommerce-products-details.html">Products Details</a>
             </li>
             <li>
               <a href="apps-ecommerce-orders.html">Orders</a>
@@ -109,17 +109,21 @@ export default function SideBar() {
             </li>
             <li>
               <a href="apps-ecommerce-sellers.html">Sellers</a>
-            </li>
-          </ul>
-        </div>
-      </li>
-      <li className="side-nav-item">
-        <a data-bs-toggle="collapse" href="#sidebarEmail" aria-expanded="false" aria-controls="sidebarEmail" className="side-nav-link">
-          <i className="uil-envelope" />
-          <span> Email </span>
-          <span className="menu-arrow" />
-        </a>
-        <div className="collapse" id="sidebarEmail">
+    </li>
+    </ul></div> 
+    </div>*/}
+    </li>
+ 
+    <li className="side-nav-item">
+
+<InertiaLink href="/opportunities" className="side-nav-link">
+  <i className="uil-store" />
+  <span> opportunities</span>
+</InertiaLink>
+       {/* <a data-bs-toggle="collapse" href="#sidebarEmail" aria-expanded="false" aria-controls="sidebarEmail" className="side-nav-link">*/}
+         
+       
+        {/*<div className="collapse" id="sidebarEmail">
           <ul className="side-nav-second-level">
             <li>
               <a href="apps-email-inbox.html">Inbox</a>
@@ -151,9 +155,17 @@ export default function SideBar() {
               <a href="apps-projects-add.html">Create Project <span className="badge rounded-pill badge-success-lighten font-10 float-end">New</span></a>
             </li>
           </ul>
-        </div>
+  </div>*/}
       </li>
-      <li className="side-nav-item">
+
+      
+    <li className="side-nav-item">
+
+<InertiaLink href="/opportunities" className="side-nav-link">
+  <i className="uil-store" />
+  <span> Activity Report</span>
+</InertiaLink></li>
+     {/* <li className="side-nav-item">
         <a href="apps-social-feed.html" className="side-nav-link">
           <i className="uil-rss" />
           <span> Social Feed </span>
@@ -637,8 +649,8 @@ export default function SideBar() {
               </div>
             </li>
           </ul>
-        </div>
-      </li>
+</div>
+      </li>*/}
     </ul>
     {/* Help Box */}
     <div className="help-box text-white text-center">

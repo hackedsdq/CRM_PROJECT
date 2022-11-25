@@ -13,11 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('opportunities', function (Blueprint $table) {
+        Schema::create('opportunite_produit', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('produits_id')->constrained()->onDelete('cascade');
+            $table->foreignId('opportunites_id')->constrained()->onDelete('cascade');
+            $table->integer('quantité');
+           
             $table->timestamps();
-        });
-    }
+            
+          
+
+    });
+}
 
     /**
      * Reverse the migrations.
@@ -26,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('opportunities');
+
     }
 };

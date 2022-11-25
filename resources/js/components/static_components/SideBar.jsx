@@ -53,7 +53,7 @@ export default function SideBar() {
       */}
       <li className="side-nav-title side-nav-item">Home</li>
       <li className="side-nav-item">
-        <InertiaLink href='/' className="side-nav-link" >
+        <InertiaLink href='/adcom/' className="side-nav-link" >
         <i className="uil-home-alt" />
           <span>
           Dashboard
@@ -64,7 +64,7 @@ export default function SideBar() {
 
       <li className="side-nav-title side-nav-item">Apps</li>
       <li className="side-nav-item">
-        <InertiaLink href='/calendar' className="side-nav-link" >
+        <InertiaLink href='/adcom/calendar' className="side-nav-link" >
         <i className="uil-calender" />
           <span>
           Calendar
@@ -73,7 +73,7 @@ export default function SideBar() {
       </li>
       
       <li className="side-nav-item">
-        <InertiaLink href="/clients" className="side-nav-link">
+        <InertiaLink href="/adcom/clients" className="side-nav-link">
           <i className="uil-comments-alt" />
           <span> Client</span>
         </InertiaLink>

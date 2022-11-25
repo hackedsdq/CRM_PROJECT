@@ -13,9 +13,10 @@ class ProspectController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
+    /*  @return \Illuminate\Http\Response
+     /*index c la methode get()*/
+
     public function index()
     {
        $prospects = Prospect::all();

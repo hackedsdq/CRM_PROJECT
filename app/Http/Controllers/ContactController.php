@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Http\RedirectResponse;
 
 
 class ContactController extends Controller
@@ -16,7 +17,25 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Contacts');
+     
+        $contacts = Contact::all();
+        return Inertia::render('Contacts',['contacts'=>$contacts]);
+
+    }
+    public function editIndex($id){
+        $contact = Contact::find($id);
+        return Inertia::render('ShowEditContact',[
+            'contact'=>$contact,
+            'type'=>'edit',
+        ]);
+    }
+
+    public function showIndex($id){
+        $contact = Contact::find($id);
+        return Inertia::render('ShowEditContact',[
+            'contact'=>$contact,
+            'type'=>'show',
+        ]);
     }
 
     /**
@@ -37,8 +56,26 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nom'=>'required',
+            'prenom'=>'required',
+            'email'=>'required|integer',
+            'password'=>'required|integer',
+            'fonction'=>'required',
+            'telephone'=>'required|integer'
+        ]);
+        try{return response()->json([
+            'message'=>'contact Created Successfully!!'
+        ]);
+    }catch(\Exception $e){
+        \Log::error($e->getMessage());
+        return response()->json([
+            'message'=>'Something goes wrong while creating a contact!!'
+        ],500);
     }
+    }
+       
+    
 
     /**
      * Display the specified resource.
@@ -48,7 +85,7 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
-        //
+          //
     }
 
     /**
@@ -69,10 +106,27 @@ class ContactController extends Controller
      * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contact $contact)
+    public function update(Request $request,$id)
     {
-        //
+
+       $request->validate([
+            'nom'=>'required|min:3|max:255',
+            'prenom'=>'required|min:3|max:255',
+            'email'=>'required',
+            'fonction'=>'required',
+            'telephone'=>'required'
+        ]);
+
+        $contact = Contact::find($id);
+        $contact->nom = $request->nom;
+        $contact->prenom = $request->prenom ;
+        $contact->fonction = $request->fonction;
+        $contact->email = $request->email;
+        $contact->telephone =  $request->telephone;
+        $contact->save();
     }
+        
+    
 
     /**
      * Remove the specified resource from storage.
@@ -80,8 +134,14 @@ class ContactController extends Controller
      * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Contact $contact)
+    public function delete($id)
     {
-        //
+        $request=Contact::find($id);
+        $request->delete();
+        
+       // return redirect()->route('adcom.contacts');
+        
+        //  $contact = Contact::whereIn('id',[$id])->delete();
     }
+    
 }

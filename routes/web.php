@@ -24,9 +24,6 @@ Route::get('/signin',[\App\Http\Controllers\SigninController::class, 'index'])->
 Route::get('/SigninCostumer',[\App\Http\Controllers\SiginCostumerController::class, 'index'])->name('guest.signincostumer');
 // end of guest routes
 
-
-
-
 // contact routes
 Route::get('login/', [\App\Http\Controllers\ContactsAuthController::class, 'login'])->name('contacts.login');
 Route::post('login/', [\App\Http\Controllers\ContactsAuthController::class, 'handleLogin'])->name('contacts.handleLogin');
@@ -75,5 +72,7 @@ Route::get('/adcom/prospects/edit/{id}',[\App\Http\Controllers\ProspectControlle
 Route::get('/adcom/prospects/show/{id}',[\App\Http\Controllers\ProspectController::class, 'showIndex']);
 // post 
 Route::post('/adcom/prospects/update/{id}',[\App\Http\Controllers\ProspectController::class, 'update']);
+
+
 
 

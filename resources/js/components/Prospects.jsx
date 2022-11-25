@@ -4,17 +4,16 @@ import SideBar from './static_components/SideBar'
 import {Box,Modal,Button} from '@mui/material'
 import {DataGrid} from '@mui/x-data-grid'
 import PageTitle from './static_components/PageTitle'
-import EditModal from './static_components/EditModal'
 import UserActions from './user_actions/UserActions'
 import DataGridTable from './static_components/DataGridTable'
-import EditModalShowProspects from './static_components/EditModalShowProspects'
 import { Inertia } from '@inertiajs/inertia'
+import AddModalProspect from './static_components/AddModalProspect'
 
 export default function Prospects({prospects}) {
   let title = "Prospects"
   const [pageLoaded, setPageLoaded]=useState(false)
-
   const [allProspects, setProspects]=useState([]);
+  const [editedObject,setEditedObject]=useState(null);
 
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
@@ -28,10 +27,9 @@ export default function Prospects({prospects}) {
     { field: 'site_web', headerName: 'site_web', width: 200 },
     { field: 'Statut', headerName: 'Statut', width: 100 },
     { field: 'Source', headerName: 'Source', width: 130 },
-
-    { field: 'delete', headerName: 'Delete', width: 70, renderCell:(params)=> <UserActions user={params.row} action="delete"/>  },
-    { field: 'modify', headerName: 'Modify', width: 70, renderCell:(params)=> <UserActions user={params.row} action="modify"/> },
-    { field: 'show', headerName: 'show', width: 70, renderCell:(params)=> <UserActions user={params.row} action="show"/> },
+    { field: 'delete', headerName: 'Delete', width: 70, renderCell:(params)=> <UserActions title="prospects" user={params.row} action="delete"/>  },
+    { field: 'modify', headerName: 'Modify', width: 70, renderCell:(params)=> <UserActions title="prospects" user={params.row} action="modify"/>},
+    { field: 'show', headerName: 'show', width: 70, renderCell:(params)=> <UserActions title="prospects" user={params.row} action="show" /> },
   ];
   
 /*  const rows = [
@@ -68,10 +66,11 @@ if(pageLoaded){
               {/* start page title */}
               <PageTitle title={title} />
               {/* end page title */} 
-              {/* ------------------------ edit modal ------------------ */}
-              <EditModal/>
-              <EditModalShowProspects/>
-               {/* ------------------------ show datagrid table search ------------------ */}
+              {/* ------------------------ edit modal ------------------ 
+              <EditModalProspect type="edit" object={editedObject} />*/}
+             <AddModalProspect />
+{/*               <ShowProspect/>*/}             
+  {/* ------------------------ show datagrid table search ------------------ */}
               <DataGridTable title={title} columns={columns} rows={allProspects}  />
               {/* end row */}
             </div> {/* container */}

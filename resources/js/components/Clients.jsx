@@ -4,10 +4,9 @@ import SideBar from './static_components/SideBar'
 import { Box, Modal, Button } from '@mui/material'
 import { DataGrid } from '@mui/x-data-grid'
 import PageTitle from './static_components/PageTitle'
-import EditModalClient from './static_components/EditModalClient'
 import UserActions from './user_actions/UserActions'
 import DataGridTable from './static_components/DataGridTable'
-import EditModalShowClient from './static_components/EditModalShowClient'
+import AddModalClient from './static_components/AddModalClient'
 
 export default function Clients() {
 
@@ -62,8 +61,7 @@ export default function Clients() {
             {/* end page title */}
 
             {/* ------------------------ edit modalClient ------------------ */}
-            <EditModalClient />
-            <EditModalShowClient/>
+            <AddModalClient />
             {/* ------------------------ show datagrid table search ------------------ */}
             <DataGridTable title={title} columns={columns} rows={rows} />
             {/* end row */}

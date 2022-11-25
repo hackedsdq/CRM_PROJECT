@@ -1,10 +1,9 @@
 import React from 'react'
 import {useForm}  from "@inertiajs/inertia-react"
 import { Inertia } from '@inertiajs/inertia'
-import { color } from '@mui/system'
 
 
-export default function EditModal(props) {
+export default function AddModalProspect(props) {
 
   const { data, setData, post, processing, errors } = useForm({
     nom: "",

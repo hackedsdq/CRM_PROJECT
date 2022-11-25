@@ -111,7 +111,7 @@ class ProduitController extends Controller
     {$produits= Produit::find($id);
         $request->validate([
             'nom'=> 'required',
-            'description'=> 'required',
+            'description'=> 'required| min:20',
              'prix'=> 'required',
              'quantité'=> 'required',
         ]

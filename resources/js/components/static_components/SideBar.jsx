@@ -80,7 +80,7 @@ export default function SideBar() {
       </li>
       <li className="side-nav-item">
 
-        <InertiaLink href="/Produits" className="side-nav-link">
+        <InertiaLink href="/adcom/produits" className="side-nav-link">
           <i className="uil-store" />
           <span> Product</span>
         </InertiaLink>

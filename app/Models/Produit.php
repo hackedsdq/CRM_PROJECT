@@ -11,10 +11,11 @@ class Produit extends Model
     protected $fillable = [
         'nom',
         'description',
-        'quantité',
-        'prix'
+        'prix',
+         'quantité'
       
     ];
+
     public function Opportunities()
     {
         return $this->belongsToMany(Opportunities::class);

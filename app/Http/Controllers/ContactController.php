@@ -108,6 +108,7 @@ class ContactController extends Controller
      */
     public function update(Request $request,$id)
     {
+        /*by soundouss*/
 
        $request->validate([
             'nom'=>'required|min:3|max:255',

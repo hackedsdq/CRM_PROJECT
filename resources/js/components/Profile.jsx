@@ -4,7 +4,10 @@ import React from 'react';
 function  Profile() {
 return (
 
+
+
             <div className="wrapper">
+
   <div className="leftside-menu">
     <a href="index.html" className="logo text-center logo-light">
       <span className="logo-lg">
@@ -1134,7 +1137,11 @@ return (
 </div>
  
 
-      
+         
+    
+    
+          
+
 );
 }
 

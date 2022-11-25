@@ -6,17 +6,18 @@ export default function ShowEditContact({contact,type})  {
 
   const { data, setData, post, processing, errors } = useForm({
     nom:"test",
-    prenom :"",
-    fonction:"",
-    email :"" ,
-    telephone:"",
+    prenom :"",  
+    fonction:"", 
+    email :"" , 
+    telephone:"", 
+
 })
 
 
 const  handleSubmit = (e) => {
  e.preventDefault()
 //console.log(data)
-post(`/adcom/contacts/update/${contact.id}`)
+post(`/adcom/contacts/update/${contact.id}`) 
 }
 
 useEffect(()=>{
@@ -104,7 +105,8 @@ return (
 
     </div>{/* /.modal-content */}
 
-</form>
+</form>  
+
 )
 
 

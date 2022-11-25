@@ -12,10 +12,9 @@ export default function ShowEditProspect({prospect,type})  {
     téléphone:'', 
     adresse:'', 
     site_web:'', 
-    Statut:"0", 
+    Statut:"", 
     Source:""
 })
-
 
 const  handleSubmit = (e) => {
  e.preventDefault()
@@ -69,8 +68,10 @@ const handleChange = (e) =>{
   else if(inputType === "site_web")
   setData(data.site_web = inputValue)
 
-  else if(inputType === "Statut")
-  setData(data.Statut = `${e.target.selectedIndex}`)
+  else if(inputType === "Statut"){
+    console.log(e.target.value)
+    setData(data.Statut = `${e.target.value}`)
+  }
 
   else if(inputType === "Source")
   setData(data.Source = inputValue)
@@ -138,8 +139,8 @@ return (
             <div className="mb-3">
                 <label htmlFor="example-select" className="form-label">Statut</label>
                 <select disabled={type==="edit" ? false : true } onChange={e => handleChange(e)} value={data.Statut} name="Statut" className="form-select" id="example-select">
-                  <option value="0">Hot</option>
-                  <option value="1">Cold</option>
+                  <option value="chaud">Hot</option>
+                  <option value="froid">Cold</option>
                 </select>
             </div>
     

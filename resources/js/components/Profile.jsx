@@ -4,15 +4,10 @@ import React from 'react';
 function  Profile() {
 return (
 
-<<<<<<<<< Temporary merge branch 1
-<<<<<<< HEAD
-           <div className="wrapper">
-=======
+
+
             <div className="wrapper">
->>>>>>> 7eb4c45225b1a2ee002bbce51c1f88b773263b8b
-=========
-            <div className="wrapper">
->>>>>>>>> Temporary merge branch 2
+
   <div className="leftside-menu">
     <a href="index.html" className="logo text-center logo-light">
       <span className="logo-lg">
@@ -1145,15 +1140,7 @@ return (
     
     
           
-<<<<<<<<< Temporary merge branch 1
-<<<<<<< HEAD
 
-=======
->>>>>>> 7eb4c45225b1a2ee002bbce51c1f88b773263b8b
-=========
->>>>>>>>> Temporary merge branch 2
-    
-    
 );
 }
 

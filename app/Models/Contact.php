@@ -18,10 +18,6 @@ class Contact extends Authenticatable
     'password',
     'fonction',
     'telephone'
-<<<<<<<<< Temporary merge branch 1
-    
-];
-=========
     ];
     /**
      * The attributes that should be hidden for serialization.
@@ -42,7 +38,6 @@ class Contact extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
->>>>>>>>> Temporary merge branch 2
 public function client(){
 
     return $this->hasMany(Client::class, 'Client_id');

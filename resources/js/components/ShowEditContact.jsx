@@ -20,18 +20,18 @@ post(`/adcom/contacts`)
 }
 
 useEffect(()=>{
-  console.log(contact)
-  handleGetContact()
+  //console.log(contact)
+  handleGetContact() 
 },[])
 
 
 const handleGetContact = ()=>{
-  setData(data.nom = contact.nom)
-  setData(data.prenom = contact.prenom)
-  setData(data.fonction = contact.fonction)
-  setData(data.email = contact.email)
-  setData(data.telephone = contact.telephone)
-  setData(data.password = contact.password)
+  setData(data.nom=contact.nom)
+  setData(data.prenom=contact.prenom)
+  setData(data.email=contact.email)
+  setData(data.password=contact.password)
+  setData(data.fonction=contact.fonction)
+  setData(data.telephone=contact.telephone.toString())
 
 }
 

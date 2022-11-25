@@ -44,7 +44,6 @@ export default function Contacts({contacts}) {
     setPageLoaded(true)
   },[])
   
-  
   const getAllContacts = () =>{
     console.log(allContacts)
   }

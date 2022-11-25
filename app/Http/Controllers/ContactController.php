@@ -105,7 +105,7 @@ class ContactController extends Controller
      * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contact $contact)
+    public function update(Request $request, Contact $id)
     {/*by soundouss*/
        $request->validate([
             'nom'=>'required|min:3|max:255',
@@ -115,18 +115,13 @@ class ContactController extends Controller
             'fonction'=>'required',
             'telephone'=>'required'
         ]);
-        try{
-
-            $contact->fill($request->post())->update();
-            return response()->json([
-                'message'=>'contact Updated Successfully!!'
-            ]); }
-            catch(\Exception $e){
-                \Log::error($e->getMessage());
-                return response()->json([
-                    'message'=>'Something goes wrong while updating a contact!!'
-                ],500);
-            }
+        $contact = Contact::find($id);
+        $contact->nom = $request->nom;
+        $contact->prenom = $request->prenom ;
+        $contact->fonction = $request->fonction;
+        $contact->email = $request->email;
+        $contact->telephone =  $request->telephone;
+        $contact->save();
 
     }
 
@@ -140,6 +135,7 @@ class ContactController extends Controller
     {
         $request=Contact::find($id);
         $request->delete();
+        return Inertia::render('adcom/contacts');
         
         //  $contact = Contact::whereIn('id',[$id])->delete();
     }

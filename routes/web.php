@@ -76,21 +76,4 @@ Route::get('/adcom/prospects/show/{id}',[\App\Http\Controllers\ProspectControlle
 // post 
 Route::post('/adcom/prospects/update/{id}',[\App\Http\Controllers\ProspectController::class, 'update']);
 
-/*//add produits
-Route::post('/adcom/produits',[\App\Http\Controllers\ProduitController::class, 'create']);
-Route::delete('/adcom/produits/{id}',[\App\Http\Controllers\ProduitController::class, 'delete']);
-Route::post('/adcom/produits/{id}',[\App\Http\Controllers\ProduitController::class, 'update']);
-*/
 
-// add produit
-Route::post('/adcom/produits',[\App\Http\Controllers\ProduitController::class, 'create']);
-
-//delete produits
-Route::delete('/adcom/produits/{id}',[\App\Http\Controllers\ProduitController::class, 'delete']);
-
-// get edit produits page
-Route::get('/adcom/produits/edit/{id}',[\App\Http\Controllers\ProduitController::class, 'editIndex']);
-// get produits with master details
-Route::get('/adcom/produits/show/{id}',[\App\Http\Controllers\ProduitController::class, 'showIndex']);
-// post 
-Route::post('/adcom/produits/update/{id}',[\App\Http\Controllers\ProduitController::class, 'update']);

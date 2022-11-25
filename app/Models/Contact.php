@@ -18,9 +18,13 @@ class Contact extends Authenticatable
     'password',
     'fonction',
     'telephone'
+<<<<<<< HEAD
     
 ];
 
+=======
+    ];
+>>>>>>> 6c73bd99e4bad560d18ef865d6fc260468546f43
     /**
      * The attributes that should be hidden for serialization.
      *

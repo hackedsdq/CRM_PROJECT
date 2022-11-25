@@ -7,6 +7,7 @@ return (
 
 
             <div className="wrapper">
+
   <div className="leftside-menu">
     <a href="index.html" className="logo text-center logo-light">
       <span className="logo-lg">
@@ -1140,8 +1141,11 @@ return (
     
           
 
+<<<<<<< HEAD
     
     
+=======
+>>>>>>> 6c73bd99e4bad560d18ef865d6fc260468546f43
 );
 }
 

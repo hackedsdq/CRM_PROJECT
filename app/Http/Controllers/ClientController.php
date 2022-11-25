@@ -18,7 +18,7 @@ class ClientController extends Controller
         $clients = Client::all();
         return Inertia::render('Clients',[
             'clients' => $clients
-        ]);   
+        ]);
     }
 
     public function editIndex($id){

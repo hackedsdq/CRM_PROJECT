@@ -3,11 +3,11 @@ import {useForm}  from "@inertiajs/inertia-react"
 
 export default function ShowEditClient({client})  {
 
-  const { data, setData, post, processing, errors } = useForm({ 
-    société: '', 
-    téléphone:'', 
-    adresse:'', 
-    site_web:'', 
+  const { data, setData, post, processing, errors } = useForm({
+    société: '',
+    téléphone:'',
+    adresse:'',
+    site_web:'',
 })
 
 
@@ -53,9 +53,8 @@ return (
 <form onSubmit={(e)=>handleSubmit(e)} >
     <div className="modal-content">
       <div className="modal-body">
- 
+
  {/*   bodyyyyy of the modal    */}
-          
             <div className="mb-3">
                 <label htmlFor="simpleinput" className="form-label">Society</label>
                 <input onChange={(e)=>handleChange(e)} value={data.société} name="société" type="text"  className="form-control" />
@@ -79,7 +78,6 @@ return (
                 {errors.site_web && <h6 style={{color:"red"}}>{errors.site_web}</h6>}
             </div>
 
-    
  {/*   end  of the modal  body    */}
 
       </div>
@@ -95,4 +93,3 @@ return (
 
   )
 }
-

@@ -49,7 +49,7 @@ Route::get('adcom/opportunities',[\App\Http\Controllers\OpportunitiesController:
 Route::get('adcom/contacts',[\App\Http\Controllers\ContactController::class, 'index'])->name('adcom.contacts');
 Route::get('adcom/users',[\App\Http\Controllers\HomeController::class, 'users'])->name('adcom.users');
 Route::get('adcom/calendar',[\App\Http\Controllers\CalendarController::class, 'index'])->name('adcom.calendar');
-Route::get('adcom/Produits',[\App\Http\Controllers\ProduitController::class, 'index'])->name('adcom.produits');
+Route::get('adcom/produits',[\App\Http\Controllers\ProduitController::class, 'index'])->name('adcom.produits');
 // end of admins and commercials routes
 
 
@@ -80,3 +80,21 @@ Route::get('/adcom/contacts/edit/{id}',[\App\Http\Controllers\ContactController:
 // get contact with master details
 Route::get('/adcom/contacts/show/{id}',[\App\Http\Controllers\ContactController::class, 'showIndex']);
 Route::post('/adcom/contacts/update/{id}',[\App\Http\Controllers\ContactController::class,'update']);
+/*//add produits
+Route::post('/adcom/produits',[\App\Http\Controllers\ProduitController::class, 'create']);
+Route::delete('/adcom/produits/{id}',[\App\Http\Controllers\ProduitController::class, 'delete']);
+Route::post('/adcom/produits/{id}',[\App\Http\Controllers\ProduitController::class, 'update']);
+*/
+
+// add produit
+Route::post('/adcom/produits',[\App\Http\Controllers\ProduitController::class, 'create']);
+
+//delete produits
+Route::delete('/adcom/produits/{id}',[\App\Http\Controllers\ProduitController::class, 'delete']);
+
+// get edit produits page
+Route::get('/adcom/produits/edit/{id}',[\App\Http\Controllers\ProduitController::class, 'editIndex']);
+// get produits with master details
+Route::get('/adcom/produits/show/{id}',[\App\Http\Controllers\ProduitController::class, 'showIndex']);
+// post 
+Route::post('/adcom/produits/update/{id}',[\App\Http\Controllers\ProduitController::class, 'update']);

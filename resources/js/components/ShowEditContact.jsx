@@ -10,6 +10,7 @@ export default function ShowEditContact({contact,type})  {
     fonction:"", 
     email :"" , 
     telephone:"", 
+
 })
 
 
@@ -60,7 +61,7 @@ return (
 <form onSubmit={(e)=>handleSubmit(e)} >
     <div className="modal-content">
       <div className="modal-body">
- 
+
  {/*   bodyyyyy of the modal    */}
 
             <div className="mb-3">
@@ -91,7 +92,7 @@ return (
                 <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data.telephone} name="téléphone" type="text" className="form-control" placeholder="Telephone" />
                 {errors.telephone && <h6 style={{color:"red"}}>{errors.telephone}</h6>}
             </div>
-            
+
 
  {/*   end  of the modal  body    */}
 
@@ -105,6 +106,7 @@ return (
     </div>{/* /.modal-content */}
 
 </form>  
+
 )
 
 

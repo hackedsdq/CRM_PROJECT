@@ -75,6 +75,7 @@ Route::post('/adcom/prospects/update/{id}',[\App\Http\Controllers\ProspectContro
 // post 
 Route::post('/adcom/prospects/update/{id}',[\App\Http\Controllers\ProspectController::class, 'update']);
  
+ 
 // get edit clients page
 Route::get('/adcom/clients/edit/{id}',[\App\Http\Controllers\ClientController::class, 'editIndex']);
 // get clients with master details
@@ -88,6 +89,8 @@ Route::delete('/adcom/clients/{id}',[\App\Http\Controllers\ClientController::cla
 
 
 
+//delete contact
+Route::delete('/adcom/contacts/{id}',[\App\Http\Controllers\ContactController::class, 'delete']);
 // get edit contact page
 Route::get('/adcom/contacts/edit/{id}',[\App\Http\Controllers\ContactController::class, 'editIndex']);
 // get contact with master details
@@ -96,6 +99,10 @@ Route::get('/adcom/contacts/show/{id}',[\App\Http\Controllers\ContactController:
 Route::post('/adcom/contacts/update/{id}',[\App\Http\Controllers\ContactController::class, 'update']);
 //delete contact
 Route::delete('/adcom/contacts/{id}',[\App\Http\Controllers\ContactController::class, 'delete']);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 08df280656a241dbe4c0c0ab94746db3f1a6f918
 
 
 

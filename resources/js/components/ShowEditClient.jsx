@@ -55,6 +55,7 @@ return (
       <div className="modal-body">
 
  {/*   bodyyyyy of the modal    */}
+
             <div className="mb-3">
                 <label htmlFor="simpleinput" className="form-label">Society</label>
                 <input onChange={(e)=>handleChange(e)} value={data.société} name="société" type="text"  className="form-control" />

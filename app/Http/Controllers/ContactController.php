@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Http\RedirectResponse;
 
 
 class ContactController extends Controller
@@ -125,6 +126,8 @@ class ContactController extends Controller
         $contact->telephone =  $request->telephone;
         $contact->save();
     }
+        
+    
 
     /**
      * Remove the specified resource from storage.
@@ -136,6 +139,8 @@ class ContactController extends Controller
     {
         $request=Contact::find($id);
         $request->delete();
+        
+       // return redirect()->route('adcom.contacts');
         
         //  $contact = Contact::whereIn('id',[$id])->delete();
     }

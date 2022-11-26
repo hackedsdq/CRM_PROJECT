@@ -77,8 +77,7 @@ Route::get('/adcom/prospects/show/{id}',[\App\Http\Controllers\ProspectControlle
 // post 
 Route::post('/adcom/prospects/update/{id}',[\App\Http\Controllers\ProspectController::class, 'update']);
 
-<<<<<<< HEAD
-/*//add produits
+/*add produits
 Route::post('/adcom/produits',[\App\Http\Controllers\ProduitController::class, 'create']);
 Route::delete('/adcom/produits/{id}',[\App\Http\Controllers\ProduitController::class, 'delete']);
 Route::post('/adcom/produits/{id}',[\App\Http\Controllers\ProduitController::class, 'update']);
@@ -96,6 +95,3 @@ Route::get('/adcom/produits/edit/{id}',[\App\Http\Controllers\ProduitController:
 Route::get('/adcom/produits/show/{id}',[\App\Http\Controllers\ProduitController::class, 'showIndex']);
 // post 
 Route::post('/adcom/produits/update/{id}',[\App\Http\Controllers\ProduitController::class, 'update']);
-=======
-
->>>>>>> 6c73bd99e4bad560d18ef865d6fc260468546f43

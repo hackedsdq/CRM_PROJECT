@@ -5,7 +5,7 @@ import PageTitle from './static_components/PageTitle'
 import DndBoard from './static_components/DndBoard'
 import { ChakraProvider } from '@chakra-ui/react';
 import theme from './dnd_board_resources/config/theme';
-import EditModal from './static_components/EditModal'
+
 export default function Opportunities() {
 
   let title = "Opportunités"

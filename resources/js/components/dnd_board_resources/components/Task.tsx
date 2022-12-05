@@ -1,5 +1,5 @@
 import { AiFillDelete as DeleteIcon } from 'react-icons/ai';
-import EditModal from '../../static_components/EditModal';
+//import EditModal from '../../static_components/EditModal';
 import { Box, IconButton, ScaleFade } from '@chakra-ui/react';
 import _ from 'lodash';
 import { memo } from 'react';
@@ -95,8 +95,8 @@ function Task({
             onChange={handleTitleChange}
             onClick={handleOpenModal}
           />
-          {/* ------------------------ edit modal ------------------ */}
-          <EditModal />
+          {/* ------------------------ edit modal ------------------ 
+          <EditModal />*/}
         </div>
       </Box>
     </ScaleFade>

@@ -14,12 +14,12 @@ export default function AddModalProspect(props) {
     téléphone:'', 
     adresse:'', 
     site_web:'', 
-    Statut:"0", 
+    Statut:"chaud", 
     Source:""
 })
 
 
-const  handleSubmit = (e) => {
+const handleSubmit = (e) => {
 e.preventDefault()
 console.log(data)
 post('/adcom/prospects')
@@ -29,7 +29,6 @@ post('/adcom/prospects')
 const handleChange = (e) =>{
   let inputType = e.target.name
   let inputValue = e.target.value
-
   if( inputType === "nom")
   setData(data.nom = inputValue )
 
@@ -55,7 +54,7 @@ const handleChange = (e) =>{
   setData(data.site_web = inputValue)
 
   else if(inputType === "Statut")
-  setData(data.Statut = `${e.target.selectedIndex}`)
+  setData(data.Statut = `${e.target.value}`)
 
   else if(inputType === "Source")
   setData(data.Source = inputValue)
@@ -130,8 +129,8 @@ return (
             <div className="mb-3">
                 <label htmlFor="example-select" className="form-label">Statut</label>
                 <select onChange={e => handleChange(e)} value={data.Statut} name="Statut" className="form-select" id="example-select">
-                  <option value="0">Hot</option>
-                  <option value="1">Cold</option>
+                  <option value="chaud">Hot</option>
+                  <option value="froid">Cold</option>
                 </select>
             </div>
     

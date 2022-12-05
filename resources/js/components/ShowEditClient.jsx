@@ -55,7 +55,6 @@ return (
       <div className="modal-body">
 
  {/*   bodyyyyy of the modal    */}
-
             <div className="mb-3">
                 <label htmlFor="simpleinput" className="form-label">Society</label>
                 <input onChange={(e)=>handleChange(e)} value={data.société} name="société" type="text"  className="form-control" />
@@ -78,7 +77,6 @@ return (
                 <input onChange={(e)=>handleChange(e)} value={data.site_web} name="site_web" type="text" className="form-control" placeholder="Https://" />
                 {errors.site_web && <h6 style={{color:"red"}}>{errors.site_web}</h6>}
             </div>
-
 
  {/*   end  of the modal  body    */}
 

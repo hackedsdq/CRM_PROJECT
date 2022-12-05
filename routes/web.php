@@ -25,9 +25,6 @@ Route::get('/signin',[\App\Http\Controllers\SigninController::class, 'index'])->
 Route::get('/SigninCostumer',[\App\Http\Controllers\SiginCostumerController::class, 'index'])->name('guest.signincostumer');
 // end of guest routes
 
-
-
-
 // contact routes
 Route::get('login/', [\App\Http\Controllers\ContactsAuthController::class, 'login'])->name('contacts.login');
 Route::post('login/', [\App\Http\Controllers\ContactsAuthController::class, 'handleLogin'])->name('contacts.handleLogin');
@@ -74,24 +71,43 @@ Route::delete('/adcom/prospects/{id}',[\App\Http\Controllers\ProspectController:
 Route::get('/adcom/prospects/edit/{id}',[\App\Http\Controllers\ProspectController::class, 'editIndex']);
 // get prospect with master details
 Route::get('/adcom/prospects/show/{id}',[\App\Http\Controllers\ProspectController::class, 'showIndex']);
+// update prospect data  
+Route::post('/adcom/prospects/update/{id}',[\App\Http\Controllers\ProspectController::class, 'update']);
 // post 
 Route::post('/adcom/prospects/update/{id}',[\App\Http\Controllers\ProspectController::class, 'update']);
+ 
+// get edit clients page
+Route::get('/adcom/clients/edit/{id}',[\App\Http\Controllers\ClientController::class, 'editIndex']);
+// get clients with master details
+Route::get('/adcom/clients/show/{id}',[\App\Http\Controllers\ClientController::class, 'showIndex']);
+// update clients data  
+Route::post('/adcom/clients/update/{id}',[\App\Http\Controllers\ClientController::class, 'update']);
 
-/*add produits
-Route::post('/adcom/produits',[\App\Http\Controllers\ProduitController::class, 'create']);
-Route::delete('/adcom/produits/{id}',[\App\Http\Controllers\ProduitController::class, 'delete']);
-Route::post('/adcom/produits/{id}',[\App\Http\Controllers\ProduitController::class, 'update']);
-*/
+
+
+//delete contact
+Route::delete('/adcom/contacts/{id}',[\App\Http\Controllers\ContactController::class, 'delete']);
+// get edit contact page
+Route::get('/adcom/contacts/edit/{id}',[\App\Http\Controllers\ContactController::class, 'editIndex']);
+// get contact with master details
+Route::get('/adcom/contacts/show/{id}',[\App\Http\Controllers\ContactController::class, 'showIndex']);
+// update contact data  
+Route::post('/adcom/contacts/update/{id}',[\App\Http\Controllers\ContactController::class, 'update']);
+//delete contact
+Route::delete('/adcom/contacts/{id}',[\App\Http\Controllers\ContactController::class, 'delete']);
+// update clients data
+Route::post('/adcom/clients/update/{id}',[\App\Http\Controllers\ClientController::class, 'update']);
+
+
 
 // add produit
 Route::post('/adcom/produits',[\App\Http\Controllers\ProduitController::class, 'create']);
-
 //delete produits
 Route::delete('/adcom/produits/{id}',[\App\Http\Controllers\ProduitController::class, 'delete']);
-
 // get edit produits page
 Route::get('/adcom/produits/edit/{id}',[\App\Http\Controllers\ProduitController::class, 'editIndex']);
 // get produits with master details
 Route::get('/adcom/produits/show/{id}',[\App\Http\Controllers\ProduitController::class, 'showIndex']);
 // post 
 Route::post('/adcom/produits/update/{id}',[\App\Http\Controllers\ProduitController::class, 'update']);
+

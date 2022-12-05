@@ -4,15 +4,14 @@ import { Inertia } from '@inertiajs/inertia';
 export default function UserActions(props) {
 const title= props.title;
 const user= props.user;
-const handleDelete = () =>{
 
-      Inertia.delete(`/adcom/${title}/${user.id}`);
-      
-  
+
+const handleDelete = () =>{
+  Inertia.delete(`/adcom/${title}/${user.id}`);
 }
  
-  return(
-    <div>
+return(
+  <div>
  {props.action==="delete" && <button className='btn  btn-sm'  onClick={handleDelete}><i className='mdi mdi-delete'></i> </button>}
  {props.action==="modify" && <InertiaLink href={`/adcom/${title}/edit/${user.id}`}><i className='mdi mdi-square-edit-outline'></i></InertiaLink>}
  {props.action==="show" && <InertiaLink href={`/adcom/${title}/show/${user.id}`}><i className='mdi mdi-eye'></i> </InertiaLink>}

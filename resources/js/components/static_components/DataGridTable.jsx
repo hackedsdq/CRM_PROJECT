@@ -12,8 +12,20 @@ export default function DataGridTable(props) {
   }
 
   const handleDelete = () =>{
-    const titrePage= props.title;
-  if(selectedRows.length > 0){
+    console.log(props.title)
+    if(selectedRows.length > 0){
+      selectedRows.map((id)=>{
+       if(props.title==='contacts')
+        Inertia.delete(`/adcom/contacts/${id}`);
+        else if(props.title==='Prospects')
+        Inertia.delete(`/adcom/prospects/${id}`);
+        //else if(props.title==='produits')
+        //Inertia.delete(`/adcom/produits/${id}`);
+      })
+    }
+    }
+  /*  const titrePage= props.title;
+   if(selectedRows.length > 0){
 
     if(titrePage =="Prospects"){
     selectedRows.map((id)=>{
@@ -35,14 +47,14 @@ export default function DataGridTable(props) {
       Inertia.delete(`/adcom/clients/${id}`);
     })
   }
-  }
-  }
+  } */
+
 
   const handleConversion = () =>{
     console.log(selectedRows)
     if(selectedRows.length > 0){
       selectedRows.map((id)=>{
-        Inertia.post(`/adcom/prospects/${id}`);
+        Inertia.post(`/adcom/prospects/convert/${id}`);
       })
     }
   }

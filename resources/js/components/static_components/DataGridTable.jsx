@@ -26,7 +26,7 @@ export default function DataGridTable(props) {
         }
       })
     }
-    }
+  }
   /*  const titrePage= props.title;
    if(selectedRows.length > 0){
 

@@ -55,14 +55,10 @@ class ProduitController extends Controller
         );
 
         $newProduit = new Produit();
-        
         $newProduit->nom = $request->nom;
         $newProduit->description = $request->description ;
         $newProduit->prix = $request->prix;
         $newProduit->quantité = $request->quantité;
-   
-  
-
         $newProduit->save();
         return redirect()->route('adcom.produits');
     }

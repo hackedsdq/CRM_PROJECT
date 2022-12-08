@@ -12,12 +12,12 @@ class Produit extends Model
         'nom',
         'description',
         'prix',
-         'quantité'
+        'quantité'
       
     ];
 
-    public function Opportunities()
+    public function opportunities()
     {
-        return $this->belongsToMany(Opportunities::class);
+        return $this->belongsToMany(Opportunities::class,'opportunities_produit');
     }
 }

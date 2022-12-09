@@ -12,14 +12,21 @@ export default function Opportunities({clients,opportunities_one, opportunities_
 
   let title = "Opportunités"
   let [filtredClients, setFiltredClients]=useState([])
+  //let [firstRender, setFirstRender]=useState(true)
+  let [opp1, setOpp1]=useState([])
+  let [opp2, setOpp2]=useState([])
+  let [opp3, setOpp3]=useState([])
+  let [opp4, setOpp4]=useState([])
 
   //const [open,setOpen]=useState(false);
 
-
   useEffect(()=>{
-  //console.log(clients)
-  handleFilter(clients)
+  //console.log(opportunities_one)
+  setOpp2(opportunities_two)
+  setOpp3(opportunities_three)
+  setOpp4(opportunities_four)
 
+  handleFilter(clients)
   },[clients])
 
 const handleFilter=(clients)=>{
@@ -46,25 +53,22 @@ const handleFilter=(clients)=>{
         
         <div className="content-page">
           <div className="content">
-            {/* Start Content*/}
             <div className="container-fluid">
-              {/* start page title */}
               <PageTitle title={title} />
-              
+              <h1 onClick={()=>setOpp1(opportunities_one)}>darkness</h1>
               <button  className="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#scrollable-modal">
                   <i className="mdi mdi-plus-circle me-2" /> Add Opportunity
               </button>
 
               <AddModalOpportunity clients={filtredClients} />
-
-              {/* end page title */} 
-              {/* ------------------------ drag and drop board ------------------ */}
+              {
+                opp1.length === 0 ? <></> : 
               <ChakraProvider   resetCSS={false} theme={theme} >
-                  <DndBoard opportunities_one={opportunities_one} opportunities_two={opportunities_two} opportunities_three={opportunities_three} opportunities_four={opportunities_four} />
+                  <DndBoard opportunities_one={opp1} opportunities_two={opp2} opportunities_three={opp3} opportunities_four={opp4} />
               </ChakraProvider>
-              {/* end row */}
-            </div> {/* container */}
-          </div> {/* content */}
+            }
+            </div> 
+          </div>
         </div>
 
     </div>

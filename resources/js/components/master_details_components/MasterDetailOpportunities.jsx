@@ -43,8 +43,8 @@ function Row(props) {
 
   return (
     <React.Fragment>
-      <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
-        <TableCell>
+      <TableRow sx={{ '& > *': { borderBottom: 'unset', } }}>
+        <TableCell style={{width:20}}>
           <IconButton
             aria-label="expand row"
             size="small"
@@ -53,22 +53,45 @@ function Row(props) {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell component="th" scope="row">
-          {row.name}
+        <TableCell style={{width:20}} component="th" scope="row">
+          {row.nom}
         </TableCell>
-        <TableCell align="right">{row.calories}</TableCell>
-        <TableCell align="right">{row.fat}</TableCell>
-        <TableCell align="right">{row.carbs}</TableCell>
-        <TableCell align="right">{row.protein}</TableCell>
+        <TableCell >{row.quantité}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
-              <h1>
-                {row.name}
-              </h1>
-          
+            <article class="card card-product-list">
+            <div class="row no-gutters">
+                <aside class="col-md-3">
+                    <a href="#" class="img-wrap">
+                        <span class="badge badge-danger"> NEW </span>
+                        <img src="assets/images/items/3.jpg" />
+                    </a>
+                </aside> 
+                <div class="col-md-6">
+                    <div class="info-main">
+                        <a href="#" class="h5 title"> Great product name goes here  </a>                        
+                        <p>{row.description}</p>
+                    </div>
+                </div> 
+                <aside class="col-sm-3">
+                    <div class="info-aside">
+                        <div class="price-wrap">
+                            <span class="price h5">{row.prix}</span>  
+                        </div>
+                        <br />
+{/*                         <p>
+                            <a href="#" class="btn btn-primary btn-block"> Details </a>
+                            <a href="#" class="btn btn-light btn-block"><i class="fa fa-heart"></i> 
+                                <span class="text">Add to wishlist</span>
+                            </a>
+                        </p> */}
+                    </div> 
+                </aside> 
+            </div> 
+          </article> 
             </Box>
           </Collapse>
         </TableCell>
@@ -79,19 +102,11 @@ function Row(props) {
 
 Row.propTypes = {
   row: PropTypes.shape({
-    calories: PropTypes.number.isRequired,
-    carbs: PropTypes.number.isRequired,
-    fat: PropTypes.number.isRequired,
-    history: PropTypes.arrayOf(
-      PropTypes.shape({
-        amount: PropTypes.number.isRequired,
-        customerId: PropTypes.string.isRequired,
-        date: PropTypes.string.isRequired,
-      }),
-    ).isRequired,
-    name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    protein: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired,
+    nom: PropTypes.string.isRequired,
+    prix: PropTypes.number.isRequired,
+    quantité: PropTypes.number.isRequired,
   }).isRequired,
 };
 
@@ -103,13 +118,14 @@ export default function CollapsibleTable(props) {
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
+            <TableCell></TableCell>
+            <TableCell>Produit</TableCell>
+            <TableCell>Quantité</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <Row key={row.name} row={row} />
+            <Row key={row.nom} row={row} />
           ))}
         </TableBody>
       </Table>

@@ -1,6 +1,6 @@
 import { Container, Heading, SimpleGrid } from '@chakra-ui/react';
 import { Inertia } from '@inertiajs/inertia';
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import Column from '../dnd_board_resources/components/Column';
@@ -8,31 +8,34 @@ import DarkModeIconButton from '../dnd_board_resources/components/DarkModeIconBu
 import { ColumnType } from '../dnd_board_resources/utils/enums';
 import { TaskModel } from '../dnd_board_resources/utils/models';
 
-const mockTasks_1: TaskModel[]=[
+let mockTasks_1: TaskModel[]=[
 ]
-const mockTasks_2: TaskModel[]=[
+let mockTasks_2: TaskModel[]=[
 ]
-const mockTasks_3: TaskModel[]=[
+let mockTasks_3: TaskModel[]=[
 ]
-const mockTasks_4: TaskModel[]=[
+let mockTasks_4: TaskModel[]=[
 ]
 
 function DndBoard(props) {
 
- let opportunities_one=props.opportunities_one
- let opportunities_two=props.opportunities_two
- let opportunities_three=props.opportunities_three
- let opportunities_four=props.opportunities_four
+  let opportunities_one=props.opportunities_one
+  let opportunities_two=props.opportunities_two
+  let opportunities_three=props.opportunities_three
+  let opportunities_four=props.opportunities_four
+
 
 
  useEffect(()=>{
-  //console.log(opportunities)
+  console.log("drdrddddrdd")
+  console.log(opportunities_one)
+
   opportunities_one.map((opportunity)=>(addingOpportunities(opportunity)))
   opportunities_two.map((opportunity)=>(addingOpportunities(opportunity)))
   opportunities_three.map((opportunity)=>(addingOpportunities(opportunity)))
   opportunities_four.map((opportunity)=>(addingOpportunities(opportunity)))
 
-  },[])
+  },[opportunities_one, opportunities_two, opportunities_three, opportunities_four])
 
 
 

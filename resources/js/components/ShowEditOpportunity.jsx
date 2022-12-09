@@ -17,22 +17,24 @@ export default function ShowEditOpportunity({opportunity,type,products,opportuni
     étape:"",
     product_id:"",
     prix:"",
-    quantité:""
+    quantité:"",
+    opportunity_id:""
 })
-
+const [rows, setRows] = useState([])
 
 
 useEffect(()=>{
   if(data?.nom === "")
   handleSetOpportunity()
   handleFilterProducts(products)
+  handleSetProducts()
 },[products])
 
 
 const  handleSubmit = (e) => {
  e.preventDefault()
-console.log("data is " + opportunityProducts)
-//post(`/adcom/contacts/update/${opportunity.id}`) 
+console.log(data)
+post(`/adcom/opportunity/edit`) 
 }
 const handleFilterProducts=(products)=>{
   let filtred;
@@ -54,6 +56,7 @@ const handleSetOpportunity = ()=>{
   setData(data.Client_id = opportunity?.Client_id)
   setData(data.date_de_clôture = opportunity?.date_de_clôture)
   setData(data.étape = opportunity?.étape)
+  setData(data.opportunity_id = opportunity?.id.toString())
 /*   setData(data.prix = "15")
   setData(data.quantité = "4") */
 }
@@ -67,8 +70,13 @@ const handleChange = (e) =>{
   else if(inputType === "montant")
   setData(data.montant = inputValue)
 
-  else if(inputType === "étape")
-  setData(data.étape = inputValue)
+  else if(inputType === "étape"){
+    console.log(inputValue)
+    setData(data.étape = inputValue)
+  }
+
+  else if(inputType === "quantité")
+  setData(data.quantité = inputValue)
 }
 const handleSearchProduct= (product) =>{
   console.log(opp)
@@ -88,45 +96,42 @@ const addProduct = async() =>{
   if(data?.product_id !== "" && opp !==undefined ){
     let opport = opp;
     await Inertia.post(`/adcom/opprtunities/edit/${opp}`,{
-      product_id : data?.product_id
+      product_id : data?.product_id,
+      quantité: data?.quantité,
     })
     console.log("<<<<<<<<<<<<<< damn >>>>>>>>>>>>>>>>>>>")
   }
 }
-const  createData = (name, calories, fat, carbs, protein, price) => {
+const  createData = (id, nom, description, prix, quantité) => {
   return{
-    name,
-    calories,
-    fat,
-    carbs,
-    protein,
-    price,
-    history: [
-      {
-        date: '2020-01-05',
-        customerId: '11091700',
-        amount: 3,
-      },
-      {
-        date: '2020-01-02',
-        customerId: 'Anonymous',
-        amount: 1,
-      },
-    ],
+    id,
+    nom,
+    description,
+    prix,
+    quantité,
   };
 }
 
-const rows = [
-  createData('Frozen yoghurt', 159),
+const handleSetProducts = () =>{
+  console.log(opportunityProducts)
+  opportunityProducts?.map((data)=>rows.push(
+    createData(data.id, data.nom, data.description, data.prix, data.quantité)
+  ))
+/*   createData('Frozen yoghurt', 159),
   createData('Ice cream sandwich', 237),
   createData('Eclair', 262),
   createData('Cupcake', 305),
-  createData('Gingerbread', 356),
-]
+  createData('Gingerbread', 356) */
+}
 
 return (
-<>
-  <form onSubmit={(e)=>handleSubmit(e)} >
+  <div className="row justify-content-center">
+    <div className="col-xxl-6 col-lg-5">
+      <div className="card">
+        <div className="card-header pt-4 pb-4 text-center bg-primary">
+              <h4 style={{color:"#fff"}}>editopportunity</h4>
+        </div>
+    <form onSubmit={(e)=>handleSubmit(e)} >
       <div className="modal-content">
         <div className="modal-body">
 
@@ -146,42 +151,40 @@ return (
               <div className="mb-3">
                   <label htmlFor="example-select" className="form-label">Étape</label>
                   <select disabled={type==="edit" ? false : true } onChange={e => handleChange(e)} value={data?.étape} name="étape" className="form-select" id="example-select">
-                    <option value="Proposition/Devis">Proposition/Devis</option>
-                    <option value="Négotiation/Vérification">Négotiation/Vérification</option>
-                    <option value="Cloturé/Ganée">Cloturé/Ganée</option>
-                    <option value="Cloturé/Perdue">Cloturé/Perdue</option>
+                    <option value="one">Proposition/Devis</option>
+                    <option value="two">Négotiation/Vérification</option>
+                    <option value="three">Cloturé/Ganée</option>
+                    <option value="four">Cloturé/Perdue</option>
                   </select>
               </div>
 
               <div className="mb-3">                
-              <div style={{display:"flex"}}>  
-              <div style={{marginTop:0}}>
+              <div style={{display:"flex", alignItems:"center",justifyContent:"space-between"}}>  
+              <div style={{marginTop:0,}}>
               <label htmlFor="simpleinput" className="form-label">produits</label>
                   <Autocomplete
                   id="combo-box-demo"
                   options={filtredProducts}
-                  sx={{ width: 300,height:100 }}
+                  sx={{ width: 300,height:80 }}
                   onInputChange={(e)=>handleSearchProduct(e.target.value)}
                   onChange={(event, value)=> handleChangeAutoComplete(value)}
                   renderInput={(params) => <TextField style={{height:10}} {...params}/>}
                   />
               </div>
 
-              <div className="mb-3">
-                  <label htmlFor="simpleinput" className="form-label">Prix</label>
-                  <input disabled={type==="edit" ? false : true }  value={data?.prix} name="prix" type="text" className="form-control" />
-              </div>
 
               <div className="mb-3">
                   <label htmlFor="simpleinput" className="form-label">quantité</label>
-                  <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data?.quantité} name="quantité" type="text" className="form-control" />
+                  <input style={{height:57}} disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data?.quantité} name="quantité" type="text" className="form-control" />
                   {errors.quantité && <h6 style={{color:"red"}}>{errors.quantité}</h6>}
               </div>
+              <div className="mb-3">
+              <label htmlFor="simpleinput" className="form-label"></label>
+                <button style={{marginTop:30}} onClick={addProduct} type="button" className="btn btn-secondary" >Add Product</button>
+              </div>
 
               </div>
 
-
-                  <button onClick={addProduct} type="button" className="btn btn-secondary" >Add Product</button>
                   {/*errors.Client_id && <h6 style={{color:"red"}}>{errors.Client_id}</h6>*/}
               </div>
 
@@ -198,8 +201,10 @@ return (
 
       </div>{/* /.modal-content */}
 
-  </form>  
-</>
+  </form> 
+</div>
+</div>   
+</div>
 )
 }
 

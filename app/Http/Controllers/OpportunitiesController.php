@@ -80,13 +80,14 @@ class OpportunitiesController extends Controller
         $products = Produit::where('nom', 'like', $product_name.'%')->get();
            return Inertia::render('ShowEditOpportunity',[
             'products'=>$products,
+            'type'=>'edit',
         ]); 
     }
 
     public function addProduit(Request $request, $opport){
         $opportunity = Opportunities::find($opport);
         $product = Produit::find($request->product_id);
-        $product->opportunities()->attach($opport, ["quantité"=>5]);
+        $product->opportunities()->attach($opport, ["quantité"=>$request->quantité]);
         /*         return Inertia::render("ShowEditOpportunity",[
             'opportunityProducts' => "41"
         ]); */
@@ -133,9 +134,15 @@ class OpportunitiesController extends Controller
      * @param  \App\Models\Opportunities  $opportunities
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Opportunities $opportunities)
+    public function update(Request $request)
     {
-        //
+        $opportunity = Opportunities::find($request->opportunity_id);
+        $opportunity->nom = $request->nom;
+        $opportunity->montant = $request->montant ;
+        $opportunity->étape = $request->étape;
+        $opportunity->save();
+        return redirect()->route('adcom.opportunities');
+
     }
 
     /**

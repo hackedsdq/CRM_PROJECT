@@ -62,8 +62,8 @@ Route::get('/', [\App\Http\Controllers\ContactsAuthController::class, 'index'])-
 
 // add prospect
 Route::post('/adcom/prospects',[\App\Http\Controllers\ProspectController::class, 'create']);
+// convert prospect
 Route::post('/adcom/prospects/{id}',[\App\Http\Controllers\ProspectController::class, 'conversion']);
-
 //delete prospect
 Route::delete('/adcom/prospects/{id}',[\App\Http\Controllers\ProspectController::class, 'delete']);
 
@@ -76,12 +76,17 @@ Route::post('/adcom/prospects/update/{id}',[\App\Http\Controllers\ProspectContro
 // post 
 Route::post('/adcom/prospects/update/{id}',[\App\Http\Controllers\ProspectController::class, 'update']);
  
+ 
 // get edit clients page
 Route::get('/adcom/clients/edit/{id}',[\App\Http\Controllers\ClientController::class, 'editIndex']);
 // get clients with master details
 Route::get('/adcom/clients/show/{id}',[\App\Http\Controllers\ClientController::class, 'showIndex']);
 // update clients data  
 Route::post('/adcom/clients/update/{id}',[\App\Http\Controllers\ClientController::class, 'update']);
+// update clients data
+Route::post('/adcom/clients/update/{id}',[\App\Http\Controllers\ClientController::class, 'update']);
+// delete clients
+Route::delete('/adcom/clients/{id}',[\App\Http\Controllers\ClientController::class, 'delete']);
 
 
 
@@ -95,8 +100,6 @@ Route::get('/adcom/contacts/show/{id}',[\App\Http\Controllers\ContactController:
 Route::post('/adcom/contacts/update/{id}',[\App\Http\Controllers\ContactController::class, 'update']);
 //delete contact
 Route::delete('/adcom/contacts/{id}',[\App\Http\Controllers\ContactController::class, 'delete']);
-// update clients data
-Route::post('/adcom/clients/update/{id}',[\App\Http\Controllers\ClientController::class, 'update']);
 
 
 
@@ -111,3 +114,23 @@ Route::get('/adcom/produits/show/{id}',[\App\Http\Controllers\ProduitController:
 // post 
 Route::post('/adcom/produits/update/{id}',[\App\Http\Controllers\ProduitController::class, 'update']);
 
+
+
+
+
+// opportunities
+Route::post('/adcom/opportunities/',[\App\Http\Controllers\OpportunitiesController::class, 'searchClients']);
+Route::post('/adcom/opportunities/add',[\App\Http\Controllers\OpportunitiesController::class, 'create']);
+// get edit opportunities page
+Route::get('/adcom/opportunities/edit/{id}',[\App\Http\Controllers\OpportunitiesController::class, 'editIndex']);
+// get opportunities with master details
+Route::get('/adcom/opportunities/show/{id}',[\App\Http\Controllers\OpportunitiesController::class, 'showIndex']);
+
+// search for products
+Route::post('/adcom/opportunities/edit/{opp}',[\App\Http\Controllers\OpportunitiesController::class, 'searchProduits']);
+
+// assign product to an opportunity
+Route::post('/adcom/opprtunities/edit/{opp}',[\App\Http\Controllers\OpportunitiesController::class, 'addProduit']);
+
+// edit an opportunity infos 
+Route::post('/adcom/opportunity/edit',[\App\Http\Controllers\OpportunitiesController::class, 'update']);

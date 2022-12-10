@@ -22,8 +22,8 @@ public function contact(){
     return $this->belongsTo(Contact::class, 'Client_id');
 }
 
-public function opputunites (){
-    return $this->belongsTo(opputunites::class);
+public function opportunities (){
+    return $this->belongsTo(Opportunities::class, 'Client_id');
 
 }
 public function prospects()

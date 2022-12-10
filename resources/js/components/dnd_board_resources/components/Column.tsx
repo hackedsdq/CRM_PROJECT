@@ -7,11 +7,13 @@ import {
   Stack,
   useColorModeValue,
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import useColumnDrop from '../hooks/useColumnDrop';
 import useColumnTasks from '../hooks/useColumnTasks';
 import { ColumnType } from '../utils/enums';
 import Task from './Task';
+import { TaskModel } from '../utils/models';
+import { random } from 'lodash';
 
 const ColumnColorScheme: Record<ColumnType, string> = {
   Prospection: 'gray',
@@ -20,19 +22,41 @@ const ColumnColorScheme: Record<ColumnType, string> = {
   'Gagnée': 'green',
 };
 
-function Column({ column }: { column: ColumnType }) {
-  const {
+
+
+function Column({ column,opportunities,mockTasks }: { column: ColumnType, opportunities:[],mockTasks: TaskModel[]}) {
+const {
     tasks,
     addEmptyTask,
     deleteTask,
     dropTaskFrom,
     swapTasks,
     updateTask,
-  } = useColumnTasks(column);
+} = useColumnTasks(column);
+
+
+  let PropColumn = column;
+
+  /* const addingOpportunities = (opportunity) =>{
+    console.log("=>" + PropColumn)
+    console.log(opportunity)
+    if(opportunity.étape === "one"){
+    mockTasks.push(
+      {
+        id: `${Math.floor(Math.random()*1000)}`,
+        title:`${opportunity.nom}`,
+        column: ColumnType.TO_DO,
+        color: 'red.300'
+      },
+    )
+    }
+    }
+ */
+
 
   const { dropRef, isOver } = useColumnDrop(column, dropTaskFrom);
 
-  const ColumnTasks = tasks.map((task, index) => (
+  const ColumnTasks = mockTasks.map((task, index) => (
     <Task
       key={task.id}
       task={task}
@@ -82,6 +106,8 @@ function Column({ column }: { column: ColumnType }) {
         opacity={isOver ? 0.85 : 1}
       >
         {ColumnTasks}
+
+
       </Stack>
     </Box>
   );

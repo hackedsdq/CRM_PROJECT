@@ -16,6 +16,8 @@ class CalendarController extends Controller
     public function index()
     {
         return Inertia::render('Calendar');
+        $result = Calendar::all();
+        return $result;
     }
 
     /**
@@ -36,7 +38,12 @@ class CalendarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $calendar = new Calendar();
+        $calendar->Date = $request->Date;
+        $calendar->heure = $request->heure;
+        $calendar->compte_rendu = $request->compte_rendu;
+
+        $calendar->save();
     }
 
     /**
@@ -45,9 +52,12 @@ class CalendarController extends Controller
      * @param  \App\Models\Calendar  $calendar
      * @return \Illuminate\Http\Response
      */
-    public function show(Calendar $calendar)
+    public function show(Calendar $Date)
     {
-        //
+        $calendar = Calendar::where('Date', '==', $Date)->orWhere('heure', '==', $heure)
+        ->get();
+        
+        return $calendar;
     }
 
     /**
@@ -56,9 +66,10 @@ class CalendarController extends Controller
      * @param  \App\Models\Calendar  $calendar
      * @return \Illuminate\Http\Response
      */
-    public function edit(Calendar $calendar)
+    public function edit( $id)
     {
-        //
+        $calendar = Calendar::find($id);
+        return $calendar;
     }
 
     /**
@@ -68,9 +79,14 @@ class CalendarController extends Controller
      * @param  \App\Models\Calendar  $calendar
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Calendar $calendar)
+    public function update(Request $request,$id)
     {
-        //
+        $calendar = Calendar::find($id);
+        $calendar->Date = $request->Date;
+        $calendar->heure = $request->heure;
+        $calendar->compte_rendu = $request->compte_rendu;
+        
+        $calendar->save();
     }
 
     /**
@@ -79,8 +95,9 @@ class CalendarController extends Controller
      * @param  \App\Models\Calendar  $calendar
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Calendar $calendar)
+    public function destroy($id)
     {
-        //
+        $calendar = Calendar::find($id);
+        $calendar->delete();
     }
 }

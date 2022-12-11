@@ -98,3 +98,12 @@ Route::get('/adcom/produits/edit/{id}',[\App\Http\Controllers\ProduitController:
 Route::get('/adcom/produits/show/{id}',[\App\Http\Controllers\ProduitController::class, 'showIndex']);
 // post 
 Route::post('/adcom/produits/update/{id}',[\App\Http\Controllers\ProduitController::class, 'update']);
+
+Route::get('/adcom/clients/edit/{id}',[\App\Http\Controllers\ClientController::class, 'editIndex']);
+// get clients with master details
+Route::get('/adcom/clients/show/{id}',[\App\Http\Controllers\ClientController::class, 'showIndex']);
+// update clients data  
+Route::post('/adcom/clients/update/{id}',[\App\Http\Controllers\ClientController::class, 'update']);
+
+Route::delete('/adcom/calendar/{id}',[\App\Http\Controllers\CalendarController::class, 'delete']);
+Route::post('/adcom/calendar/store',[\App\Http\Controllers\CalendarController::class, 'store']);

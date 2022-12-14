@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('password');
             $table->string('fonction');
             $table->integer('telephone');
-            $table->unsignedBigInteger('Client_id');
-            $table->foreign('Client_id')->references('id')->on('clients');
+            $table->unsignedBigInteger('client_id');
+            $table->foreign('client_id')->references('id')->on('clients');
             $table->timestamps();
         });
     }

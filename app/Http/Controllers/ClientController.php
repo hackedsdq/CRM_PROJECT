@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Contact;
+use App\Models\Opportunities;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -23,17 +25,28 @@ class ClientController extends Controller
 
     public function editIndex($id){
         $client = Client::find($id);
+        $clientContacts = Contact::where('client_id', $id)->get();
+        $clientOpportunities = Opportunities::where('client_id', $id)->get();
+       // return $clientContacts;
+ 
         return Inertia::render('ShowEditClient',[
             'client'=>$client,
             'type'=>'edit',
-        ]);
+            'clientContacts'=>$clientContacts,
+            "clientOpportunities"=>$clientOpportunities
+        ]); 
     }
 
     public function showIndex($id){
         $client = Client::find($id);
+        $clientContacts = Contact::where('client_id', $id)->get();
+        $clientOpportunities = Opportunities::where('client_id', $id)->get();
+
         return Inertia::render('ShowEditClient',[
             'client'=>$client,
             'type'=>'show',
+            'clientContacts'=>$clientContacts,
+            "clientOpportunities"=>$clientOpportunities
         ]);
     }
     /**
@@ -104,8 +117,8 @@ class ClientController extends Controller
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Client $client)
+    public function delete($id)
     {
-        //
+             $client = Client::whereIn('id',[$id])->delete();
     }
 }

@@ -150,38 +150,56 @@ class ProspectController extends Controller
 
     public function conversion($id){
         $prospect = Prospect::find($id);
-
-        $client = new Client();
+        
+        
+        //$client = new Client();
 
         
 /*         $client->société= $prospect->société;
         $client->téléphone=$prospect->téléphone; 
         $client->adresse=$prospect->adresse; 
         $client->site_web=$prospect->site_web;
-        $client->prospects_id=$prospect->id;
+        $client->prospect_id=$prospect->id;
         $client->save(); */
-        
 
-        $client = Client::create([
-            'société'=> $prospect->société, 
-            'téléphone'=>$prospect->téléphone, 
-            'adresse'=>$prospect->adresse, 
-            'site_web'=>$prospect->site_web, 
-            'prospects_id'=>$prospect->id,
-        ]);
  
+        $existingClient = Client::where('société', $prospect->société)->get();
+        if(count($existingClient)==0){
+            $client = Client::create([
+                'société'=> $prospect->société, 
+                'téléphone'=>$prospect->téléphone, 
+                'adresse'=>$prospect->adresse, 
+                'site_web'=>$prospect->site_web, 
+                'prospect_id'=>$prospect->id,
+                'user_id'=>1,
 
-         $contact = Contact::create([
-            'nom'=> $prospect->nom,
-            'prenom'=>$prospect->prenom, 
-            'fonction'=>$prospect->fonction, 
-            'email' => $prospect->email, 
-            'telephone'=>$prospect->téléphone, 
-            'password'=>Hash::make('123456789'), 
-            'Client_id'=> $client->id,
-        ]);
+            ]);
+            $contact = Contact::create([
+                'nom'=> $prospect->nom,
+                'prenom'=>$prospect->prenom, 
+                'fonction'=>$prospect->fonction, 
+                'email' => $prospect->email, 
+                'telephone'=>$prospect->téléphone, 
+                'password'=>Hash::make('123456789'), 
+                'client_id'=> $client->id,
+            ]);
+        }
+        else{
+            $contact = Contact::create([
+                'nom'=> $prospect->nom,
+                'prenom'=>$prospect->prenom, 
+                'fonction'=>$prospect->fonction, 
+                'email' => $prospect->email, 
+                'telephone'=>$prospect->téléphone, 
+                'password'=>Hash::make('123456789'), 
+                'client_id'=> $existingClient['0']->id,
+            ]);
+            $existingClient[0]->contact;
+        }
 
-        
+
+
+        //return $existingClient[0];
     }
 
    public function delete($id)

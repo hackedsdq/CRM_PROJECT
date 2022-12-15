@@ -38,7 +38,8 @@ export default function Prospects({prospects}) {
     { id: 3, lastName: 'Arslane', firstName: 'Chakib', society: 'SARL CYLEXX',fonction:'general manager',Email:'/',telephone:'0542 28 83 85',Adress:' Bd Ain Sbaa Ali, Tlemcen 13000, Tlemcen, Algeria',Website:'http://cylexx-tlemcen.com/',Status:'Hot',Source:'Client' },
     { id: 4, lastName: 'Stark', firstName: 'Arya', society: 'DHL',fonction:'manager',Email:'/',telephone:'043 27 35 80',Adress:' Boulevard Colonel Lotfi, Tlemcen, Algeria',Website:'www.dhl.fr/fr.html',Status:'Hot',Source:'Client' },
     { id: 8, lastName: 'Frances', firstName: 'Rossini', society: 'SARLPROCARTON',fonction:'Director',Email:'sarlprocartonemballage@gmail.com',telephone:'0550 67 26 01',Adress:'Zone industrielle desserte n4, Tlemcen 13000, Algeria',Website:'/',Status:'Hot',Source:'Client' },
-     ];*/
+     ];
+*/
 
 
   //const [open,setOpen]=useState(false);
@@ -68,7 +69,7 @@ if(pageLoaded){
               {/* end page title */} 
               {/* ------------------------ edit modal ------------------ 
               <EditModalProspect type="edit" object={editedObject} />*/}
-              <AddModalProspect />
+             <AddModalProspect />
 {/*               <ShowProspect/>*/}             
   {/* ------------------------ show datagrid table search ------------------ */}
               <DataGridTable title={title} columns={columns} rows={allProspects}  />

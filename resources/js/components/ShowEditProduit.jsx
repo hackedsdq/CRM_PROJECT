@@ -1,160 +1,105 @@
-import React,{useEffect} from 'react'
-import {useForm}  from "@inertiajs/inertia-react"
+import React from "react";
+import { InertiaLink, useForm } from "@inertiajs/inertia-react";
+import { useEffect } from "react";
 
-export default function ShowEditProduit({produit})  {
+export default function ShowEditProduit({produits,type}) {
+    const { data, setData, post, processing, errors } = useForm({
+        nom: "",
+        description: "",
+        prix: "",
+        quantité: ""
+    });
 
-  const { data, setData, post, processing, errors } = useForm({
-    nom: "",
-    prenom :"", 
-    société: '', 
-    fonction:'', 
-    email : "" , 
-    téléphone:'', 
-    adresse:'', 
-    site_web:'', 
-    Statut:"0", 
-    Source:""
-})
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(data);
+        post(`/adcom/produits/update/${produits.id}`);
+    };
 
+     useEffect(()=>{
+        //console.log(produits.nom)
 
-const  handleSubmit = (e) => {
-/* e.preventDefault()
-console.log(data)
-post('/adcom/prospects') */
+     handleGetProduit()
+      },[])
+     
+      
+
+const handleGetProduit = ()=>{
+    //console.log(data.nom = produits.prix )
+   setData((data.nom = produits.nom))
+   setData((data.description = produits.description))
+   setData((data.prix = produits.prix.toString()))
+   setData((data.quantité = produits.quantité.toString()))
+
+  }
+    const handleChange = (e) => {
+        let inputType = e.target.name;
+        let inputValue = e.target.value;
+
+        if (inputType == "nom") setData((data.nom = inputValue));
+        else if (inputType == "description")
+            setData((data.description = inputValue));
+        else if (inputType == "prix") setData((data.prix = inputValue));
+        else if (inputType == "quantité")
+            setData((data.quantité = inputValue));
+    }
+    return (
+        <form onSubmit={(e) => handleSubmit(e)}>
+            <div className="modal-content">
+            <div className="modal-body">
+                            {/* bodyyyyy of the modal */}
+
+                <div className="mb-3">
+                   <label htmlFor="simpleinput"className="form-label" > Name </label>
+                   <input disabled={type==="edit" ? false : true }onChange={(e) => handleChange(e)} value={data.nom} name="nom" type="text" className="form-control"/>
+                    {errors.nom && (<h6 style={{ color: "red" }}> {errors.nom}</h6>)}
+                </div>
+                <div className="mb-3">
+                     <label htmlFor="example-textarea" className="form-label">  Description </label>
+                     <textarea disabled={type==="edit" ? false : true } onChange={(e) => handleChange(e)} value={data.description} name="description" className="form-control" id="example-textarea" rows={5} defaultValue={""} placeholder="Adress..."/>
+                     {errors.description && ( <h6 style={{ color: "red" }}> {errors.description} </h6>)}
+                </div>
+               <div class="col-xl-6">
+                    <div class="mb-3 mt-3 mt-xl-0">
+                      <label for="projectname" class="mb-0"> Photo </label>
+                      <p class="text-muted font-14"> Recommended thumbnail size 800x400 (px).</p>
+
+                      <div class="dropzone" data-plugin="dropzone" data-previews-container="#file-previews" data-upload-preview-template="#uploadPreviewTemplate">
+                            <div> 
+                                <input name="file" type="file" />
+                             </div>
+
+                            <div class="dz-message needsclick">
+                                <i class="h3 text-muted dripicons-cloud-upload"></i>
+                                    <h4> Drop files here or click toupload.
+                                    </h4>
+                             </div>
+                         </div>
+                      </div>
+                </div>
+                <div className="mb-3">
+                     <label htmlFor="simpleinput"  className="form-label" >Price </label>
+                     <input disabled={type==="edit" ? false : true }  onChange={(e) => handleChange(e)} value={data.prix} name="prix" type="number" className="form-control"/>
+                      {errors.prix && ( <h6 style={{ color: "red" }}> {errors.prix} </h6> )}
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="simpleinput" className="form-label" > Quantity </label>
+                    <input disabled={type==="edit" ? false : true } onChange={(e) => handleChange(e)} value={data.quantité} name="quantité" type="text" className="form-control" />
+                     {errors.quantité && ( <h6 style={{ color: "red" }}>  {errors.quantité}</h6> )}
+                </div>
+                            {/* end of the modal body */}
+                </div>
+                    <div className="modal-footer">
+                      <InertiaLink href="/adcom/produits"> <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" >Close </button></InertiaLink>
+                       <button disabled={type==="edit" ? false : true }  type="submit" className="btn btn-primary">
+                                Save changes
+                        </button>
+                        </div>
+                    </div>
+                    {/* /.modal-content */}
+                {/* /.modal-dialog */}
+           
+        </form>
+     
+    );
 }
-
-useEffect(()=>{
-  handleGetProspect()
-},[])
-
-
-const handleGetProspect = ()=>{
-  setData(data.nom = prospect.nom )
-  setData(data.prenom = prospect.prenom)
-  setData(data.société = prospect.société)
-  setData(data.fonction = prospect.fonction)
-  setData(data.email = prospect.email)
-  setData(data.téléphone = prospect.téléphone)
-  setData(data.adresse = prospect.adresse)
-  setData(data.site_web = prospect.site_web)
-  setData(data.Statut = prospect.site_web)
-  setData(data.Source = prospect.Source)
-}
-
-const handleChange = (e) =>{
-  let inputType = e.target.name
-  let inputValue = e.target.value
-
-  if( inputType === "nom")
-  setData(data.nom = inputValue )
-
-  else if(inputType === "prenom")
-  setData(data.prenom = inputValue)
-
-  else if(inputType === "société")
-  setData(data.société = inputValue)
-
-  else if(inputType === "fonction")
-  setData(data.fonction = inputValue)
-
-  else if(inputType === "email")
-  setData(data.email = inputValue)
-
-  else if(inputType === "téléphone")
-  setData(data.téléphone = inputValue)
-
-  else if(inputType === "adresse")
-  setData(data.adresse = inputValue)
-
-  else if(inputType === "site_web")
-  setData(data.site_web = inputValue)
-
-  else if(inputType === "Statut")
-  setData(data.Statut = `${e.target.selectedIndex}`)
-
-  else if(inputType === "Source")
-  setData(data.Source = inputValue)
-}
-
-
-return (
-<form onSubmit={(e)=>handleSubmit(e)} >
-    <div className="modal-content">
-      <div className="modal-body">
- 
- {/*   bodyyyyy of the modal    */}
-
-            <div className="mb-3">
-                <label htmlFor="simpleinput" className="form-label">First Name</label>
-                <input onChange={(e)=>handleChange(e)} value={data.nom} name="nom"  type="text" className="form-control" />
-                {errors.nom && <h6 style={{color:"red"}}>{errors.nom}</h6>}
-            </div>
-            <div className="mb-3">
-                <label htmlFor="simpleinput" className="form-label">Last Name</label>
-                <input onChange={(e)=>handleChange(e)} value={data.prenom} name="prenom" type="text" className="form-control" />
-                {errors.prenom && <h6 style={{color:"red"}}>{errors.prenom}</h6>}
-
-            </div>
-            <div className="mb-3">
-                <label htmlFor="simpleinput" className="form-label">Society</label>
-                <input onChange={(e)=>handleChange(e)} value={data.société} name="société" type="text"  className="form-control" />
-                {errors.société && <h6 style={{color:"red"}}>{errors.société}</h6>}
-
-            </div>
-            <div className="mb-3">
-                <label htmlFor="simpleinput" className="form-label">Fonction</label>
-                <input onChange={(e)=>handleChange(e)} value={data.fonction} name="fonction" type="text"  className="form-control" />
-                {errors.fonction && <h6 style={{color:"red"}}>{errors.fonction}</h6>}
-            </div>
-
-           <div className="mb-3">
-                <label htmlFor="example-email" className="form-label">Email</label>
-                <input onChange={(e)=>handleChange(e)} value={data.email} name="email" type="email" className="form-control" placeholder="Email" />
-                {errors.email && <h6 style={{color:"red"}}>{errors.email}</h6>}
-            </div>
-            <div className="mb-3">
-                <label htmlFor="example-palaceholder" className="form-label">Telephone</label>
-                <input onChange={(e)=>handleChange(e)} value={data.téléphone} name="téléphone" type="text" className="form-control" placeholder="Telephone" />
-                {errors.téléphone && <h6 style={{color:"red"}}>{errors.téléphone}</h6>}
-            </div>
-            <div className="mb-3">
-                <label htmlFor="example-textarea" className="form-label">Adresse</label>
-                <input onChange={(e)=>handleChange(e)} value={data.adresse} name="adresse" type="text" className="form-control" placeholder="Adresse" />
-                {errors.adresse && <h6 style={{color:"red"}}>{errors.adresse}</h6>}
-            </div>
-            <div className="mb-3">
-                <label htmlFor="example-Website" className="form-label">Website</label>
-                <input onChange={(e)=>handleChange(e)} value={data.site_web} name="site_web" type="text" className="form-control" placeholder="Https://" />
-                {errors.site_web && <h6 style={{color:"red"}}>{errors.site_web}</h6>}
-            </div>
-
-            <div className="mb-3">
-                <label htmlFor="example-Website" className="form-label">Source</label>
-                <input onChange={(e)=>handleChange(e)} value={data.Source} name="Source" type="text" className="form-control" placeholder="Source" />
-                {errors.Source && <h6 style={{color:"red"}}>{errors.Source}</h6>}
-            </div>
-            
-            <div className="mb-3">
-                <label htmlFor="example-select" className="form-label">Statut</label>
-                <select onChange={e => handleChange(e)} value={data.Statut} name="Statut" className="form-select" id="example-select">
-                  <option value="0">Hot</option>
-                  <option value="1">Cold</option>
-                </select>
-            </div>
-    
- {/*   end  of the modal  body    */}
-
-      </div>
-      <div className="modal-footer">
-        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" className="btn btn-primary">Save changes</button>
-      </div>
-
-
-    </div>{/* /.modal-content */}
-
-</form>
-
-  )
-}
-

@@ -12,13 +12,46 @@ export default function DataGridTable(props) {
   }
 
   const handleDelete = () =>{
-  console.log(selectedRows)
-  if(selectedRows.length > 0){
+    if(selectedRows.length > 0){
+      selectedRows.map((id)=>{
+       if(props.title==='contacts')
+        Inertia.delete(`/adcom/contacts/${id}`);
+        else if(props.title==='Prospects')
+        Inertia.delete(`/adcom/prospects/${id}`);
+        else if(props.title==='produits')
+        Inertia.delete(`/adcom/produits/${id}`);
+        else if (props.title === 'Clients'){
+          Inertia.delete(`/adcom/clients/${id}`);
+          console.log("hehe")
+        }
+      })
+    }
+    }
+  /*  const titrePage= props.title;
+   if(selectedRows.length > 0){
+
+    if(titrePage =="Prospects"){
     selectedRows.map((id)=>{
       Inertia.delete(`/adcom/prospects/${id}`);
     })
+  }else if(props.title =="Produits"){
+
+    selectedRows.map((id)=>{
+      Inertia.delete(`/adcom/produits/${id}`);
+    })
+  }else if(props.title =="contact"){
+
+    selectedRows.map((id)=>{
+      Inertia.delete(`/adcom/contact/${id}`);
+    })
+  }else if(props.title =="Clients"){
+
+    selectedRows.map((id)=>{
+      Inertia.delete(`/adcom/clients/${id}`);
+    })
   }
-  }
+  } */
+
 
   const handleConversion = () =>{
     console.log(selectedRows)
@@ -44,7 +77,7 @@ export default function DataGridTable(props) {
               <div className="text-sm-end">
                 <button type="button" className="btn btn-success mb-2 me-1"><i className="mdi mdi-cog" /></button>
                 <button type="button" className="btn btn-light mb-2 me-1" onClick={handleDelete} >Delete</button>
-                <button onClick={handleConversion} type="button" className="btn btn-light mb-2 me-1" >convert</button>
+                <button onClick={handleConversion} type="button" className="btn btn-light mb-2 me-1" disabled={props.title ==="Prospects" ? false : true } >convert</button>
 
                 <button  type="button" className="btn btn-light mb-2" data-bs-toggle="modal" data-bs-target="#scrollable-modal">export</button>
 <div><button class="btn  btn-sm" data-bs-toggle="modal" data-bs-target="#scrollable-modal"><i class="mdi mdi-square-edit-outline"></i></button></div>

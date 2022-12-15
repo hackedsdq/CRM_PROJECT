@@ -14,14 +14,13 @@ return new class extends Migration
     public function up()
     {
 
-        Schema::create('opportunites', function (Blueprint $table) {
+        Schema::create('opportunities', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
             $table->double('montant');
             $table->enum('étape',['first','two']);
             $table->date('date_de_clôture');
             $table->unsignedBigInteger('Client_id');
-
             $table->foreign('client_id')->references('id')->on('clients');
         });
     }

@@ -1,19 +1,24 @@
 import React from 'react'
 import { InertiaLink } from '@inertiajs/inertia-react'
+import { Inertia } from '@inertiajs/inertia';
 export default function UserActions(props) {
-  let action = props.action;
-  let title = props.title;
-  let user = props.user
-  
+const title= props.title;
+const user= props.user;
+
+
+const handleDelete = () =>{
+  Inertia.delete(`/adcom/${title}/${user.id}`);
+}
+ 
 return(
-<div>
- {action==="delete" && <button className='btn  btn-sm' ><i className='mdi mdi-delete'></i> </button>}
- {action==="modify" && <InertiaLink href={`/adcom/${title}/edit/${user.id}`}> <i className='mdi mdi-square-edit-outline'></i></InertiaLink>}
- {action==="show" && <InertiaLink href={`/adcom/${title}/show/${user.id}`}> <i className='mdi mdi-square-edit-outline'></i></InertiaLink>}
+  <div>
+ {props.action==="delete" && <button className='btn  btn-sm'  onClick={handleDelete}><i className='mdi mdi-delete'></i> </button>}
+ {props.action==="modify" && <InertiaLink href={`/adcom/${title}/edit/${user.id}`}><i className='mdi mdi-square-edit-outline'></i></InertiaLink>}
+ {props.action==="show" && <InertiaLink href={`/adcom/${title}/show/${user.id}`}><i className='mdi mdi-eye'></i> </InertiaLink>}
 </div>
 )
 }
-  
+
   /*return (
     
     <div>

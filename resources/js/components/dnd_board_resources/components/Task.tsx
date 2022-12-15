@@ -95,7 +95,8 @@ function Task({
             onChange={handleTitleChange}
             onClick={handleOpenModal}
           />
-          {/* ------------------------ edit modal ------------------ */}
+          {/* ------------------------ edit modal ------------------ 
+          <EditModal />*/}
         </div>
       </Box>
     </ScaleFade>

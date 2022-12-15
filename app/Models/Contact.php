@@ -17,7 +17,8 @@ class Contact extends Authenticatable
     'email',
     'password',
     'fonction',
-    'telephone'
+    'telephone',
+    'Client_id'
     ];
     /**
      * The attributes that should be hidden for serialization.

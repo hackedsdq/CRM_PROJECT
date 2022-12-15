@@ -79,7 +79,6 @@ return (
                 {errors.site_web && <h6 style={{color:"red"}}>{errors.site_web}</h6>}
             </div>
 
-
  {/*   end  of the modal  body    */}
 
       </div>

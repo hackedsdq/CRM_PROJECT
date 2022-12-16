@@ -1,5 +1,8 @@
 import React,{useEffect, useState} from 'react'
 import {useForm}  from "@inertiajs/inertia-react"
+import { InertiaLink } from '@inertiajs/inertia-react'
+import { idID } from '@mui/material/locale'
+
 
 export default function ShowEditContact({contact,type})  {
 
@@ -91,6 +94,14 @@ return (
                 <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data.telephone} name="téléphone" type="text" className="form-control" placeholder="Telephone" />
                 {errors.telephone && <h6 style={{color:"red"}}>{errors.telephone}</h6>}
             </div>
+            <div className="mb-3">
+            
+            <InertiaLink href={`/calendar/add/${contact.id}`}><i className='mdi mdi-square-edit-outline'></i></InertiaLink>
+
+
+
+            </div>
+            
 
 
  {/*   end  of the modal  body    */}

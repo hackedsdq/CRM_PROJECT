@@ -266,9 +266,10 @@
 
 
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { InertiaLink } from '@inertiajs/inertia-react'
 import { Inertia } from '@inertiajs/inertia';
+import {useForm}  from "@inertiajs/inertia-react"
 import { DropDownListComponent } from '@syncfusion/ej2-react-dropdowns'
 import { DateTimePickerComponent } from '@syncfusion/ej2-react-calendars';
 import FullCalendar, { formatDate } from '@fullcalendar/react'
@@ -277,10 +278,63 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import listPlugin from '@fullcalendar/list'
 //import { INITIAL_EVENTS, createEventId } from './event-utils'
+export default function Calendar({Events})  {
+  
+  let { data, setData, post, processing, errors } = useForm({
+    Date: "",
+    heure :"",  
+    compte_rendu:"",
+    contact_id:"2",
+    user_id:"1",
+})
+let [events, setEvents]=useState([
+  
+]);
 
-export default function Calendar()  {
+useEffect(()=>{
+handleSetEvent()
+},[])
 
- 
+const handleSetEvent = ()=>{
+Events?.map((index,data)=>{
+   events.push({
+     date:Events[data]?.pivot.Date,
+     heure:Events[data]?.pivot.heure,
+     compte_rendu:Events[data]?.pivot.compte_rendu,
+     contact_id:Events[data]?.pivot.contact_id,
+     user_id:Events[data]?.pivot.user_id  
+ });
+//console.log(Events[data]?.pivot)
+  })}
+
+const handleChange = (e) =>{
+  let inputType = e.target.name
+  let inputValue = e.target.value
+
+  if( inputType === "Date"){
+  console.log(inputValue)
+  setData(data.Date= inputValue )}
+
+  else if(inputType === "heure"){
+  console.log(inputValue)
+  setData(data.heure= inputValue)}
+
+  else if(inputType === "compte_rendu"){
+    console.log(inputValue)
+    setData(data.compte_rendu = inputValue)
+  }
+
+}
+
+
+  
+  const  handleSubmit = (e) => {
+   // console.log(1)
+  console.log(data)
+    e.preventDefault()
+    //if(data.contact_id!==undefined||data.user_id!==undefined)
+ post('/calendar')
+   }
   return (
     <div className="MainDiv">
       <div class="jumbotron text-center">
@@ -292,11 +346,15 @@ export default function Calendar()  {
             plugins={[ dayGridPlugin, interactionPlugin ,listPlugin]}
             //Dayclick open sweetalert
             dateClick={function(arg) {
-            //  $("#myModal").modal("show");
-            //  $(".modal-body").html("");
-             // $(".modal-body").html("<h3>"+arg.dateStr+"</h3>");
+              $("#myModal").modal("show");
+             // $(".modal-body").html("");
+             //$(".modal-body").html("<h3>"+arg.dateStr+"</h3>");
+             $('#btn').click(function(){
+              var title=$('#title').val();
+              console.log(title);
+             })
             }}
-           
+            
             headerToolbar={{
               start: "today prev next",
               end: "dayGridMonth dayGridWeek dayGridDay listMonth",
@@ -304,22 +362,22 @@ export default function Calendar()  {
           
             }}
             initialView="dayGridMonth"
-            events={[
-              { title: 'event 1', date: '2022-11-01' },
-              { title: 'event 2', date: '2022-11-02' }
-            ]}
+            events={events}
             
             customButtons={{
               myCustomButton: {
                 text: 'Add Event',
                 click: function() {
                   $("#myModal").modal("show");
+               //  $(".modal-body").html("");
+             // $(".modal-body").html("<h3>"+arg.dateStr+"</h3>");
                 },
               },
             }}
            
           />
-        
+ 
+        <form onSubmit={handleSubmit}>
           <div class="modal" id="myModal">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -337,39 +395,45 @@ export default function Calendar()  {
                 <div><label
                                     htmlFor="simpleinput"
                                     className="form-label"
+                                    id="title"
                                 >
-                                    Event Title
+                                    compte rendu
                                 </label>
                                 <input
-                                  
-                                    name="Event title"
+                                  onChange={(e)=>handleChange(e)} value={data.compte_rendu}
+                                    name="compte_rendu"
                                     type="text"
                                     className="form-control"
+                                    
                                 />
+                               
                 </div>
 
                 <div><label for="">
                                     Choose Time
                                 </label>
                                 <input
-                                  
-                                    name="Time"
+                                  onChange={(e)=>handleChange(e)} value={data.heure}
+                                    name="heure"
                                     type="time"
                                     className="form-control"
                                 />
                 </div>
                              <div class="form-group">
                               <label form="">
-                                  Start Date
+                                   Date
                                 </label>
-                              <input type='date'class="form-control" name="start_Date" placeholder='Enter Start Date'></input>
+                              <input type='date'class="form-control" name="Date" placeholder='Enter Start Date'onChange={(e)=>handleChange(e)} value={data.Date}></input>
                               </div>
+                              
                               <div class="form-group">
                               <label form="">
-                                  End Date
+                                   Contact
                                 </label>
-                              <input type='date'class="form-control" name="End_Date" placeholder='Enter End Date'></input>
-                              </div>
+                              <input type='hidden'class="form-control" name="contact" value={data.contact_id}></input>
+                              </div> 
+                             
+                             
                 <div class="modal-body text-center">
                   
                 </div>
@@ -379,21 +443,22 @@ export default function Calendar()  {
                                 type="button"
                                 className="btn btn-secondary"
                                 data-bs-dismiss="modal"
+                                onClick={handleSetEvent}
                             >
                                 Close
                             </button>
-                          <button type="submit" className="btn btn-primary">
+                          <button type="submit" className="btn btn-primary" id="btn">
                                 Save changes
                             </button>
                          
                         </div>
               </div>
             </div>
-        
+          
           </div>
          
 
-
+</form>
 
     </div></div>
    

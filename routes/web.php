@@ -107,3 +107,6 @@ Route::post('/adcom/clients/update/{id}',[\App\Http\Controllers\ClientController
 
 Route::delete('/adcom/calendar/{id}',[\App\Http\Controllers\CalendarController::class, 'delete']);
 Route::post('/adcom/calendar/store',[\App\Http\Controllers\CalendarController::class, 'store']);
+
+Route::post('calendar',[\App\Http\Controllers\CalendarController::class, 'create']);
+Route::post('calendar/add/{id}',[\App\Http\Controllers\CalendarController::class, 'add']);

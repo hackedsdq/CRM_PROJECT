@@ -30,6 +30,7 @@
         "@mui/lab": "^5.0.0-alpha.106",
         "@mui/material": "^5.10.12",
         "@mui/x-data-grid": "^5.17.9",
+        "@react-pdf/renderer": "^3.0.1",
         "@syncfusion/ej2-data": "^20.3.56",
         "@syncfusion/ej2-react-buttons": "^20.3.58",
         "@syncfusion/ej2-react-schedule": "^20.3.52",
@@ -38,12 +39,13 @@
         "ag-grid-react": "^28.2.1",
         "devextreme": "^22.1.6",
         "devextreme-react": "^22.1.6",
+        "file-saver": "^2.0.5",
         "react-dnd": "^16.0.1",
         "react-dnd-html5-backend": "^16.0.1",
         "react-icons": "^4.6.0",
         "react-router-dom": "^6.4.3",
         "react-textarea-autosize": "^8.3.4",
-        "require": "^2.4.20",
+        "require": "^0.4.4",
         "usehooks-ts": "^2.9.1",
         "uuid": "^9.0.0"
     }

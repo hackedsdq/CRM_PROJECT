@@ -1,10 +1,17 @@
 import React,{useEffect, useState} from 'react'
 import {useForm}  from "@inertiajs/inertia-react"
-
 import MasterDetailOpportunities from "./master_details_components/MasterDetailOpportunities"
 import { Autocomplete, TextField } from '@mui/material'
 import { Inertia } from '@inertiajs/inertia'
+import { saveAs } from 'file-saver';
 
+import {
+  pdf,
+  Document,
+  Page,
+  Text,
+  StyleSheet,View
+} from '@react-pdf/renderer';
 
 export default function ShowEditOpportunity({opportunity,type,products,opportunityProducts})  {
   let [filtredProducts, setFiltredProducts]=useState([])
@@ -60,6 +67,8 @@ const handleSetOpportunity = ()=>{
 /*   setData(data.prix = "15")
   setData(data.quantité = "4") */
 }
+
+
 const handleChange = (e) =>{
   let inputType = e.target.name
   let inputValue = e.target.value
@@ -123,6 +132,36 @@ const handleSetProducts = () =>{
   createData('Cupcake', 305),
   createData('Gingerbread', 356) */
 }
+
+const delay = (t) => new Promise((resolve)=> setTimeout(resolve, t));
+
+async function getProp (){
+  await delay(1_000);
+  return ({
+   som:  'yess'
+  });
+}
+const styles = StyleSheet.create({
+  page: {
+    flexDirection: 'row',
+    backgroundColor: '#E4E4E4'
+  },
+  section: {
+    marginLeft: 100,
+  }
+});
+
+const DocumentPdf = () => (
+ 
+  <Document>
+    <Page size="A4" style={styles.page}>
+      <View style={styles.section}>
+        <Text>facture</Text>
+      </View>
+     
+    </Page>
+  </Document>
+);
 
 return (
   <div className="row justify-content-center">
@@ -196,9 +235,23 @@ return (
         <div className="modal-footer">
           <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="submit" className="btn btn-primary">Save changes</button>
+          <button   onClick={async () => {
+      const props = await getProp();
+      
+      const doc = <DocumentPdf />;
+      const asPdf = pdf(); // {} is important, throws without an argument
+      asPdf.updateContainer(doc);
+      const blob = await asPdf.toBlob();
+      saveAs(blob, 'facture.pdf')
+      // asPdf.updateContainer(doc);
+      // const blob = await asPdf.toBlob();
+      // saveAs(blob, 'document.pdf');
+    }}>
+    Download PDF
+  </button>
         </div>
-
-
+      
+         
       </div>{/* /.modal-content */}
 
   </form> 

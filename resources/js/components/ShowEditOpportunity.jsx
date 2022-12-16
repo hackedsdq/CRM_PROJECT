@@ -12,6 +12,7 @@ import {
   Text,
   StyleSheet,View
 } from '@react-pdf/renderer';
+import { blue } from '@mui/material/colors'
 
 export default function ShowEditOpportunity({opportunity,type,products,opportunityProducts})  {
   let [filtredProducts, setFiltredProducts]=useState([])
@@ -146,19 +147,35 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: '#E4E4E4'
   },
+  titre: {
+    marginTop:10,
+   alignItems: 'center',
+ 
+  },
+  h1:  {
+    fontSize: 10,
+  },
   section: {
-    marginLeft: 100,
+    color:'#000',
+    marginTop: 100
   }
+
 });
 
 const DocumentPdf = () => (
  
   <Document>
     <Page size="A4" style={styles.page}>
+      <View>
+      <View >
+        <Text style={styles.titre}>Facture</Text>
+      </View>
       <View style={styles.section}>
-        <Text>facture</Text>
+        <Text style={styles.h1}>Client</Text>
+        <Text></Text>
       </View>
      
+      </View>
     </Page>
   </Document>
 );

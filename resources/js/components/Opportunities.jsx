@@ -17,7 +17,8 @@ export default function Opportunities({clients,opportunities_one, opportunities_
   let [opp2, setOpp2]=useState([])
   let [opp3, setOpp3]=useState([])
   let [opp4, setOpp4]=useState([])
-
+   //client
+   let [client, setclient] = useState([])
   //const [open,setOpen]=useState(false);
 
   useEffect(()=>{
@@ -25,7 +26,8 @@ export default function Opportunities({clients,opportunities_one, opportunities_
   setOpp2(opportunities_two)
   setOpp3(opportunities_three)
   setOpp4(opportunities_four)
-
+  // setclient
+  setclient(clients)
   handleFilter(clients)
   },[clients])
 
@@ -64,7 +66,7 @@ const handleFilter=(clients)=>{
               {
                 opp1.length === 0 ? <></> : 
               <ChakraProvider   resetCSS={false} theme={theme} >
-                  <DndBoard opportunities_one={opp1} opportunities_two={opp2} opportunities_three={opp3} opportunities_four={opp4} />
+                  <DndBoard opportunities_one={opp1} opportunities_two={opp2} opportunities_three={opp3} opportunities_four={opp4} cle={clients}/>
               </ChakraProvider>
             }
             </div> 

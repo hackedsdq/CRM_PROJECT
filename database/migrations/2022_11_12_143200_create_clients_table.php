@@ -20,10 +20,12 @@ return new class extends Migration
             $table->string('adresse');
             $table->string('site_web');
             $table->timestamps();
-            $table->foreignId('prospects_id')
+            $table->foreignId('prospect_id')
             ->constrained()
             ->onUpdate('cascade')
             ->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

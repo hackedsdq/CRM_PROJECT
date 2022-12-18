@@ -25,6 +25,8 @@ class ProduitController extends Controller
         ]);
     }
     public function editIndex($id){
+
+        
         $produits = Produit::find($id);
         return Inertia::render('ShowEditProduit',[
             'produits'=>$produits,
@@ -47,22 +49,18 @@ class ProduitController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'nom'=> 'required',
-           'description'=> 'required',
-             'prix'=> 'required',
-             'quantité'=> 'required',
+            'nom'=> 'required|regex:/^[a-zA-Z]+$',
+           'description'=> 'required|min:20',
+             'prix'=> 'required|integer',
+             'quantité'=> 'required|integer',
         ]
         );
 
         $newProduit = new Produit();
-        
         $newProduit->nom = $request->nom;
         $newProduit->description = $request->description ;
         $newProduit->prix = $request->prix;
         $newProduit->quantité = $request->quantité;
-   
-  
-
         $newProduit->save();
         return redirect()->route('adcom.produits');
     }
@@ -110,10 +108,10 @@ class ProduitController extends Controller
     public function update(Request $request,  $id)
     {$produits= Produit::find($id);
         $request->validate([
-            'nom'=> 'required',
+            'nom'=> 'required|regex:/^[a-zA-Z]+$',
             'description'=> 'required| min:20',
-             'prix'=> 'required',
-             'quantité'=> 'required',
+             'prix'=> 'required|integer',
+             'quantité'=> 'required|integer',
         ]
         );
         $produits->update([

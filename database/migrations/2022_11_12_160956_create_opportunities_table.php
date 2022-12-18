@@ -18,10 +18,11 @@ return new class extends Migration
             $table->id();
             $table->string('nom');
             $table->double('montant');
-            $table->enum('étape',['first','two']);
+            $table->enum('étape',['one','two', 'three', 'four']);
             $table->date('date_de_clôture');
-            $table->unsignedBigInteger('Client_id');
+            $table->unsignedBigInteger('client_id');
             $table->foreign('client_id')->references('id')->on('clients');
+            $table->timestamps();
         });
     }
 

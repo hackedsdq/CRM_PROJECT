@@ -44,7 +44,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function contact(){
-        return $this->belongsToMany(Contact::class);
+    public function contacts(){
+        return $this->belongsToMany(Contact::class, 'contact_id');
+    }
+
+    public function clients()
+    {
+    return $this->hasMany(Client::class, 'client_id');
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Contact;
+use App\Models\Opportunities;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -23,17 +25,28 @@ class ClientController extends Controller
 
     public function editIndex($id){
         $client = Client::find($id);
+        $clientContacts = Contact::where('client_id', $id)->get();
+        $clientOpportunities = Opportunities::where('client_id', $id)->get();
+       // return $clientContacts;
+ 
         return Inertia::render('ShowEditClient',[
             'client'=>$client,
             'type'=>'edit',
-        ]);
+            'clientContacts'=>$clientContacts,
+            "clientOpportunities"=>$clientOpportunities
+        ]); 
     }
 
     public function showIndex($id){
         $client = Client::find($id);
+        $clientContacts = Contact::where('client_id', $id)->get();
+        $clientOpportunities = Opportunities::where('client_id', $id)->get();
+
         return Inertia::render('ShowEditClient',[
             'client'=>$client,
             'type'=>'show',
+            'clientContacts'=>$clientContacts,
+            "clientOpportunities"=>$clientOpportunities
         ]);
     }
     /**
@@ -88,6 +101,16 @@ class ClientController extends Controller
      */
     public function update(Request $request,$id)
     {
+
+        $request->validate([
+            'société'=> 'required|',
+           'adresse'=> 'required',
+           'téléphone'=> 'required|^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$',
+           'site_web'=> 'required|regex:/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)'
+           
+        ]
+        );
+
         $client = Client::find($id);
         $client->société =  $request->société;
         $client->adresse = $request->adresse;

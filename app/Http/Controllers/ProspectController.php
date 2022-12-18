@@ -49,10 +49,10 @@ class ProspectController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'nom'=> 'required',
+            'nom'=> 'required|regex:/^[a-zA-Z]+$',
             // 'société'=> 'required',
             // 'fonction'=> 'required',
-            'email'=> 'required',
+            'email'=> 'required|email',
             // 'téléphone'=> 'required',
             // 'addresse'=> 'required',
             // 'site_web'=> 'required',
@@ -119,19 +119,18 @@ class ProspectController extends Controller
      */
     public function update(Request $request,$id)
     {
-/*         $request->validate([
-             'nom'=> 'required',
-             'société'=> 'required',
+    $request->validate([
+             'nom'=> 'required|regex:/^[a-zA-Z]+$',
+             'société'=> 'required|regex:/^[a-zA-Z]+$',
              'fonction'=> 'required',
-             'email'=> 'required',
-             'téléphone'=> 'required',
+             'email'=> 'required|email',
+             'téléphone'=> 'required|regex:/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$',
              'addresse'=> 'required',
-             'site_web'=> 'required',
+             'site_web'=> 'required|regex:/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)',
              'Status'=> 'required',
              'Source'=> 'required',
         ]
         );
- */
 
         $prospect = Prospect::find($id);
         
@@ -150,38 +149,56 @@ class ProspectController extends Controller
 
     public function conversion($id){
         $prospect = Prospect::find($id);
-
-        $client = new Client();
+        
+        
+        //$client = new Client();
 
         
 /*         $client->société= $prospect->société;
         $client->téléphone=$prospect->téléphone; 
         $client->adresse=$prospect->adresse; 
         $client->site_web=$prospect->site_web;
-        $client->prospects_id=$prospect->id;
+        $client->prospect_id=$prospect->id;
         $client->save(); */
-        
 
-        $client = Client::create([
-            'société'=> $prospect->société, 
-            'téléphone'=>$prospect->téléphone, 
-            'adresse'=>$prospect->adresse, 
-            'site_web'=>$prospect->site_web, 
-            'prospects_id'=>$prospect->id,
-        ]);
  
+        $existingClient = Client::where('société', $prospect->société)->get();
+        if(count($existingClient)==0){
+            $client = Client::create([
+                'société'=> $prospect->société, 
+                'téléphone'=>$prospect->téléphone, 
+                'adresse'=>$prospect->adresse, 
+                'site_web'=>$prospect->site_web, 
+                'prospect_id'=>$prospect->id,
+                'user_id'=>1,
 
-         $contact = Contact::create([
-            'nom'=> $prospect->nom,
-            'prenom'=>$prospect->prenom, 
-            'fonction'=>$prospect->fonction, 
-            'email' => $prospect->email, 
-            'telephone'=>$prospect->téléphone, 
-            'password'=>Hash::make('123456789'), 
-            'Client_id'=> $client->id,
-        ]);
+            ]);
+            $contact = Contact::create([
+                'nom'=> $prospect->nom,
+                'prenom'=>$prospect->prenom, 
+                'fonction'=>$prospect->fonction, 
+                'email' => $prospect->email, 
+                'telephone'=>$prospect->téléphone, 
+                'password'=>Hash::make('123456789'), 
+                'client_id'=> $client->id,
+            ]);
+        }
+        else{
+            $contact = Contact::create([
+                'nom'=> $prospect->nom,
+                'prenom'=>$prospect->prenom, 
+                'fonction'=>$prospect->fonction, 
+                'email' => $prospect->email, 
+                'telephone'=>$prospect->téléphone, 
+                'password'=>Hash::make('123456789'), 
+                'client_id'=> $existingClient['0']->id,
+            ]);
+            $existingClient[0]->contact;
+        }
 
-        
+
+
+        //return $existingClient[0];
     }
 
    public function delete($id)

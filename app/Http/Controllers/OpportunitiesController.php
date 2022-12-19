@@ -23,6 +23,7 @@ class OpportunitiesController extends Controller
         $opportunities_three = Opportunities::where('étape', 'three')->get();
         $opportunities_four = Opportunities::where('étape', 'four')->get();
 
+        //return $opportunities_one;
         return Inertia::render('Opportunities',[
             'opportunities_one'=> $opportunities_one,
             'opportunities_two'=> $opportunities_two,
@@ -41,12 +42,23 @@ class OpportunitiesController extends Controller
             'opportunityProducts'=>$opportunityProducts
         ]);
     }
-
+    
+    public function recipeClient($id){
+        $clients = Client::find($id);
+        return Inertia::render('ShowEditOpportunity',[
+            'client'=>$clients,
+            'type'=>'edit',
+           
+        ]);
+    }
     public function showIndex($id){
         $opportunity = Opportunities::find($id);
+        $opportunityProducts = $opportunity->produits;
         return Inertia::render('ShowEditOpportunity',[
             'opportunity'=>$opportunity,
             'type'=>'show',
+            'opportunityProducts'=>$opportunityProducts
+
         ]);
     }
 
@@ -62,7 +74,7 @@ class OpportunitiesController extends Controller
             'nom'=> $request->nom,
             'montant'=>$request->montant, 
             'date_de_clôture'=>$request->date_de_clôture,
-            'Client_id'=>$request->Client_id,
+            'client_id'=>$request->client_id,
         ]);
     }
 
@@ -91,6 +103,7 @@ class OpportunitiesController extends Controller
         /*         return Inertia::render("ShowEditOpportunity",[
             'opportunityProducts' => "41"
         ]); */
+        return redirect()->back();
     }
 
     

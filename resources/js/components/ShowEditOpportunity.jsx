@@ -4,17 +4,26 @@ import MasterDetailOpportunities from "./master_details_components/MasterDetailO
 import { Autocomplete, TextField } from '@mui/material'
 import { Inertia } from '@inertiajs/inertia'
 import { saveAs } from 'file-saver';
-
+import logoreactfac from'../../../public/assets/images/logoreactfac.png'
 import {
   pdf,
   Document,
   Page,
-  Text,
-  StyleSheet,View
+  Image,
+  StyleSheet,View, Text
 } from '@react-pdf/renderer';
 import { blue } from '@mui/material/colors'
+import InvoiceTitle from './table/InvoiceTitle'
+import InvoiceNo from './table/InvoiceNo'
+import BillTo from './table/BillTo'
+import InvoiceTableHeader from './table/InvoiceTableHeader'
+import InvoiceTableBlankSpace from './table/InvoiceTableBlankSpace'
+import InvoiceTableFooter from './table/InvoiceTableFooter'
+import InvoiceTableRow from './table/InvoiceTableRow'
+import InvoiceThankYouMsg from './table/InvoiceThankYouMsg'
+import { render } from 'react-dom'
 
-export default function ShowEditOpportunity({opportunity,type,products,opportunityProducts})  {
+export default function ShowEditOpportunity({client,opportunity,type,products,opportunityProducts})  {
   let [filtredProducts, setFiltredProducts]=useState([])
   let [opp, setOpp]=useState(opportunity?.id)
   const { data, setData, post, processing, errors } = useForm({
@@ -29,15 +38,15 @@ export default function ShowEditOpportunity({opportunity,type,products,opportuni
     opportunity_id:""
 })
 const [rows, setRows] = useState([])
-
+ 
 
 useEffect(()=>{
   if(data?.nom === "")
   handleSetOpportunity()
-  handleFilterProducts(products)
   handleSetProducts()
+  handleFilterProducts(products)
+  
 },[products])
-
 
 const  handleSubmit = (e) => {
  e.preventDefault()
@@ -58,6 +67,7 @@ const handleFilterProducts=(products)=>{
   }
 } 
 }
+
 const handleSetOpportunity = ()=>{
   setData(data.nom = opportunity?.nom)
   setData(data.montant = opportunity?.montant)
@@ -105,10 +115,14 @@ if(value !== null){
 const addProduct = async() =>{
   if(data?.product_id !== "" && opp !==undefined ){
     let opport = opp;
-    await Inertia.post(`/adcom/opprtunities/edit/${opp}`,{
+    await Inertia.post(`/adcom/opprtunities/edit/${opp}`,
+    {
       product_id : data?.product_id,
       quantité: data?.quantité,
-    })
+    },{
+      preserveState:false
+    }
+    )
     console.log("<<<<<<<<<<<<<< damn >>>>>>>>>>>>>>>>>>>")
   }
 }
@@ -131,10 +145,12 @@ const handleSetProducts = () =>{
   createData('Ice cream sandwich', 237),
   createData('Eclair', 262),
   createData('Cupcake', 305),
-  createData('Gingerbread', 356) */
+  createData('Gingerbread', 356) 
+   disabled={opportunity?.étape==="four" ? false : true }*/
 }
 
 const delay = (t) => new Promise((resolve)=> setTimeout(resolve, t));
+
 
 async function getProp (){
   await delay(1_000);
@@ -144,38 +160,56 @@ async function getProp (){
 }
 const styles = StyleSheet.create({
   page: {
-    flexDirection: 'row',
-    backgroundColor: '#E4E4E4'
-  },
-  titre: {
-    marginTop:10,
-   alignItems: 'center',
- 
-  },
-  h1:  {
-    fontSize: 10,
-  },
-  section: {
-    color:'#000',
-    marginTop: 100
-  }
-
+    fontFamily: 'Helvetica',
+    fontSize: 11,
+    paddingTop: 30,
+    paddingLeft:60,
+    paddingRight:60,
+    lineHeight: 1.5,
+    flexDirection: 'column',
+    border:'solid'
+},
+tableContainer: {
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  marginTop: 24,
+  borderWidth: 1,
+  borderColor: '#bff0fd',
+},
+logo: {
+  width: 300,
+  height: 90,
+  marginLeft: 'auto',
+  marginRight: 'auto'
+},
+h1: {
+  fontSize:20,
+  color: '#87CEEB',
+  fontWeight: 'bold',
+  marginLeft: 'auto',
+  marginRight: 'auto'
+}
 });
 
-const DocumentPdf = () => (
- 
+const tableRowsCount = 11;
+
+const DocumentPdf = (props) => (
+
   <Document>
-    <Page size="A4" style={styles.page}>
-      <View>
-      <View >
-        <Text style={styles.titre}>Facture</Text>
-      </View>
-      <View style={styles.section}>
-        <Text style={styles.h1}>Client</Text>
-        <Text></Text>
-      </View>
+    <Page  style={styles.page}>
      
-      </View>
+    <Image style={styles.logo} src={logoreactfac} />
+    <Text style={styles.h1}>{props.titre}</Text>
+     <InvoiceTitle titre={props.titre}/>
+     <InvoiceNo invoice={opportunity?.date_de_clôture} />
+     <BillTo name= {client.nom} />
+     <View style={styles.tableContainer}>
+        <InvoiceTableHeader />
+        <InvoiceTableRow items={props?.filtredProducts}/>
+        <InvoiceTableBlankSpace rowsCount={ tableRowsCount} />
+        <InvoiceTableFooter items={props?.filtredProducts} />
+    </View> 
+    <InvoiceThankYouMsg/>
     </Page>
   </Document>
 );
@@ -252,19 +286,34 @@ return (
         <div className="modal-footer">
           <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="submit" className="btn btn-primary">Save changes</button>
-          <button   onClick={async () => {
-      const props = await getProp();
+          <button  type="button" className="btn btn-primary"onClick={async () => {
+      let props = await getProp();
       
-      const doc = <DocumentPdf />;
-      const asPdf = pdf(); // {} is important, throws without an argument
+      let doc = <DocumentPdf titre="Facture" filtredProducts={opportunityProducts} opp={opp}/>;
+      let asPdf = pdf(); // {} is important, throws without an argument
       asPdf.updateContainer(doc);
-      const blob = await asPdf.toBlob();
+      let blob = await asPdf.toBlob();
       saveAs(blob, 'facture.pdf')
       // asPdf.updateContainer(doc);
       // const blob = await asPdf.toBlob();
       // saveAs(blob, 'document.pdf');
-    }}>
-    Download PDF
+    } } >
+    Generer Facture
+  </button>
+
+  <button  type="button" className="btn btn-primary" onClick={ () => {
+       //let props = await getProp();
+      console.log(filtredProducts)
+/*       let doc = <DocumentPdf titre="devis" filtredProducts={filtredProducts} opp={opp}/>;
+      let asPdf = pdf(); // {} is important, throws without an argument
+      asPdf.updateContainer(doc);
+      let blob =  asPdf.toBlob();
+      saveAs(blob, 'facture.pdf') */
+      // asPdf.updateContainer(doc);
+      // const blob = await asPdf.toBlob();
+      // saveAs(blob, 'document.pdf');
+    } } >
+    Generer Facture
   </button>
         </div>
       

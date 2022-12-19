@@ -121,7 +121,7 @@ Route::post('/adcom/produits/update/{id}',[\App\Http\Controllers\ProduitControll
 Route::post('/adcom/opportunities/',[\App\Http\Controllers\OpportunitiesController::class, 'searchClients']);
 Route::post('/adcom/opportunities/add',[\App\Http\Controllers\OpportunitiesController::class, 'create']);
 // get edit opportunities page
-Route::get('/adcom/opportunities/edit/{id}',[\App\Http\Controllers\OpportunitiesController::class, 'editIndex']);
+Route::get('/adcom/opportunities/edit/{id}',[\App\Http\Controllers\OpportunitiesController::class, 'editIndex'])->name('editOpportunity');
 // get opportunities with master details
 Route::get('/adcom/opportunities/show/{id}',[\App\Http\Controllers\OpportunitiesController::class, 'showIndex']);
 
@@ -133,3 +133,5 @@ Route::post('/adcom/opprtunities/edit/{opp}',[\App\Http\Controllers\Opportunitie
 
 // edit an opportunity infos 
 Route::post('/adcom/opportunity/edit',[\App\Http\Controllers\OpportunitiesController::class, 'update']);
+//recupc
+

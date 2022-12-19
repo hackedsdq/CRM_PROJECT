@@ -29,12 +29,19 @@ class ClientController extends Controller
         $clientOpportunities = Opportunities::where('client_id', $id)->get();
        // return $clientContacts;
  
-        return Inertia::render('ShowEditClient',[
+         return Inertia::render('ShowEditClient',[
             'client'=>$client,
             'type'=>'edit',
             'clientContacts'=>$clientContacts,
             "clientOpportunities"=>$clientOpportunities
-        ]); 
+        ]);  
+
+/*         return [
+            'client'=>$client,
+            'type'=>'edit',
+            'clientContacts'=>$clientContacts,
+            "clientOpportunities"=>$clientOpportunities
+        ];  */
     }
 
     public function showIndex($id){

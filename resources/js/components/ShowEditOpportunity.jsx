@@ -18,7 +18,7 @@ export default function ShowEditOpportunity({opportunity,type,products,opportuni
     product_id:"",
     prix:"",
     quantité:"",
-    opportunity_id:""
+    opportunity_id:"",
 })
 const [rows, setRows] = useState([])
 
@@ -102,20 +102,21 @@ const addProduct = async() =>{
     console.log("<<<<<<<<<<<<<< damn >>>>>>>>>>>>>>>>>>>")
   }
 }
-const  createData = (id, nom, description, prix, quantité) => {
+const  createData = (id, nom, description, prix, quantité, photo) => {
   return{
     id,
     nom,
     description,
     prix,
     quantité,
+    photo
   };
 }
 
 const handleSetProducts = () =>{
   console.log(opportunityProducts)
   opportunityProducts?.map((data)=>rows.push(
-    createData(data.id, data.nom, data.description, data.prix, data.quantité)
+    createData(data.id, data.nom, data.description, data.prix, data.quantité, data.photo)
   ))
 /*   createData('Frozen yoghurt', 159),
   createData('Ice cream sandwich', 237),
@@ -125,12 +126,11 @@ const handleSetProducts = () =>{
 }
 
 return (
-  <div className="row justify-content-center">
-    <div className="col-xxl-6 col-lg-5">
-      <div className="card">
-        <div className="card-header pt-4 pb-4 text-center bg-primary">
-              <h4 style={{color:"#fff"}}>editopportunity</h4>
-        </div>
+  <div>
+
+
+<div className="container-login100">
+			<div className="wrap-login100">
     <form onSubmit={(e)=>handleSubmit(e)} >
       <div className="modal-content">
         <div className="modal-body">

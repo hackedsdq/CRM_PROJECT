@@ -37,29 +37,32 @@ const handleSetClient = ()=>{
   setData(data.site_web = client.site_web)
 }
 
-const  createData = (id, nom, prenom, fonction, email, telephone) => {
-  return{
-    id,
-    nom,
-    prenom,
-    fonction,
-    email,
-    telephone,
-  };
-}
-
 
 const handleSetContacts = () =>{
   console.log(clientContacts)
    clientContacts?.map((data)=>rows.push(
-    createData(data.id,data.nom, data.prenom, data.fonction, data.email, data.telephone)
+    {
+      id: data.id,
+      nom:data.nom,
+      prenom:data.prenom,
+      fonction:data.fonction,
+      email:data.email,
+      telephone:data.telephone
+
+    }
   )) 
 }
 
 const handleSetOpportunities = () =>{
   console.log(clientOpportunities)
    clientOpportunities?.map((data)=>rows2.push(
-    createData(data.id,data.nom, data.montant, data.étape, data.date_de_clôture)
+    {
+      id: data.id,
+      nom:data.nom,
+      montant:data.montant,
+      étape:data.étape,
+      date_de_clôture:data.date_de_clôture
+    }
   )) 
 }
 
@@ -85,12 +88,8 @@ const handleChange = (e) =>{
 
 
 return (
-  <div className="row justify-content-center">
-  <div className="col-xxl-6 col-lg-5">
-    <div className="card">
-      <div className="card-header pt-4 pb-4 text-center bg-primary">
-            <h4 style={{color:"#fff"}}>editclient</h4>
-      </div>
+<div className="container-login100">
+	<div className="wrap-login100">
 <form onSubmit={(e)=>handleSubmit(e)} >
     <div className="modal-content">
       <div className="modal-body">
@@ -121,13 +120,12 @@ return (
             </div>
 
  {/*   end  of the modal  body    */}
- <h1>contacts</h1>
   <MasterDetailClientContacts rows={rows}/>
- <h1>opportunities</h1>
+  <br/>
   <MasterDetailClientOpportunities rows={rows2} />
       </div>
       <div className="modal-footer">
-        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button onClick={()=>console.log(rows2)} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="submit" className="btn btn-primary">Save changes</button>
       </div>
 
@@ -137,6 +135,5 @@ return (
       </form>
     </div>
   </div>
-</div>
 )
 }

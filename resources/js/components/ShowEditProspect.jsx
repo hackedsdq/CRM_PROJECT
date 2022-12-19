@@ -19,7 +19,9 @@ export default function ShowEditProspect({prospect,type})  {
 const  handleSubmit = (e) => {
  e.preventDefault()
 console.log(data)
-post(`/adcom/prospects/update/${prospect.id}`) 
+post(`/adcom/prospects/update/${prospect.id}`,{
+  preserveState:false
+}) 
 }
 
 useEffect(()=>{
@@ -28,16 +30,16 @@ useEffect(()=>{
 
 
 const handleGetProspect = ()=>{
-  setData(data.nom = prospect.nom )
-  setData(data.prenom = prospect.prenom)
-  setData(data.société = prospect.société)
-  setData(data.fonction = prospect.fonction)
-  setData(data.email = prospect.email)
-  setData(data.téléphone = prospect.téléphone)
-  setData(data.adresse = prospect.adresse)
-  setData(data.site_web = prospect.site_web)
-  setData(data.Statut = prospect.site_web)
-  setData(data.Source = prospect.Source)
+  setData(data.nom = prospect?.nom )
+  setData(data.prenom = prospect?.prenom)
+  setData(data.société = prospect?.société)
+  setData(data.fonction = prospect?.fonction)
+  setData(data.email = prospect?.email)
+  setData(data.téléphone = prospect?.téléphone)
+  setData(data.adresse = prospect?.adresse)
+  setData(data.site_web = prospect?.site_web)
+  setData(data.Statut = prospect?.Statut)
+  setData(data.Source = prospect?.Source)
 }
 
 const handleChange = (e) =>{
@@ -80,7 +82,10 @@ const handleChange = (e) =>{
 
 
 return (
-<form onSubmit={(e)=>handleSubmit(e)} >
+<div className="container-login100">
+	<div className="wrap-login100">
+
+  <form onSubmit={(e)=>handleSubmit(e)} >
     <div className="modal-content">
       <div className="modal-body">
  
@@ -156,6 +161,8 @@ return (
     </div>{/* /.modal-content */}
 
 </form>
+</div>
+</div>
 
   )
 }

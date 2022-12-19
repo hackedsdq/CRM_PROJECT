@@ -36,6 +36,8 @@ Route::get('Profile/',[\App\Http\Controllers\ContactsAuthController::class, 'ind
 
 
 
+
+
 // admins and commercials routes
 Route::get('adcom/', [\App\Http\Controllers\AdminCommercialAuthController::class, 'index'])->name('adcom.home');
 Route::get('adcom/login', [\App\Http\Controllers\AdminCommercialAuthController::class, 'login'])->name('adcom.login');
@@ -47,7 +49,7 @@ Route::get('adcom/prospects',[\App\Http\Controllers\ProspectController::class, '
 Route::get('adcom/clients',[\App\Http\Controllers\ClientController::class, 'index'])->name('adcom.clients');
 Route::get('adcom/opportunities',[\App\Http\Controllers\OpportunitiesController::class, 'index'])->name('adcom.opportunities');
 Route::get('adcom/contacts',[\App\Http\Controllers\ContactController::class, 'index'])->name('adcom.contacts');
-Route::get('adcom/users',[\App\Http\Controllers\HomeController::class, 'users'])->name('adcom.users');
+Route::get('adcom/users',[\App\Http\Controllers\UserController::class, 'index'])->name('adcom.users');
 Route::get('adcom/calendar',[\App\Http\Controllers\CalendarController::class, 'index'])->name('adcom.calendar');
 Route::get('adcom/produits',[\App\Http\Controllers\ProduitController::class, 'index'])->name('adcom.produits');
 // end of admins and commercials routes
@@ -114,11 +116,19 @@ Route::get('/adcom/produits/show/{id}',[\App\Http\Controllers\ProduitController:
 Route::post('/adcom/produits/update/{id}',[\App\Http\Controllers\ProduitController::class, 'update']);
 
 
-
+// add user 
+Route::post('/adcom/users', [\App\Http\Controllers\UserController::class, 'create']);
+// get edit users page
+Route::get('/adcom/users/edit/{id}',[\App\Http\Controllers\UserController::class, 'editIndex']);
+// get show users page
+Route::get('/adcom/users/show/{id}',[\App\Http\Controllers\UserController::class, 'showIndex']);
+// update user
+Route::post('/adcom/users/update/{id}',[\App\Http\Controllers\UserController::class, 'update']);
+Route::delete('/adcom/users/{id}',[\App\Http\Controllers\UserController::class, 'delete']);
 
 
 // opportunities
-Route::post('/adcom/opportunities/add',[\App\Http\Controllers\OpportunitiesController::class, 'searchClients']);
+Route::post('/adcom/opportunities',[\App\Http\Controllers\OpportunitiesController::class, 'searchClients']);
 Route::post('/adcom/opportunities/add',[\App\Http\Controllers\OpportunitiesController::class, 'create']);
 // get edit opportunities page
 Route::get('/adcom/opportunities/edit/{id}',[\App\Http\Controllers\OpportunitiesController::class, 'editIndex']);

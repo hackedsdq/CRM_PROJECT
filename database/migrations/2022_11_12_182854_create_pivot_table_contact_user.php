@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('pivot_table_contact_user', function (Blueprint $table) {
 
             //$table->id();
-            
+            $table->id();
+            $table->string('title');
             $table->date('Date');
             $table->time('heure');
             $table->string('compte_rendu');
@@ -29,7 +30,7 @@ return new class extends Migration
             $table->unsignedBigInteger('contact_id');
             $table->foreign('contact_id')->references('id')->on('contacts')->onDelete('cascade');
 
-            $table->primary(['user_id','contact_id']);
+            //$table->primary(['user_id','contact_id']);
             
             $table->timestamps();
         });

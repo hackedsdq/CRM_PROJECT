@@ -3,8 +3,8 @@ import { Inertia } from '@inertiajs/inertia';
  
 function Signin() {
   const [values, setValues] = useState({
-    email:"hinozaidz@gmail.com",
-    password:"12345678",
+    email:"qayell@gmail.com",
+    password:"123456789",
   })
 
 const  handleSubmit = (e) => {

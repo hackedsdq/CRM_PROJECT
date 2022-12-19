@@ -5,11 +5,12 @@ import { Inertia } from "@inertiajs/inertia";
 
 export default function AddModalProduits(props) {
     const { data, setData, post, processing, errors } = useForm({
-        nom: "",
-        description: "",
-        prix: "",
-        quantité: "",
-        photo:""
+        name: "",
+        prenom: "",
+        role: "",
+        email: "",
+        password:"",
+        photo:"test.jpg",
     });
 
     const cloudinaryRef = useRef();
@@ -17,7 +18,9 @@ export default function AddModalProduits(props) {
 
 
 
-    useEffect(()=>{
+     useEffect(()=>{
+        $('#scrollable-modal').hide();
+        $('.modal-backdrop').remove(); 
         // uploading the image
         cloudinaryRef.current =  window.cloudinary;
         widgetRef.current = cloudinaryRef.current.createUploadWidget({
@@ -30,60 +33,44 @@ export default function AddModalProduits(props) {
             setData(data.photo = photo) 
             console.log(result.info)
             }
-        }
+          }
         )
         },[])
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(data);
-        post("/adcom/produits");
+        post("/adcom/users",{
+            preserveState:false
+        });
     };
 
     const handleChange = (e) => {
         let inputType = e.target.name;
         let inputValue = e.target.value;
 
-        if (inputType === "nom") 
-        setData((data.nom = inputValue));
-        else if (inputType === "description")
-        setData((data.description = inputValue));
-        else if (inputType === "prix") 
-        setData((data.prix = inputValue));
-        else if (inputType === "quantité")
-        setData((data.quantité = inputValue));
+        if (inputType === "name") 
+        setData((data.name = inputValue));
+        else if (inputType === "prenom")
+        setData((data.prenom = inputValue));
+        else if (inputType === "role") 
+        setData((data.role = inputValue));
+        else if (inputType === "email")
+        setData((data.email = inputValue));
+        else if (inputType === "password")
+        setData((data.password = inputValue));
     };
 
 
     return (
-        <form onSubmit={(e) => handleSubmit(e)}>
-            <div
-                className="modal fade"
-                id="scrollable-modal"
-                tabIndex={-1}
-                role="dialog"
-                aria-labelledby="scrollableModalTitle"
-                aria-hidden="true"
-            >
-                <div
-                    className="modal-dialog modal-dialog-scrollable"
-                    role="document"
-                >
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h5
-                                className="modal-title"
-                                id="scrollableModalTitle"
-                            >
-                                Add Products
-                            </h5>
-                            <button
-                                type="button"
-                                className="btn-close"
-                                data-bs-dismiss="modal"
-                                aria-hidden="true"
-                            />
-                        </div>
+    <form onSubmit={(e) => handleSubmit(e)}>
+            <div className="modal fade" id="scrollable-modal" tabIndex={-1} role="dialog" aria-labelledby="scrollableModalTitle" aria-hidden="true">
+            <div className="modal-dialog modal-dialog-scrollable" role="document">
+                <div className="modal-content">
+                <div className="modal-header">
+                    <h5 className="modal-title" id="scrollableModalTitle">Add Prospects</h5>
+                    <button  type="button" className="btn-close" data-bs-dismiss="modal" aria-hidden="true" />
+                </div>
                         <div className="modal-body">
                             {/* bodyyyyy of the modal */}
 
@@ -96,14 +83,14 @@ export default function AddModalProduits(props) {
                                 </label>
                                 <input
                                     onChange={(e) => handleChange(e)}
-                                    value={data.nom}
-                                    name="nom"
+                                    value={data.name}
+                                    name="name"
                                     type="text"
                                     className="form-control"
                                 />
-                                {errors.nom && (
+                                {errors.name && (
                                     <h6 style={{ color: "red" }}>
-                                        {errors.nom}
+                                        {errors.name}
                                     </h6>
                                 )}
                             </div>
@@ -112,21 +99,18 @@ export default function AddModalProduits(props) {
                                     htmlFor="example-textarea"
                                     className="form-label"
                                 >
-                                    Description
+                                    Prenom
                                 </label>
-                                <textarea
+                                <input
                                     onChange={(e) => handleChange(e)}
-                                    value={data.description}
-                                    name="description"
+                                    value={data.prenom}
+                                    name="prenom"
+                                    type="text"
                                     className="form-control"
-                                    id="example-textarea"
-                                    rows={5}
-                                    defaultValue={""}
-                                    placeholder="Adress..."
                                 />
-                                {errors.description && (
+                                {errors.prenom && (
                                     <h6 style={{ color: "red" }}>
-                                        {errors.description}
+                                        {errors.prenom}
                                     </h6>
                                 )}
                             </div>
@@ -140,6 +124,7 @@ export default function AddModalProduits(props) {
                                     </p>
 
                                     <div
+                                     style={{textAlign:"center"}}
                                         class="dropzone"
                                         data-plugin="dropzone"
                                         data-previews-container="#file-previews"
@@ -154,7 +139,10 @@ export default function AddModalProduits(props) {
                                                 upload.
                                             </h4>
                                         </div>
+                                        { data.photo.length > 0 && <img src={data.photo} alt='' />}
+
                                     </div>
+
                                 </div>
                             </div>
                             <div className="mb-3">
@@ -162,18 +150,18 @@ export default function AddModalProduits(props) {
                                     htmlFor="simpleinput"
                                     className="form-label"
                                 >
-                                    Price
+                                    email
                                 </label>
                                 <input
                                     onChange={(e) => handleChange(e)}
-                                    value={data.prix}
-                                    name="prix"
-                                    type="text"
+                                    value={data.email}
+                                    name="email"
+                                    type="email"
                                     className="form-control"
                                 />
-                                {errors.prix && (
+                                {errors.email && (
                                     <h6 style={{ color: "red" }}>
-                                        {errors.prix}
+                                        {errors.email}
                                     </h6>
                                 )}
                             </div>
@@ -182,18 +170,39 @@ export default function AddModalProduits(props) {
                                     htmlFor="simpleinput"
                                     className="form-label"
                                 >
-                                    Quantity
+                                    password
                                 </label>
                                 <input
                                     onChange={(e) => handleChange(e)}
-                                    value={data.quantité}
-                                    name="quantité"
+                                    value={data.password}
+                                    name="password"
+                                    type="password"
+                                    className="form-control"
+                                />
+                                {errors.password && (
+                                    <h6 style={{ color: "red" }}>
+                                        {errors?.password}
+                                    </h6>
+                                )}
+                            </div>
+
+                            <div className="mb-3">
+                                <label
+                                    htmlFor="simpleinput"
+                                    className="form-label"
+                                >
+                                    role
+                                </label>
+                                <input
+                                    onChange={(e) => handleChange(e)}
+                                    value={data.role}
+                                    name="role"
                                     type="text"
                                     className="form-control"
                                 />
-                                {errors.quantité && (
+                                {errors.role && (
                                     <h6 style={{ color: "red" }}>
-                                        {errors?.quantité}
+                                        {errors?.role}
                                     </h6>
                                 )}
                             </div>

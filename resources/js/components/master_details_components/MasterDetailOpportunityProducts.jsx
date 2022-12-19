@@ -43,31 +43,22 @@ function Row(props) {
             <article class="card card-product-list">
             <div class="row no-gutters">
                 <aside class="col-md-3">
-                    <a href="#" class="img-wrap">
-                        <span class="badge badge-danger"> NEW </span>
-                        <img src="assets/images/items/3.jpg" />
+                    <a href="#" className="img-wrap">
+                        <span className="badge badge-danger"> NEW </span>
+                        <img src={row.photo} />
                     </a>
                 </aside> 
-                <div class="col-md-6">
-                    <div class="info-main">
-                        <a href="#" class="h5 title"> Great product name goes here  </a>                        
+                <div className="col-md-6">
+                <a href="#" className="h5 title"> Great product name goes here  </a>                        
+                    <div className="info-main">
+                        <h5>Description</h5> 
                         <p>{row.description}</p>
                     </div>
+                    <div className="info-main">
+                        <h5>Prix</h5> 
+                        <p>{row.prix} DZD</p>
+                    </div>
                 </div> 
-                <aside class="col-sm-3">
-                    <div class="info-aside">
-                        <div class="price-wrap">
-                            <span class="price h5">{row.prix}</span>  
-                        </div>
-                        <br />
-{/*                         <p>
-                            <a href="#" class="btn btn-primary btn-block"> Details </a>
-                            <a href="#" class="btn btn-light btn-block"><i class="fa fa-heart"></i> 
-                                <span class="text">Add to wishlist</span>
-                            </a>
-                        </p> */}
-                    </div> 
-                </aside> 
             </div> 
           </article> 
             </Box>
@@ -85,6 +76,7 @@ Row.propTypes = {
     nom: PropTypes.string.isRequired,
     prix: PropTypes.number.isRequired,
     quantité: PropTypes.number.isRequired,
+    photo : PropTypes.string.isRequired
   }).isRequired,
 };
 

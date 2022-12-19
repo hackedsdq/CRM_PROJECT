@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect,useRef} from 'react'
 import {useForm}  from "@inertiajs/inertia-react"
 import { Inertia } from '@inertiajs/inertia'
 
@@ -15,14 +15,55 @@ export default function AddModalProspect(props) {
     adresse:'', 
     site_web:'', 
     Statut:"chaud", 
-    Source:""
+    Source:"",
+    logo:"https://res.cloudinary.com/dbttd3n1v/image/upload/v1671478713/snernvqpxpnxpjt3owmn.jpg",
+    photo:"https://res.cloudinary.com/dbttd3n1v/image/upload/v1671478713/snernvqpxpnxpjt3owmn.jpg"
 })
+
+const cloudinaryRef = useRef();
+const widgetRef = useRef();
+
+const cloudinaryRef2 = useRef();
+const widgetRef2 = useRef();
+
+useEffect(()=>{
+  // uploading the image
+  cloudinaryRef.current =  window.cloudinary;
+  widgetRef.current = cloudinaryRef.current.createUploadWidget({
+    cloudName: 'dbttd3n1v', 
+    uploadPreset: 'j5xeceeh'
+  }
+    , (error, result) => { 
+      if (!error && result && result.event === "success") { 
+          let photo = result.info.thumbnail_url
+      setData(data.photo = photo) 
+      console.log(result.info)
+      }
+  }
+  )
+  // uploading the logo
+  cloudinaryRef2.current =  window.cloudinary;
+  widgetRef2.current = cloudinaryRef2.current.createUploadWidget({
+    cloudName: 'dbttd3n1v', 
+    uploadPreset: 'j5xeceeh'
+  }
+    , (error, result) => { 
+      if (!error && result && result.event === "success") { 
+          let logo = result.info.thumbnail_url
+      setData(data.logo = logo) 
+      console.log(result.info)
+      }
+  }
+  )
+  },[])
 
 
 const handleSubmit = (e) => {
 e.preventDefault()
 console.log(data)
-post('/adcom/prospects')
+post('/adcom/prospects',{
+  preserveState:false
+})
 }
 
 
@@ -75,6 +116,11 @@ return (
       <div className="modal-body">
  
  {/*   bodyyyyy of the modal    */}
+            <div onClick={()=> widgetRef.current.open()} className="mb-3">
+                <label htmlFor="simpleinput" className="form-label">photo</label>
+                <br/>
+                {data.photo !== "" && <img style={{height:50,width:50}} src={data.photo}  alt="" />}
+            </div>
 
             <div className="mb-3">
                 <label htmlFor="simpleinput" className="form-label">First Name</label>
@@ -87,12 +133,7 @@ return (
                 {errors.prenom && <h6 style={{color:"red"}}>{errors.prenom}</h6>}
 
             </div>
-            <div className="mb-3">
-                <label htmlFor="simpleinput" className="form-label">Society</label>
-                <input onChange={(e)=>handleChange(e)} value={data.société} name="société" type="text"  className="form-control" />
-                {errors.société && <h6 style={{color:"red"}}>{errors.société}</h6>}
 
-            </div>
             <div className="mb-3">
                 <label htmlFor="simpleinput" className="form-label">Fonction</label>
                 <input onChange={(e)=>handleChange(e)} value={data.fonction} name="fonction" type="text"  className="form-control" />
@@ -108,6 +149,44 @@ return (
                 <label htmlFor="example-palaceholder" className="form-label">Telephone</label>
                 <input onChange={(e)=>handleChange(e)} value={data.téléphone} name="téléphone" type="text" className="form-control" placeholder="Telephone" />
                 {errors.téléphone && <h6 style={{color:"red"}}>{errors.téléphone}</h6>}
+            </div>
+            
+            <div className="mb-3">
+                <label htmlFor="simpleinput" className="form-label">Society</label>
+                <input onChange={(e)=>handleChange(e)} value={data.société} name="société" type="text"  className="form-control" />
+                {errors.société && <h6 style={{color:"red"}}>{errors.société}</h6>}
+
+            </div>
+
+            <div class="col-xl-6">
+                                <div class="mb-3 mt-3 mt-xl-0">
+                                    <label for="projectname" class="mb-0">
+                                        Logo Society
+                                    </label>
+                                    <p class="text-muted font-14">
+                                        Recommended thumbnail size 800x400 (px).
+                                    </p>
+
+                                    <div
+                                        class="dropzone"
+                                        data-plugin="dropzone"
+                                        data-previews-container="#file-previews"
+                                        data-upload-preview-template="#uploadPreviewTemplate"
+                                        style={{textAlign:"center",alignItems:"center"}}
+                                    >
+
+
+                                        <div  onClick={()=> widgetRef2.current.open()} class="dz-message needsclick">
+                                            <i class="h3 text-muted dripicons-cloud-upload"></i>
+                                            <h4>
+                                                Drop files here or click to
+                                                upload.
+                                            </h4>
+                                        </div>
+                                        <img style={{height:50,width:50}} src={data.logo}  alt="" />
+
+                                    </div>
+                                </div>
             </div>
             <div className="mb-3">
                 <label htmlFor="example-textarea" className="form-label">Adresse</label>
@@ -139,7 +218,7 @@ return (
       </div>
       <div className="modal-footer">
         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" className="btn btn-primary">Save changes</button>
+        <button type="submit" className="btn btn-primary" >Save changes</button>
       </div>
 
 

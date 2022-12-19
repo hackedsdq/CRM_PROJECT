@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Hash;
 use App\Models\Prospect;
@@ -17,9 +18,11 @@ class ProspectController extends Controller
     /*  @return \Illuminate\Http\Response
      /*index c la methode get()*/
 
-    public function index()
+    public function index(Request $request)
     {
        $prospects = Prospect::all();
+       //$session = $request->session()->get('key');
+      // return $session;
         return Inertia::render('Prospects',[
             'prospects'=>$prospects,
         ]);
@@ -73,8 +76,11 @@ class ProspectController extends Controller
         $newProspect->site_web = $request->site_web;
         $newProspect->Statut = $request->Statut;
         $newProspect->Source = $request->Source;
+        $newProspect->logo = $request->logo;
+        $newProspect->photo = $request->photo;
         $newProspect->save();
 
+        return redirect()->route('adcom.prospects');
     }
 
     /**
@@ -146,6 +152,8 @@ class ProspectController extends Controller
         $prospect->Source = $request->Source;
         $prospect->Statut = $request->Statut;
         $prospect->save();
+        return redirect()->back();
+
     }
 
     public function conversion($id){
@@ -164,6 +172,11 @@ class ProspectController extends Controller
 
  
         $existingClient = Client::where('société', $prospect->société)->get();
+       // get id from the laravel_session of a default Auth
+        // $user_id = Auth::guard('webadcom')->user()->id;
+        // get id from the laravel_session of a guarded Auth
+        //$user_id = Auth::guard('webadcom')->user()->id;
+
         if(count($existingClient)==0){
             $client = Client::create([
                 'société'=> $prospect->société, 
@@ -171,8 +184,7 @@ class ProspectController extends Controller
                 'adresse'=>$prospect->adresse, 
                 'site_web'=>$prospect->site_web, 
                 'prospect_id'=>$prospect->id,
-                'user_id'=>1,
-
+                'user_id'=>1
             ]);
             $contact = Contact::create([
                 'nom'=> $prospect->nom,
@@ -198,7 +210,7 @@ class ProspectController extends Controller
         }
 
 
-
+        return redirect()->back();
         //return $existingClient[0];
     }
 

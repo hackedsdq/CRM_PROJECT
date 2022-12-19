@@ -1,4 +1,4 @@
-import * as React from 'react';
+/* import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
@@ -81,3 +81,76 @@ export default function CollapsibleTable(props) {
     </TableContainer>
   );
 }
+ */
+
+import React from "react";
+import MUIDataTable from "mui-datatables";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
+import Box from '@mui/material/Box';
+
+// const Card = () => (
+//   <tr>
+//     <td className="fullWidth">
+//       <h1>
+//         lorem ipsum dorel em quol acee, vion, bloolw, wafeo, feiwjfoiew,
+//         foiwejifowefjweoi, fewjoewjfowei, fwefwefewfewfewf
+//       </h1>
+//     </td>
+//   </tr>
+// );
+
+const MasterDetailClientOpportunities = ({rows}) => {
+  const columns = [
+    {
+      name: "nom"
+    },
+    {
+      name: "montant"
+    },
+    {
+      name: "id"
+    },
+  ];
+
+  const options = {
+    filter: true,
+    onFilterChange: (changedColumn, filterList) => {
+      console.log(changedColumn, filterList);
+    },
+    selectableRows: "single",
+    filterType: "dropdown",
+    responsive: "scrollMaxHeight",
+    rowsPerPage: 10,
+    expandableRows: true,
+    renderExpandableRow: (rowData, rowMeta) => {
+      console.log(rowData, rowMeta);
+      return (
+        <React.Fragment>
+          <TableRow>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={3}>
+            <div>{rowData[0]}</div>
+        </TableCell>
+      </TableRow>        
+        </React.Fragment>
+      );
+    },
+    page: 1
+  };
+
+  return (
+    <MUIDataTable
+      title={"Opportunités"}
+      data={rows}
+      columns={columns}
+      options={options}
+    />
+  );
+};
+
+export default MasterDetailClientOpportunities;

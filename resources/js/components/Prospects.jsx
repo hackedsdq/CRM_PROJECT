@@ -8,12 +8,13 @@ import UserActions from './user_actions/UserActions'
 import DataGridTable from './static_components/DataGridTable'
 import { Inertia } from '@inertiajs/inertia'
 import AddModalProspect from './static_components/AddModalProspect'
+import $ from 'jquery'
 
 export default function Prospects({prospects}) {
   let title = "Prospects"
-  const [pageLoaded, setPageLoaded]=useState(false)
-  const [allProspects, setProspects]=useState([]);
-  const [editedObject,setEditedObject]=useState(null);
+  let[pageLoaded, setPageLoaded]=useState(false)
+  let[allProspects, setProspects]=useState([]);
+  let[editedObject,setEditedObject]=useState(null);
 
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
@@ -45,9 +46,13 @@ export default function Prospects({prospects}) {
   //const [open,setOpen]=useState(false);
 
 useEffect(()=>{
+  console.log(prospects)
+  // hide modal and the backdrop
+   $('#scrollable-modal').hide();
+  $('.modal-backdrop').remove(); 
   prospects.map((prc)=> allProspects.push(prc))
   setPageLoaded(true)
-},[])
+},[prospects])
 
 
 const getAllProspects = () =>{

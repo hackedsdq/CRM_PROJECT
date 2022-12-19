@@ -30,10 +30,10 @@ function DndBoard(props) {
   console.log("drdrddddrdd")
   console.log(opportunities_one)
 
-  opportunities_one.map((opportunity)=>(addingOpportunities(opportunity)))
-  opportunities_two.map((opportunity)=>(addingOpportunities(opportunity)))
-  opportunities_three.map((opportunity)=>(addingOpportunities(opportunity)))
-  opportunities_four.map((opportunity)=>(addingOpportunities(opportunity)))
+  opportunities_one?.map((opportunity)=>(addingOpportunities(opportunity)))
+  opportunities_two?.map((opportunity)=>(addingOpportunities(opportunity)))
+  opportunities_three?.map((opportunity)=>(addingOpportunities(opportunity)))
+  opportunities_four?.map((opportunity)=>(addingOpportunities(opportunity)))
 
   },[opportunities_one, opportunities_two, opportunities_three, opportunities_four])
 

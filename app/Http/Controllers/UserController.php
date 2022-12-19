@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
 
 
-use App\Models\Produit;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Redirect;
 
-class ProduitController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,12 +19,13 @@ class ProduitController extends Controller
      */
     public function index()
     {
-       $produits = Produit::all();
-        return Inertia::render('Produits',[
-            'produits'=>$produits,
+       $users = User::all();
+        return Inertia::render('User',[
+            'users'=>$users,
         ]);
     }
-    public function editIndex($id){
+
+/*     public function editIndex($id){
         $produits = Produit::find($id);
         return Inertia::render('ShowEditProduit',[
             'produits'=>$produits,
@@ -38,7 +39,9 @@ class ProduitController extends Controller
             'produits'=>$produits,
             'type'=>'show',
         ]);
-    }
+    } */
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -47,24 +50,41 @@ class ProduitController extends Controller
     public function create(Request $request)
     {
         //return $request;
-        $request->validate([
+/*         $request->validate([
             'nom'=> 'required',
            'description'=> 'required',
              'prix'=> 'required',
              'quantité'=> 'required',
         ]
-        );
+        ); */
 
-        $newProduit = new Produit();
-        $newProduit->nom = $request->nom;
-        $newProduit->description = $request->description ;
-        $newProduit->prix = $request->prix;
-        $newProduit->quantité = $request->quantité;
-        $newProduit->photo = $request->photo;
+    User::create(['name'=>$request->name,
+         'prenom'=>$request->prenom, 
+         'role'=>$request->role, 
+         'email'=>$request->email, 
+         'password'=>Hash::make($request->password),
+         'photo'=>$request->photo, 
+        ]);
 
-        $newProduit->save();
-        return redirect()->route('adcom.produits');
+    return redirect()->back();
     }
+
+    public function editIndex($id){
+        $user = User::find($id);
+        return Inertia::render('ShowEditUser',[
+            'user'=>$user,
+            'type'=>'edit',
+        ]);
+    }
+
+    public function showIndex($id){
+        $user = User::find($id);
+        return Inertia::render('ShowEditUser',[
+            'user'=>$user,
+            'type'=>'show',
+        ]);
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -80,7 +100,7 @@ class ProduitController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Prospect  $prospect
+     * @param  \App\Models\User  $User
      * @return \Illuminate\Http\Response
      */
     public function show(Produit $produit)
@@ -91,7 +111,7 @@ class ProduitController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Prospect  $prospect
+     * @param  \App\Models\User  $User
      * @return \Illuminate\Http\Response
      */
     public function edit(Produit $produit)
@@ -103,34 +123,29 @@ class ProduitController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Prospect  $prospect
+     * @param  \App\Models\User  $User
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request,  $id)
-    {$produits= Produit::find($id);
-        $request->validate([
-            'nom'=> 'required',
-            'description'=> 'required| min:20',
-             'prix'=> 'required',
-             'quantité'=> 'required',
-        ]
-        );
-        $produits->update([
-            'nom'=> $request->nom,
-            'description'=> $request->description,
-            'prix'=> $request->prix,
-            'quantité'=> $request->quantité,
+    {
+        $user= User::find($id);
+
+        $user->update([
+            'name'=> $request->name,
+            'prenom'=> $request->prenom,
             'photo'=> $request->photo,
-            
+            'email'=> $request->email,            
         ]);
-        $produits->save();
-        return redirect()->route('adcom.produits');        
+        $user->save();
+        return redirect()->route('adcom.users');        
     }
 
    
 
    public function delete($id)
-   { $produits = Produit::whereIn('id',[$id])->delete();
-     
+   { 
+    $user = User::whereIn('id',[$id])->delete();
+    return redirect()->back();
+
    }
 }

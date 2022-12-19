@@ -4,8 +4,8 @@ import { Inertia } from '@inertiajs/inertia';
  
 function SigninCostumer() {
   const [values, setValues] = useState({
-    email:"hnad@gmail.com",
-    password:"12345678",
+    email:"hackedsdq@gmail.com",
+    password:"123456789",
   })
 
 const  handleSubmit = (e) => {

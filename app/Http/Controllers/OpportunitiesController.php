@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Opportunities;
 use App\Models\Client;
 use App\Models\Produit;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -73,7 +74,8 @@ class OpportunitiesController extends Controller
     public function searchClients(Request $request){
         $client_name = $request->client;
         $clients = Client::where('société', 'like', $client_name.'%')->get();
-          return Inertia::render('Opportunities',[
+        //return $id=Auth::id();  
+        return Inertia::render('Opportunities',[
             'clients'=>$clients
         ]);
     }

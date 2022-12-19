@@ -1,4 +1,4 @@
-import * as React from 'react';
+/* import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
@@ -34,7 +34,7 @@ function Row(props) {
         <TableCell style={{width:20}} component="th" scope="row">
           {row.nom}
         </TableCell>
-        <TableCell >{row.prenom}</TableCell>
+        <TableCell >{row.étape}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -53,10 +53,9 @@ Row.propTypes = {
   row: PropTypes.shape({
     id: PropTypes.number.isRequired,
     nom: PropTypes.string.isRequired,
-    prenom: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    fonction: PropTypes.string.isRequired,
-    telephone: PropTypes.string.isRequired,
+    étape: PropTypes.string.isRequired,
+    montant: PropTypes.string.isRequired,
+    date_de_clôture: PropTypes.string.isRequired,
   }).isRequired,
 };
 
@@ -70,7 +69,7 @@ export default function CollapsibleTable(props) {
           <TableRow>
             <TableCell></TableCell>
             <TableCell>nom</TableCell>
-            <TableCell>prenom</TableCell>
+            <TableCell>étape</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -82,3 +81,76 @@ export default function CollapsibleTable(props) {
     </TableContainer>
   );
 }
+ */
+
+import React from "react";
+import MUIDataTable from "mui-datatables";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
+import Box from '@mui/material/Box';
+
+// const Card = () => (
+//   <tr>
+//     <td className="fullWidth">
+//       <h1>
+//         lorem ipsum dorel em quol acee, vion, bloolw, wafeo, feiwjfoiew,
+//         foiwejifowefjweoi, fewjoewjfowei, fwefwefewfewfewf
+//       </h1>
+//     </td>
+//   </tr>
+// );
+
+const MasterDetailClientContacts = ({rows}) => {
+  const columns = [
+    {
+      name: "nom"
+    },
+    {
+      name: "prenom"
+    },
+    {
+      name: "fonction"
+    },
+  ];
+
+  const options = {
+    filter: true,
+    onFilterChange: (changedColumn, filterList) => {
+      console.log(changedColumn, filterList);
+    },
+    selectableRows: "single",
+    filterType: "dropdown",
+    responsive: "scrollMaxHeight",
+    rowsPerPage: 10,
+    expandableRows: true,
+    renderExpandableRow: (rowData, rowMeta) => {
+      console.log(rowData, rowMeta);
+      return (
+        <React.Fragment>
+          <TableRow>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={3}>
+            <div>{rowData[0]}</div>
+        </TableCell>
+      </TableRow>        
+        </React.Fragment>
+      );
+    },
+    page: 1
+  };
+
+  return (
+    <MUIDataTable
+      title={"Contacts"}
+      data={rows}
+      columns={columns}
+      options={options}
+    />
+  );
+};
+
+export default MasterDetailClientContacts;

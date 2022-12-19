@@ -15,12 +15,13 @@ const styles = StyleSheet.create({
 
 
   const BillTo = (props) => (
+    
     <View style={styles.headerContainer}>
         <Text style={styles.billTo}>Bill To:</Text>
-        <Text>{props.name}</Text>
-        <Text>adresse</Text>
-        <Text>phone</Text>
-        <Text>email</Text>
+        <Text>Société: {props.nom}</Text>
+        <Text>Adresse:{props.adresse}</Text>
+        <Text>Téléphone: {props.tel}</Text>
+        
     </View>
   );
   

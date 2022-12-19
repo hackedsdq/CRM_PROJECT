@@ -26,8 +26,8 @@ const styles = StyleSheet.create({
     
         <Fragment>
             <View style={styles.invoiceNoContainer}>
-                <Text style={styles.label}>Invoice No:</Text>
-                <Text style={styles.invoiceDate}>#100{Math.floor(Math.random()*10)}</Text>
+                <Text style={styles.label}>{props.titre} No:</Text>
+                <Text style={styles.invoiceDate}>#{Math.floor(Math.random()*10)}00{Math.floor(Math.random()*10)}</Text>
             </View >
             <View style={styles.invoiceDateContainer}>
                 <Text style={styles.label}>Date: </Text>

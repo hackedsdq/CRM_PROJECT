@@ -45,9 +45,8 @@ useEffect(()=>{
   handleSetOpportunity()
   handleSetProducts()
   handleFilterProducts(products)
-  
+  handleSeoducts()
 },[products])
-
 const  handleSubmit = (e) => {
  e.preventDefault()
 console.log(data)
@@ -135,12 +134,12 @@ const  createData = (id, nom, description, prix, quantité) => {
     quantité,
   };
 }
-
 const handleSetProducts = () =>{
   console.log(opportunityProducts)
   opportunityProducts?.map((data)=>rows.push(
     createData(data.id, data.nom, data.description, data.prix, data.quantité)
   ))
+  
 /*   createData('Frozen yoghurt', 159),
   createData('Ice cream sandwich', 237),
   createData('Eclair', 262),
@@ -148,7 +147,20 @@ const handleSetProducts = () =>{
   createData('Gingerbread', 356) 
    disabled={opportunity?.étape==="four" ? false : true }*/
 }
+const  createData2 = (id, société, téléphone, adresse, site_web) => {
+  return{
+    id,
+    société,
+    téléphone,
+    adresse,
+    site_web,
+  };
+}
+const handleSeoducts = () =>{
+  console.log(client)
+  
 
+}
 const delay = (t) => new Promise((resolve)=> setTimeout(resolve, t));
 
 
@@ -191,7 +203,7 @@ h1: {
 }
 });
 
-const tableRowsCount = 11;
+const tableRowsCount = 5;
 
 const DocumentPdf = (props) => (
 
@@ -200,9 +212,9 @@ const DocumentPdf = (props) => (
      
     <Image style={styles.logo} src={logoreactfac} />
     <Text style={styles.h1}>{props.titre}</Text>
-     <InvoiceTitle titre={props.titre}/>
-     <InvoiceNo invoice={opportunity?.date_de_clôture} />
-     <BillTo name= {client.nom} />
+     {/* <InvoiceTitle titre={props.titre}/> */}
+     <InvoiceNo invoice={opportunity?.date_de_clôture} titre={props.titre}/>
+     <BillTo nom={client?.société} adresse={client?.adresse} tel={client?.téléphone}/>
      <View style={styles.tableContainer}>
         <InvoiceTableHeader />
         <InvoiceTableRow items={props?.filtredProducts}/>
@@ -286,10 +298,10 @@ return (
         <div className="modal-footer">
           <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="submit" className="btn btn-primary">Save changes</button>
-          <button  type="button" className="btn btn-primary"onClick={async () => {
+          <button  type="button" className="btn btn-primary" disabled={opportunity?.étape==="four" ? false : true } onClick={async () => {
       let props = await getProp();
       
-      let doc = <DocumentPdf titre="Facture" filtredProducts={opportunityProducts} opp={opp}/>;
+      let doc = <DocumentPdf titre="Facture" filtredProducts={opportunityProducts} opp={opp} />;
       let asPdf = pdf(); // {} is important, throws without an argument
       asPdf.updateContainer(doc);
       let blob = await asPdf.toBlob();
@@ -301,19 +313,16 @@ return (
     Generer Facture
   </button>
 
-  <button  type="button" className="btn btn-primary" onClick={ () => {
-       //let props = await getProp();
-      console.log(filtredProducts)
-/*       let doc = <DocumentPdf titre="devis" filtredProducts={filtredProducts} opp={opp}/>;
-      let asPdf = pdf(); // {} is important, throws without an argument
-      asPdf.updateContainer(doc);
-      let blob =  asPdf.toBlob();
-      saveAs(blob, 'facture.pdf') */
-      // asPdf.updateContainer(doc);
-      // const blob = await asPdf.toBlob();
-      // saveAs(blob, 'document.pdf');
+  <button  type="button" className="btn btn-primary" disabled={opportunity?.étape==="three" ? false : true } onClick={ async() => {
+         let props = await getProp();
+      
+         let doc = <DocumentPdf titre="Devis" filtredProducts={opportunityProducts} opp={opp} />;
+         let asPdf = pdf(); // {} is important, throws without an argument
+         asPdf.updateContainer(doc);
+         let blob = await asPdf.toBlob();
+         saveAs(blob, 'Devis.pdf')
     } } >
-    Generer Facture
+    Generer Devis
   </button>
         </div>
       

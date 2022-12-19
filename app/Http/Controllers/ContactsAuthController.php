@@ -24,6 +24,11 @@ class ContactsAuthController extends Controller
 
     public function handleLogin(Request $req)
     {
+        $req->validate([
+            'email'=> 'required|email',
+           'password'=> 'required', 
+        ]
+        );
         if(Auth::attempt($req->only(['email', 'password'])))
         {
             return redirect()->route('contacts.profile');

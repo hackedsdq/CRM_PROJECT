@@ -52,10 +52,10 @@ class ProspectController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'nom'=> 'required',
+            'nom'=> 'required|regex:/^[a-zA-Z]+$',
             // 'société'=> 'required',
             // 'fonction'=> 'required',
-            'email'=> 'required',
+            'email'=> 'required|email',
             // 'téléphone'=> 'required',
             // 'addresse'=> 'required',
             // 'site_web'=> 'required',
@@ -125,19 +125,18 @@ class ProspectController extends Controller
      */
     public function update(Request $request,$id)
     {
-/*         $request->validate([
-             'nom'=> 'required',
-             'société'=> 'required',
+    $request->validate([
+             'nom'=> 'required|regex:/^[a-zA-Z]+$',
+             'société'=> 'required|regex:/^[a-zA-Z]+$',
              'fonction'=> 'required',
-             'email'=> 'required',
-             'téléphone'=> 'required',
+             'email'=> 'required|email',
+             'téléphone'=> 'required|regex:/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$',
              'addresse'=> 'required',
-             'site_web'=> 'required',
+             'site_web'=> 'required|regex:/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)',
              'Status'=> 'required',
              'Source'=> 'required',
         ]
         );
- */
 
         $prospect = Prospect::find($id);
         

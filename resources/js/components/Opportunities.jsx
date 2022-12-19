@@ -6,9 +6,13 @@ import DndBoard from './static_components/DndBoard'
 import { ChakraProvider } from '@chakra-ui/react';
 import theme from './dnd_board_resources/config/theme';
 
+<<<<<<< HEAD
+export default function Opportunities() {
+=======
 import AddModalOpportunity from './static_components/AddModalOpportunity'
 
 export default function Opportunities({clients,opportunities_one, opportunities_two, opportunities_three, opportunities_four}) {
+>>>>>>> a09ba5658850815a05aaa53cc920d640b2c5c779
 
   let title = "Opportunités"
   let [filtredClients, setFiltredClients]=useState([])

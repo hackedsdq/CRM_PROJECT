@@ -61,7 +61,14 @@ class OpportunitiesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
-    {
+    {$request->validate([
+        'nom'=> 'required|regex:/^[a-zA-Z]+$',
+       'montant'=> 'required|min:20',
+         'date_de_clôture'=> 'required|integer',
+         'client_id'=> 'required|integer',
+    ]
+    );
+        
         //return $request;
         $newOpportunity= Opportunities::create([
             'nom'=> $request->nom,
@@ -91,6 +98,10 @@ class OpportunitiesController extends Controller
     }
 
     public function addProduit(Request $request, $opport){
+        $request->validate([
+             'quantité'=> 'required|integer'
+        ]
+        );
         $opportunity = Opportunities::find($opport);
         $product = Produit::find($request->product_id);
         $product->opportunities()->attach($opport, ["quantité"=>$request->quantité]);
@@ -142,6 +153,13 @@ class OpportunitiesController extends Controller
      */
     public function update(Request $request)
     {
+        $request->validate([
+            'nom'=> 'required|regex:/^[a-zA-Z]+$',
+           'montant'=> 'required|integer',
+           'étape'=> 'required'
+           
+        ]
+        );
         $opportunity = Opportunities::find($request->opportunity_id);
         $opportunity->nom = $request->nom;
         $opportunity->montant = $request->montant ;
@@ -157,8 +175,10 @@ class OpportunitiesController extends Controller
      * @param  \App\Models\Opportunities  $opportunities
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Opportunities $opportunities)
-    {
-        //
-    }
+    
+
+    public function delete($id)
+   {
+    $opportunity = Opportunities::whereIn('id',[$id])->delete();
+   }
 }

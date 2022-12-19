@@ -25,6 +25,8 @@ class ProduitController extends Controller
         ]);
     }
     public function editIndex($id){
+
+        
         $produits = Produit::find($id);
         return Inertia::render('ShowEditProduit',[
             'produits'=>$produits,
@@ -48,10 +50,10 @@ class ProduitController extends Controller
     {
         //return $request;
         $request->validate([
-            'nom'=> 'required',
-           'description'=> 'required',
-             'prix'=> 'required',
-             'quantité'=> 'required',
+            'nom'=> 'required|regex:/^[a-zA-Z]+$',
+           'description'=> 'required|min:20',
+             'prix'=> 'required|integer',
+             'quantité'=> 'required|integer',
         ]
         );
 
@@ -109,10 +111,10 @@ class ProduitController extends Controller
     public function update(Request $request,  $id)
     {$produits= Produit::find($id);
         $request->validate([
-            'nom'=> 'required',
+            'nom'=> 'required|regex:/^[a-zA-Z]+$',
             'description'=> 'required| min:20',
-             'prix'=> 'required',
-             'quantité'=> 'required',
+             'prix'=> 'required|integer',
+             'quantité'=> 'required|integer',
         ]
         );
         $produits->update([

@@ -57,12 +57,12 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nom'=>'required',
-            'prenom'=>'required',
-            'email'=>'required|integer',
-            'password'=>'required|integer',
+            'nom'=>'required|regex:/^[a-zA-Z]+$',
+            'prenom'=>'required|regex:/^[a-zA-Z]+$',
+            'email'=>'required|email',
+            'password'=>'required',
             'fonction'=>'required',
-            'telephone'=>'required|integer'
+            'telephone'=>'required|regex:/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$'
         ]);
         try{return response()->json([
             'message'=>'contact Created Successfully!!'
@@ -111,11 +111,11 @@ class ContactController extends Controller
         /*by soundouss*/
 
        $request->validate([
-            'nom'=>'required|min:3|max:255',
-            'prenom'=>'required|min:3|max:255',
-            'email'=>'required',
+            'nom'=>'required|regex:/^[a-zA-Z]+$',
+            'prenom'=>'required|regex:/^[a-zA-Z]+$',
+            'email'=>'required|email',
             'fonction'=>'required',
-            'telephone'=>'required'
+            'telephone'=>'required|regex:/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$'
         ]);
 
         $contact = Contact::find($id);

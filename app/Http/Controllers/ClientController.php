@@ -108,6 +108,16 @@ class ClientController extends Controller
      */
     public function update(Request $request,$id)
     {
+
+        $request->validate([
+            'société'=> 'required|',
+           'adresse'=> 'required',
+           'téléphone'=> 'required|^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$',
+           'site_web'=> 'required|regex:/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)'
+           
+        ]
+        );
+
         $client = Client::find($id);
         $client->société =  $request->société;
         $client->adresse = $request->adresse;

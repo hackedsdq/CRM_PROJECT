@@ -46,6 +46,6 @@ class User extends Authenticatable
     ];
 
     public function contacts(){
-        return $this->belongsToMany(Contact::class, 'pivot_table_contact_user')->withPivot('Date','heure','compte_rendu');
+        return $this->belongsToMany(Contact::class, 'pivot_table_contact_user')->withPivot('id','Date','heure','compte_rendu');
     }
 }

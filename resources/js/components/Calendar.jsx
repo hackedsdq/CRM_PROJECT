@@ -284,9 +284,12 @@ export default function Calendar({Events})  {
     Date: "",
     heure :"",  
     compte_rendu:"",
-    contact_id:"2",
+    contact_id:"1",
     user_id:"1",
+    id:""
 })
+
+
 let [events, setEvents]=useState([
   
 ]);
@@ -295,14 +298,30 @@ useEffect(()=>{
 handleSetEvent()
 },[])
 
+
+const  handleSubmit2 = (e) => {
+  e.preventDefault()
+ //console.log(data)
+ post(`/calendar/edit`)
+ }
+ 
+const handleInitData=()=>{
+setData(data.Date="")
+setData(data.compte_rendu="")
+setData(data.heure="")
+setData(data.id="")
+}
+
+
 const handleSetEvent = ()=>{
 Events?.map((index,data)=>{
    events.push({
      date:Events[data]?.pivot.Date,
-     heure:Events[data]?.pivot.heure,
-     compte_rendu:Events[data]?.pivot.compte_rendu,
+     title:Events[data]?.pivot.heure,
+     title:Events[data]?.pivot.compte_rendu,
      contact_id:Events[data]?.pivot.contact_id,
-     user_id:Events[data]?.pivot.user_id  
+     user_id:Events[data]?.pivot.user_id  ,
+     id:Events[data]?.pivot.id,
  });
 //console.log(Events[data]?.pivot)
   })}
@@ -326,7 +345,9 @@ const handleChange = (e) =>{
 
 }
 
-
+const handleDelete = () =>{
+    Inertia.delete(`/calendar/destroy/${Events.id}`);
+}
   
   const  handleSubmit = (e) => {
    // console.log(1)
@@ -335,6 +356,7 @@ const handleChange = (e) =>{
     //if(data.contact_id!==undefined||data.user_id!==undefined)
  post('/calendar')
    }
+  
   return (
     <div className="MainDiv">
       <div class="jumbotron text-center">
@@ -342,17 +364,31 @@ const handleChange = (e) =>{
       </div>
       
       <div className="container">
+         { events.length>0 && 
           <FullCalendar
             plugins={[ dayGridPlugin, interactionPlugin ,listPlugin]}
-            //Dayclick open sweetalert
+              editable={true}
+            eventClick={function(clickInfo) {
+              
+          //alert("Event"+events);
+             $('#myModal2').modal("show");
+         //   console.log(clickInfo.event.start);
+            
+              setData(data.Date="")
+              setData(data.compte_rendu=clickInfo.event.title)
+              setData(data.heure="")
+              setData(data.heure="")
+            //  setData(data.id=clickInfo.event.id)
+            //  setEvents(events.Date);
+            //  setEvents(events.heure);
+            //  setEvents(events.compte_rendu);
+            
+            }
+            }
             dateClick={function(arg) {
               $("#myModal").modal("show");
-             // $(".modal-body").html("");
+             // $(".modal-content").html("");
              //$(".modal-body").html("<h3>"+arg.dateStr+"</h3>");
-             $('#btn').click(function(){
-              var title=$('#title').val();
-              console.log(title);
-             })
             }}
             
             headerToolbar={{
@@ -363,7 +399,6 @@ const handleChange = (e) =>{
             }}
             initialView="dayGridMonth"
             events={events}
-            
             customButtons={{
               myCustomButton: {
                 text: 'Add Event',
@@ -375,7 +410,7 @@ const handleChange = (e) =>{
               },
             }}
            
-          />
+          />}
  
         <form onSubmit={handleSubmit}>
           <div class="modal" id="myModal">
@@ -392,7 +427,8 @@ const handleChange = (e) =>{
                             />
                  
                 </div>
-                <div><label
+            
+                <div ><label
                                     htmlFor="simpleinput"
                                     className="form-label"
                                     id="title"
@@ -409,7 +445,7 @@ const handleChange = (e) =>{
                                
                 </div>
 
-                <div><label for="">
+                <div><label for="" id='heure'>
                                     Choose Time
                                 </label>
                                 <input
@@ -420,10 +456,117 @@ const handleChange = (e) =>{
                                 />
                 </div>
                              <div class="form-group">
-                              <label form="">
+                              <label form="" id='chronicle'>
                                    Date
                                 </label>
                               <input type='date'class="form-control" name="Date" placeholder='Enter Start Date'onChange={(e)=>handleChange(e)} value={data.Date}></input>
+                              </div>
+                              
+                              <div class="form-group">
+                                
+                                <label form="">
+                                   client
+                                </label>
+                                <input list="brow" name='client' type='text'class="form-control"/>
+                                  <datalist id="brow">
+                                    <option value="Internet Explorer"/>
+                                    <option value="Firefox"/>
+                                    <option value="Chrome"/>
+                                    <option value="Opera"/>
+                                    <option value="Safari"/>
+                                  </datalist>  
+                                 {/* <input type='text'class="form-control" name="client" value={data.contact_id.name}></input>   */}
+                                
+                              
+                              {/* <input type='hidden'class="form-control" name="contact" value={data.contact_id}></input> */}
+                              </div> 
+                             
+                             
+                <div class="modal-body text-center">
+                  
+                </div>
+              
+                <div className="modal-footer">
+                            <button
+                                type="button"
+                                className="btn btn-secondary"
+                                data-bs-dismiss="modal"
+                                // onClick={()=>{console.log(events)}
+                                // }
+                                onClick={handleInitData}
+                            >
+                                Close
+                            </button>
+                          <button type="submit" className="btn btn-primary" id="btn" >
+                                Save changes
+                            </button>
+                         
+                        </div>
+              </div>
+            </div>
+          
+          </div>
+         
+</form>
+
+
+<form onSubmit={handleSubmit2}>
+          <div class="modal" id="myModal2">
+            <div class="modal-dialog">
+              <div class="modal-content">
+            
+                <div class="modal-header">
+                  <h4 class="modal-title align-center">Update Event</h4>
+                  <button
+                                type="button"
+                                className="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-hidden="true"
+                            />
+                 
+                </div>
+            
+                <div ><label
+                                    htmlFor="simpleinput"
+                                    className="form-label"
+                                    id="title"
+                                >
+                                    compte rendu
+                                </label>
+                                <input
+                                
+                                    name="compte_rendu"
+                                    type="text"
+                                    className="form-control"
+                                  onChange={(e)=>handleChange(e)} 
+                                    value={data.compte_rendu}
+                                />
+                               
+                </div>
+
+                <div><label for=""  id="date">
+                                    Choose Time
+                                </label>
+                                <input
+                                
+                                    name="heure"
+                                    type="time"
+                                    className="form-control"
+                                    onChange={(e)=>handleChange(e)} 
+                                    value={data.heure}
+                                />
+                </div>
+                             <div class="form-group">
+                              <label form="" id='chronicle'>
+                                   Date
+                                </label>
+                              <input type='date'
+                              class="form-control"
+                               name="Date" 
+                              placeholder='Enter Start Date'
+                              onChange={(e)=>handleChange(e)} 
+                              value={data.Date}
+                              ></input>
                               </div>
                               
                               <div class="form-group">
@@ -443,21 +586,23 @@ const handleChange = (e) =>{
                                 type="button"
                                 className="btn btn-secondary"
                                 data-bs-dismiss="modal"
-                                onClick={handleSetEvent}
+                                
+                                onClick={handleInitData}
                             >
                                 Close
                             </button>
-                          <button type="submit" className="btn btn-primary" id="btn">
-                                Save changes
+                          <button type="submit" className="btn btn-primary" id="btn" >
+                                Update
                             </button>
-                         
+                            <button type="submit" className="btn btn-primary" id="btn" onClick={handleDelete} >
+                                Delete
+                            </button>
                         </div>
               </div>
             </div>
           
           </div>
          
-
 </form>
 
     </div></div>

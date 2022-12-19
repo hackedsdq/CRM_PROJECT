@@ -60,8 +60,9 @@ class CalendarController extends Controller
     
         $contact=Contact::find($request->contact_id);
         $userid=(int)$request->user_id;
-       $contact->user()->attach($userid,["Date"=>$request->Date,"compte_rendu"=>$request->compte_rendu,"heure"=>$request->heure]);
-       return Inertia::render("Calendar");
+        $contact->user()->attach($userid,["Date"=>$request->Date,"compte_rendu"=>$request->compte_rendu,"heure"=>$request->heure]);
+        return Inertia::render("Calendar");
+  
 }
 
     /**
@@ -72,12 +73,7 @@ class CalendarController extends Controller
      */
     public function store(Request $request)
     {
-        $calendar = new Calendar();
-        $calendar->Date = $request->Date;
-        $calendar->heure = $request->heure;
-        $calendar->compte_rendu = $request->compte_rendu;
-
-        $calendar->save();
+        //
     }
 
     /**
@@ -88,10 +84,7 @@ class CalendarController extends Controller
      */
     public function show(Calendar $Date)
     {
-        $calendar = Calendar::where('Date', '==', $Date)->orWhere('heure', '==', $heure)
-        ->get();
-        
-        return $calendar;
+        //
     }
 
     /**
@@ -100,12 +93,13 @@ class CalendarController extends Controller
      * @param  \App\Models\Calendar  $calendar
      * @return \Illuminate\Http\Response
      */
-    public function edit( $id)
+    public function edit(Request $request)
     {
-        $calendar = Calendar::find($id);
-        return $calendar;
+        $contact = Contact::find($request->contact_id);
+        //$userid=User::find($request->user_id);
+        $contact->user()->updateExistingPivot($request->user_id,["Date"=>$request->Date,"compte_rendu"=>$request->compte_rendu,"heure"=>$request->heure]);
+        return Inertia::render("Calendar");
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -115,12 +109,7 @@ class CalendarController extends Controller
      */
     public function update(Request $request,$id)
     {
-        $calendar = Calendar::find($id);
-        $calendar->Date = $request->Date;
-        $calendar->heure = $request->heure;
-        $calendar->compte_rendu = $request->compte_rendu;
-        
-        $calendar->save();
+        //
     }
 
     /**
@@ -131,7 +120,9 @@ class CalendarController extends Controller
      */
     public function destroy($id)
     {
-        $calendar = Calendar::find($id);
-        $calendar->delete();
+        $contact=Contact::find($request->contact_id);
+        $contact->user()->where($id)->wherePivot()->detach();
+        return $id;
     }
-}
+    }
+

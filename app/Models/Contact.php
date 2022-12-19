@@ -46,6 +46,6 @@ public function client(){
 }
 public function user(){
 
-    return $this->belongsToMany(User::class, 'pivot_table_contact_user')->withPivot('Date','heure','compte_rendu');
+    return $this->belongsToMany(User::class, 'pivot_table_contact_user')->withPivot('id','Date','heure','compte_rendu');
 }
 }

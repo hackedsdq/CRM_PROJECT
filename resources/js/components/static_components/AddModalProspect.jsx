@@ -15,7 +15,7 @@ export default function AddModalProspect(props) {
     adresse:'', 
     site_web:'', 
     Statut:"chaud", 
-    Source:"",
+    Source:"Web",
     logo:"https://res.cloudinary.com/dbttd3n1v/image/upload/v1671478713/snernvqpxpnxpjt3owmn.jpg",
     photo:"https://res.cloudinary.com/dbttd3n1v/image/upload/v1671478713/snernvqpxpnxpjt3owmn.jpg"
 })
@@ -201,7 +201,12 @@ return (
 
             <div className="mb-3">
                 <label htmlFor="example-Website" className="form-label">Source</label>
-                <input onChange={(e)=>handleChange(e)} value={data.Source} name="Source" type="text" className="form-control" placeholder="Source" />
+                <select onChange={e => handleChange(e)} value={data.Source} name="Source" className="form-select" id="example-select">
+                  <option value="chaud">Web</option>
+                  <option value="froid">Téléphone</option>
+                  <option value="froid">Partenaire</option>
+                  <option value="froid">Autre</option>
+                </select>
                 {errors.Source && <h6 style={{color:"red"}}>{errors.Source}</h6>}
             </div>
             

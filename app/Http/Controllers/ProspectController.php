@@ -126,13 +126,13 @@ class ProspectController extends Controller
     public function update(Request $request,$id)
     {
     $request->validate([
-             'nom'=> 'required|regex:/^[a-zA-Z]+$',
-             'société'=> 'required|regex:/^[a-zA-Z]+$',
+             'nom'=> 'required|regex:/^[a-zA-Z]+$/',
+             'société'=> 'required|regex:/^[a-zA-Z]+$/',
              'fonction'=> 'required',
              'email'=> 'required|email',
-             'téléphone'=> 'required|regex:/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$',
+             'téléphone'=> 'required|regex:/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/',
              'addresse'=> 'required',
-             'site_web'=> 'required|regex:/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)',
+             'site_web'=> 'required|regex:/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/',
              'Status'=> 'required',
              'Source'=> 'required',
         ]

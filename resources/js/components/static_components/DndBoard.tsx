@@ -90,7 +90,6 @@ function DndBoard(props) {
             },
           )
         }
-
     }
 
   return (

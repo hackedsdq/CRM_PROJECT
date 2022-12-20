@@ -61,10 +61,11 @@ class OpportunitiesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
-    {$request->validate([
-        'nom'=> 'required|regex:/^[a-zA-Z]+$',
-       'montant'=> 'required|min:20',
-         'date_de_clôture'=> 'required|integer',
+    {
+        $request->validate([
+        'nom'=> ['required','regex:/^[a-zA-Z]+$/'],
+       'montant'=> 'required|min:3',
+         'date_de_clôture'=> 'required|date',
          'client_id'=> 'required|integer',
     ]
     );
@@ -76,6 +77,7 @@ class OpportunitiesController extends Controller
             'date_de_clôture'=>$request->date_de_clôture,
             'client_id'=>$request->client_id,
         ]);
+        return redirect()->back();
     }
 
     public function searchClients(Request $request){
@@ -154,7 +156,7 @@ class OpportunitiesController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'nom'=> 'required|regex:/^[a-zA-Z]+$',
+            'nom'=> ['required','regex:/^[a-zA-Z]+$/'],
            'montant'=> 'required|integer',
            'étape'=> 'required'
            

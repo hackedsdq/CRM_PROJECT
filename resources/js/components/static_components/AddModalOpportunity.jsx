@@ -10,9 +10,10 @@ export default function AddModalOpportunity(props) {
 let ClientProp = props.clients;
 
 
-/* useEffect(()=>{
-console.log("clients fetched"+ClientProp)
-},[ClientProp]) */
+ useEffect(()=>{
+  $('#scrollable-modal').hide();
+  $('.modal-backdrop').remove(); 
+},[]) 
 
 
   let { data, setData, post, processing, errors } = useForm({
@@ -25,9 +26,12 @@ console.log("clients fetched"+ClientProp)
 
 
 const handleSubmit = (e) => {
+  console.log(data)
 e.preventDefault()
 if(data.client_id !== undefined)
-post('/adcom/opportunities/add')
+post('/adcom/opportunities/add',{
+  preserveState:false
+})
 }
 
 

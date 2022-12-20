@@ -9,6 +9,9 @@ import DataGridTable from './static_components/DataGridTable'
 import { Inertia } from '@inertiajs/inertia'
 import AddModalProspect from './static_components/AddModalProspect'
 import $ from 'jquery'
+import {InertiaProgress} from '@inertiajs/progress'
+
+InertiaProgress.init()
 
 export default function Prospects({prospects}) {
   let title = "Prospects"

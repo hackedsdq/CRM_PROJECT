@@ -131,7 +131,7 @@ Route::delete('/adcom/users/{id}',[\App\Http\Controllers\UserController::class, 
 Route::post('/adcom/opportunities',[\App\Http\Controllers\OpportunitiesController::class, 'searchClients']);
 Route::post('/adcom/opportunities/add',[\App\Http\Controllers\OpportunitiesController::class, 'create']);
 // get edit opportunities page
-Route::get('/adcom/opportunities/edit/{id}',[\App\Http\Controllers\OpportunitiesController::class, 'editIndex']);
+Route::get('/adcom/opportunities/edit/{id}',[\App\Http\Controllers\OpportunitiesController::class, 'editIndex'])->name('opportunity.edit');
 // get opportunities with master details
 Route::get('/adcom/opportunities/show/{id}',[\App\Http\Controllers\OpportunitiesController::class, 'showIndex']);
 

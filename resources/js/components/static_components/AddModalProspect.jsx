@@ -62,7 +62,7 @@ const handleSubmit = (e) => {
 e.preventDefault()
 console.log(data)
 post('/adcom/prospects',{
-  preserveState:false
+  preserveState:false,
 })
 }
 

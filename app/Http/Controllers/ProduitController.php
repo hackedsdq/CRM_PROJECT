@@ -49,13 +49,13 @@ class ProduitController extends Controller
     public function create(Request $request)
     {
         //return $request;
-        $request->validate([
+/*         $request->validate([
             'nom'=> 'required|regex:/^[a-zA-Z]+$',
            'description'=> 'required|min:20',
              'prix'=> 'required|integer',
              'quantité'=> 'required|integer',
         ]
-        );
+        ); */
 
         $newProduit = new Produit();
         $newProduit->nom = $request->nom;

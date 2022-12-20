@@ -73,7 +73,7 @@ function DndBoard(props) {
           {
             id: `${opportunity.id}`,
             title:`${opportunity.nom}`,
-            column: ColumnType.BLOCKED,
+            column: ColumnType.COMPLETED,
             color: 'red.300'
           },
         )
@@ -85,7 +85,7 @@ function DndBoard(props) {
             {
               id: `${opportunity.id}`,
               title:`${opportunity.nom}`,
-              column: ColumnType.COMPLETED,
+              column: ColumnType.BLOCKED,
               color: 'red.300'
             },
           )

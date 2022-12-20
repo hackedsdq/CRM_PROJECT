@@ -37,7 +37,9 @@ export default function AddModalProduits(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(data);
-        post("/adcom/produits");
+        post("/adcom/produits",{
+            preserveState:false
+        });
     };
 
     const handleChange = (e) => {

@@ -35,11 +35,13 @@ class OpportunitiesController extends Controller
 
     public function editIndex($id){
         $opportunity = Opportunities::find($id);
+        $client = Client::find($opportunity->client_id);
         //$opportunity->produits();
         $opportunityProducts = $opportunity->produits;
         return Inertia::render('ShowEditOpportunity',[
             'opportunity'=>$opportunity,
             'type'=>'edit',
+            'client' => $client,
             'opportunityProducts'=>$opportunityProducts
         ]);
     }
@@ -47,9 +49,11 @@ class OpportunitiesController extends Controller
     public function showIndex($id){
         $opportunity = Opportunities::find($id);
         $opportunityProducts = $opportunity->produits;
+        $client = Client:: find($opportunity->client_id);
         return Inertia::render('ShowEditOpportunity',[
             'opportunity'=>$opportunity,
             'type'=>'show',
+            'client' => $client,
             'opportunityProducts'=>$opportunityProducts
 
         ]);
@@ -167,7 +171,7 @@ class OpportunitiesController extends Controller
         $opportunity->montant = $request->montant ;
         $opportunity->étape = $request->étape;
         $opportunity->save();
-        return redirect()->route('adcom.opportunities');
+        return redirect()->back();
 
     }
 

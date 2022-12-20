@@ -2,14 +2,10 @@ import React from 'react'
 import { InertiaLink } from '@inertiajs/inertia-react'
 import { Inertia } from '@inertiajs/inertia';
 export default function UserActions(props) {
-const title= props.title;
-const user= props.user;
-const handleDelete = () =>{
 
       Inertia.delete(`/adcom/${title}/${user.id}`);
       
   
-}
  
   return(
     <div>

@@ -4,30 +4,11 @@ import {useForm}  from "@inertiajs/inertia-react"
 export default function ShowEditClient({client})  {
 
   const { data, setData, post, processing, errors } = useForm({
-    société: '',
-    téléphone:'',
-    adresse:'',
-    site_web:'',
+
 })
 
 
 const  handleSubmit = (e) => {
- e.preventDefault()
- console.log(data)
- post(`/adcom/clients/update/${client.id}`)
-}
-
-useEffect(()=>{
-  console.log(client)
-  handleGetContact()
-},[])
-
-
-const handleGetContact = ()=>{
-  setData(data.société = client.société)
-  setData(data.téléphone = client.téléphone)
-  setData(data.adresse = client.adresse)
-  setData(data.site_web = client.site_web)
 
 }
 
@@ -35,8 +16,6 @@ const handleChange = (e) =>{
   let inputType = e.target.name
   let inputValue = e.target.value
 
-  if(inputType === "société")
-  setData(data.société = inputValue)
 
   else if(inputType === "téléphone")
   setData(data.téléphone = inputValue)
@@ -46,6 +25,7 @@ const handleChange = (e) =>{
 
   else if(inputType === "site_web")
   setData(data.site_web = inputValue)
+
 }
 
 
@@ -54,9 +34,6 @@ return (
     <div className="modal-content">
       <div className="modal-body">
 
- {/*   bodyyyyy of the modal    */}
-
-            <div className="mb-3">
                 <label htmlFor="simpleinput" className="form-label">Society</label>
                 <input onChange={(e)=>handleChange(e)} value={data.société} name="société" type="text"  className="form-control" />
                 {errors.société && <h6 style={{color:"red"}}>{errors.société}</h6>}
@@ -94,4 +71,4 @@ return (
 </form>
 
   )
-}
+

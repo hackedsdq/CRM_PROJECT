@@ -8,8 +8,7 @@ import PageTitle from './static_components/PageTitle'
 import UserActions from './user_actions/UserActions'
 import DataGridTable from './static_components/DataGridTable'
 import AddModalProduits from './static_components/AddModalProduits'
-import ShowEditProduit from './ShowEditProduit'
-export default function Produits({produits}) {
+
 
 let title = "Produits"
 const [pageLoaded, setPageLoaded]=useState(false)
@@ -76,12 +75,7 @@ return (
 {/* ------------------------ edit modal ------------------ */}
 <AddModalProduits/>
 
-{/* ------------------------ show datagrid table search ------------------ */}
-<DataGridTable title={title} columns={columns} rows={allProduits}/>
-{/* end row */}
-</div> {/* container */}
-</div> {/* content */}
-</div>
+
 
 </div>
 )

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Calendar;
 use App\Models\Contact;
 use App\Models\User;
+use App\Models\Client;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -44,24 +45,11 @@ class CalendarController extends Controller
      */
     public function create(Request $request)
     {
-        /*$data=pivot_table_contact_user::create(
-            [
-                'Date'=>$request->Date,
-                'heure'=>$request->heure,
-                'compte_rendu'=>$request->compte_rendu,
-                'contact_id'=>Contact::where($request->user()),
-                'user_id'=>User::where($request->contacts())
-            ]
-            ); return response()->json($data);*/
-            
-          // $contact=Contact::find($request->contact_id);
-          // $Events=$contact->user;
-           //return Inertia::render("Calendar",['Events'=>$Events]);
-    
         $contact=Contact::find($request->contact_id);
-        $userid=(int)$request->user_id;
-        $contact->user()->attach($userid,["Date"=>$request->Date,"compte_rendu"=>$request->compte_rendu,"heure"=>$request->heure]);
-        return Inertia::render("Calendar");
+
+        $contact->user()->attach($request->user_id,["Date"=>$request->Date,"compte_rendu"=>$request->compte_rendu,"heure"=>$request->heure]);
+       
+       // return Inertia::render("Calendar");
   
 }
 
@@ -71,10 +59,17 @@ class CalendarController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function searchClients(Request $request){
+       
+        $contact_name = $request->contact;
+        $contacts = Client::where('contact_id', 'like', $contact_name.'%')->get();
+        //return $id=Auth::id();  
+        return Inertia::render('Calendar',[
+            'contacts'=>$contacts
+        ]);
+       
     }
+
 
     /**
      * Display the specified resource.
@@ -94,11 +89,11 @@ class CalendarController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request)
-    {
+    {  
         $contact = Contact::find($request->contact_id);
-        //$userid=User::find($request->user_id);
-        $contact->user()->updateExistingPivot($request->user_id,["Date"=>$request->Date,"compte_rendu"=>$request->compte_rendu,"heure"=>$request->heure]);
-        return Inertia::render("Calendar");
+       $contact->user()->newPivotStatementForId($contact->user->find(1)->pivot->user_id)->where("id",$request->id)->update(["Date"=>$request->Date,"compte_rendu"=>$request->compte_rendu,"heure"=>$request->heure]);
+      return Inertia::render('Calendar');
+      //  $contact->user()->updateExistingPivot($request->user_id,["Date"=>$request->Date,"compte_rendu"=>$request->compte_rendu,"heure"=>$request->heure]);
     }
     /**
      * Update the specified resource in storage.
@@ -118,11 +113,11 @@ class CalendarController extends Controller
      * @param  \App\Models\Calendar  $calendar
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         $contact=Contact::find($request->contact_id);
-        $contact->user()->where($id)->wherePivot()->detach();
-        return $id;
+        $contact->user()->where($request->id)->wherePivot()->detach();
+      //  return $id;
     }
     }
 

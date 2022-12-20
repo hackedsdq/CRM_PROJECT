@@ -1,5 +1,5 @@
-import { AiFillDelete as DeleteIcon } from 'react-icons/ai';
-import EditModal from '../../static_components/EditModal';
+import {  MdEditNote as EditIcon } from 'react-icons/md';
+//import EditModal from '../../static_components/EditModal';
 import { Box, IconButton, ScaleFade } from '@chakra-ui/react';
 import _ from 'lodash';
 import { memo } from 'react';
@@ -7,6 +7,7 @@ import { useTaskDragAndDrop } from '../hooks/useTaskDragAndDrop';
 import { TaskModel } from '../utils/models';
 import { AutoResizeTextarea } from './AutoResizeTextArea';
 import React from 'react';
+import { Inertia } from '@inertiajs/inertia';
 
 type TaskProps = {
   index: number;
@@ -35,13 +36,13 @@ function Task({
   };
 
   const handleOpenModal = () => {
-    console.log("clicked"+task.title)
   };
 
 
-  const handleDeleteClick = () => {
-    handleDelete(task.id);
-    console.log(`${task.id} deleted`)
+  const handleEditOpportunity = () => {
+    //handleDelete(task.id);
+    console.log(`${task.id} edited`)
+    Inertia.get(`/adcom/opportunities/edit/${task.id}`)
   };
 
   return (
@@ -73,13 +74,14 @@ function Task({
           size="md"
           colorScheme="solid"
           color={'gray.700'}
-          icon={<DeleteIcon />}
+          icon={<EditIcon />}
           opacity={0}
           _groupHover={{
             opacity: 1,
           }}
-          onClick={handleDeleteClick}
+          onClick={handleEditOpportunity}
         />
+    
         <div  data-bs-toggle="modal" data-bs-target="#scrollable-modal">
           <AutoResizeTextarea
             value={task.title}
@@ -95,8 +97,8 @@ function Task({
             onChange={handleTitleChange}
             onClick={handleOpenModal}
           />
-          {/* ------------------------ edit modal ------------------ */}
-          <EditModal />
+          {/* ------------------------ edit modal ------------------ 
+          <EditModal />*/}
         </div>
       </Box>
     </ScaleFade>

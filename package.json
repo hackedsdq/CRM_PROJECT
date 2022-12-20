@@ -33,7 +33,7 @@
         "@inertiajs/progress": "^0.2.7",
         "@mui/icons-material": "^5.10.9",
         "@mui/lab": "^5.0.0-alpha.106",
-        "@mui/material": "^5.10.12",
+        "@mui/material": "^5.11.0",
         "@mui/x-data-grid": "^5.17.9",
         "@syncfusion/ej2-react-buttons": "^20.3.58",
         "@syncfusion/ej2-react-calendars": "^20.3.56",

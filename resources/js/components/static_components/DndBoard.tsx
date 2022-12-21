@@ -8,24 +8,19 @@ import DarkModeIconButton from '../dnd_board_resources/components/DarkModeIconBu
 import { ColumnType } from '../dnd_board_resources/utils/enums';
 import { TaskModel } from '../dnd_board_resources/utils/models';
 
-let mockTasks_1: TaskModel[]=[
-]
-let mockTasks_2: TaskModel[]=[
-]
-let mockTasks_3: TaskModel[]=[
-]
-let mockTasks_4: TaskModel[]=[
-]
-
-function DndBoard(props) {
-
-  let opportunities_one=props.opportunities_one
-  let opportunities_two=props.opportunities_two
-  let opportunities_three=props.opportunities_three
-  let opportunities_four=props.opportunities_four
 
 
+  let mockTasks_1: TaskModel[]=[
+  ]
+  let mockTasks_2: TaskModel[]=[
+  ]
+  let mockTasks_3: TaskModel[]=[
+  ]
+  let mockTasks_4: TaskModel[]=[
+  ]
 
+function DndBoard({opportunities_one, opportunities_two, opportunities_three, opportunities_four}) {
+  
  useEffect(()=>{
   console.log("drdrddddrdd")
   console.log(opportunities_one)
@@ -35,7 +30,8 @@ function DndBoard(props) {
   opportunities_three?.map((opportunity)=>(addingOpportunities(opportunity)))
   opportunities_four?.map((opportunity)=>(addingOpportunities(opportunity)))
 
-  },[opportunities_one, opportunities_two, opportunities_three, opportunities_four])
+  console.log(opportunities_one)
+  },[opportunities_one])
 
 
 
@@ -53,6 +49,8 @@ function DndBoard(props) {
         color: 'red.300'
       },
     )
+    console.log("mocktasks1")
+    console.log(mockTasks_1)
     }
     else if(opportunity.étape === "two"){
       let check2 = mockTasks_2.filter(opp =>(opp.id === `${opportunity.id}`))
@@ -93,7 +91,7 @@ function DndBoard(props) {
     }
 
   return (
-    <div>
+<div>
     <DndProvider backend={HTML5Backend}>
       <Container maxWidth="container.lg" px={0} py={10}>
         <SimpleGrid
@@ -107,7 +105,7 @@ function DndBoard(props) {
         </SimpleGrid>
       </Container>
     </DndProvider>
-  </div>
+</div>
   );
 }
 

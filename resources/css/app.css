@@ -7,32 +7,32 @@
     display: -moz-box;
     display: -ms-flexbox;
     display: flex;
+    position: absolute;
     flex-wrap: wrap;
+    margin-left: 100px;
+    margin-right: 200px;
+    width: 90%;
     justify-content: center;
     align-items: center;
-    padding: 20px;
-  }
-
-  
+    padding-Top: 100px;
+    align-self: center;
+}
   .wrap-login100 {
-    width: 60%;
+    width: 75%;
     background: #fff;
     border-radius: 10px;
     overflow: hidden;
-    padding: 77px 55px 33px 55px;
+    padding: 33px 33px 33px 33px;
   
     box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
     -webkit-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
     -o-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
     -ms-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
-  }
+}
 
-  .login100-form-title {
-    display: block;
-    font-family: Poppins-Bold;
-    font-size: 30px;
-    color: #333333;
-    line-height: 1.2;
-    text-align: center;
-  }
+@media screen and (min-width:1030px) {
+  .container-login100 {
+    margin-left: 200px;
+} 
+}

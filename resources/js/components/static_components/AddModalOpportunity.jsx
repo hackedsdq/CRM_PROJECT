@@ -11,18 +11,17 @@ let ClientProp = props.clients;
 
 
  useEffect(()=>{
-  $('#scrollable-modal').hide();
-  $('.modal-backdrop').remove(); 
 },[]) 
 
 
-  let { data, setData, post, processing, errors } = useForm({
+  let { data, setData, post, processing, errors, } = useForm({
     nom: "",
-    montant :"", 
+    //montant :"", 
     //étape:"first", 
     client_id:"",
-    date_de_clôture:"2021-11-11"
+    date_de_clôture:""
 })
+
 
 
 const handleSubmit = (e) => {
@@ -30,7 +29,14 @@ const handleSubmit = (e) => {
 e.preventDefault()
 if(data.client_id !== undefined)
 post('/adcom/opportunities/add',{
-  preserveState:false
+  preserveState:true,
+  preserveScroll:true,
+  onSuccess:page=>{
+      Inertia.reload({only:['opportunities_one','opportunities_two','opportunities_three','opportunities_four']})
+      $('#scrollable-modal').hide();
+      $('.modal-backdrop').remove(); 
+      document.body.style.overflow = 'scroll'
+  },
 })
 }
 
@@ -43,9 +49,9 @@ const handleChange = (e) =>{
   if( inputType === "nom")
   setData(data.nom = inputValue )
 
-  else if(inputType === "montant")
-  setData(data.montant = inputValue)
-
+   else if(inputType === "date_de_clôture")
+  setData(data.date_de_clôture = inputValue)
+ 
   else if(inputType === "étape")
   setData(data.étape = `${e.target.value}`)
 
@@ -86,9 +92,9 @@ return (
             </div>
 
             <div className="mb-3">
-                <label htmlFor="simpleinput" className="form-label">montant</label>
-                <input onChange={(e)=>handleChange(e)} value={data.montant} name="montant" type="text" className="form-control" />
-                {errors.montant && <h6 style={{color:"red"}}>{errors.montant}</h6>}
+                <label htmlFor="simpleinput" className="form-label">date de cloture</label>
+                <input onChange={(e)=>handleChange(e)} value={data.date_de_clôture} name="date_de_clôture" type="date" className="form-control" />
+                {errors.date_de_clôture && <h6 style={{color:"red"}}>{errors.date_de_clôture}</h6>}
             </div>
 
 

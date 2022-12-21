@@ -1,5 +1,7 @@
 import React,{useEffect} from 'react'
 import {useForm}  from "@inertiajs/inertia-react"
+import SideBar from './static_components/SideBar'
+import Header from './static_components/Header'
 
 export default function ShowEditProspect({prospect,type})  {
 
@@ -82,6 +84,9 @@ const handleChange = (e) =>{
 
 
 return (
+  <div className='wrapper' >
+  <SideBar />
+  <Header />
 <div className="container-login100">
 	<div className="wrap-login100">
 
@@ -161,6 +166,7 @@ return (
     </div>{/* /.modal-content */}
 
 </form>
+</div>
 </div>
 </div>
 

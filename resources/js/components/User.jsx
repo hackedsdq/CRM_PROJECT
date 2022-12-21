@@ -40,16 +40,16 @@ let [deleteConfirmation, setDeleteConfirmation]=useState(false);
 
   if(pageLoaded){
   return (
-    <div className='wrapper' >
+<div className='wrapper' >
         <SideBar />
         <Header />
-        
-        <div className="content-page">
-          <div className="content">
+    <div className="container-login100">
+    <div className="wrap-login100">
+        <div className="modal-content">
+          <div className="modal-body">
             {/* Start Content*/}
-            <div className="container-fluid">
-              {/* start page title */}
-              <PageTitle title={title} />
+              {/* start page title 
+              <PageTitle title={title} />*/}
               {/* end page title */} 
               <AddModalUser/>
 
@@ -58,10 +58,10 @@ let [deleteConfirmation, setDeleteConfirmation]=useState(false);
                {/* ------------------------ show datagrid table search ------------------ */}
               <DataGridTable title={title} columns={columns} rows={allUsers}  />
               {/* end row */}
-            </div> {/* container */}
           </div> {/* content */}
         </div>
-
+      </div>
+      </div>
     </div>
   )
 }else

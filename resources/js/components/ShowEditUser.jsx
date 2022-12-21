@@ -1,8 +1,11 @@
 import React,{useState,useEffect,useRef} from 'react';
 import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink, useForm } from "@inertiajs/inertia-react";
+import SideBar from './static_components/SideBar';
+import Header from './static_components/Header';
+import "../../css/app.css"
 
- 
+
 function ShowEditUser({type,user}) {
 
   const { data, setData, post, processing, errors } = useForm({
@@ -65,6 +68,9 @@ const handleChange = (e) => {
 
 
 return (
+  <div className='wrapper' >
+  <SideBar />
+  <Header />
 <div className="container-login100">
 	<div className="wrap-login100">
     <form onSubmit={(e)=>handleSubmit(e)} >
@@ -111,7 +117,9 @@ return (
 
   </form> 
 </div>
-</div>   
+</div> 
+</div> 
+
 );
 }
 

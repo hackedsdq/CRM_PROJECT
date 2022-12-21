@@ -1,6 +1,8 @@
 import React from "react";
 import { InertiaLink, useForm } from "@inertiajs/inertia-react";
 import { useEffect } from "react";
+import SideBar from "./static_components/SideBar";
+import Header from "./static_components/Header";
 
 export default function ShowEditProduit({produits,type}) {
     const { data, setData, post, processing, errors } = useForm({
@@ -43,7 +45,12 @@ const handleGetProduit = ()=>{
         else if (inputType == "quantité")
             setData((data.quantité = inputValue));
     }
-    return (
+return (
+<div className='wrapper' >
+<SideBar />
+<Header />
+    <div className="container-login100">
+	<div className="wrap-login100">
         <form onSubmit={(e) => handleSubmit(e)}>
             <div className="modal-content">
             <div className="modal-body">
@@ -100,6 +107,8 @@ const handleGetProduit = ()=>{
                 {/* /.modal-dialog */}
            
         </form>
-     
+        </div>
+        </div>
+</div>
     );
 }

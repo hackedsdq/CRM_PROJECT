@@ -53,6 +53,10 @@ const {
     }
  */
 
+  useEffect(()=>{
+    
+  },[mockTasks])
+
 
   const { dropRef, isOver } = useColumnDrop(column, dropTaskFrom);
 

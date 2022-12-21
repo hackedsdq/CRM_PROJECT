@@ -13,23 +13,21 @@ export default function Opportunities({clients,opportunities_one, opportunities_
   let title = "Opportunités"
   let [filtredClients, setFiltredClients]=useState([])
   //let [firstRender, setFirstRender]=useState(true)
-  let [opp1, setOpp1]=useState([])
+/*   let [opp1, setOpp1]=useState([])
   let [opp2, setOpp2]=useState([])
   let [opp3, setOpp3]=useState([])
-  let [opp4, setOpp4]=useState([])
+  let [opp4, setOpp4]=useState([]) */
 
   //const [open,setOpen]=useState(false);
 
   useEffect(()=>{
- 
-
-  setOpp1(opportunities_one)
+/*   setOpp1(opportunities_one)
   setOpp2(opportunities_two)
   setOpp3(opportunities_three)
-  setOpp4(opportunities_four)
+  setOpp4(opportunities_four) */
 
   handleFilter(clients)
-  },[clients,opportunities_one,opportunities_two,opportunities_three,opportunities_four])
+  },[clients])
 
 const handleFilter=(clients)=>{
   let filtred;
@@ -64,7 +62,7 @@ const handleFilter=(clients)=>{
               <AddModalOpportunity clients={filtredClients} />
           
               <ChakraProvider   resetCSS={false} theme={theme} >
-                  <DndBoard opportunities_one={opp1} opportunities_two={opp2} opportunities_three={opp3} opportunities_four={opp4} />
+                  <DndBoard opportunities_one={opportunities_one} opportunities_two={opportunities_two} opportunities_three={opportunities_three} opportunities_four={opportunities_four} />
               </ChakraProvider>
             
             </div> 

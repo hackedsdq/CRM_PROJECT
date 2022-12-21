@@ -68,7 +68,7 @@ class OpportunitiesController extends Controller
     {
         $request->validate([
         'nom'=> ['required','regex:/^[a-zA-Z]+$/'],
-       'montant'=> 'required|min:3',
+       //'montant'=> 'required|min:3',
          'date_de_clôture'=> 'required|date',
          'client_id'=> 'required|integer',
     ]
@@ -77,11 +77,11 @@ class OpportunitiesController extends Controller
         //return $request;
         $newOpportunity= Opportunities::create([
             'nom'=> $request->nom,
-            'montant'=>$request->montant, 
+            'montant'=>'0',
             'date_de_clôture'=>$request->date_de_clôture,
             'client_id'=>$request->client_id,
         ]);
-        return redirect()->back();
+        //return redirect()->back();
     }
 
     public function searchClients(Request $request){
@@ -110,7 +110,17 @@ class OpportunitiesController extends Controller
         );
         $opportunity = Opportunities::find($opport);
         $product = Produit::find($request->product_id);
+       // return $product->opportunities;
         $product->opportunities()->attach($opport, ["quantité"=>$request->quantité]);
+            $montant = (($product->prix)*($request->quantité))+($opportunity->montant);
+            //return $montant;
+            $opportunity->montant = $montant;
+            $opportunity->save();
+
+        
+      
+        //$product->user()->newPivotStatementForId($contact->user->find(1)->pivot->user_id)->where("id",$request->id)->update(["Date"=>$request->Date,"compte_rendu"=>$request->compte_rendu,"heure"=>$request->heure]);
+        
         /*         return Inertia::render("ShowEditOpportunity",[
             'opportunityProducts' => "41"
         ]); */
@@ -168,7 +178,7 @@ class OpportunitiesController extends Controller
         );
         $opportunity = Opportunities::find($request->opportunity_id);
         $opportunity->nom = $request->nom;
-        $opportunity->montant = $request->montant ;
+        //$opportunity->montant = $request->montant ;
         $opportunity->étape = $request->étape;
         $opportunity->save();
         return redirect()->back();

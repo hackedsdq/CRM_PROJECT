@@ -9,6 +9,8 @@ import "../../public/assets/css/app.min.css"
 import "../../public/assets/css/icons.min.css"
 import "../../public/assets/css/app-dark.min.css"
 
+import '../css/app.css'
+
 
 
 //import { InertiaProgress } from '@inertiajs/progress'

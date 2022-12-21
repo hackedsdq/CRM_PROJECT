@@ -49,13 +49,13 @@ class ProduitController extends Controller
     public function create(Request $request)
     {
         //return $request;
-/*         $request->validate([
-            'nom'=> 'required|regex:/^[a-zA-Z]+$',
+        $request->validate([
+            'nom'=>['required','regex:/^[a-zA-Z]+$/'],
            'description'=> 'required|min:20',
              'prix'=> 'required|integer',
              'quantité'=> 'required|integer',
         ]
-        ); */
+        );
 
         $newProduit = new Produit();
         $newProduit->nom = $request->nom;
@@ -65,7 +65,7 @@ class ProduitController extends Controller
         $newProduit->photo = $request->photo;
 
         $newProduit->save();
-        return redirect()->route('adcom.produits');
+        return Redirect::route('adcom.produits');
     }
 
     /**

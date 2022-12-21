@@ -14,7 +14,7 @@ export default function Produits({produits}) {
 let title = "Produits"
 const [pageLoaded, setPageLoaded]=useState(false)
 
-const [allProduits, setProduits]=useState([]);
+//const [allProduits, setProduits]=useState([]);
 
 const columns = [
 { field: 'id', headerName: 'id', width: 70 },
@@ -51,7 +51,8 @@ width: 90,
 //const [open,setOpen]=useState(false);
 
 useEffect(()=>{
-produits.map((prc)=> allProduits.push(prc))
+    console.log("salam khoti")
+//produits.map((prc)=> allProduits.push(prc))
 setPageLoaded(true)
 },[])
 
@@ -77,7 +78,7 @@ return (
 <AddModalProduits/>
 
 {/* ------------------------ show datagrid table search ------------------ */}
-<DataGridTable title={title} columns={columns} rows={allProduits}/>
+<DataGridTable title={title} columns={columns} rows={produits}/>
 {/* end row */}
 </div> {/* container */}
 </div> {/* content */}

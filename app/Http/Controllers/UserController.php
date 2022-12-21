@@ -50,13 +50,16 @@ class UserController extends Controller
     public function create(Request $request)
     {
         //return $request;
-/*         $request->validate([
-            'nom'=> 'required',
-           'description'=> 'required',
-             'prix'=> 'required',
-             'quantité'=> 'required',
+        $request->validate([
+            'name'=> 'required',
+           'prenom'=> 'required',
+             'role'=> 'required',
+             'email'=> 'required',
+             'password'=> 'required',
+             'photo'=> 'required',
+
         ]
-        ); */
+        ); 
 
     User::create(['name'=>$request->name,
          'prenom'=>$request->prenom, 

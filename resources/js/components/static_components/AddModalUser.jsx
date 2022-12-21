@@ -19,8 +19,6 @@ export default function AddModalProduits(props) {
 
 
      useEffect(()=>{
-        $('#scrollable-modal').hide();
-        $('.modal-backdrop').remove(); 
         // uploading the image
         cloudinaryRef.current =  window.cloudinary;
         widgetRef.current = cloudinaryRef.current.createUploadWidget({
@@ -41,8 +39,12 @@ export default function AddModalProduits(props) {
         e.preventDefault();
         console.log(data);
         post("/adcom/users",{
-            preserveState:false
-        });
+            preserveState:true,
+            onSuccess:page=>{
+                Inertia.reload({only:['users']})
+                $('#scrollable-modal').hide();
+                $('.modal-backdrop').remove(); 
+            },});
     };
 
     const handleChange = (e) => {

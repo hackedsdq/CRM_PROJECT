@@ -10,24 +10,28 @@ export default function AddModalOpportunity(props) {
 let ClientProp = props.clients;
 
 
-/* useEffect(()=>{
-console.log("clients fetched"+ClientProp)
-},[ClientProp]) */
+ useEffect(()=>{
+  $('#scrollable-modal').hide();
+  $('.modal-backdrop').remove(); 
+},[]) 
 
 
   let { data, setData, post, processing, errors } = useForm({
     nom: "",
     montant :"", 
     //étape:"first", 
-    Client_id:"",
+    client_id:"",
     date_de_clôture:"2021-11-11"
 })
 
 
 const handleSubmit = (e) => {
+  console.log(data)
 e.preventDefault()
-if(data.Client_id !== undefined)
-post('/adcom/opportunities/add')
+if(data.client_id !== undefined)
+post('/adcom/opportunities/add',{
+  preserveState:false
+})
 }
 
 
@@ -55,7 +59,7 @@ const handleSearchClient= (client) =>{
 }
 const handleChangeAutoComplete = (value) =>{
 let client_id = value.id.toString();
-setData(data.Client_id = `${client_id}`)
+setData(data.client_id = `${client_id}`)
 //console.log(client_id)
 }
 
@@ -98,7 +102,7 @@ return (
                 onChange={(event, value)=> handleChangeAutoComplete(value)}
                 renderInput={(params) => <TextField {...params}/>}
             />
-                {errors.Client_id && <h6 style={{color:"red"}}>{errors.Client_id}</h6>}
+                {errors.client_id && <h6 style={{color:"red"}}>{errors.client_id}</h6>}
             </div>
 
 

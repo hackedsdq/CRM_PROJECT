@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Opportunities;
 use App\Models\Client;
 use App\Models\Produit;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -23,6 +24,7 @@ class OpportunitiesController extends Controller
         $opportunities_three = Opportunities::where('étape', 'three')->get();
         $opportunities_four = Opportunities::where('étape', 'four')->get();
 
+        //return $opportunities_one;
         return Inertia::render('Opportunities',[
             'opportunities_one'=> $opportunities_one,
             'opportunities_two'=> $opportunities_two,
@@ -33,20 +35,27 @@ class OpportunitiesController extends Controller
 
     public function editIndex($id){
         $opportunity = Opportunities::find($id);
+        $client = Client::find($opportunity->client_id);
         //$opportunity->produits();
         $opportunityProducts = $opportunity->produits;
         return Inertia::render('ShowEditOpportunity',[
             'opportunity'=>$opportunity,
             'type'=>'edit',
+            'client' => $client,
             'opportunityProducts'=>$opportunityProducts
         ]);
     }
 
     public function showIndex($id){
         $opportunity = Opportunities::find($id);
+        $opportunityProducts = $opportunity->produits;
+        $client = Client:: find($opportunity->client_id);
         return Inertia::render('ShowEditOpportunity',[
             'opportunity'=>$opportunity,
             'type'=>'show',
+            'client' => $client,
+            'opportunityProducts'=>$opportunityProducts
+
         ]);
     }
 
@@ -57,19 +66,29 @@ class OpportunitiesController extends Controller
      */
     public function create(Request $request)
     {
+        $request->validate([
+        'nom'=> ['required','regex:/^[a-zA-Z]+$/'],
+       'montant'=> 'required|min:3',
+         'date_de_clôture'=> 'required|date',
+         'client_id'=> 'required|integer',
+    ]
+    );
+        
         //return $request;
         $newOpportunity= Opportunities::create([
             'nom'=> $request->nom,
             'montant'=>$request->montant, 
             'date_de_clôture'=>$request->date_de_clôture,
-            'Client_id'=>$request->Client_id,
+            'client_id'=>$request->client_id,
         ]);
+        return redirect()->back();
     }
 
     public function searchClients(Request $request){
         $client_name = $request->client;
         $clients = Client::where('société', 'like', $client_name.'%')->get();
-          return Inertia::render('Opportunities',[
+        //return $id=Auth::id();  
+        return Inertia::render('Opportunities',[
             'clients'=>$clients
         ]);
     }
@@ -85,6 +104,10 @@ class OpportunitiesController extends Controller
     }
 
     public function addProduit(Request $request, $opport){
+        $request->validate([
+             'quantité'=> 'required|integer'
+        ]
+        );
         $opportunity = Opportunities::find($opport);
         $product = Produit::find($request->product_id);
         $product->opportunities()->attach($opport, ["quantité"=>$request->quantité]);
@@ -136,12 +159,19 @@ class OpportunitiesController extends Controller
      */
     public function update(Request $request)
     {
+        $request->validate([
+            'nom'=> ['required','regex:/^[a-zA-Z]+$/'],
+           'montant'=> 'required|integer',
+           'étape'=> 'required'
+           
+        ]
+        );
         $opportunity = Opportunities::find($request->opportunity_id);
         $opportunity->nom = $request->nom;
         $opportunity->montant = $request->montant ;
         $opportunity->étape = $request->étape;
         $opportunity->save();
-        return redirect()->route('adcom.opportunities');
+        return redirect()->back();
 
     }
 
@@ -151,8 +181,10 @@ class OpportunitiesController extends Controller
      * @param  \App\Models\Opportunities  $opportunities
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Opportunities $opportunities)
-    {
-        //
-    }
+    
+
+    public function delete($id)
+   {
+    $opportunity = Opportunities::whereIn('id',[$id])->delete();
+   }
 }

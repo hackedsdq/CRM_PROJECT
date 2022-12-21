@@ -15,14 +15,23 @@ return new class extends Migration
     {
         Schema::create('pivot_table_contact_user', function (Blueprint $table) {
 
+            //$table->id();
             $table->id();
-            
+            $table->string('title');
             $table->date('Date');
             $table->time('heure');
             $table->string('compte_rendu');
-            $table->foreignId('users_id')->constrained()->onDelete('cascade');
-            $table->foreignId('contacts_id')->constrained()->onDelete('cascade');
+          /*   $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('contacts_id')->constrained()->onDelete('cascade'); */
+            
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
+            $table->unsignedBigInteger('contact_id');
+            $table->foreign('contact_id')->references('id')->on('contacts')->onDelete('cascade');
+
+            //$table->primary(['user_id','contact_id']);
+            
             $table->timestamps();
         });
     }

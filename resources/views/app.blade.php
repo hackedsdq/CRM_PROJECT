@@ -37,7 +37,6 @@
     @vite(['resources/css/app.css', 'resources/js/app.jsx'])
     @inertiaHead
 
-
   </head>
   <body class="loading" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>   
   @inertia
@@ -96,6 +95,7 @@
         <script src="assets/js/ui/component.todo.js"></script>
         <script src="assets/js/pages/demo.dashboard-crm.js"></script> -->
         <!-- bundle -->
+        <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>  
         <script src="{{URL::asset('assets/js/vendor.min.js')}}"></script>
         <script src="{{URL::asset('assets/js/app.min.js')}}"></script>
   </body>

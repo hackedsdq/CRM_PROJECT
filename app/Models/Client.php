@@ -13,21 +13,27 @@ class Client extends Model
     'téléphone',
     'adresse',
     'site_web',
-    'prospects_id'
+    'prospect_id',
+    'user_id'
 ];
 
 
 // protected = $guarded[];
 public function contact(){
-    return $this->belongsTo(Contact::class, 'Client_id');
+    return $this->belongsTo(Contact::class, 'client_id');
 }
 
-public function opportunities (){
-    return $this->belongsTo(Opportunities::class, 'Client_id');
+public function opportunities(){
+    return $this->belongsTo(Opportunities::class, '');
 
 }
 public function prospects()
 {
-    return $this->hasOne(Prospect::class, 'prospects_id');
+    return $this->hasOne(Prospect::class, 'prospect_id');
+}
+
+public function users()
+{
+    return $this->belongsTo(User::class, 'user_id');
 }
 }

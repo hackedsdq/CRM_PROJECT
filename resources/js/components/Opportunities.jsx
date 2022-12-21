@@ -21,13 +21,15 @@ export default function Opportunities({clients,opportunities_one, opportunities_
   //const [open,setOpen]=useState(false);
 
   useEffect(()=>{
-  //console.log(opportunities_one)
+ 
+
+  setOpp1(opportunities_one)
   setOpp2(opportunities_two)
   setOpp3(opportunities_three)
   setOpp4(opportunities_four)
 
   handleFilter(clients)
-  },[clients])
+  },[clients,opportunities_one,opportunities_two,opportunities_three,opportunities_four])
 
 const handleFilter=(clients)=>{
   let filtred;
@@ -55,18 +57,16 @@ const handleFilter=(clients)=>{
           <div className="content">
             <div className="container-fluid">
               <PageTitle title={title} />
-              <h1 onClick={()=>setOpp1(opportunities_one)}>darkness</h1>
               <button  className="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#scrollable-modal">
                   <i className="mdi mdi-plus-circle me-2" /> Add Opportunity
               </button>
 
               <AddModalOpportunity clients={filtredClients} />
-              {
-                opp1.length === 0 ? <></> : 
+          
               <ChakraProvider   resetCSS={false} theme={theme} >
                   <DndBoard opportunities_one={opp1} opportunities_two={opp2} opportunities_three={opp3} opportunities_four={opp4} />
               </ChakraProvider>
-            }
+            
             </div> 
           </div>
         </div>
@@ -74,7 +74,6 @@ const handleFilter=(clients)=>{
     </div>
   )
 }
-
 
 
 

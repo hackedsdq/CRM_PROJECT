@@ -2,26 +2,45 @@ import React from 'react'
 import { DataGrid } from '@mui/x-data-grid'
 import { useState } from 'react'
 import { Inertia } from '@inertiajs/inertia';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
+
+
+
 
 export default function DataGridTable(props) {
 
   const [selectedRows,setSelectedRows]=useState([]);
 
-  const getId = (id) =>{
-    console.log("this is the mf " + id)
-  }
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  
+  const handleClose = () => {
+    setOpen(false);
+  };
+  
 
   const handleDelete = () =>{
     if(selectedRows.length > 0){
       selectedRows.map((id)=>{
        if(props.title==='contacts')
-        Inertia.delete(`/adcom/contacts/${id}`);
+        Inertia.delete(`/adcom/contacts/${id}`,{preserveState:false});
         else if(props.title==='Prospects')
-        Inertia.delete(`/adcom/prospects/${id}`);
+        Inertia.delete(`/adcom/prospects/${id}`,{preserveState:false});
         else if(props.title==='produits')
-        Inertia.delete(`/adcom/produits/${id}`);
+        Inertia.delete(`/adcom/produits/${id}`,{preserveState:false});
         else if (props.title === 'Clients'){
-          Inertia.delete(`/adcom/clients/${id}`);
+          Inertia.delete(`/adcom/clients/${id}`,{preserveState:false});
+        }
+        else if (props.title === 'Utilisateur'){
+            Inertia.delete(`/adcom/users/${id}`,{preserveState:false});
           console.log("hehe")
         }
       })
@@ -76,16 +95,16 @@ export default function DataGridTable(props) {
             <div className="col-sm-8">
               <div className="text-sm-end">
                 <button type="button" className="btn btn-success mb-2 me-1"><i className="mdi mdi-cog" /></button>
-                <button type="button" className="btn btn-light mb-2 me-1" onClick={handleDelete} >Delete</button>
+                <button type="button" className="btn btn-light mb-2 me-1" onClick={handleClickOpen} >Delete</button>
                 <button onClick={handleConversion} type="button" className="btn btn-light mb-2 me-1" disabled={props.title ==="Prospects" ? false : true } >convert</button>
 
                 <button  type="button" className="btn btn-light mb-2" data-bs-toggle="modal" data-bs-target="#scrollable-modal">export</button>
-<div><button class="btn  btn-sm" data-bs-toggle="modal" data-bs-target="#scrollable-modal"><i class="mdi mdi-square-edit-outline"></i></button></div>
+<div><button className="btn  btn-sm" data-bs-toggle="modal" data-bs-target="#scrollable-modal"><i className="mdi mdi-square-edit-outline"></i></button></div>
               </div>
             </div>{/* end col*/}
           </div>
 
-          <div><button class="btn  btn-sm" data-bs-toggle="modal" data-bs-target="#scrollable-modal"><i class="mdi mdi-square-edit-outline"></i></button></div>
+          <div><button className="btn  btn-sm" data-bs-toggle="modal" data-bs-target="#scrollable-modal"><i className="mdi mdi-square-edit-outline"></i></button></div>
           <div className="table-responsive">
             {/* ----------------------------------------   DATA GRID TABLE ADDED ------------------------------------------ */}
             <div style={{ height: 400, width: '100%' }}>
@@ -102,6 +121,27 @@ export default function DataGridTable(props) {
         </div> {/* end card-body*/}
       </div> {/* end card*/}
     </div> {/* end col */}
+    <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Confirmation de Suppression?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Est-ce-que vous voullez supprimer les données.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Annuler</Button>
+          <Button onClick={handleDelete} autoFocus>
+            Confirmer
+          </Button>
+        </DialogActions>
+  </Dialog>
   </div>
   )
 }

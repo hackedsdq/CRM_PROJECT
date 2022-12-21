@@ -15,11 +15,11 @@ class Opportunities extends Model
     'montant',
     'étape',
     'date_de_clôture',
-    'Client_id'  
+    'client_id'  
 ];
     public function client(){
 
-        return $this->hasMany(Client::class, 'Client_id');
+        return $this->hasMany(Client::class, 'client_id');
     }
     public function produits()
     {

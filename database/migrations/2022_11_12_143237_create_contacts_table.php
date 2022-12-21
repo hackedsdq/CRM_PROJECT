@@ -20,9 +20,9 @@ return new class extends Migration
             $table->string('email');
             $table->string('password');
             $table->string('fonction');
-            $table->string('telephone');
-            $table->unsignedBigInteger('Client_id');
-            $table->foreign('Client_id')->references('id')->on('clients');
+            $table->integer('telephone');
+            $table->unsignedBigInteger('client_id');
+            $table->foreign('client_id')->references('id')->on('clients');
             $table->timestamps();
         });
     }

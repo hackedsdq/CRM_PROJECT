@@ -12,8 +12,8 @@ class Produit extends Model
         'nom',
         'description',
         'prix',
-        'quantité'
-      
+        'quantité',
+        'photo'
     ];
 
     public function opportunities()

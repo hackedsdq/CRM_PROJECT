@@ -18,10 +18,12 @@ class Prospect extends Model
         'adresse',
         'site_web',
         'Statut',
-        'Source'
+        'Source',
+        'photo',
+        'logo'
     ];
     public function clients()
     {
-        return $this->belongsTo(Client::class, 'prospects_id');
+        return $this->belongsTo(Client::class, 'prospect_id');
     }
 }

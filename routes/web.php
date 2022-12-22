@@ -111,6 +111,5 @@ Route::post('/adcom/calendar/store',[\App\Http\Controllers\CalendarController::c
 Route::post('calendar/create',[\App\Http\Controllers\CalendarController::class, 'create']);
 Route::post('calendar/add',[\App\Http\Controllers\CalendarController::class, 'add']);
 Route::post('calendar/edit',[\App\Http\Controllers\CalendarController::class, 'edit']);
-Route::delete('calendar/destroy',[\App\Http\Controllers\CalendarController::class, 'destroy']);
-
-Route::post('calendar',[\App\Http\Controllers\CalendarController::class, 'searchClients']);
+Route::post('calendar',[\App\Http\Controllers\CalendarController::class, 'searchContacts']);
+//Route::delete('calendar',[\App\Http\Controllers\CalendarController::class, 'destroy']);

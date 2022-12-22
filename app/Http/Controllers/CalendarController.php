@@ -46,10 +46,9 @@ class CalendarController extends Controller
     public function create(Request $request)
     {
         $contact=Contact::find($request->contact_id);
-
         $contact->user()->attach($request->user_id,["Date"=>$request->Date,"compte_rendu"=>$request->compte_rendu,"heure"=>$request->heure]);
        
-       // return Inertia::render("Calendar");
+        //return Inertia::render("Calendar");
   
 }
 
@@ -59,10 +58,9 @@ class CalendarController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function searchClients(Request $request){
-       
+    public function searchContacts(Request $request){
         $contact_name = $request->contact;
-        $contacts = Client::where('contact_id', 'like', $contact_name.'%')->get();
+        $contacts = Contact::where('nom', 'like', $contact_name.'%')->get();
         //return $id=Auth::id();  
         return Inertia::render('Calendar',[
             'contacts'=>$contacts
@@ -90,9 +88,10 @@ class CalendarController extends Controller
      */
     public function edit(Request $request)
     {  
+        
         $contact = Contact::find($request->contact_id);
        $contact->user()->newPivotStatementForId($contact->user->find(1)->pivot->user_id)->where("id",$request->id)->update(["Date"=>$request->Date,"compte_rendu"=>$request->compte_rendu,"heure"=>$request->heure]);
-      return Inertia::render('Calendar');
+       //return Inertia::render('Calendar');
       //  $contact->user()->updateExistingPivot($request->user_id,["Date"=>$request->Date,"compte_rendu"=>$request->compte_rendu,"heure"=>$request->heure]);
     }
     /**
@@ -115,8 +114,10 @@ class CalendarController extends Controller
      */
     public function destroy(Request $request)
     {
-        $contact=Contact::find($request->contact_id);
-        $contact->user()->where($request->id)->wherePivot()->detach();
+        return $request;
+       // $contact=Contact::find($request->contact_id);
+       // $contact->user()->where($request->id)->wherePivot()->detach();
+        
       //  return $id;
     }
     }

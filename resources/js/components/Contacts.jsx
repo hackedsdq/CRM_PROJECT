@@ -9,7 +9,7 @@ import DataGridTable from './static_components/DataGridTable'
 import AddModalContacts from './static_components/AddModalContacts'
 
 
-
+{
 
   const columns = [
     
@@ -26,7 +26,7 @@ import AddModalContacts from './static_components/AddModalContacts'
     { field: 'show', headerName: 'show', width: 70, renderCell:(params)=> <UserActions user={params.row} action="show" title='contacts'/> },
  
   ];
-
+/*
     { id: 1, lastName: 'abdelwahed', firstName: 'yagoub', Telephone:"043 22 82 46",Email:"abdelwahed.yagoub@gmail.com",Password:"1A2Z3E4R",Client:"/" },
     { id: 2, lastName: 'Lannister', firstName: 'Cersei', Telephone:"043 26 71 65",Email:"market.sa.tlm@gmail.com",Password:"4R5T6Y7U",Client:"/"  },
     { id: 3,  lastName: 'Arslane', firstName: 'Chakib', Telephone:"0542 28 83 85",Email:"/",Password:"7U8I9O0P",Client:"/"},

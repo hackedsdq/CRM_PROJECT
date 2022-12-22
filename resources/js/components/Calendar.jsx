@@ -13,8 +13,11 @@ import interactionPlugin from '@fullcalendar/interaction'
 import listPlugin from '@fullcalendar/list'
 import { Autocomplete, TextField } from '@mui/material'
 import { destroy } from '@syncfusion/ej2-react-buttons';
+import { color } from '@chakra-ui/react';
+import SideBar from './static_components/SideBar';
+import '../../css/Calendar.css'
 //import { INITIAL_EVENTS, createEventId } from './event-utils'
-export default function Calendar({Events,clients})  {
+export default function Calendar({Events,contacts})  {
   
 
   let { data, setData, post, processing, errors } = useForm({
@@ -32,39 +35,39 @@ let [events, setEvents]=useState([
   
 ]);
 
-let [filtredClients, setFiltredClients]=useState([])
+let [filtredcontacts, setFiltredcontacts]=useState([])
 useEffect(()=>{
 handleSetEvent()
-handleFilter(clients)
-},[clients])
+handleFilter(contacts)
+},[contacts])
 
-const handleFilter=(clients)=>{
+const handleFilter=(contacts)=>{
 let filtred;
 
  
-if(clients !== undefined){
-  filtred = clients.map((client)=>(filtredClients.filter(data => data.label === client.société)))
+if(contacts !== undefined){
+  filtred = contacts.map((contact)=>(filtredcontacts.filter(data => data.label === contact.nom)))
   if(filtred.length !== 0){
   for(let i=0;i<filtred.length;i++){
     if(filtred[i].length===0){
-      filtredClients.push({ label: `${clients[i].société}`, id:clients[i].id})
+      filtredcontacts.push({ label: `${contacts[i].nom}`, id:contacts[i].id})
     }
   }
 }
 }
 }
-const handleSearchClient= (clients) =>{
-  if(clients !== "")
+const handleSearchContact= (contacts) =>{
+  if(contacts !== "")
   Inertia.post('calendar',{
-     clients:clients,
+     contacts:contacts,
    })
  
 }
 
 const handleChangeAutoComplete = (value) =>{
  
-let client_id = value.id.toString();
-setData(data.client_id = `${client_id}`)
+let contact_id = value.id.toString();
+setData(data.contact_id = `${contact_id}`)
 
 }
 
@@ -80,6 +83,7 @@ setData(data.Date="")
 setData(data.compte_rendu="")
 setData(data.heure="")
 setData(data.id="")
+setData(data.contact_id="")
 }
 
 
@@ -118,7 +122,7 @@ const handleChange = (e) =>{
 }
 
 const handleDelete = () =>{
-    destroy(`/calendar/destroy`);
+    Inertia.delete(`/calendar/destroy`)
 }
   
   const  handleSubmit = (e) => {
@@ -134,9 +138,11 @@ const handleDelete = () =>{
       <div class="jumbotron text-center">
           <h3>Rendez-Vous</h3>
       </div>
-      
+      <SideBar></SideBar>
       <div className="container">
+    
          { events.length>0 && 
+       
           <FullCalendar
             plugins={[ dayGridPlugin, interactionPlugin ,listPlugin]}
               editable={true}
@@ -148,7 +154,7 @@ const handleDelete = () =>{
               const heure= ("0"+date.getHours()).slice(-2)
               const minute= ("0"+date.getMinutes()).slice(-2)
              
-          
+
              $('#myModal2').modal("show");
             
             
@@ -165,29 +171,46 @@ const handleDelete = () =>{
               $("#myModal").modal("show");
              // $(".modal-content").html("");
              //$(".modal-body").html("<h3>"+arg.dateStr+"</h3>");
+           
             }}
             
             headerToolbar={{
               start: "today prev next",
               end: "dayGridMonth dayGridWeek dayGridDay listMonth",
               center: 'today myCustomButton',
+             
           
             }}
             initialView="dayGridMonth"
             events={events}
+            eventColor= '#378006'
+            eventTextColor='blue'
+      
+            
+            
+          //  eventBackgroundColor="#ff0000"
+            
+           // eventBorderColor="#ff0000"
             customButtons={{
               myCustomButton: {
                 text: 'Add Event',
+
                 click: function() {
                   $("#myModal").modal("show");
+                 
+                 
+  
                //  $(".modal-body").html("");
              // $(".modal-body").html("<h3>"+arg.dateStr+"</h3>");
                 },
+               
               },
             }}
-           
+            
           />}
  
+ 
+
         <form onSubmit={handleSubmit}>
           <div class="modal" id="myModal">
             <div class="modal-dialog">
@@ -239,17 +262,17 @@ const handleDelete = () =>{
                               </div>
 
                               <div className="mb-3">
-                <label htmlFor="simpleinput" className="form-label">clients</label>
+                <label htmlFor="simpleinput" className="form-label">contacts</label>
                   <Autocomplete
                 id="combo-box-demo"
-                onInputChange={(e)=>handleSearchClient(e.target.value)}
-                options={filtredClients}
+                onInputChange={(e)=>handleSearchContact(e.target.value)}
+                options={filtredcontacts}
                 sx={{ width: 300,height:100 }}
                 onChange={(event,value)=> handleChangeAutoComplete(value)}
                 renderInput={(params) => <TextField {...params}/>}
                 
             />   
-                 {/* {errors.client_id && <h6 style={{color:"red"}}>{errors.client_id}</h6>}  */}
+                 {/* {errors.contact_id && <h6 style={{color:"red"}}>{errors.contact_id}</h6>}  */}
             </div>
 
                              
@@ -342,7 +365,7 @@ const handleDelete = () =>{
                               <label form="">
                                    Contact
                                 </label>
-                              <input type='hidden'class="form-control" name="contact" value={data.contact_id}></input>
+                              <input class="form-control" name="contact" ></input>
                               </div> 
                              
                              
@@ -360,10 +383,11 @@ const handleDelete = () =>{
                             >
                                 Close
                             </button>
-                          <button type="submit" className="btn btn-primary" id="btn" >
+                          <button type="submit" className="btn btn-primary" id="btn"
+                           >
                                 Update
                             </button>
-                            <button type="submit" className="btn btn-primary" id="btn" onClick={handleDelete} >
+                            <button type="submit" className="btn btn-primary" id="btn" >
                                 Delete
                             </button>
                         </div>

@@ -110,10 +110,10 @@ class ClientController extends Controller
     {
 
         $request->validate([
-            'société'=> 'required',
+            'société'=> ['required','regex:/^[a-zA-Z]+$/'],
            'adresse'=> 'required',
-           'téléphone'=> ['required','^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/'],
-           'site_web'=> ['required','regex:/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/']
+           'téléphone'=> ['required','regex:/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/'],
+           'site_web'=> ['required','url']
            
         ]
         );
@@ -123,9 +123,11 @@ class ClientController extends Controller
         $client->adresse = $request->adresse;
         $client->téléphone = $request->téléphone;
         $client->site_web = $request->site_web;
+        $client->logo = $request->logo;
+
         $client->save();
 
-        return $client;
+        return redirect()->route('adcom.clients');
     }
 
     /**

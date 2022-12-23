@@ -15,6 +15,7 @@ return new class extends Migration
     {
 
         Schema::create('opportunities', function (Blueprint $table) {
+            $table->softDeletes();
             $table->id();
             $table->string('nom');
             $table->double('montant');

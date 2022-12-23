@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import { InertiaLink } from '@inertiajs/inertia-react'
 import { Inertia } from '@inertiajs/inertia';
-import DeleteModal from './DeleteModal';
+import { InertiaProgress } from '@inertiajs/progress';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -9,6 +9,11 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 
+InertiaProgress.init({
+  showSpinner:true,
+  color:'red',
+  includeCSS:true,
+})
 
 
 export default function UserActions(props) {
@@ -18,7 +23,10 @@ const user= props.user;
 const [open, setOpen] = useState(false);
 
 const handleClickOpen = () => {
-  setOpen(true);
+  if(user){
+    setOpen(true);
+  }
+  console.log("hi")
 };
 
 const handleClose = () => {
@@ -29,14 +37,20 @@ const handleClose = () => {
 
 const handleDelete = () =>{
   Inertia.delete(`/adcom/${title}/${user.id}`,{
-    preserveState:false
-  });
+    preserveState:true,
+    onSuccess:page=>{
+      Inertia.reload({only:['users']})
+      handleClose()
+      $('#scrollable-modal').hide();
+      $('.modal-backdrop').remove(); 
+  }
+  }); 
 }
  
 return(
   <div>
  {props.action==="delete" && <button onClick={handleClickOpen} className='btn  btn-sm '><i className='mdi mdi-delete'></i> </button>}
- {props.action==="modify" && <InertiaLink href={`/adcom/${title}/edit/${user.id}`}><i className='mdi mdi-square-edit-outline'></i></InertiaLink>}
+ {props.action==="modify" && <InertiaLink   href={`/adcom/${title}/edit/${user.id}`}><i className='mdi mdi-square-edit-outline'></i></InertiaLink>}
  {props.action==="show" && <InertiaLink href={`/adcom/${title}/show/${user.id}`}><i className='mdi mdi-eye'></i> </InertiaLink>}
 
  <Dialog

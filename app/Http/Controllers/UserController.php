@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 
 use App\Models\User;
@@ -51,10 +52,10 @@ class UserController extends Controller
     {
         //return $request;
         $request->validate([
-            'name'=> 'required',
-           'prenom'=> 'required',
+            'name'=> ['required','regex:/^[a-zA-Z]+$/'],
+            'prenom'=> ['required','regex:/^[a-zA-Z]+$/'],
              'role'=> 'required',
-             'email'=> 'required',
+             'email'=> ['required','email','unique:users'],
              'password'=> 'required',
              'photo'=> 'required',
 
@@ -63,7 +64,7 @@ class UserController extends Controller
 
     User::create(['name'=>$request->name,
          'prenom'=>$request->prenom, 
-         'role'=>$request->role, 
+         'role'=>"commercial", 
          'email'=>$request->email, 
          'password'=>Hash::make($request->password),
          'photo'=>$request->photo, 
@@ -131,15 +132,27 @@ class UserController extends Controller
      */
     public function update(Request $request,  $id)
     {
-        $user= User::find($id);
+        $request->validate([
+            'name'=> ['required','regex:/^[a-zA-Z]+$/'],
+            'prenom'=> ['required','regex:/^[a-zA-Z]+$/'],
+            'email'=> ['required','email',Rule::unique('users')->ignore($id)],
+            'photo'=> 'required',
+        ]
+        ); 
 
+        //return $request;
+        $user= User::find($id);
         $user->update([
             'name'=> $request->name,
             'prenom'=> $request->prenom,
             'photo'=> $request->photo,
-            'email'=> $request->email,            
+            'email'=> $request->email,  
         ]);
+        if(isset($request->password))
+        $user->password = Hash::make($request->password);
+
         $user->save();
+
         return redirect()->route('adcom.users');        
     }
 
@@ -147,8 +160,8 @@ class UserController extends Controller
 
    public function delete($id)
    { 
-    $user = User::whereIn('id',[$id])->delete();
+    $ids = explode(",",$id);
+    $user = User::whereIn('id',$ids)->delete();
     return redirect()->back();
-
    }
 }

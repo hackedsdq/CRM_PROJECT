@@ -111,8 +111,8 @@ class ProduitController extends Controller
     public function update(Request $request,  $id)
     {$produits= Produit::find($id);
         $request->validate([
-            'nom'=> 'required|regex:/^[a-zA-Z]+$',
-            'description'=> 'required| min:20',
+            'nom'=>['required','regex:/^[a-zA-Z]+$/'],
+           'description'=> 'required|min:20',
              'prix'=> 'required|integer',
              'quantité'=> 'required|integer',
         ]

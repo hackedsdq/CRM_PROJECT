@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('opportunities_produit', function (Blueprint $table) {
+            $table->softDeletes();
             $table->unsignedBigInteger('produit_id');
             $table->foreign('produit_id')->references('id')->on('produits')->onDelete('cascade');
 

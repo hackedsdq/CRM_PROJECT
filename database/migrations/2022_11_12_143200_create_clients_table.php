@@ -14,11 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('clients', function (Blueprint $table) {
+            $table->softDeletes();
             $table->id();
             $table->string('société');
-            $table->integer('téléphone');
+            $table->string('téléphone');
             $table->string('adresse');
             $table->string('site_web');
+            $table->string('logo');
             $table->timestamps();
             $table->foreignId('prospect_id')
             ->constrained()

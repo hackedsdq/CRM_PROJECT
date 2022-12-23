@@ -19,11 +19,10 @@ const [pageLoaded, setPageLoaded]=useState(false)
 const columns = [
 { field: 'id', headerName: 'id', width: 70 },
 { field: 'nom', headerName: 'nom', width: 130 },
-{ field: 'description', headerName: 'description', width: 130},
+/* { field: 'description', headerName: 'description', width: 130},*/
 {
 field: 'quantité',
 headerName: 'quantité',
-type: 'number',
 width: 90,
 },
 {
@@ -31,9 +30,9 @@ field: 'prix',
 headerName: 'prix',
 width: 90,
 },
-{ field: 'delete', headerName: 'Delete', width: 70, renderCell:(params)=> <UserActions title="produits" user={params.row} action="delete"/> },
-{ field: 'modify', headerName: 'Modify', width: 70, renderCell:(params)=> <UserActions title="produits" user={params.row} action="modify"/> },
-{ field: 'show', headerName: 'show', width: 70, renderCell:(params)=> <UserActions title="produits" user={params.row} action="show"/> },
+{ field: 'delete', headerName: 'supprimer', width: 100, renderCell:(params)=> <UserActions title="produits" user={params.row} action="delete"/> },
+{ field: 'modify', headerName: 'modifier', width: 100, renderCell:(params)=> <UserActions title="produits" user={params.row} action="modify"/> },
+{ field: 'show', headerName: 'afficher', width: 100, renderCell:(params)=> <UserActions title="produits" user={params.row} action="show"/> },
 ];
 // const rows = [
 // { id: 2, nom: 'Lannister', description: 'Cersei',photo:""
@@ -60,17 +59,18 @@ setPageLoaded(true)
 // console.log(allProduits)
 // }
 
-if(pageLoaded){
 
 return (
 <div className='wrapper' >
 <SideBar />
 <Header />
-<div className="content-page">
-<div className="content">
+<div className="container-login100">
+    <div className="wrap-login100">
+        <div className="modal-content">
+          <div className="modal-body">
 {/* Start Content*/}
 <div className="container-fluid">
-{/* start page title */}
+{/* start page title 
 <PageTitle title={title} />
 {/* end page title */} 
 
@@ -83,11 +83,8 @@ return (
 </div> {/* container */}
 </div> {/* content */}
 </div>
-
 </div>
-)
-}else
-return(
-<div></div>
+</div>
+</div>
 )
 }

@@ -14,10 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
+            $table->softDeletes();
+            $table->enum('role',['commercial', 'admin']);
             $table->id();
             $table->string('name');
             $table->string('prenom');
-            $table->string('role');
+            //$table->string('role');
             $table->string('photo');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

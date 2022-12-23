@@ -14,13 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('contacts', function (Blueprint $table) {
+            $table->softDeletes();
             $table->id();
             $table->string('nom');
             $table->string('prenom');
             $table->string('email');
             $table->string('password');
             $table->string('fonction');
-            $table->integer('telephone');
+            $table->string('photo');
+            $table->string('telephone');
             $table->unsignedBigInteger('client_id');
             $table->foreign('client_id')->references('id')->on('clients');
             $table->timestamps();

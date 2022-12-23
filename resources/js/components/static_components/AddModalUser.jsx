@@ -10,7 +10,7 @@ export default function AddModalProduits(props) {
         role: "",
         email: "",
         password:"",
-        photo:"test.jpg",
+        photo:"https://res.cloudinary.com/dbttd3n1v/image/upload/v1671478713/snernvqpxpnxpjt3owmn.jpg",
     });
 
     const cloudinaryRef = useRef();
@@ -18,7 +18,6 @@ export default function AddModalProduits(props) {
 
 
 
-     useEffect(()=>{
         // uploading the image
         cloudinaryRef.current =  window.cloudinary;
         widgetRef.current = cloudinaryRef.current.createUploadWidget({
@@ -33,7 +32,6 @@ export default function AddModalProduits(props) {
             }
           }
         )
-        },[])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -70,7 +68,7 @@ export default function AddModalProduits(props) {
             <div className="modal-dialog modal-dialog-scrollable" role="document">
                 <div className="modal-content">
                 <div className="modal-header">
-                    <h5 className="modal-title" id="scrollableModalTitle">Add Prospects</h5>
+                    <h5 className="modal-title" id="scrollableModalTitle">Ajouter utilisateur</h5>
                     <button  type="button" className="btn-close" data-bs-dismiss="modal" aria-hidden="true" />
                 </div>
                         <div className="modal-body">
@@ -81,7 +79,7 @@ export default function AddModalProduits(props) {
                                     htmlFor="simpleinput"
                                     className="form-label"
                                 >
-                                    Name
+                                    Nom
                                 </label>
                                 <input
                                     onChange={(e) => handleChange(e)}
@@ -141,7 +139,7 @@ export default function AddModalProduits(props) {
                                                 upload.
                                             </h4>
                                         </div>
-                                        { data.photo.length > 0 && <img src={data.photo} alt='' />}
+                                        <img style={{height:50,width:50}} src={data.photo} alt='' />
 
                                     </div>
 
@@ -152,7 +150,7 @@ export default function AddModalProduits(props) {
                                     htmlFor="simpleinput"
                                     className="form-label"
                                 >
-                                    email
+                                    Email
                                 </label>
                                 <input
                                     onChange={(e) => handleChange(e)}
@@ -172,7 +170,7 @@ export default function AddModalProduits(props) {
                                     htmlFor="simpleinput"
                                     className="form-label"
                                 >
-                                    password
+                                    Mot de passe
                                 </label>
                                 <input
                                     onChange={(e) => handleChange(e)}
@@ -219,7 +217,7 @@ export default function AddModalProduits(props) {
                                 Close
                             </button>
                           <button type="submit" className="btn btn-primary">
-                                Save changes
+                                Ajouter utilisateur
                             </button>
                          
                         </div>

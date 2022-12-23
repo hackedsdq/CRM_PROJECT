@@ -28,23 +28,59 @@ export default function DataGridTable(props) {
   
 
   const handleDelete = () =>{
-    if(selectedRows.length > 0){
-      selectedRows.map((id)=>{
+    console.log(selectedRows)
+
        if(props.title==='contacts')
-        Inertia.delete(`/adcom/contacts/${id}`,{preserveState:false});
+        Inertia.delete(`/adcom/contacts/${selectedRows}`,{
+          preserveState:true,
+          onSuccess:page=>{
+              Inertia.reload({only:['contacts']})
+              handleClose()
+              $('#scrollable-modal').hide();
+              $('.modal-backdrop').remove(); 
+          }});
         else if(props.title==='Prospects')
-        Inertia.delete(`/adcom/prospects/${id}`,{preserveState:false});
+        Inertia.delete(`/adcom/prospects/${selectedRows}`,{ 
+          preserveState:true,
+          onSuccess:page=>{
+              Inertia.reload({only:['prospects']})
+              handleClose()
+              $('#scrollable-modal').hide();
+              $('.modal-backdrop').remove(); 
+          }});
         else if(props.title==='produits')
-        Inertia.delete(`/adcom/produits/${id}`,{preserveState:false});
+        Inertia.delete(`/adcom/produits/${selectedRows}`,{
+          preserveState:true,
+          onSuccess:page=>{
+              Inertia.reload({only:['produits']})
+              handleClose()
+              $('#scrollable-modal').hide();
+              $('.modal-backdrop').remove(); 
+          }});
         else if (props.title === 'Clients'){
-          Inertia.delete(`/adcom/clients/${id}`,{preserveState:false});
+          Inertia.delete(`/adcom/clients/${selectedRows}`,{ 
+            preserveState:true,
+            onSuccess:page=>{
+                Inertia.reload({only:['clients']})
+                handleClose()
+                $('#scrollable-modal').hide();
+                $('.modal-backdrop').remove(); 
+            }});
         }
-        else if (props.title === 'Utilisateur'){
-            Inertia.delete(`/adcom/users/${id}`,{preserveState:false});
+        else if (props.title === 'utilisateur'){
+          //console.log("user"+id)
+
+            Inertia.delete(`/adcom/users/${selectedRows}`,{ 
+              preserveState:true,
+              onSuccess:page=>{
+                  Inertia.reload({only:['users']})
+                  handleClose()
+                  $('#scrollable-modal').hide();
+                  $('.modal-backdrop').remove(); 
+              }});
           console.log("hehe")
         }
-      })
-    }
+
   }
   /*  const titrePage= props.title;
    if(selectedRows.length > 0){
@@ -88,23 +124,21 @@ export default function DataGridTable(props) {
         <div className="card-body">
           <div className="row mb-2">
             <div className="col-sm-4">
-                <button  className="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#scrollable-modal">
-                  <i className="mdi mdi-plus-circle me-2" /> Add {props.title}
-                </button>
+            { props.title !="Clients"  && props.title !="contacts"  && <button  className="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#scrollable-modal">
+                  <i className="mdi mdi-plus-circle me-2" /> Ajouter {props.title}
+                </button>}
             </div>
             <div className="col-sm-8">
               <div className="text-sm-end">
-                <button type="button" className="btn btn-success mb-2 me-1"><i className="mdi mdi-cog" /></button>
-                <button type="button" className="btn btn-light mb-2 me-1" onClick={handleClickOpen} >Delete</button>
-                <button onClick={handleConversion} type="button" className="btn btn-light mb-2 me-1" disabled={props.title ==="Prospects" ? false : true } >convert</button>
+                <button type="button" className="btn btn-light mb-2 me-1" onClick={handleClickOpen} >Supprimer</button>
+                { props.title ==="Prospects" && <button onClick={handleConversion} type="button" className="btn btn-light mb-2 me-1">Conversion</button>}
 
-                <button  type="button" className="btn btn-light mb-2" data-bs-toggle="modal" data-bs-target="#scrollable-modal">export</button>
-<div><button className="btn  btn-sm" data-bs-toggle="modal" data-bs-target="#scrollable-modal"><i className="mdi mdi-square-edit-outline"></i></button></div>
+{/*                 <button  type="button" className="btn btn-light mb-2" data-bs-toggle="modal" data-bs-target="#scrollable-modal">export</button>*/}
+
               </div>
             </div>{/* end col*/}
           </div>
 
-          <div><button className="btn  btn-sm" data-bs-toggle="modal" data-bs-target="#scrollable-modal"><i className="mdi mdi-square-edit-outline"></i></button></div>
           <div className="table-responsive">
             {/* ----------------------------------------   DATA GRID TABLE ADDED ------------------------------------------ */}
             <div style={{ height: 400, width: '100%' }}>

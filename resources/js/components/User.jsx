@@ -10,27 +10,26 @@ import AddModalUser from './static_components/AddModalUser'
 
 export default function User({users}) {
 
-  let title = "Utilisateur"
+  let title = "utilisateur"
 
-let [pageLoaded, setPageLoaded]=useState(false)
-let [allUsers, setUsers]=useState([]);
+//let [pageLoaded, setPageLoaded]=useState(false)
+//let [allUsers, setUsers]=useState([]);
 let [deleteConfirmation, setDeleteConfirmation]=useState(false);
 
   let columns = [
     { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'name', headerName: 'Nom', width: 130 },
-    { field: 'prenom', headerName: 'Prenom', width: 130 },
-    { field: 'email', headerName: 'Email', width: 130 },
-    { field: 'password', headerName: 'Password', width: 130 },
-    { field: 'delete', headerName: 'Delete', width: 70, renderCell:(params)=> <UserActions  title="users" user={params.row} action="delete"/>  },
-    { field: 'modify', headerName: 'Modify', width: 70, renderCell:(params)=> <UserActions  title="users" user={params.row} action="modify"/> },
-    { field: 'show', headerName: 'show', width: 70, renderCell:(params)=> <UserActions title="users" user={params.row} action="show" /> },
+    { field: 'name', headerName: 'nom', width: 130 },
+    { field: 'prenom', headerName: 'prenom', width: 130 },
+    { field: 'email', headerName: 'email', width: 230 },
+    { field: 'delete', headerName: 'supprimer', width: 70, renderCell:(params)=> <UserActions  title="users" user={params.row} action="delete"/>  },
+    { field: 'modify', headerName: 'modifier', width: 70, renderCell:(params)=> <UserActions  title="users" user={params.row} action="modify"/> },
+    { field: 'show', headerName: 'afficher', width: 70, renderCell:(params)=> <UserActions title="users" user={params.row} action="show" /> },
   ];
   
 
  useEffect(()=>{
-  users.map((prc)=> allUsers.push(prc))
-  setPageLoaded(true)
+  //users.map((prc)=> allUsers.push(prc))
+  //setPageLoaded(true)
   },[])
 
   //const [open,setOpen]=useState(false);
@@ -38,7 +37,6 @@ let [deleteConfirmation, setDeleteConfirmation]=useState(false);
 
 
 
-  if(pageLoaded){
   return (
 <div className='wrapper' >
         <SideBar />
@@ -56,7 +54,7 @@ let [deleteConfirmation, setDeleteConfirmation]=useState(false);
               {/* ------------------------ delete modal ------------------ */}
  
                {/* ------------------------ show datagrid table search ------------------ */}
-              <DataGridTable title={title} columns={columns} rows={allUsers}  />
+              <DataGridTable title={title} columns={columns} rows={users}  />
               {/* end row */}
           </div> {/* content */}
         </div>
@@ -64,8 +62,4 @@ let [deleteConfirmation, setDeleteConfirmation]=useState(false);
       </div>
     </div>
   )
-}else
-return(
-<div></div>
-)
 }

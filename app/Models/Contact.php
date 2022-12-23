@@ -6,11 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Contact extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    use SoftDeletes;
     
+    protected $dates=['deleted_at'];
     protected $fillable = [
     'nom',
     'prenom',
@@ -20,6 +23,7 @@ class Contact extends Authenticatable
     'telephone',
     'client_id',
     'user_id',
+    'photo'
     ];
     /**
      * The attributes that should be hidden for serialization.

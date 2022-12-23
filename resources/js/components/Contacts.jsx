@@ -12,20 +12,20 @@ import AddModalContacts from './static_components/AddModalContacts'
 
 export default function Contacts({contacts}) {
   let title = "contacts"
-  const [pageLoaded, setPageLoaded]=useState(false)
+/*   const [pageLoaded, setPageLoaded]=useState(false)
   const [allContacts, setContacts]=useState([]);
-  const [editedObject,setEditedObject]=useState(null);
+  const [editedObject,setEditedObject]=useState(null); */
   
   const columns = [
     { field: 'nom', headerName: 'nom', width: 130 },
     { field: 'prenom', headerName: 'prenom', width: 130 },
     { field: 'email', headerName: 'email', width: 130 },
-    { field: 'password', headerName: 'password', width: 130 },
-    { field: 'telephone', headerName: 'telephone', width: 130 },
+/*     { field: 'password', headerName: 'password', width: 130 },  
+ { field: 'telephone', headerName: 'télephone', width: 130 },*/ 
     { field: 'fonction', headerName: 'fonction', width: 130 },
-    { field: 'delete', headerName: 'Delete', width: 70, renderCell:(params)=> <UserActions user={params.row} action="delete" title='contacts'/>  },
-    { field: 'modify', headerName: 'Modify', width: 70, renderCell:(params)=> <UserActions user={params.row} action="modify" title='contacts'/> },
-    { field: 'show', headerName: 'show', width: 70, renderCell:(params)=> <UserActions user={params.row} action="show" title='contacts'/> },
+    { field: 'delete', headerName: 'supprimer', width: 100, renderCell:(params)=> <UserActions user={params.row} action="delete" title='contacts'/>  },
+    { field: 'modify', headerName: 'modifier', width: 100, renderCell:(params)=> <UserActions user={params.row} action="modify" title='contacts'/> },
+    { field: 'show', headerName: 'afficher', width: 100, renderCell:(params)=> <UserActions user={params.row} action="show" title='contacts'/> },
   ];
 
   /*const rows = [
@@ -38,40 +38,37 @@ export default function Contacts({contacts}) {
   ];*/
 
   useEffect(()=>{
-    contacts.map((prc)=> allContacts.push(prc))
-    setPageLoaded(true)
+/*     contacts.map((prc)=> allContacts.push(prc))
+    setPageLoaded(true) */
   },[])
   
-  const getAllContacts = () =>{
-    console.log(allContacts)
-  }
+
   
-if(pageLoaded){
 return (
     <div className='wrapper' >
         <SideBar />
         <Header />
         
-        <div className="content-page">
-          <div className="content">
-            {/* Start Content*/}
-            <div className="container-fluid">
-              {/* start page title */}
+        <div className="container-login100">
+    <div className="wrap-login100">
+      <div className="modal-content">
+         <div className="modal-body">
+              {/* start page title 
               <PageTitle title={title} />
               {/* end page title */} 
 
               {/* ------------------------ edit modal ------------------ */}
               <AddModalContacts />
                {/* ------------------------ show datagrid table search ------------------ */}
-              <DataGridTable title={title} columns={columns} rows={allContacts}/>
+              <DataGridTable title={title} columns={columns} rows={contacts}/>
               {/* end row */}
             </div> {/* container */}
           </div> {/* content */}
         </div>
 
     </div>
+</div>
+
   )
-}
-else return(
-  <div></div>)
+
 }

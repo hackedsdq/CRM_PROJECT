@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pivot_table_contact_user', function (Blueprint $table) {
-
+            $table->softDeletes();
             //$table->id();
             $table->id();
             $table->string('title');

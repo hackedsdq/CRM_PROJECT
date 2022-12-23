@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react'
+import React,{useEffect,useState,useRef} from 'react'
 import {useForm}  from "@inertiajs/inertia-react"
 import MasterDetailClientContacts from "./master_details_components/MasterDetailClientContacts"
 import MasterDetailClientOpportunities from "./master_details_components/MasterDetailClientOpportunities"
@@ -6,16 +6,35 @@ import SideBar from './static_components/SideBar'
 import Header from './static_components/Header'
 
 export default function ShowEditClient({client, type, clientContacts, clientOpportunities})  {
+  const [rows, setRows] = useState([])
+  const [rows2, setRows2] = useState([])
 
   const { data, setData, post, processing, errors } = useForm({
     société: '',
     téléphone:'',
     adresse:'',
     site_web:'',
+    logo:''
 })
 
-const [rows, setRows] = useState([])
-const [rows2, setRows2] = useState([])
+
+
+const cloudinaryRef = useRef();
+const widgetRef = useRef();
+ // uploading the image
+ cloudinaryRef.current =  window.cloudinary;
+ widgetRef.current = cloudinaryRef.current.createUploadWidget({
+   cloudName: 'dbttd3n1v', 
+   uploadPreset: 'j5xeceeh'
+ }
+   , (error, result) => { 
+     if (!error && result && result.event === "success") { 
+     let logo = result.info.thumbnail_url
+     setData(data.logo = logo) 
+     console.log(result.info)
+     }
+   }
+ )
 
 
 const  handleSubmit = (e) => {
@@ -37,6 +56,7 @@ const handleSetClient = ()=>{
   setData(data.téléphone = client.téléphone)
   setData(data.adresse = client.adresse)
   setData(data.site_web = client.site_web)
+  setData(data.logo = client.logo)
 }
 
 
@@ -49,7 +69,8 @@ const handleSetContacts = () =>{
       prenom:data.prenom,
       fonction:data.fonction,
       email:data.email,
-      telephone:data.telephone
+      telephone:data.telephone,
+      photo:data.photo
 
     }
   )) 
@@ -100,16 +121,20 @@ return (
           <div className="modal-body">
 
     {/*   bodyyyyy of the modal    */}
+            <div style={{textAlign:"center"}}>
+              {type==="edit" && <i onClick={()=> widgetRef.current.open()} style={{position:"relative", top:-10,right:10 }} className='mdi mdi-square-edit-outline'></i>}             
+              <img style={{backgroundColor:"black", borderRadius:40, width:80}} src={data.logo} alt='' />
+              </div>
 
                 <div className="mb-3">
-                    <label htmlFor="simpleinput" className="form-label">Society</label>
+                    <label htmlFor="simpleinput" className="form-label">Société</label>
                     <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data.société} name="société" type="text"  className="form-control" />
                     {errors.société && <h6 style={{color:"red"}}>{errors.société}</h6>}
 
                 </div>
 
                 <div className="mb-3">
-                    <label htmlFor="example-palaceholder" className="form-label">Telephone</label>
+                    <label htmlFor="example-palaceholder" className="form-label">Téléphone</label>
                     <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data.téléphone} name="téléphone" type="text" className="form-control" placeholder="Telephone" />
                     {errors.téléphone && <h6 style={{color:"red"}}>{errors.téléphone}</h6>}
                 </div>
@@ -119,19 +144,19 @@ return (
                     {errors.adresse && <h6 style={{color:"red"}}>{errors.adresse}</h6>}
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="example-Website" className="form-label">Website</label>
+                    <label htmlFor="example-Website" className="form-label">Site_Web</label>
                     <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data.site_web} name="site_web" type="text" className="form-control" placeholder="Https://" />
                     {errors.site_web && <h6 style={{color:"red"}}>{errors.site_web}</h6>}
                 </div>
-
+    <br/>
+    <br/>
     {/*   end  of the modal  body    */}
       <MasterDetailClientContacts rows={rows}/>
       <br/>
       <MasterDetailClientOpportunities rows={rows2} />
           </div>
           <div className="modal-footer">
-            <button onClick={()=>console.log(rows2)} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" className="btn btn-primary">Save changes</button>
+            { type==="edit" && <button type="submit" className="btn btn-primary">Mise à jour</button>}
           </div>
 
 

@@ -9,6 +9,7 @@ use App\Models\Client;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Validation\Rule;
 
 class ProspectController extends Controller
 {
@@ -51,18 +52,20 @@ class ProspectController extends Controller
      */
     public function create(Request $request)
     {
-/*         $request->validate([
+         $request->validate([
             'nom'=> ['required','regex:/^[a-zA-Z]+$/'],
+            'prenom'=> ['required','regex:/^[a-zA-Z]+$/'],
             'société'=> ['required','regex:/^[a-zA-Z]+$/'],
-            'fonction'=> 'required',
-            'email'=> 'required|email',
+             'fonction'=> ['required','regex:/^[a-zA-Z]/'],
+            'email'=> ['required','email','unique:prospects'],
             'téléphone'=> ['required','regex:/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/'],
-            'addresse'=> 'required',
-            'site_web'=> ['required','regex:/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/'],
+            'adresse'=> 'required',
+            'site_web'=> ['required','url'],
             'Statut'=> 'required',
             'Source'=> 'required',
        ]
-       ); */
+       ); 
+
 
         $newProspect = new Prospect();
         
@@ -80,7 +83,7 @@ class ProspectController extends Controller
         $newProspect->photo = $request->photo;
         $newProspect->save();
 
-        return redirect()->route('adcom.prospects');
+        return redirect()->back();
     }
 
     /**
@@ -125,19 +128,21 @@ class ProspectController extends Controller
      */
     public function update(Request $request,$id)
     {
-    $request->validate([
-             'nom'=> ['required','regex:/^[a-zA-Z]+$/'],
-             'société'=> ['required','regex:/^[a-zA-Z]+$/'],
-             'fonction'=> 'required',
-             'email'=> 'required|email',
-             'téléphone'=> ['required','regex:/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/'],
-             'addresse'=> 'required',
-             'site_web'=> ['required','regex:/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/'],
-             'Status'=> 'required',
-             'Source'=> 'required',
-        ]
-        );
+        $request->validate([
+            'nom'=> ['required','regex:/^[a-zA-Z]+$/'],
+            'prenom'=> ['required','regex:/^[a-zA-Z]+$/'],
+            'société'=> ['required','regex:/^[a-zA-Z]+$/'],
+             'fonction'=> ['required','regex:/^[a-zA-Z]/'],
+            'email'=> ['required','email',Rule::unique('users')->ignore($id)],
+            'téléphone'=> ['required','regex:/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/'],
+            'adresse'=> 'required',
+            'site_web'=> ['required','url'],
+            'Statut'=> 'required',
+            'Source'=> 'required',
+       ]
+       ); 
 
+       //return $request;
         $prospect = Prospect::find($id);
         
         $prospect->nom = $request->nom;
@@ -150,8 +155,11 @@ class ProspectController extends Controller
         $prospect->site_web = $request->site_web;
         $prospect->Source = $request->Source;
         $prospect->Statut = $request->Statut;
+        $prospect->logo = $request->logo;
+        $prospect->photo = $request->photo;
+
         $prospect->save();
-        return redirect()->back();
+        return redirect()->route('adcom.prospects');
 
     }
 
@@ -183,6 +191,7 @@ class ProspectController extends Controller
                 'adresse'=>$prospect->adresse, 
                 'site_web'=>$prospect->site_web, 
                 'prospect_id'=>$prospect->id,
+                'logo'=>$prospect->logo,
                 'user_id'=>1
             ]);
             $contact = Contact::create([
@@ -191,6 +200,7 @@ class ProspectController extends Controller
                 'fonction'=>$prospect->fonction, 
                 'email' => $prospect->email, 
                 'telephone'=>$prospect->téléphone, 
+                'photo'=>$prospect->photo,
                 'password'=>Hash::make('123456789'), 
                 'client_id'=> $client->id,
             ]);
@@ -200,7 +210,8 @@ class ProspectController extends Controller
                 'nom'=> $prospect->nom,
                 'prenom'=>$prospect->prenom, 
                 'fonction'=>$prospect->fonction, 
-                'email' => $prospect->email, 
+                'email' => $prospect->email,
+                'photo'=>$prospect->photo,
                 'telephone'=>$prospect->téléphone, 
                 'password'=>Hash::make('123456789'), 
                 'client_id'=> $existingClient['0']->id,
@@ -208,7 +219,7 @@ class ProspectController extends Controller
             $existingClient[0]->contact;
         }
 
-
+        $prospect->delete();
         return redirect()->back();
         //return $existingClient[0];
     }

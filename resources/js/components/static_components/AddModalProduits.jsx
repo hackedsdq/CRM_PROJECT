@@ -10,7 +10,7 @@ export default function AddModalProduits(props) {
         description: "",
         prix: "",
         quantité: "",
-        photo:""
+        photo:"https://res.cloudinary.com/dbttd3n1v/image/upload/v1671754616/default-image_150_zknf15.png"
     });
 
     const cloudinaryRef = useRef();
@@ -102,7 +102,7 @@ export default function AddModalProduits(props) {
                                     htmlFor="simpleinput"
                                     className="form-label"
                                 >
-                                    Name
+                                    Nom
                                 </label>
                                 <input
                                     onChange={(e) => handleChange(e)}
@@ -154,6 +154,7 @@ export default function AddModalProduits(props) {
                                         data-plugin="dropzone"
                                         data-previews-container="#file-previews"
                                         data-upload-preview-template="#uploadPreviewTemplate"
+                                        style={{textAlign:"center",alignItems:"center"}}
                                     >
 
 
@@ -164,6 +165,7 @@ export default function AddModalProduits(props) {
                                                 upload.
                                             </h4>
                                         </div>
+                                        <img style={{height:100,width:100}} src={data.photo}  alt="" />
                                     </div>
                                 </div>
                             </div>
@@ -172,7 +174,7 @@ export default function AddModalProduits(props) {
                                     htmlFor="simpleinput"
                                     className="form-label"
                                 >
-                                    Price
+                                    Prix
                                 </label>
                                 <input
                                     onChange={(e) => handleChange(e)}
@@ -192,7 +194,7 @@ export default function AddModalProduits(props) {
                                     htmlFor="simpleinput"
                                     className="form-label"
                                 >
-                                    Quantity
+                                    Quantité
                                 </label>
                                 <input
                                     onChange={(e) => handleChange(e)}

@@ -9,7 +9,8 @@ export default function ShowEditProduit({produits,type}) {
         nom: "",
         description: "",
         prix: "",
-        quantité: ""
+        quantité: "",
+        photo:"",
     });
 
     const handleSubmit = (e) => {
@@ -27,11 +28,13 @@ export default function ShowEditProduit({produits,type}) {
       
 
 const handleGetProduit = ()=>{
+    //console.log(produits.photo)
     //console.log(data.nom = produits.prix )
    setData((data.nom = produits.nom))
    setData((data.description = produits.description))
    setData((data.prix = produits.prix.toString()))
-   setData((data.quantité = produits.quantité.toString()))
+   setData((data.quantité = produits.quantité))
+   setData((data.photo = produits.photo))
 
   }
     const handleChange = (e) => {
@@ -55,6 +58,9 @@ return (
             <div className="modal-content">
             <div className="modal-body">
                             {/* bodyyyyy of the modal */}
+                <div style={{textAlign:"center"}}>
+                { type==="edit" && <i onClick={()=> widgetRef.current.open()} style={{position:"relative", top:-10,right:10 }} className='mdi mdi-square-edit-outline'></i>}            <img style={{backgroundColor:"black", borderRadius:40, width:80}} src={data.photo} alt='' />
+                </div>
 
                 <div className="mb-3">
                    <label htmlFor="simpleinput"className="form-label" > Name </label>
@@ -65,24 +71,6 @@ return (
                      <label htmlFor="example-textarea" className="form-label">  Description </label>
                      <textarea disabled={type==="edit" ? false : true } onChange={(e) => handleChange(e)} value={data.description} name="description" className="form-control" id="example-textarea" rows={5} defaultValue={""} placeholder="Adress..."/>
                      {errors.description && ( <h6 style={{ color: "red" }}> {errors.description} </h6>)}
-                </div>
-               <div class="col-xl-6">
-                    <div class="mb-3 mt-3 mt-xl-0">
-                      <label for="projectname" class="mb-0"> Photo </label>
-                      <p class="text-muted font-14"> Recommended thumbnail size 800x400 (px).</p>
-
-                      <div class="dropzone" data-plugin="dropzone" data-previews-container="#file-previews" data-upload-preview-template="#uploadPreviewTemplate">
-                            <div> 
-                                <input name="file" type="file" />
-                             </div>
-
-                            <div class="dz-message needsclick">
-                                <i class="h3 text-muted dripicons-cloud-upload"></i>
-                                    <h4> Drop files here or click toupload.
-                                    </h4>
-                             </div>
-                         </div>
-                      </div>
                 </div>
                 <div className="mb-3">
                      <label htmlFor="simpleinput"  className="form-label" >Price </label>
@@ -98,9 +86,7 @@ return (
                 </div>
                     <div className="modal-footer">
                       <InertiaLink href="/adcom/produits"> <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" >Close </button></InertiaLink>
-                       <button disabled={type==="edit" ? false : true }  type="submit" className="btn btn-primary">
-                                Save changes
-                        </button>
+                       { type==="edit" && <button type="submit" className="btn btn-primary">Mise à jour</button>}
                         </div>
                     </div>
                     {/* /.modal-content */}

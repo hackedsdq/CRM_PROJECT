@@ -242,7 +242,7 @@ return (
       {/*   bodyyyyy of the modal    */}
 
                   <div className="mb-3">
-                      <label htmlFor="simpleinput" className="form-label">First Name</label>
+                      <label htmlFor="simpleinput" className="form-label">Nom d'opportunité</label>
                       <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data?.nom} name="nom"  type="text" className="form-control" />
                       {errors.nom && <h6 style={{color:"red"}}>{errors.nom}</h6>}
                   </div>
@@ -261,11 +261,11 @@ return (
                         <option value="four">Cloturé/Perdue</option>
                       </select>
                   </div>
-
+                  { type==="edit" &&
                   <div className="mb-3">                
                   <div style={{display:"flex", alignItems:"center",justifyContent:"space-between"}}>  
                   <div style={{marginTop:0,}}>
-                  <label htmlFor="simpleinput" className="form-label">produits</label>
+                  <label htmlFor="simpleinput" className="form-label">Produits</label>
                       <Autocomplete
                       id="combo-box-demo"
                       options={filtredProducts}
@@ -277,8 +277,8 @@ return (
                   </div>
 
 
-                  <div className="mb-3">
-                      <label htmlFor="simpleinput" className="form-label">quantité</label>
+                   <div className="mb-3">
+                      <label htmlFor="simpleinput" className="form-label">Quantité</label>
                       <input style={{height:57}} disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data?.quantité} name="quantité" type="text" className="form-control" />
                       {errors.quantité && <h6 style={{color:"red"}}>{errors.quantité}</h6>}
                   </div>
@@ -289,17 +289,15 @@ return (
 
                   </div>
 
-                      {/*errors.client_id && <h6 style={{color:"red"}}>{errors.client_id}</h6>*/}
-                  </div>
-
+                  </div> 
+                }
 
                   <MasterDetailOpportunityProducts rows={rows}/>
       {/*   end  of the modal  body    */}
 
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" className="btn btn-primary">Save changes</button>
+              { type==="edit" && <button type="submit" className="btn btn-primary">Mise à jour</button>}
           <button  type="button" className="btn btn-primary" disabled={opportunity?.étape==="three" ? false : true } onClick={async () => {
           //let props = await getProp();
           

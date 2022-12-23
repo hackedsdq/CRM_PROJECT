@@ -56,23 +56,7 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nom'=>['required','regex:/^[a-zA-Z]+$/'],
-            'prenom'=>['required','regex:/^[a-zA-Z]+$/'],
-            'email'=>'required|email',
-            'password'=>'required',
-            'fonction'=>'required',
-            'telephone'=>['required','regex:/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/'
-        ]]);
-        try{return response()->json([
-            'message'=>'contact Created Successfully!!'
-        ]);
-    }catch(\Exception $e){
-        \Log::error($e->getMessage());
-        return response()->json([
-            'message'=>'Something goes wrong while creating a contact!!'
-        ],500);
-    }
+    
     }
     
 
@@ -123,7 +107,11 @@ class ContactController extends Controller
         $contact->fonction = $request->fonction;
         $contact->email = $request->email;
         $contact->telephone =  $request->telephone;
+        $contact->photo =  $request->photo;
+
         $contact->save();
+
+        return redirect()->route('adcom.contacts');
     }
         
     
@@ -136,6 +124,8 @@ class ContactController extends Controller
      */
     public function delete($id)
     {
+        $ids = explode(",",$id);
+
         $request=Contact::find($id);
         $request->delete();
         

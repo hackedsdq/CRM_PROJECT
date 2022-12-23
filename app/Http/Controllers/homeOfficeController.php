@@ -12,4 +12,16 @@ class homeOfficeController extends Controller
     {
     return Inertia::render('homeOffice');
     }
+    public function index1()
+    {
+    return Inertia::render('Products');
+    }
+    public function index2()
+    {
+    return Inertia::render('PrivacyPolicy');
+    }
+    public function index3()
+    {
+    return Inertia::render('ContactUs');
+    }
 }

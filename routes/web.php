@@ -113,3 +113,7 @@ Route::post('calendar/add',[\App\Http\Controllers\CalendarController::class, 'ad
 Route::post('calendar/edit',[\App\Http\Controllers\CalendarController::class, 'edit']);
 Route::post('calendar',[\App\Http\Controllers\CalendarController::class, 'searchContacts']);
 //Route::delete('calendar',[\App\Http\Controllers\CalendarController::class, 'destroy']);
+Route::get('homeOffice/',[\App\Http\Controllers\homeOfficeController::class, 'index']);
+Route::get('Products/',[\App\Http\Controllers\homeOfficeController::class, 'index1']);
+Route::get('PrivacyPolicy/',[\App\Http\Controllers\homeOfficeController::class, 'index2']);
+Route::get('ContactUs/',[\App\Http\Controllers\homeOfficeController::class, 'index3']);

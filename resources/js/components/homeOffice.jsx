@@ -1,31 +1,45 @@
+import React from 'react';
+import { InertiaLink } from '@inertiajs/inertia-react'
+import '../../css/style.css'
+
+import '../../css/bootstrap.css'
+import '../../css/font-awesome.min.css'
+import '../../css/ion.rangeSlider.min.css'
+import '../../css/ion.rangeSlider.min.css'
+import '../../css/responsive.css'
+import '../../css/style.scss'
+import '../../../public/assets/fonts/fontawesome-webfont.ttf'
+import '../../../public/assets/fonts/fontawesome-webfont.woff'
+import '../../../public/assets/fonts/fontawesome-webfont.woff2'
+import p4 from'../../../public/assets/images/products/p4.png';import p3 from'../../../public/assets/images/products/p3.png';import p2 from'../../../public/assets/images/products/p2.png';import p1 from'../../../public/assets/images/products/p1.png';import p5 from'../../../public/assets/images/products/p5.png';import p6 from'../../../public/assets/images/products/p6.png';import p7 from'../../../public/assets/images/products/p7.png';import p8 from'../../../public/assets/images/products/p8.png';import p9 from'../../../public/assets/images/products/p9.png';import w1 from'../../../public/assets/images/products/w1.png';import w2 from'../../../public/assets/images/products/w2.png';import w3 from'../../../public/assets/images/products/w3.png';import slider from'../../../public/assets/images/products/slider.png';import banner1 from '../../../public/assets/images/products/banner1.jpg';import bigmatic from '../../../public/assets/images/products/bigmatic.jpg';import fevicon from '../../../public/assets/images/products/fevicon.png';import licb2 from'../../../public/assets/images/products/licb2.png'
 
 
 export default function homeOffice({}){
 
 return(
 
-<html>
-
+<div>
 <head>
-  
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
- 
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   
-  <link rel="icon" href="images/fevicon.png" type="image/gif" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+ 
+  <link rel="icon" href={fevicon} type="image/gif" />
   <meta name="keywords" content="" />
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>Minics</title>
+  <title>Hyper</title>
+  <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
 
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet"/> 
 
-  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet"/>
-
- 
+  
   <link href="css/font-awesome.min.css" rel="stylesheet" />
+
 
   <link href="css/style.css" rel="stylesheet" />
  
@@ -33,8 +47,9 @@ return(
 
 </head>
 
-<body>
 
+
+<link href="css/responsive.css" rel="stylesheet" />
   <div class="hero_area">
     
     <header class="header_section">
@@ -45,13 +60,13 @@ return(
               <a href="">
                 <i class="fa fa-phone" aria-hidden="true"></i>
                 <span>
-                  Call : +01 123455678990
+                  Call : +213 5560616263
                 </span>
               </a>
               <a href="">
                 <i class="fa fa-envelope" aria-hidden="true"></i>
                 <span>
-                  Email : demo@gmail.com
+                  Email Society.@gmail.com
                 </span>
               </a>
             </div>
@@ -64,16 +79,12 @@ return(
             <div class="user_option_box">
               <a href="" class="account-link">
                 <i class="fa fa-user" aria-hidden="true"></i>
-                <span>
+                <InertiaLink href={`/login`}>
+             <span>
                   My Account
-                </span>
+                </span></InertiaLink>
               </a>
-              <a href="" class="cart-link">
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                <span>
-                  Cart
-                </span>
-              </a>
+             
             </div>
           </div>
 
@@ -83,9 +94,7 @@ return(
         <div class="container-fluid">
           <nav class="navbar navbar-expand-lg custom_nav-container ">
             <a class="navbar-brand" href="index.html">
-              <span>
-                Minics
-              </span>
+              <img src="../../../assets/images/logo.png" alt=""/>
             </a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -95,13 +104,26 @@ return(
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ">
                 <li class="nav-item active">
-                  <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                
+                <InertiaLink href={`/homeOffice`}>
+                    <a class="nav-link">
+                      Home
+                    </a><span class="sr-only">(current)</span></InertiaLink> 
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="about.html"> About</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="product.html">Products</a>
+                <InertiaLink href={`/Products`}>
+                    <a class="nav-link">
+                      Products
+                    </a></InertiaLink>
+                </li>
+                <li class="nav-item">
+                <InertiaLink href={`/ContactUs`}>
+                    <a class="nav-link">
+                     Contact Us
+                    </a></InertiaLink>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="why.html">Why Us</a>
@@ -125,10 +147,13 @@ return(
                 <div class="col-md-6">
                   <div class="detail-box">
                     <h1>
-                      Welcome to our shop
+                      Welcome to our society
                     </h1>
+                    <h2>
+                    verified Suppliers and best quality Products
+                    </h2>
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quam velit saepe dolorem deserunt quo quidem ad optio.
+                    Our society works straightforwardly! Whether you are looking for the right supplier for your project or the right project to increase your production agenda,our society is the right place to connect with potential clients!
                     </p>
                     <a href="">
                       Read More
@@ -137,7 +162,7 @@ return(
                 </div>
                 <div class="col-md-6">
                   <div class="img-box">
-                    <img src="images/slider-img.png" alt=""/>
+                    <img src={slider} alt=""/>
                   </div>
                 </div>
               </div>
@@ -149,11 +174,11 @@ return(
                 <div class="col-md-6">
                   <div class="detail-box">
                     <h1>
-                      Welcome to our shop
+                    Featured Products For Worlds Continents
                     </h1>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quam velit saepe dolorem deserunt quo quidem ad optio.
-                    </p>
+                    <h2>
+                    matched supplier , Targeted trade opportunities 
+                    </h2>
                     <a href="">
                       Read More
                     </a>
@@ -221,12 +246,13 @@ return(
         <div class="col-sm-6 col-lg-4">
           <div class="box">
             <div class="img-box">
-              <img src="images/p1.png" alt=""/>
-              <a href="" class="add_cart_btn">
+              <img src={p1} alt=""/>
+              <InertiaLink href={`/Products`}>
+              <a class="add_cart_btn">
                 <span>
-                  Add To Cart
+                Show Product
                 </span>
-              </a>
+              </a></InertiaLink>
             </div>
             <div class="detail-box">
               <h5>
@@ -234,15 +260,9 @@ return(
               </h5>
               <div class="product_info">
                 <h5>
-                  <span>$</span> 300
+             
                 </h5>
-                <div class="star_container">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </div>
+               
               </div>
             </div>
           </div>
@@ -250,12 +270,13 @@ return(
         <div class="col-sm-6 col-lg-4">
           <div class="box">
             <div class="img-box">
-              <img src="images/p2.png" alt=""/>
-              <a href="" class="add_cart_btn">
+              <img src={p2} alt=""/>
+              <InertiaLink href={`/Products`}>
+              <a class="add_cart_btn">
                 <span>
-                  Add To Cart
+                Show Product
                 </span>
-              </a>
+              </a></InertiaLink>
             </div>
             <div class="detail-box">
               <h5>
@@ -263,15 +284,9 @@ return(
               </h5>
               <div class="product_info">
                 <h5>
-                  <span>$</span> 300
+                 
                 </h5>
-                <div class="star_container">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </div>
+                
               </div>
             </div>
           </div>
@@ -279,12 +294,13 @@ return(
         <div class="col-sm-6 col-lg-4">
           <div class="box">
             <div class="img-box">
-              <img src="images/p3.png" alt=""/>
-              <a href="" class="add_cart_btn">
+              <img src={p3} alt=""/>
+              <InertiaLink href={`/Products`}>
+              <a class="add_cart_btn">
                 <span>
-                  Add To Cart
+                Show Product
                 </span>
-              </a>
+              </a></InertiaLink>
             </div>
             <div class="detail-box">
               <h5>
@@ -292,15 +308,9 @@ return(
               </h5>
               <div class="product_info">
                 <h5>
-                  <span>$</span> 300
+             
                 </h5>
-                <div class="star_container">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </div>
+               
               </div>
             </div>
           </div>
@@ -308,12 +318,13 @@ return(
         <div class="col-sm-6 col-lg-4">
           <div class="box">
             <div class="img-box">
-              <img src="images/p4.png" alt=""/>
-              <a href="" class="add_cart_btn">
+              <img src={p4} alt=""/>
+              <InertiaLink href={`/Products`}>
+              <a class="add_cart_btn">
                 <span>
-                  Add To Cart
+                Show Product
                 </span>
-              </a>
+              </a></InertiaLink>
             </div>
             <div class="detail-box">
               <h5>
@@ -321,15 +332,9 @@ return(
               </h5>
               <div class="product_info">
                 <h5>
-                  <span>$</span> 300
+                
                 </h5>
-                <div class="star_container">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </div>
+             
               </div>
             </div>
           </div>
@@ -337,12 +342,13 @@ return(
         <div class="col-sm-6 col-lg-4">
           <div class="box">
             <div class="img-box">
-              <img src="images/p5.png" alt=""/>
-              <a href="" class="add_cart_btn">
+              <img src={p5} alt=""/>
+              <InertiaLink href={`/Products`}>
+              <a class="add_cart_btn">
                 <span>
-                  Add To Cart
+                Show Product
                 </span>
-              </a>
+              </a></InertiaLink>
             </div>
             <div class="detail-box">
               <h5>
@@ -350,15 +356,9 @@ return(
               </h5>
               <div class="product_info">
                 <h5>
-                  <span>$</span> 300
+                
                 </h5>
-                <div class="star_container">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </div>
+              
               </div>
             </div>
           </div>
@@ -366,12 +366,13 @@ return(
         <div class="col-sm-6 col-lg-4">
           <div class="box">
             <div class="img-box">
-              <img src="images/p6.png" alt=""/>
-              <a href="" class="add_cart_btn">
+              <img src={p6} alt=""/>
+              <InertiaLink href={`/Products`}>
+              <a class="add_cart_btn">
                 <span>
-                  Add To Cart
+                Show Product
                 </span>
-              </a>
+              </a></InertiaLink>
             </div>
             <div class="detail-box">
               <h5>
@@ -379,15 +380,9 @@ return(
               </h5>
               <div class="product_info">
                 <h5>
-                  <span>$</span> 300
+                
                 </h5>
-                <div class="star_container">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </div>
+             
               </div>
             </div>
           </div>
@@ -395,12 +390,13 @@ return(
         <div class="col-sm-6 col-lg-4">
           <div class="box">
             <div class="img-box">
-              <img src="images/p7.png" alt=""/>
-              <a href="" class="add_cart_btn">
+              <img src={p7} alt=""/>
+              <InertiaLink href={`/Products`}>
+              <a class="add_cart_btn">
                 <span>
-                  Add To Cart
+                Show Product
                 </span>
-              </a>
+              </a></InertiaLink>
             </div>
             <div class="detail-box">
               <h5>
@@ -408,15 +404,9 @@ return(
               </h5>
               <div class="product_info">
                 <h5>
-                  <span>$</span> 300
+                 
                 </h5>
-                <div class="star_container">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </div>
+               
               </div>
             </div>
           </div>
@@ -424,12 +414,13 @@ return(
         <div class="col-sm-6 col-lg-4">
           <div class="box">
             <div class="img-box">
-              <img src="images/p8.png" alt=""/>
-              <a href="" class="add_cart_btn">
+              <img src={p8} alt=""/>
+              <InertiaLink href={`/Products`}>
+              <a class="add_cart_btn">
                 <span>
-                  Add To Cart
+                Show Product
                 </span>
-              </a>
+              </a></InertiaLink>
             </div>
             <div class="detail-box">
               <h5>
@@ -437,15 +428,9 @@ return(
               </h5>
               <div class="product_info">
                 <h5>
-                  <span>$</span> 300
+              
                 </h5>
-                <div class="star_container">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </div>
+                
               </div>
             </div>
           </div>
@@ -453,12 +438,13 @@ return(
         <div class="col-sm-6 col-lg-4">
           <div class="box">
             <div class="img-box">
-              <img src="images/p9.png" alt="/"/>
-              <a href="" class="add_cart_btn">
+              <img src={p9} alt="/"/>
+              <InertiaLink href={`/Products`}>
+              <a class="add_cart_btn">
                 <span>
-                  Add To Cart
+                Show Product
                 </span>
-              </a>
+              </a></InertiaLink>
             </div>
             <div class="detail-box">
               <h5>
@@ -466,15 +452,9 @@ return(
               </h5>
               <div class="product_info">
                 <h5>
-                  <span>$</span> 300
+     
                 </h5>
-                <div class="star_container">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </div>
+               
               </div>
             </div>
           </div>
@@ -500,8 +480,8 @@ return(
               </h2>
             </div>
             <p>
-              Totam architecto rem beatae veniam, cum officiis adipisci soluta perspiciatis ipsa, expedita maiores quae accusantium. Animi veniam aperiam, necessitatibus mollitia ipsum id optio ipsa odio ab facilis sit labore officia!
-              Repellat expedita, deserunt eum soluta rem culpa. Aut, necessitatibus cumque. Voluptas consequuntur vitae aperiam animi sint earum, ex unde cupiditate, molestias dolore quos quas possimus eveniet facilis magnam? Vero, dicta.
+            We are proud of the things our customers are saying about us, and we’d like to share some of their comments with you. Here is a collection of quotes taken directly from our customers in response to this question:
+            We appreciate all of the feedback our customers have given us over the years. Thank you for allowing us to become your trusted precision gear manufacturing partner. We will continue to provide the quality and service we’ve become known for and will continue to look for new ways to exceed your expectations.
             </p>
             <a href="">
               Read More
@@ -510,7 +490,7 @@ return(
         </div>
         <div class="col-md-6 px-0">
           <div class="img-box">
-            <img src="images/about-img.jpg" alt=""/>
+            <img src={banner1} alt=""/>
           </div>
         </div>
       </div>
@@ -530,7 +510,7 @@ return(
         <div class="col-md-4">
           <div class="box ">
             <div class="img-box">
-              <img src="images/w1.png" alt=""/>
+              <img src={w1} alt=""/>
             </div>
             <div class="detail-box">
               <h5>
@@ -545,7 +525,7 @@ return(
         <div class="col-md-4">
           <div class="box ">
             <div class="img-box">
-              <img src="images/w2.png" alt=""/>
+              <img src={w2} alt=""/>
             </div>
             <div class="detail-box">
               <h5>
@@ -560,7 +540,7 @@ return(
         <div class="col-md-4">
           <div class="box ">
             <div class="img-box">
-              <img src="images/w3.png" alt=""/>
+              <img src={w3} alt=""/>
             </div>
             <div class="detail-box">
               <h5>
@@ -597,27 +577,40 @@ return(
                     <i class="fa fa-quote-left" aria-hidden="true"></i>
                   </p>
                   <p>
-                    It is a long established fact that a reader will be distracted by the readable content of a page
-                    when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
-                    distribution of letters, as opposed to using 'Content here, content here', making it lookIt is a
-                    long established fact that a reader will be distracted by the readable content of a page when
-                    looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
-                    distribution of letters, as opposed to using 'Content here, content here', making it look
+                  At Gear Motions, customer satisfaction is very important to us. 
+                  That’s why we like to regularly check in with our customers and ask them how we’re doing.
+                   When our customers provide us with feedback, we can learn about which areas we are excelling in and do our best to keep delivering favorably in those areas. We can also learn about areas where our customers feel we could use improvement, and work to find new ways to enhance their customer experience.
+                   As a means of collecting feedback, we generally ask our customers to complete a customer satisfaction survey about once a year. 
+                   Below are some of the results from this year’s survey that we think you may be interested in.
                   </p>
                 </div>
                 <div class="client-id">
                   <div class="img-box">
-                    <img src="images/client.jpg" alt=""/>
+                    <img src={bigmatic} alt=""/>
+                    
                   </div>
                   <div class="name">
                     <h5>
-                      James Dew
+                      bigMatic collaboration
                     </h5>
-                    <h6>
-                      Photographer
-                    </h6>
+                   
+                  </div>
+                  <div class="img-box">
+                    <img src={licb2} alt=""/>
+                    
+                  </div>
+                  <div class="name">
+                    <h5>
+                     LICB+ collaboration
+                    </h5>
+                   
                   </div>
                 </div>
+              
+                
+                
+            
+                 
               </div>
             </div>
           </div>
@@ -639,11 +632,11 @@ return(
                 </div>
                 <div class="client-id">
                   <div class="img-box">
-                    <img src="images/client.jpg" alt=""/>
+                    <img src={bigmatic} alt=""/>
                   </div>
                   <div class="name">
                     <h5>
-                      James Dew
+                     BigMatic collaboration
                     </h5>
                     <h6>
                       Photographer
@@ -711,22 +704,20 @@ return(
           <div class="info_contact">
             <h5>
               <a href="" class="navbar-brand">
-                <span>
-                  Minics
-                </span>
+              <img src="../../../assets/images/logo.png" alt=""/>
               </a>
             </h5>
             <p>
               <i class="fa fa-map-marker" aria-hidden="true"></i>
-              Address
+              Address:Tlemcen 13000 Algeria
             </p>
             <p>
               <i class="fa fa-phone" aria-hidden="true"></i>
-              +01 1234567890
+              +213 5560616263
             </p>
             <p>
               <i class="fa fa-envelope" aria-hidden="true"></i>
-              demo@gmail.com
+              HyperSociety@gmail.com
             </p>
           </div>
         </div>
@@ -735,8 +726,15 @@ return(
             <h5>
               Information
             </h5>
+            <InertiaLink href={`/PrivacyPolicy`}>
+                    <a>
+                    Privacy Policy
+                    </a></InertiaLink> <br/>
+              <a href=''>Terms and conditions</a>
             <p>
-              Eligendi sunt, provident, debitis nemo, facilis cupiditate velit libero dolorum aperiam enim nulla iste maxime corrupti ad illo libero minus.
+          
+            Contact us<br/>
+            Contact
             </p>
           </div>
         </div>
@@ -747,9 +745,10 @@ return(
             </h5>
             <ul>
               <li>
-                <a href="index.html">
-                  Home
-                </a>
+              <InertiaLink href={`/homeOffice`}>
+                    <a class="nav-link">
+                      Home
+                    </a><span class="sr-only">(current)</span></InertiaLink> 
               </li>
               <li>
                 <a href="about.html">
@@ -757,9 +756,10 @@ return(
                 </a>
               </li>
               <li>
-                <a href="product.html">
-                  Products
-                </a>
+              <InertiaLink href={`/Products`}>
+                    <a class="nav-link">
+                      Products
+                    </a></InertiaLink>
               </li>
               <li>
                 <a href="why.html">
@@ -779,6 +779,7 @@ return(
             <h5>
               Newsletter
             </h5>
+            <p>Be the first to know. Sign up for the newsletter today!</p>
             <form action="">
               <input type="email" placeholder="Enter your email"/>
               <button>
@@ -815,16 +816,8 @@ return(
     </div>
   </footer>
 
-  <script src="js/jquery-3.4.1.min.js"></script>
-  
-  <script src="js/bootstrap.js"></script>
- 
-  <script src="js/custom.js"></script>
+  </div>
 
-
-</body>
-
-</html>
 )
 
 

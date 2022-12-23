@@ -24,4 +24,8 @@ class homeOfficeController extends Controller
     {
     return Inertia::render('ContactUs');
     }
+    public function index4()
+    {
+    return Inertia::render('ProductDetails');
+    }
 }

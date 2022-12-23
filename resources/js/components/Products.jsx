@@ -15,7 +15,12 @@ import p6 from'../../../public/assets/images/products/p6.png'
 import p7 from'../../../public/assets/images/products/p7.png'
 import p8 from'../../../public/assets/images/products/p8.png'
 import p9 from'../../../public/assets/images/products/p9.png'
-
+import banner1 from '../../../public/assets/images/products/banner1.jpg'
+import banner2 from '../../../public/assets/images/products/banner2.jpg'
+import DigitalCamera from '../../../public/assets/images/products/DigitalCamera.jpg'
+import ConvallisSquamSit from '../../../public/assets/images/products/ConvallisSquamSit.jpg'
+import AliquamLobortis from '../../../public/assets/images/products/AliquamLobortis.jpg'
+import SitVol from '../../../public/assets/images/products/SitVol.jpg'
 export default function Products({}){
   return(
 
@@ -158,6 +163,152 @@ export default function Products({}){
               <div class="box">
                 <div class="img-box">
                   <img src={p1} alt=""/>
+                  <InertiaLink href={`/ProductDetails`}>
+                  <a href="" class="add_cart_btn">
+                    <span>
+                      Show Product
+                    </span>
+                  </a></InertiaLink>
+                </div>
+                <div class="detail-box">
+                  <h5>
+                    Product Name
+                  </h5>
+                  <div class="product_info">
+                    <h5>
+                      <span>Dn</span> 300
+                    </h5>
+                    <div class="star_container">
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+              <div class="box">
+                <div class="img-box">
+                  <img src={banner2} alt=""/>
+                  <a href="" class="add_cart_btn">
+                    <span>
+                      Show Product
+                    </span>
+                  </a>
+                </div>
+                <div class="detail-box">
+                  <h5>
+                    Product Name
+                  </h5>
+                  <div class="product_info">
+                    <h5>
+                      <span>Dn</span> 300
+                    </h5>
+                    <div class="star_container">
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+              <div class="box">
+                <div class="img-box">
+                  <img src={SitVol} alt=""/>
+                  <a href="" class="add_cart_btn">
+                    <span>
+                      Show Product
+                    </span>
+                  </a>
+                </div>
+                <div class="detail-box">
+                  <h5>
+                    Product Name
+                  </h5>
+                  <div class="product_info">
+                    <h5>
+                      <span>Dn</span> 300
+                    </h5>
+                    <div class="star_container">
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+              <div class="box">
+                <div class="img-box">
+                  <img src={AliquamLobortis} alt=""/>
+                  <a href="" class="add_cart_btn">
+                    <span>
+                      Show Product
+                    </span>
+                  </a>
+                </div>
+                <div class="detail-box">
+                  <h5>
+                    Product Name
+                  </h5>
+                  <div class="product_info">
+                    <h5>
+                      <span>Dn</span> 300
+                    </h5>
+                    <div class="star_container">
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+              <div class="box">
+                <div class="img-box">
+                  <img src={ConvallisSquamSit} alt=""/>
+                  <a href="" class="add_cart_btn">
+                    <span>
+                      Show Product
+                    </span>
+                  </a>
+                </div>
+                <div class="detail-box">
+                  <h5>
+                    Product Name
+                  </h5>
+                  <div class="product_info">
+                    <h5>
+                      <span>Dn</span> 300
+                    </h5>
+                    <div class="star_container">
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+              <div class="box">
+                <div class="img-box">
+                  <img src={DigitalCamera} alt=""/>
                   <a href="" class="add_cart_btn">
                     <span>
                       Show Product
@@ -187,6 +338,35 @@ export default function Products({}){
               <div class="box">
                 <div class="img-box">
                   <img src={p2} alt=""/>
+                  <a href="" class="add_cart_btn">
+                    <span>
+                      Show Product
+                    </span>
+                  </a>
+                </div>
+                <div class="detail-box">
+                  <h5>
+                    Product Name
+                  </h5>
+                  <div class="product_info">
+                    <h5>
+                      <span>Dn</span> 300
+                    </h5>
+                    <div class="star_container">
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+              <div class="box">
+                <div class="img-box">
+                  <img src={banner1} alt=""/>
                   <a href="" class="add_cart_btn">
                     <span>
                       Show Product
@@ -426,118 +606,130 @@ export default function Products({}){
     
      
       <section class="info_section ">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-3">
-              <div class="info_contact">
-                <h5>
-                  <a href="" class="navbar-brand">
-                  
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="info_contact">
+            <h5>
+              <a href="" class="navbar-brand">
               <img src="../../../assets/images/logo.png" alt=""/>
-            </a>
-                  
-                </h5>
-                <p>
-                  <i class="fa fa-map-marker" aria-hidden="true"></i>
-                  Address
-                </p>
-                <p>
-                  <i class="fa fa-phone" aria-hidden="true"></i>
-                  +01 1234567890
-                </p>
-                <p>
-                  <i class="fa fa-envelope" aria-hidden="true"></i>
-                  demo@gmail.com
-                </p>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="info_info">
-                <h5>
-                  Information
-                </h5>
-                <p>
-                  Eligendi sunt, provident, debitis nemo, facilis cupiditate velit libero dolorum aperiam enim nulla iste maxime corrupti ad illo libero minus.
-                </p>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="info_links">
-                <h5>
-                  Useful Link
-                </h5>
-                <ul>
-                  <li>
-                  <InertiaLink href={`/homeOffice`}>
-                    <a class="nav-link">
-                    Home
-                      <span class="sr-only">(current)</span>
-                    </a></InertiaLink> 
-                  </li>
-                  <li>
-                    <a href="about.html">
-                      About
-                    </a>
-                  </li>
-                  <li>
-                    <InertiaLink href={`/Products`}>
+              </a>
+            </h5>
+            <p>
+              <i class="fa fa-map-marker" aria-hidden="true"></i>
+              Address:Tlemcen 13000 Algeria
+            </p>
+            <p>
+              <i class="fa fa-phone" aria-hidden="true"></i>
+              +213 5560616263
+            </p>
+            <p>
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+              HyperSociety@gmail.com
+            </p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="info_info">
+            <h5>
+              Information
+            </h5>
+            <InertiaLink href={`/PrivacyPolicy`}>
                     <a>
+                    Privacy Policy
+                    </a></InertiaLink> <br/>
+              <a href=''>Terms and conditions</a>
+            <br/>
+            <InertiaLink href={`/ContactUs`}>
+                    <a class="nav-link">
+                     Contact Us
+                    </a></InertiaLink>
+            
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="info_links">
+            <h5>
+              Useful Link
+            </h5>
+            <ul>
+              <li>
+              <InertiaLink href={`/homeOffice`}>
+                    <a class="nav-link">
+                      Home
+                    </a><span class="sr-only"></span></InertiaLink> 
+              </li>
+              <li>
+                <a href="about.html">
+                  About
+                </a>
+              </li>
+              <li>
+              <InertiaLink href={`/Products`}>
+                    <a class="nav-link">
                       Products
                     </a></InertiaLink>
-                  </li>
-                  <li>
-                    <a href="why.html">
-                      Why Us
-                    </a>
-                  </li>
-                  <li>
-                    <a href="testimonial.html">
-                      Testimonial
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="info_form ">
-                <h5>
-                  Newsletter
-                </h5>
-                <form action="">
-                  <input type="email" placeholder="Enter your email"/>
-                  <button>
-                    Subscribe
-                  </button>
-                </form>
-                <div class="social_box">
-                  <a href="">
-                    <i class="fa fa-facebook" aria-hidden="true"></i>
-                  </a>
-                  <a href="">
-                    <i class="fa fa-twitter" aria-hidden="true"></i>
-                  </a>
-                  <a href="">
-                    <i class="fa fa-instagram" aria-hidden="true"></i>
-                  </a>
-                  <a href="">
-                    <i class="fa fa-youtube" aria-hidden="true"></i>
-                  </a>
-                </div>
-              </div>
+              </li>
+              <li>
+                <a href="why.html">
+                  Why Us
+                </a>
+              </li>
+              <li>
+              <InertiaLink href={`/ContactUs`}>
+                    <a class="nav-link">
+                      Contact Us
+                    </a><span class="sr-only"></span></InertiaLink> 
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="info_form ">
+            <h5>
+              Newsletter
+            </h5>
+            <p>Be the first to know. Sign up for the newsletter today!</p>
+            <form action="">
+              <input type="email" placeholder="Enter your email"/>
+              <button>
+                Subscribe
+              </button>
+            </form>
+            <div class="social_box">
+              <a href="">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-youtube" aria-hidden="true"></i>
+              </a>
             </div>
           </div>
         </div>
-      </section>
-    
-     
-      <footer class="footer_section">
-        <div class="container">
-          <p>
-            &copy; <span id="displayYear"></span> All Rights Reserved By
-            <a href="https://html.design/">Free Html Templates</a>
-          </p>
-        </div>
-      </footer>
+      </div>
+    </div>
+  </section>
+
+
+  <footer class="footer_section">
+    <div class="container">
+      <p>
+        &copy; <span id="displayYear"></span> All Rights Reserved By
+        
+        <InertiaLink href={`/homeOffice`}>
+                    <a class="nav-link">
+                    HyperSociety
+                    </a></InertiaLink>
+      </p>
+    </div>
+  </footer>
+
       
       <script src="js/jquery-3.4.1.min.js"></script>
       

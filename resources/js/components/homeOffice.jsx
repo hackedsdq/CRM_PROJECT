@@ -66,7 +66,7 @@ return(
               <a href="">
                 <i class="fa fa-envelope" aria-hidden="true"></i>
                 <span>
-                  Email Society.@gmail.com
+                  Email HyperSociety.@gmail.com
                 </span>
               </a>
             </div>
@@ -731,11 +731,12 @@ return(
                     Privacy Policy
                     </a></InertiaLink> <br/>
               <a href=''>Terms and conditions</a>
-            <p>
-          
-            Contact us<br/>
-            Contact
-            </p>
+            <br/>
+            <InertiaLink href={`/ContactUs`}>
+                    <a class="nav-link">
+                     Contact Us
+                    </a></InertiaLink>
+            
           </div>
         </div>
         <div class="col-md-3">
@@ -748,7 +749,7 @@ return(
               <InertiaLink href={`/homeOffice`}>
                     <a class="nav-link">
                       Home
-                    </a><span class="sr-only">(current)</span></InertiaLink> 
+                    </a><span class="sr-only"></span></InertiaLink> 
               </li>
               <li>
                 <a href="about.html">
@@ -767,9 +768,10 @@ return(
                 </a>
               </li>
               <li>
-                <a href="testimonial.html">
-                  Testimonial
-                </a>
+              <InertiaLink href={`/ContactUs`}>
+                    <a class="nav-link">
+                      Contact Us
+                    </a><span class="sr-only"></span></InertiaLink> 
               </li>
             </ul>
           </div>
@@ -811,7 +813,11 @@ return(
     <div class="container">
       <p>
         &copy; <span id="displayYear"></span> All Rights Reserved By
-        <a href="https://html.design/">Free Html Templates</a>
+        
+        <InertiaLink href={`/homeOffice`}>
+                    <a class="nav-link">
+                    HyperSociety
+                    </a></InertiaLink>
       </p>
     </div>
   </footer>

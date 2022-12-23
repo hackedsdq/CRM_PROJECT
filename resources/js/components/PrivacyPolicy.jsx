@@ -5,8 +5,6 @@ import '../../css/bootstrap.css'
 import '../../css/font-awesome.min.css'
 import '../../../public/assets/fonts/fontawesome-webfont.ttf'
 import '../../../public/assets/fonts/fontawesome-webfont.woff'
-import slider from'../../../public/assets/images/products/slider.png'
-import { Inertia } from '@inertiajs/inertia';
 export default function PrivacyPolicy({}){
     return(
         <div>      

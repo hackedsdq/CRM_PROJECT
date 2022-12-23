@@ -120,12 +120,11 @@ export default function ContactUs({}){
     <div class="ccfield-prepend">
         <input class="ccbtn" type="submit" value="Submit"/>
     </div>
-    </form>
+    </form><br/>
 </div>
 
-<div class="credit">
-  <p>For More Details Check out article: <a href="https://codeconvey.com/creating-simple-html5-contact-form/">How to Create Simple HTML5 Contact Form</a></p>
-</div>
+
+
 </div>
 )
 }

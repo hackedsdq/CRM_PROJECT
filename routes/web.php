@@ -117,3 +117,4 @@ Route::get('homeOffice/',[\App\Http\Controllers\homeOfficeController::class, 'in
 Route::get('Products/',[\App\Http\Controllers\homeOfficeController::class, 'index1']);
 Route::get('PrivacyPolicy/',[\App\Http\Controllers\homeOfficeController::class, 'index2']);
 Route::get('ContactUs/',[\App\Http\Controllers\homeOfficeController::class, 'index3']);
+Route::get('ProductDetails/',[\App\Http\Controllers\homeOfficeController::class, 'index4']);

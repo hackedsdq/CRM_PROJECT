@@ -88,7 +88,7 @@ class CalendarController extends Controller
      */
     public function edit(Request $request)
     {  
-        
+      
         $contact = Contact::find($request->contact_id);
        $contact->user()->newPivotStatementForId($contact->user->find(1)->pivot->user_id)->where("id",$request->id)->update(["Date"=>$request->Date,"compte_rendu"=>$request->compte_rendu,"heure"=>$request->heure]);
        //return Inertia::render('Calendar');
@@ -120,5 +120,20 @@ class CalendarController extends Controller
         
       //  return $id;
     }
+
+    public function index2()
+    {
+      //return Inertia::render('Calendar');
+       // $result = Calendar::all();
+       // return $result;
+    
+        $user=User::find(1);
+       $Events=$user->contacts;
+      // return $Events;
+       return Inertia::render("CalendarContact",['Events'=>$Events]);
+    }
+
+
+
     }
 

@@ -28,4 +28,8 @@ class homeOfficeController extends Controller
     {
     return Inertia::render('ProductDetails');
     }
+    public function index5()
+    {
+    return Inertia::render('CalendarContact');
+    }
 }

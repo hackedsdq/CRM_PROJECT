@@ -6,18 +6,14 @@ import {useForm}  from "@inertiajs/inertia-react"
 import { DropDownListComponent } from '@syncfusion/ej2-react-dropdowns'
 import { DateTimePickerComponent } from '@syncfusion/ej2-react-calendars';
 import FullCalendar, { formatDate } from '@fullcalendar/react'
-//import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import listPlugin from '@fullcalendar/list'
 import { Autocomplete, TextField } from '@mui/material'
-import { destroy } from '@syncfusion/ej2-react-buttons';
-import { color } from '@chakra-ui/react';
-import SideBar from './static_components/SideBar';
-import '../../css/Calendar.css'
-//import { INITIAL_EVENTS, createEventId } from './event-utils'
-export default function Calendar({Events,contacts})  {
+import '../../css/CalendarContacts.css'
+
+export default function CalendarContact({Events,contacts})  {
   
 
   let { data, setData, post, processing, errors } = useForm({
@@ -74,7 +70,7 @@ setData(data.contact_id = `${contact_id}`)
 
 const  handleSubmit2 = (e) => {
   e.preventDefault()
- post('/adcom/calendar/edit')
+ post('/calendar/edit')
 
  }
  
@@ -122,12 +118,12 @@ const handleChange = (e) =>{
 }
 
 const handleDelete = () =>{
-    Inertia.delete(`/adcom/calendar/destroy`)
+    Inertia.delete(`/calendar/destroy`)
 }
   
   const  handleSubmit = (e) => {
     e.preventDefault()
-    post('/adcom/calendar/create')
+    post('/calendar/create')
    }
   
 
@@ -138,7 +134,7 @@ const handleDelete = () =>{
       <div class="jumbotron text-center">
           <h3>Rendez-Vous</h3>
       </div>
-      <SideBar></SideBar>
+      
       <div className="container">
     
          { events.length>0 && 
@@ -177,7 +173,7 @@ const handleDelete = () =>{
             headerToolbar={{
               start: "today prev next",
               end: "dayGridMonth dayGridWeek dayGridDay listMonth",
-              center: 'today myCustomButton',
+              center: 'today',
              
           
             }}
@@ -191,27 +187,13 @@ const handleDelete = () =>{
           //  eventBackgroundColor="#ff0000"
             
            // eventBorderColor="#ff0000"
-            customButtons={{
-              myCustomButton: {
-                text: 'Add Event',
-
-                click: function() {
-                  $("#myModal").modal("show");
-                 
-                 
-  
-               //  $(".modal-body").html("");
-             // $(".modal-body").html("<h3>"+arg.dateStr+"</h3>");
-                },
-               
-              },
-            }}
+     
             
           />}
  
  
 
-        <form onSubmit={handleSubmit}>
+        {/* <form onSubmit={handleSubmit}>
           <div class="modal" id="myModal">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -271,9 +253,9 @@ const handleDelete = () =>{
                 onChange={(event,value)=> handleChangeAutoComplete(value)}
                 renderInput={(params) => <TextField {...params}/>}
                 
-            />   
+            />    */}
                  {/* {errors.contact_id && <h6 style={{color:"red"}}>{errors.contact_id}</h6>}  */}
-            </div>
+            {/* </div>
 
                              
                 <div class="modal-body text-center">
@@ -299,7 +281,7 @@ const handleDelete = () =>{
           
           </div>
          
-</form>
+</form> */}
 
 
 <form onSubmit={handleSubmit2}>
@@ -308,7 +290,7 @@ const handleDelete = () =>{
               <div class="modal-content">
             
                 <div class="modal-header">
-                  <h4 class="modal-title align-center">Update Event</h4>
+                  <h4 class="modal-title align-center">Show Event</h4>
                   <button
                                 type="button"
                                 className="btn-close"
@@ -322,6 +304,7 @@ const handleDelete = () =>{
                                     htmlFor="simpleinput"
                                     className="form-label"
                                     id="title"
+                                    
                                 >
                                     compte rendu
                                 </label>
@@ -332,6 +315,7 @@ const handleDelete = () =>{
                                     className="form-control"
                                   onChange={(e)=>handleChange(e)} 
                                     value={data.compte_rendu}
+                                    disabled
                                 />
                                
                 </div>
@@ -346,6 +330,7 @@ const handleDelete = () =>{
                                     className="form-control"
                                     onChange={(e)=>handleChange(e)} 
                                     value={data.heure}
+                                    disabled
                                 />
                 </div>
                              <div class="form-group">
@@ -358,6 +343,7 @@ const handleDelete = () =>{
                               placeholder='Enter Start Date'
                               onChange={(e)=>handleChange(e)} 
                               value={data.Date}
+                              disabled
                               ></input>
                               </div>
                               
@@ -374,22 +360,10 @@ const handleDelete = () =>{
                 </div>
               
                 <div className="modal-footer">
-                            <button
-                                type="button"
-                                className="btn btn-secondary"
-                                data-bs-dismiss="modal"
-                                
-                                onClick={handleInitData}
-                            >
-                                Close
-                            </button>
-                          <button type="submit" className="btn btn-primary" id="btn"
-                           >
-                                Update
-                            </button>
-                            <button type="submit" className="btn btn-primary" id="btn" >
-                                Delete
-                            </button>
+                <button type="button" class="btn btn-info my-2" data-bs-dismiss="modal">Close</button>
+
+                          
+                          
                         </div>
               </div>
             </div>
@@ -402,6 +376,3 @@ const handleDelete = () =>{
    
   );
 }
-
-
-

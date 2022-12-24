@@ -1,4 +1,3 @@
-
 import React,{useState,useEffect} from 'react'
 import Header from './static_components/Header'
 import SideBar from './static_components/SideBar'

@@ -64,19 +64,11 @@ const handleChange = (e) =>{
                 <input onChange={(e)=>handleChange(e)} value={data.prenom} name="prenom" type="text" className="form-control" />
                 {errors.prenom && <h6 style={{color:"red"}}>{errors.prenom}</h6>}
 
-           <div className="mb-3">
-                <label htmlFor="example-email" className="form-label">Email</label>
-                <input onChange={(e)=>handleChange(e)} value={data.email} name="email" type="email" className="form-control" placeholder="Email" />
-                {errors.email && <h6 style={{color:"red"}}>{errors.email}</h6>}
-            </div>
             </div>
             <div className="mb-3">
                 <label htmlFor="simpleinput" className="form-label">Password</label>
                 <input onChange={(e)=>handleChange(e)} value={data.password} name="password" type="text"  className="form-control" />
                 {errors.password && <h6 style={{color:"red"}}>{errors.password}</h6>}
-
-
-
 
             </div>
             <div className="mb-3">
@@ -85,6 +77,11 @@ const handleChange = (e) =>{
                 {errors.fonction && <h6 style={{color:"red"}}>{errors.fonction}</h6>}
             </div>
 
+           <div className="mb-3">
+                <label htmlFor="example-email" className="form-label">Email</label>
+                <input onChange={(e)=>handleChange(e)} value={data.email} name="email" type="email" className="form-control" placeholder="Email" />
+                {errors.email && <h6 style={{color:"red"}}>{errors.email}</h6>}
+            </div>
             <div className="mb-3">
                 <label htmlFor="example-palaceholder" className="form-label">Telephone</label>
                 <input onChange={(e)=>handleChange(e)} value={data.telephone} name="telephone" type="text" className="form-control" placeholder="Telephone" />

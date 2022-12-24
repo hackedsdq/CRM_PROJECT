@@ -17,7 +17,9 @@ class Contact extends Authenticatable
     'email',
     'password',
     'fonction',
-    'telephone'
+    'telephone',
+    'Client_id',
+    'user_id'
     ];
     /**
      * The attributes that should be hidden for serialization.
@@ -44,6 +46,6 @@ public function client(){
 }
 public function user(){
 
-    return $this->belongsToMany(User::class);
+    return $this->belongsToMany(User::class, 'pivot_table_contact_user')->withPivot('id','Date','heure','compte_rendu');
 }
 }

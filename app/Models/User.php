@@ -23,6 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'contact_id'
     ];
 
     /**
@@ -44,7 +45,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function contact(){
-        return $this->belongsToMany(Contact::class);
+    public function contacts(){
+        return $this->belongsToMany(Contact::class, 'pivot_table_contact_user')->withPivot('id','Date','heure','compte_rendu');
     }
 }

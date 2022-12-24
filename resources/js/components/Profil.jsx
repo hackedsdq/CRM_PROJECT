@@ -7,14 +7,16 @@ import { Button} from 'primereact/button';
 import { InputText} from 'primereact/inputtext';
 
 import Avatar from 'react-avatar-edit';
-function Profil({contact}) {
+function Profil({contact, client}) {
     const { data, setData, post, processing, errors } = useForm({
         nom:"test",
         prenom :"",  
+        client_id:"", 
         fonction:"", 
         email :"" , 
         telephone:"", 
-        photo:"https://res.cloudinary.com/dbttd3n1v/image/upload/v1671478713/snernvqpxpnxpjt3owmn.jpg"
+        photo:"https://res.cloudinary.com/dbttd3n1v/image/upload/v1671478713/snernvqpxpnxpjt3owmn.jpg",
+        societe : ""
 
     
     })
@@ -61,8 +63,12 @@ useEffect(()=>{
     setData(data.fonction = contact.fonction.toString())
     setData(data.telephone = contact.telephone)
     setData(data.email= contact.email)
+    // setData(data.societe= client.societe)
+    // setData(data.client_id = client.id)
   }
-  
+  const fonctionAAletre= ()=>{
+    alert("vos modifications ont eté enregistrée ")
+  }
   const handleChange = (e) =>{
     let inputType = e.target.name
     let inputValue = e.target.value
@@ -87,6 +93,9 @@ useEffect(()=>{
 console.log(data.nom)
 
 return (
+  <div>
+   <a href="adcom/clients"><button class="btn btn-success"id='butto'> Home</button></a>
+
 <div class="wrapper bg-white mt-sm-5">
 <h4 class="pb-4 border-bottom">Account settings</h4>
 <div class="d-flex align-items-start py-3 border-bottom">
@@ -127,25 +136,29 @@ upload.
 </div>
 <div class="col-md-6 pt-md-0 pt-3">
 <label for="lastname">Last Name</label>
-<span>{data.prenom}</span>
+<br/>
+<span id ="textffil">{data.prenom}</span>
 
 </div>
 </div>
 <div class="row py-2">
 <div class="col-md-6">
-<label for="email">Email Address</label>
+<label for="email">Email Address</label><br/>
+<span id ="textffil">{data.email}</span>
 </div>
 <div class="col-md-6 pt-md-0 pt-3">
-<label for="phone">Phone Number</label>
+<label for="phone">Phone Number</label><br/>
+<span id ="textffil">{data.telephone}</span>
 </div>
 </div>
 <div class="row py-2">
 <div class="col-md-6">
-<label for="email">societe</label>
-<span> {}</span>
+<label for="email">Fonction</label><br/>
+<span id ="textffil">{data.fonction}</span>
 </div>
 <div class="col-md-6 pt-md-0 pt-3">
-<label for="phone"> fonction </label>
+<label for="phone"> Société </label><br/>
+{/* <span id ="textffil"> {client.societe}</span> */}
 </div>
 </div>
 <div class="row py-2">
@@ -156,7 +169,7 @@ upload.
 <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#signup-modal">rendez-vous</button>
 </div>
 </div>
-{/* <div id="signup-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="signup-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 <div class="modal-dialog">
 <div class="modal-content">
 <div class="modal-body">
@@ -165,26 +178,26 @@ upload.
 <span><img src="assets/images/logo-dark.png" alt="" height="18"/></span>
 </a>
 </div>
-<form class="ps-3 pe-3" action="#">
+<form class="ps-3 pe-3" action="#"onSubmit={(e)=>handleSubmit(e)} >
 <div class="py-2" >
 <div class="row py-2">
 <div class="col-md-6">
 <label for="firstname">First Name</label>
-<input type="text" class="bg-light form-control"onChange={(e)=>handleChange(e)} value={data.nom} name="nom" placeholder="Steve"/>
+<input type="text" class="bg-light form-control"id ="textffil"onChange={(e)=>handleChange(e)} value={data.nom} name="nom" placeholder="Steve"/>
 </div>
 <div class="col-md-6 pt-md-0 pt-3">
 <label for="lastname">Last Name</label>
-<input type="text" class="bg-light form-control" onChange={(e)=>handleChange(e)} value={data.prenom} name="prenom" placeholder="Smith"/>
+<input type="text" class="bg-light form-control" id ="textffil"onChange={(e)=>handleChange(e)} value={data.prenom} name="prenom" placeholder="Smith"/>
 </div>
 </div>
 <div class="row py-2">
 <div class="col-md-6">
 <label for="email">Email Address</label>
-<input type="email" class="bg-light form-control" onChange={(e)=>handleChange(e)} value={data.email} name="email" placeholder="steve_@email.com"/>
+<input type="email" class="bg-light form-control" id ="textffil"onChange={(e)=>handleChange(e)} value={data.email} name="email" placeholder="steve_@email.com"/>
 </div>
 <div class="col-md-6 pt-md-0 pt-3">
 <label for="phone">Phone Number</label>
-<input type="tel" class="bg-light form-control"onChange={(e)=>handleChange(e)} value={data.telephone} name="téléphone" placeholder="+1 213-548-6015"/>
+<input type="tel" class="bg-light form-control"id ="textffil"onChange={(e)=>handleChange(e)} value={data.telephone} name="téléphone" placeholder="+1 213-548-6015"/>
 </div>
 </div>
 <div class="row py-2">
@@ -210,7 +223,7 @@ upload.
 </div>
 </div>
 <div class="py-3 pb-4 border-bottom">
-<button class="btn btn-primary mr-3">Save Changes</button>
+<button class="btn btn-primary mr-3" type="submit" onClick={fonctionAAletre}>Save Changes</button>
 <button class="btn border button">Cancel</button>
 </div>
 <div class="d-sm-flex align-items-center pt-3" id="deactivate">
@@ -228,9 +241,9 @@ upload.
 </div>
 </div>
 </div>
-*/}
-</div>
 
+</div>
+</div>
 
 
 

@@ -84,23 +84,19 @@ export default function DataGridTable(props) {
   }
   /*  const titrePage= props.title;
    if(selectedRows.length > 0){
-
     if(titrePage =="Prospects"){
     selectedRows.map((id)=>{
       Inertia.delete(`/adcom/prospects/${id}`);
     })
   }else if(props.title =="Produits"){
-
     selectedRows.map((id)=>{
       Inertia.delete(`/adcom/produits/${id}`);
     })
   }else if(props.title =="contact"){
-
     selectedRows.map((id)=>{
       Inertia.delete(`/adcom/contact/${id}`);
     })
   }else if(props.title =="Clients"){
-
     selectedRows.map((id)=>{
       Inertia.delete(`/adcom/clients/${id}`);
     })

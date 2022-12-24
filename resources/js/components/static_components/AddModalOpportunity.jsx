@@ -10,6 +10,7 @@ export default function AddModalOpportunity(props) {
 let ClientProp = props.clients;
 
 
+<<<<<<< HEAD
  useEffect(()=>{
 },[]) 
 
@@ -38,6 +39,26 @@ post('/adcom/opportunities/add',{
       document.body.style.overflow = 'scroll'
   },
 })
+=======
+/* useEffect(()=>{
+console.log("clients fetched"+ClientProp)
+},[ClientProp]) */
+
+
+  let { data, setData, post, processing, errors } = useForm({
+    nom: "",
+    montant :"", 
+    //étape:"first", 
+    client_id:"",
+    date_de_clôture:"2021-11-11"
+})
+
+
+const handleSubmit = (e) => {
+e.preventDefault()
+if(data.client_id !== undefined)
+post('/adcom/opportunities/add')
+>>>>>>> 9f38f1e154dc63e2b1454601cf421d161a7dfe28
 }
 
 
@@ -49,9 +70,15 @@ const handleChange = (e) =>{
   if( inputType === "nom")
   setData(data.nom = inputValue )
 
+<<<<<<< HEAD
    else if(inputType === "date_de_clôture")
   setData(data.date_de_clôture = inputValue)
  
+=======
+  else if(inputType === "montant")
+  setData(data.montant = inputValue)
+
+>>>>>>> 9f38f1e154dc63e2b1454601cf421d161a7dfe28
   else if(inputType === "étape")
   setData(data.étape = `${e.target.value}`)
 
@@ -92,9 +119,15 @@ return (
             </div>
 
             <div className="mb-3">
+<<<<<<< HEAD
                 <label htmlFor="simpleinput" className="form-label">date de cloture</label>
                 <input onChange={(e)=>handleChange(e)} value={data.date_de_clôture} name="date_de_clôture" type="date" className="form-control" />
                 {errors.date_de_clôture && <h6 style={{color:"red"}}>{errors.date_de_clôture}</h6>}
+=======
+                <label htmlFor="simpleinput" className="form-label">montant</label>
+                <input onChange={(e)=>handleChange(e)} value={data.montant} name="montant" type="text" className="form-control" />
+                {errors.montant && <h6 style={{color:"red"}}>{errors.montant}</h6>}
+>>>>>>> 9f38f1e154dc63e2b1454601cf421d161a7dfe28
             </div>
 
 

@@ -656,16 +656,16 @@ return (
               <span className="align-middle d-none d-sm-inline-block">English</span> <i className="mdi mdi-chevron-down d-none d-sm-inline-block align-middle" />
             </a>
             <div className="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu">
-              <a href="javascript:void(0);" className="dropdown-item notify-item">
+              <a href="#" className="dropdown-item notify-item">
                 <img src="assets/images/flags/germany.jpg" alt="user-image" className="me-1" height={12} /> <span className="align-middle">German</span>
               </a>
-              <a href="javascript:void(0);" className="dropdown-item notify-item">
+{/*               <a href="#;" className="dropdown-item notify-item">
                 <img src="assets/images/flags/italy.jpg" alt="user-image" className="me-1" height={12} /> <span className="align-middle">Italian</span>
-              </a>
-              <a href="javascript:void(0);" className="dropdown-item notify-item">
+              </a> */}
+              <a href="#;" className="dropdown-item notify-item">
                 <img src="assets/images/flags/spain.jpg" alt="user-image" className="me-1" height={12} /> <span className="align-middle">Spanish</span>
               </a>
-              <a href="javascript:void(0);" className="dropdown-item notify-item">
+              <a href="#;" className="dropdown-item notify-item">
                 <img src="assets/images/flags/russia.jpg" alt="user-image" className="me-1" height={12} /> <span className="align-middle">Russian</span>
               </a>
             </div>
@@ -686,7 +686,7 @@ return (
                 </h5>
               </div>
               <div style={{maxHeight: 230}} data-simplebar>
-                <a href="javascript:void(0);" className="dropdown-item notify-item">
+                <a href="#;" className="dropdown-item notify-item">
                   <div className="notify-icon bg-primary">
                     <i className="mdi mdi-comment-account-outline" />
                   </div>
@@ -694,7 +694,7 @@ return (
                     <small className="text-muted">1 min ago</small>
                   </p>
                 </a>
-                <a href="javascript:void(0);" className="dropdown-item notify-item">
+                <a href="#;" className="dropdown-item notify-item">
                   <div className="notify-icon bg-info">
                     <i className="mdi mdi-account-plus" />
                   </div>
@@ -702,7 +702,7 @@ return (
                     <small className="text-muted">5 hours ago</small>
                   </p>
                 </a>
-                <a href="javascript:void(0);" className="dropdown-item notify-item">
+                <a href="#;" className="dropdown-item notify-item">
                   <div className="notify-icon">
                     <img src="assets/images/users/avatar-2.jpg" className="img-fluid rounded-circle" alt /> </div>
                   <p className="notify-details">Cristina Pride</p>
@@ -710,7 +710,7 @@ return (
                     <small>Hi, How are you? What about our next meeting</small>
                   </p>
                 </a>
-                <a href="javascript:void(0);" className="dropdown-item notify-item">
+                <a href="#;" className="dropdown-item notify-item">
                   <div className="notify-icon bg-primary">
                     <i className="mdi mdi-comment-account-outline" />
                   </div>
@@ -718,7 +718,7 @@ return (
                     <small className="text-muted">4 days ago</small>
                   </p>
                 </a>
-                <a href="javascript:void(0);" className="dropdown-item notify-item">
+                <a href="#;" className="dropdown-item notify-item">
                   <div className="notify-icon">
                     <img src="assets/images/users/avatar-4.jpg" className="img-fluid rounded-circle" alt /> </div>
                   <p className="notify-details">Karen Robinson</p>
@@ -726,7 +726,7 @@ return (
                     <small>Wow ! this admin looks good and awesome design</small>
                   </p>
                 </a>
-                <a href="javascript:void(0);" className="dropdown-item notify-item">
+                <a href="#;" className="dropdown-item notify-item">
                   <div className="notify-icon bg-info">
                     <i className="mdi mdi-heart" />
                   </div>
@@ -736,7 +736,7 @@ return (
                   </p>
                 </a>
               </div>
-              <a href="javascript:void(0);" className="dropdown-item text-center text-primary notify-item notify-all">
+              <a href="#;" className="dropdown-item text-center text-primary notify-item notify-all">
                 View All
               </a>
             </div>
@@ -809,23 +809,23 @@ return (
               <div className=" dropdown-header noti-title">
                 <h6 className="text-overflow m-0">Welcome !</h6>
               </div>
-              <a href="javascript:void(0);" className="dropdown-item notify-item">
+              <a href="#;" className="dropdown-item notify-item">
                 <i className="mdi mdi-account-circle me-1" />
                 <span>My Account</span>
               </a>
-              <a href="javascript:void(0);" className="dropdown-item notify-item">
+              <a href="#;" className="dropdown-item notify-item">
                 <i className="mdi mdi-account-edit me-1" />
                 <span>Settings</span>
               </a>
-              <a href="javascript:void(0);" className="dropdown-item notify-item">
+              <a href="#;" className="dropdown-item notify-item">
                 <i className="mdi mdi-lifebuoy me-1" />
                 <span>Support</span>
               </a>
-              <a href="javascript:void(0);" className="dropdown-item notify-item">
+              <a href="#;" className="dropdown-item notify-item">
                 <i className="mdi mdi-lock-outline me-1" />
                 <span>Lock Screen</span>
               </a>
-              <a href="javascript:void(0);" className="dropdown-item notify-item">
+              <a href="#;" className="dropdown-item notify-item">
                 <i className="mdi mdi-logout me-1" />
                 <span>Logout</span>
               </a>
@@ -847,15 +847,15 @@ return (
             <div className="dropdown-header noti-title">
               <h5 className="text-overflow mb-2">Found <span className="text-danger">17</span> results</h5>
             </div>
-            <a href="javascript:void(0);" className="dropdown-item notify-item">
+            <a href="#;" className="dropdown-item notify-item">
               <i className="uil-notes font-16 me-1" />
               <span>Analytics Report</span>
             </a>
-            <a href="javascript:void(0);" className="dropdown-item notify-item">
+            <a href="#;" className="dropdown-item notify-item">
               <i className="uil-life-ring font-16 me-1" />
               <span>How can I help you?</span>
             </a>
-            <a href="javascript:void(0);" className="dropdown-item notify-item">
+            <a href="#;" className="dropdown-item notify-item">
               <i className="uil-cog font-16 me-1" />
               <span>User profile settings</span>
             </a>
@@ -863,7 +863,7 @@ return (
               <h6 className="text-overflow mb-2 text-uppercase">Users</h6>
             </div>
             <div className="notification-list">
-              <a href="javascript:void(0);" className="dropdown-item notify-item">
+              <a href="#;" className="dropdown-item notify-item">
                 <div className="d-flex">
                   <img className="d-flex me-2 rounded-circle" src="assets/images/users/avatar-2.jpg" alt="Generic placeholder image" height={32} />
                   <div className="w-100">
@@ -872,7 +872,7 @@ return (
                   </div>
                 </div>
               </a>
-              <a href="javascript:void(0);" className="dropdown-item notify-item">
+              <a href="#;" className="dropdown-item notify-item">
                 <div className="d-flex">
                   <img className="d-flex me-2 rounded-circle" src="assets/images/users/avatar-5.jpg" alt="Generic placeholder image" height={32} />
                   <div className="w-100">

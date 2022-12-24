@@ -42,7 +42,7 @@ Route::get('Profile/',[\App\Http\Controllers\ContactsAuthController::class, 'ind
 Route::get('adcom/', [\App\Http\Controllers\AdminCommercialAuthController::class, 'index'])->name('adcom.home');
 Route::get('adcom/login', [\App\Http\Controllers\AdminCommercialAuthController::class, 'login'])->name('adcom.login');
 Route::post('adcom/login', [\App\Http\Controllers\AdminCommercialAuthController::class, 'handleLogin'])->name('adcom.handleLogin');
-Route::get('adcom/logout', [\App\Http\Controllers\AdminCommercialAuthController::class, 'index'])->name('adcom.logout');
+Route::post('adcom/logout', [\App\Http\Controllers\AdminCommercialAuthController::class, 'handleLogout'])->name('adcom.logout');
 
 
 Route::get('adcom/prospects',[\App\Http\Controllers\ProspectController::class, 'index'])->name('adcom.prospects');

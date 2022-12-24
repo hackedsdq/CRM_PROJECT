@@ -11,7 +11,19 @@ class AdminCommercialAuthController extends Controller
     {
         $value = $req->user();
         //return $value;
-        return Inertia::render('Home');
+        $user_pic = Auth::guard('webadcom')->user()->photo;
+        $user_nom = Auth::guard('webadcom')->user()->name;
+        $user_prenom = Auth::guard('webadcom')->user()->prenom;
+        $user_role = Auth::guard('webadcom')->user()->role;
+        $user_id = Auth::guard('webadcom')->user()->id;
+
+        return Inertia::render('Home',[
+            'user_pic'=>$user_pic,
+            'user_nom'=>$user_nom,
+            'user_prenom'=>$user_prenom,
+            'user_role'=>$user_role,
+            'user_id'=>$user_id,
+        ]);
     }
 
     public function login()
@@ -33,10 +45,10 @@ class AdminCommercialAuthController extends Controller
         return redirect()->back()->with('error', 'Invalid Credentials');
     }
 
-    public function logout()
+    public function handleLogout(Request $req)
     {
+        //return redirect()->route('adcom.login');
         Auth::guard('webadcom')->logout();
-
         return redirect()->route('adcom.login');
     }
 }

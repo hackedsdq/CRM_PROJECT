@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 
 use App\Models\User;
@@ -132,6 +133,8 @@ class UserController extends Controller
      */
     public function update(Request $request,  $id)
     {
+        $user_id = Auth::guard('webadcom')->user()->id;
+
         $request->validate([
             'name'=> ['required','regex:/^[a-zA-Z]+$/'],
             'prenom'=> ['required','regex:/^[a-zA-Z]+$/'],
@@ -152,6 +155,9 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
 
         $user->save();
+
+        if($user_id == $id)
+        return redirect()->route('adcom.home');        
 
         return redirect()->route('adcom.users');        
     }

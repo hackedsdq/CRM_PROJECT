@@ -20,7 +20,7 @@ function Profil({contact, client}) {
 
     
     })
-    
+    console.log(client)
     
     const  handleSubmit = (e) => {
      e.preventDefault()
@@ -158,7 +158,7 @@ upload.
 </div>
 <div class="col-md-6 pt-md-0 pt-3">
 <label for="phone"> Société </label><br/>
-{/* <span id ="textffil"> {client.societe}</span> */}
+ <span id ="textffil"> {client.société}</span>
 </div>
 </div>
 <div class="row py-2">

@@ -94,38 +94,44 @@ console.log(data.nom)
 
 return (
   <div>
-   <a href="adcom/clients"><button class="btn btn-success"id='butto'> Home</button></a>
-
+  <nav id="nav">
+  <a class="navbar-brand" ihref="#">
+  <button class="btn btn-success" id="butto"  type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span >Retour </span>
+   
+  </button>
+  </a>
+</nav>
 <div class="wrapper bg-white mt-sm-5">
 <h4 class="pb-4 border-bottom">Account settings</h4>
+
 <div class="d-flex align-items-start py-3 border-bottom">
-<div class="col-xl-6">
-<div class="mb-3 mt-3 mt-xl-0">
+  <img src= {data.photo} style={{
+    width:"200px",
+    height:"200px",
+    borderRadius:"50%",
+    objectFit:"cover",
+    border:"4px solid #2d5070"
+
+  }}></img>
+<div class="col-xl-6" >
+<div class="mb-3 mt-3 mt-xl-0"style={{marginLeft:"30px"}}>
 <label for="projectname" class="mb-0">
-Logo Society
+photo 
 </label>
 <p class="text-muted font-14">
 Recommended thumbnail size 800x400 (px).
 </p>
 
-<div
-class="dropzone"
-data-plugin="dropzone"
-data-previews-container="#file-previews"
-data-upload-preview-template="#uploadPreviewTemplate"
-style={{textAlign:"center",alignItems:"center"}}
->
 
-<div onClick={()=> widgetRef2.current.open()} class="dz-message needsclick">
-<i class="h3 text-muted dripicons-cloud-upload"></i>
-<h4>
-Drop files here or click to
-upload.
-</h4>
-</div>
-<img style={{height:100,width:100}} src={data.photo} alt="" />
+<div onClick={()=> widgetRef.current.open()} class="dz-message needsclick">
+  
+<button class="btn btn-success"  >
 
+<i class=" dripicons-cloud-upload">Upload</i>
+</button>
 </div>
+
 </div>
 </div>
 </div>

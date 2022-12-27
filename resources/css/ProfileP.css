@@ -122,4 +122,15 @@ background-color :#2d5070;
 #photoc{
   margin-left: 5000px;
 }
+.headerchang{
+  margin-top: 10px;
+  margin-left: 400px;
+  padding: 10px;
+  background-color: #0779e4;
+  color: white;
+  border: #ddd;
 
+}
+.headerchang:hover{
+  background-color: #113150;
+}

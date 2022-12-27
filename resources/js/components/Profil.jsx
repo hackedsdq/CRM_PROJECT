@@ -2,12 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import'../../css/ProfileP.css'
 import { useForm } from '@inertiajs/inertia-react';
 
-import { Dialog} from 'primereact/dialog';
-import { Button} from 'primereact/button';
-import { InputText} from 'primereact/inputtext';
 
-import Avatar from 'react-avatar-edit';
-function Profil({contact, client}) {
+import MasterDetailClientOpportunities from './master_details_components/MasterDetailClientOpportunities';
+function Profil({contact, client,opportunity}) {
     const { data, setData, post, processing, errors } = useForm({
         nom:"test",
         prenom :"",  
@@ -20,8 +17,27 @@ function Profil({contact, client}) {
 
     
     })
-    console.log(client)
+    const [rows2, setRows2] = useState([])
+
+    useEffect(()=>{
+      handleGetContact()
+      handleSetOpportunities()
+    },[])
+  
     
+const handleSetOpportunities = () =>{
+  console.log(opportunity)
+  opportunity?.map((data)=>rows2.push(
+    {
+      id: data.id,
+      nom:data.nom,
+      montant:data.montant,
+      étape:data.étape,
+      date_de_clôture:data.date_de_clôture
+    }
+  )) 
+}
+
     const  handleSubmit = (e) => {
      e.preventDefault()
     //console.log(data)
@@ -47,10 +63,7 @@ console.log(result.info)
 }
 )
 
-useEffect(()=>{
-    handleGetContact()
-  },[])
-  
+
   
   const handleGetContact = ()=>{
     // setData(data.nom = contact.nom)
@@ -66,9 +79,9 @@ useEffect(()=>{
     // setData(data.societe= client.societe)
     // setData(data.client_id = client.id)
   }
-  const fonctionAAletre= ()=>{
-    alert("vos modifications ont eté enregistrée ")
-  }
+  // const fonctionAAletre= ()=>{
+  //   alert("vos modifications ont eté enregistrée ")
+  // }
   const handleChange = (e) =>{
     let inputType = e.target.name
     let inputValue = e.target.value
@@ -103,8 +116,10 @@ return (
   </a>
 </nav>
 <div class="wrapper bg-white mt-sm-5">
-<h4 class="pb-4 border-bottom">Account settings</h4>
+  
 
+
+<h4 class="pb-4 border-bottom">Account settings</h4>
 <div class="d-flex align-items-start py-3 border-bottom">
   <img src= {data.photo} style={{
     width:"200px",
@@ -169,12 +184,12 @@ Recommended thumbnail size 800x400 (px).
 </div>
 <div class="row py-2">
 <div class="col-md-6">
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signup-modal">Edit Profil</button>
 </div>
-<div class="col-md-6">
-<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#signup-modal">rendez-vous</button>
+
+<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#signup-modal">voir les rendez-vous</button>
+
 </div>
-</div>
+<hr/>
 <div id="signup-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 <div class="modal-dialog">
 <div class="modal-content">
@@ -229,7 +244,7 @@ Recommended thumbnail size 800x400 (px).
 </div>
 </div>
 <div class="py-3 pb-4 border-bottom">
-<button class="btn btn-primary mr-3" type="submit" onClick={fonctionAAletre}>Save Changes</button>
+<button class="btn btn-primary mr-3" type="submit" >Save Changes</button>
 <button class="btn border button">Cancel</button>
 </div>
 <div class="d-sm-flex align-items-center pt-3" id="deactivate">
@@ -238,7 +253,7 @@ Recommended thumbnail size 800x400 (px).
 <p>Details about your company account and password</p>
 </div>
 <div class="ml-auto">
-<button class="btn danger">Deactivate</button>
+
 </div>
 </div>
 </div>
@@ -247,6 +262,8 @@ Recommended thumbnail size 800x400 (px).
 </div>
 </div>
 </div>
+ <MasterDetailClientOpportunities rows={rows2}/>
+ <button type="button"   class="headerchang" data-bs-toggle="modal" data-bs-target="#signup-modal">Edit Profil</button>
 
 </div>
 </div>

@@ -93,6 +93,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Box from '@mui/material/Box';
+import { InertiaLink } from "@inertiajs/inertia-react";
 
 // const Card = () => (
 //   <tr>
@@ -114,7 +115,17 @@ const MasterDetailClientOpportunities = ({rows}) => {
       name: "montant"
     },
     {
-      name: "id"
+      name: "id",
+      label: "show",
+      options:{
+        customBodyRender: (data)=>{
+          console.log(data)
+          return(
+           <InertiaLink href={`/home/profil/show/${data}`}><i className='mdi mdi-eye'></i> </InertiaLink>
+           
+          );
+      }
+      }
     },
   ];
 

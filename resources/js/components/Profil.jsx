@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import'../../css/ProfileP.css'
+import'../../css/ContactUs.css'
 import { useForm } from '@inertiajs/inertia-react';
 
 
@@ -17,6 +18,7 @@ function Profil({contact, client,opportunity}) {
 
     
     })
+
     const [rows2, setRows2] = useState([])
 
     useEffect(()=>{
@@ -68,11 +70,7 @@ console.log(result.info)
 
   
   const handleGetContact = ()=>{
-    // setData(data.nom = contact.nom)
-    // setData(data.prenom = contact.prenom)
-    // setData(data.fonction = contact.fonction)
-    // setData(data.email = contact.email)
-    // setData(data.telephone = contact.telephone.toString())
+    setData(data.societe = client.société)
     setData(data.nom = contact.nom)
     setData(data.prenom = contact.prenom)
     setData(data.fonction = contact.fonction.toString())
@@ -81,9 +79,8 @@ console.log(result.info)
     // setData(data.societe= client.societe)
     // setData(data.client_id = client.id)
   }
-  // const fonctionAAletre= ()=>{
-  //   alert("vos modifications ont eté enregistrée ")
-  // }
+ 
+
   const handleChange = (e) =>{
     let inputType = e.target.name
     let inputValue = e.target.value
@@ -100,23 +97,69 @@ console.log(result.info)
     else if(inputType === "email")
     setData(data.email = inputValue)
   
-    else if(inputType === "téléphone")
+    else if(inputType === "telephone")
     setData(data.telephone = inputValue)
-  
+    else if(inputType === "societe")
+    setData(data.societe = inputValue)
   
   }
-console.log(data.nom)
+console.log( client.société)
 
 return (
   <div>
-  <nav id="nav">
-  <a class="navbar-brand" ihref="#">
-  <button class="btn btn-success" id="butto"  type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span >Retour </span>
-   
-  </button>
-  </a>
-</nav>
+ <header class="header_section">
+      
+      <div class="header_bottom">
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg custom_nav-container ">
+            <a class="navbar-brand" href="index.html">
+              <img src="../../../assets/images/logo.png" alt=""/>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class=""> </span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ">
+                <li class="nav-item active">
+                
+                {/* <InertiaLink href={`/homeOffice`}> */}
+                    <a class="nav-link">
+                      Home
+                    </a><span class="sr-only">(current)</span>
+                    {/* </InertiaLink>  */}
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="about.html"> About</a>
+                </li>
+                <li class="nav-item">
+                {/* <InertiaLink href={`/Products`}> */}
+                    <a class="nav-link">
+                      Products
+                    </a>
+                    {/* </InertiaLink> */}
+                </li>
+                <li class="nav-item">
+                {/* <InertiaLink href={`/ContactUs`}> */}
+                    <a class="nav-link">
+                     Contact Us
+                    </a>
+                    {/* </InertiaLink> */}
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="why.html">Why Us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="testimonial.html">Testimonial</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+
 <div class="wrapper bg-white mt-sm-5">
   
 
@@ -181,7 +224,17 @@ Recommended thumbnail size 800x400 (px).
 </div>
 <div class="col-md-6 pt-md-0 pt-3">
 <label for="phone"> Société </label><br/>
- <span id ="textffil"> {client.société}</span>
+ <span id ="textffil"> {data.societe}</span>
+</div>
+</div>
+<div class="row py-2">
+<div class="col-md-6">
+<label for="email">Telephone societe</label><br/>
+<span id ="textffil">{client.téléphone}</span>
+</div>
+<div class="col-md-6 pt-md-0 pt-3">
+<label for="phone"> Adresse </label><br/>
+ <span id ="textffil"> {client.adresse}</span>
 </div>
 </div>
 <div class="row py-2">
@@ -197,13 +250,14 @@ Recommended thumbnail size 800x400 (px).
 <div class="modal-content">
 <div class="modal-body">
 <div class="text-center mt-2 mb-4">
-<a href="index.html" class="text-success">
-<span><img src="assets/images/logo-dark.png" alt="" height="18"/></span>
-</a>
+                  <h1>Edit Profil</h1>
 </div>
+
 <form class="ps-3 pe-3" action="#" onSubmit={(e)=>handleSubmit(e)} >
+
 <div class="py-2" >
 <div class="row py-2">
+  
 <div class="col-md-6">
 <label for="firstname">First Name</label>
 <input type="text" class="bg-light form-control"id ="textffil"onChange={(e)=>handleChange(e)} value={data.nom} name="nom" placeholder="Steve"/>
@@ -220,12 +274,21 @@ Recommended thumbnail size 800x400 (px).
 </div>
 <div class="col-md-6 pt-md-0 pt-3">
 <label for="phone">Phone Number</label>
-<input type="tel" class="bg-light form-control"id ="textffil"onChange={(e)=>handleChange(e)} value={data.telephone} name="telephone" placeholder="+1 213-548-6015"/>
+<input type="text" class="bg-light form-control"id ="textffil"onChange={(e)=>handleChange(e)} value={data.telephone} name="telephone" placeholder="+1 213-548-6015"/>
 </div>
 </div>
-
+<div class="row py-2">
+<div class="col-md-6">
+<label for="email">Fonction</label>
+<input type="text" class="bg-light form-control" id ="textffil"onChange={(e)=>handleChange(e)} value={data.fonction} name="fonction" />
+</div>
+<div class="col-md-6 pt-md-0 pt-3">
+<label>Société</label>
+<input type="text" class="bg-light form-control" id ="textffil"onChange={(e)=>handleChange(e)} value={data.societe} name="societe" />
+</div>
+</div>
 <div class="py-3 pb-4 border-bottom">
-<button class="btn btn-primary mr-3" type="submit" >Save Changes</button>
+<button class="btn btn-primary mr-3" type="submit" >Save Changes</button> 
 <button class="btn border button" >Cancel</button>
 </div>
 <div class="d-sm-flex align-items-center pt-3" id="deactivate">

@@ -1,5 +1,6 @@
 import React,{useEffect, useState} from 'react'
-import {useForm}  from "@inertiajs/inertia-react"
+import {InertiaLink, useForm}  from "@inertiajs/inertia-react"
+import'../../css/ContactUs.css'
 
 import MasterDetailOpportunityProducts from "./master_details_components/MasterDetailOpportunityProducts"
 import { Autocomplete, TextField } from '@mui/material'
@@ -22,7 +23,7 @@ import InvoiceTableFooter from './table/InvoiceTableFooter'
 import InvoiceThankYouMsg from './table/InvoiceThankYouMsg'
 import BillTo from './table/BillTo'
 
-export default function ShoweditOppor({client,opportunity,type,products,opportunityProducts})  {
+export default function ShowOpportunity({client,opportunity,type,products,opportunityProducts})  {
   let [filtredProducts, setFiltredProducts]=useState([])
   let [opp, setOpp]=useState(opportunity?.id)
   const { data, setData, post, processing, errors } = useForm({
@@ -80,50 +81,10 @@ const handleSetOpportunity = ()=>{
 /*   setData(data.prix = "15")
   setData(data.quantité = "4") */
 }
-const handleChange = (e) =>{
-  let inputType = e.target.name
-  let inputValue = e.target.value
 
-  if( inputType === "nom")
-  setData(data.nom = inputValue )
 
-  else if(inputType === "montant")
-  setData(data.montant = inputValue)
 
-  else if(inputType === "étape"){
-    console.log(inputValue)
-    setData(data.étape = inputValue)
-  }
 
-  else if(inputType === "quantité")
-  setData(data.quantité = inputValue)
-}
-const handleSearchProduct= (product) =>{
-  console.log(opp)
-    if(product !== "" && opp !==undefined)
-  Inertia.post(`/adcom/opportunities/edit/${opp}`),{
-    product : product
-  }
-}
-const handleChangeAutoComplete = (value) =>{
-if(value !== null){
-  let product_id = value.id.toString();
-  setData(data.product_id = `${product_id}`)
-}
-//console.log(product_id)
-}
-const addProduct = async() =>{
-  if(data?.product_id !== "" && opp !==undefined ){
-    let opport = opp;
-    await Inertia.post(`/adcom/opprtunities/edit/${opp}`,{
-      product_id : data?.product_id,
-      quantité: data?.quantité,
-    },{
-      preserveState:false
-    })
-    console.log("<<<<<<<<<<<<<< damn >>>>>>>>>>>>>>>>>>>")
-  }
-}
 const  createData = (id, nom, description, prix, quantité, photo) => {
   return{
     id,
@@ -227,64 +188,89 @@ const DocumentPdf = (props) => (
 
 return (
   <div>
+     <header class="header_section">
+      
+      <div class="header_bottom">
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg custom_nav-container ">
+            <a class="navbar-brand" href="index.html">
+              <img src="../../../assets/images/logo.png" alt=""/>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class=""> </span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ">
+                <li class="nav-item active">
+                
+                {/* <InertiaLink href={`/homeOffice`}> */}
+                    <a class="nav-link">
+                      Home
+                    </a><span class="sr-only">(current)</span>
+                    {/* </InertiaLink>  */}
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="about.html"> About</a>
+                </li>
+                <li class="nav-item">
+                {/* <InertiaLink href={`/Products`}> */}
+                    <a class="nav-link">
+                      Products
+                    </a>
+                    {/* </InertiaLink> */}
+                </li>
+                <li class="nav-item">
+                {/* <InertiaLink href={`/ContactUs`}> */}
+                    <a class="nav-link">
+                     Contact Us
+                    </a>
+                    {/* </InertiaLink> */}
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="why.html">Why Us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="testimonial.html">Testimonial</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
 <div className="container-login100">
+  
 			<div className="wrap-login100">
+      <InertiaLink href='/home/profil'><button class="btn btn-success">My Account</button></InertiaLink>
     <form onSubmit={(e)=>handleSubmit(e)} >
       <div className="modal-content">
         <div className="modal-body">
-
+        
   {/*   bodyyyyy of the modal    */}
 
               <div className="mb-3">
                   <label htmlFor="simpleinput" className="form-label">First Name</label>
-                  <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data?.nom} name="nom"  type="text" className="form-control" />
+                  <input disabled={true } value={data?.nom} name="nom"  type="text" className="form-control" />
                   {errors.nom && <h6 style={{color:"red"}}>{errors.nom}</h6>}
               </div>
               <div className="mb-3">
                   <label htmlFor="simpleinput" className="form-label">Montant</label>
-                  <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data?.montant} name="montant" type="text" className="form-control" />
+                  <input disabled={ true }  value={data?.montant} name="montant" type="text" className="form-control" />
                   {errors.montant && <h6 style={{color:"red"}}>{errors.montant}</h6>}
               </div>
 
               <div className="mb-3">
                   <label htmlFor="example-select" className="form-label">Étape</label>
-                  <select disabled={type==="edit" ? false : true } onChange={e => handleChange(e)} value={data?.étape} name="étape" className="form-select" id="example-select">
+                  <select disabled={ true }  value={data?.étape} name="étape" className="form-select" id="example-select">
                     <option value="one">Proposition/Devis</option>
                     <option value="two">Négotiation/Vérification</option>
-                    <option value="three">Cloturé/Ganée</option>
-                    <option value="four">Cloturé/Perdue</option>
+                    <option value="four">Cloturé/Ganée</option>
+                    <option value="three">Cloturé/Perdue</option>
                   </select>
               </div>
 
-              <div className="mb-3">                
-              <div style={{display:"flex", alignItems:"center",justifyContent:"space-between"}}>  
-              <div style={{marginTop:0,}}>
-              <label htmlFor="simpleinput" className="form-label">produits</label>
-                  <Autocomplete
-                  id="combo-box-demo"
-                  options={filtredProducts}
-                  sx={{ width: 300,height:80 }}
-                  onInputChange={(e)=>handleSearchProduct(e.target.value)}
-                  onChange={(event, value)=> handleChangeAutoComplete(value)}
-                  renderInput={(params) => <TextField style={{height:10}} {...params}/>}
-                  />
-              </div>
-
-
-              <div className="mb-3">
-                  <label htmlFor="simpleinput" className="form-label">quantité</label>
-                  <input style={{height:57}} disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data?.quantité} name="quantité" type="text" className="form-control" />
-                  {errors.quantité && <h6 style={{color:"red"}}>{errors.quantité}</h6>}
-              </div>
-              <div className="mb-3">
-              <label htmlFor="simpleinput" className="form-label"></label>
-                <button style={{marginTop:30}} onClick={addProduct} type="button" className="btn btn-secondary" >Add Product</button>
-              </div>
-
-              </div>
-
-                  {/*errors.client_id && <h6 style={{color:"red"}}>{errors.client_id}</h6>*/}
-              </div>
 
 
               <MasterDetailOpportunityProducts rows={rows}/>
@@ -292,9 +278,8 @@ return (
 
         </div>
         <div className="modal-footer">
-          <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" className="btn btn-primary">Save changes</button>
-          <button  type="button" className="btn btn-primary" disabled={opportunity?.étape==="four" ? false : true } onClick={async () => {
+         
+       <button  type="button" className="btn btn-primary"  onClick={async () => {
       let props = await getProp();
       
       let doc = <DocumentPdf titre="Facture" filtredProducts={opportunityProducts} opp={opp} />;
@@ -306,20 +291,11 @@ return (
       // const blob = await asPdf.toBlob();
       // saveAs(blob, 'document.pdf');
     } } >
-    Generer Facture
-  </button>
+    Facture
+  </button> 
 
-  <button  type="button" className="btn btn-primary" disabled={opportunity?.étape==="two" ? false : true } onClick={ async() => {
-         let props = await getProp();
-      
-         let doc = <DocumentPdf titre="Devis" filtredProducts={opportunityProducts} opp={opp} />;
-         let asPdf = pdf(); // {} is important, throws without an argument
-         asPdf.updateContainer(doc);
-         let blob = await asPdf.toBlob();
-         saveAs(blob, 'Devis.pdf')
-    } } >
-    Generer Devis
-  </button>
+  <InertiaLink href='/home/profil'> <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+</InertiaLink>
         </div>
 
 

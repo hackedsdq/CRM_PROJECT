@@ -23,27 +23,50 @@ class ProfilController extends Controller
     }
     public function update(Request $request,$id)
     {
-    //    $request->validate([
-    //         'nom'=>['required','regex:/^[a-zA-Z]+$/'],
-    //         'prenom'=>['required','regex:/^[a-zA-Z]+$/'],
-    //         'email'=>'required|email',
-    //         'fonction'=>'required',
-    //         'telephone'=>['required','regex:/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/']
-    //     ]);
+
 
         $contact = Contact::find($id);
+        $client = Client:: find($contact ->Client_id);   
        
-        // $contact- = $request->nom;
-        // $contact->prenom = $request->prenom ;
-        // $contact->fonction = $request->fonction;
-        // $contact->email = $request->email;
-        // $contact->telephone =  $request->telephone;
-        // $contact->save();
         $contact->nom =$request->nom;
         $contact->prenom= $request->prenom;
         $contact->email =$request->email;
+        $contact->fonction = $request->fonction;
         $contact->telephone =$request->telephone;
+        
+
+        $client->société = $request->societe;
+        $client->save();
         $contact->save();
-          }
+        return redirect()->back();
+}
+
+//  public function showOpportu ($id){
+//     $opportunity= Opportunities::find($id);
+//     $opportunityProducts = $opportunity->produits;
+//     $client = Client:: find($opportunity->Client_id);
+//     return Inertia::render('ShowOpportunity',[
+//         'opportunity'=>$opportunity,
+//             'type'=>'show',
+//             'client' => $client,
+//             'opportunityProducts'=>$opportunityProducts
+
+//     ]);
+
+//           }
+
+      public function showOpportun ($id){
+        $opportunity= Opportunities::find($id);
+            $opportunityProducts = $opportunity->produits;
+            $client = Client:: find($opportunity->Client_id);
+           
+            return Inertia::render('ShowOpportunity',[
+                'opportunity'=>$opportunity,
+                    'type'=>'show',
+                    'client' => $client,
+                    'opportunityProducts'=>$opportunityProducts
+        
+            ]);
+      }     
         
 }

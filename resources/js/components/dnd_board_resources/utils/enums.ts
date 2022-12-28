@@ -1,6 +1,6 @@
 export enum ColumnType {
-  TO_DO = 'Prospection',
-  IN_PROGRESS = 'Proposition/Devis',
+  TO_DO = 'Proposition/Devis',
+  IN_PROGRESS = 'Négociation',
   BLOCKED = 'Perdue',
   COMPLETED = 'Gagnée',
 }

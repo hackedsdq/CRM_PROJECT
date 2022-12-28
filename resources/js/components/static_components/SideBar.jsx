@@ -1,5 +1,6 @@
 import { InertiaLink } from '@inertiajs/inertia-react'
 import React from 'react'
+//import "../../../../public/assets/images/logo.png"
 
 export default function SideBar() {
   return (
@@ -7,21 +8,14 @@ export default function SideBar() {
   {/* LOGO */}
   <a href="index.html" className="logo text-center logo-light">
     <span className="logo-lg">
-      <img src="assets/images/logo.png" alt height={16} />
+      <img src="https://res.cloudinary.com/dbttd3n1v/image/upload/v1671906267/logo_wwkgud.png" alt="" height={16} />
     </span>
     <span className="logo-sm">
-      <img src="assets/images/logo_sm.png" alt height={16} />
+      <img src="https://res.cloudinary.com/dbttd3n1v/image/upload/v1671906267/logo_wwkgud.png" alt="" height={0} />
     </span>
   </a>
   {/* LOGO */}
-  <a href="index.html" className="logo text-center logo-dark">
-    <span className="logo-lg">
-      <img src="assets/images/logo-dark.png" alt height={16} />
-    </span>
-    <span className="logo-sm">
-      <img src="assets/images/logo_sm_dark.png" alt height={16} />
-    </span>
-  </a>
+ 
   <div className="h-100" id="leftside-menu-container" data-simplebar>
     {/*- Sidemenu */}
     <ul className="side-nav">

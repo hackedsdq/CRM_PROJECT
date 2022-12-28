@@ -7,6 +7,7 @@ use App\Models\Contact;
 use App\Models\Opportunities;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
 {
@@ -17,14 +18,23 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::all();
+        $auth_id = Auth::guard('webadcom')->user()->id;
+
+        $clients = Client::where('user_id', $auth_id)->get();
         return Inertia::render('Clients',[
             'clients' => $clients
         ]);
     }
 
     public function editIndex($id){
+        $auth_id = Auth::guard('webadcom')->user()->id;
         $client = Client::find($id);
+
+        if((isset($client)) && ($client->user_id != $auth_id))
+        return redirect()->route('adcom.clients');   
+        else if(!isset($client))
+        return redirect()->route('adcom.clients');   
+
         $clientContacts = Contact::where('client_id', $id)->get();
         $clientOpportunities = Opportunities::where('client_id', $id)->get();
        // return $clientContacts;
@@ -45,7 +55,15 @@ class ClientController extends Controller
     }
 
     public function showIndex($id){
+        $auth_id = Auth::guard('webadcom')->user()->id;
         $client = Client::find($id);
+
+        if((isset($client)) && ($client->user_id != $auth_id))
+        return redirect()->route('adcom.clients');      
+        else if(!isset($client))
+        return redirect()->route('adcom.clients');   
+
+
         $clientContacts = Contact::where('client_id', $id)->get();
         $clientOpportunities = Opportunities::where('client_id', $id)->get();
 
@@ -118,7 +136,14 @@ class ClientController extends Controller
         ]
         );
 
+        $auth_id = Auth::guard('webadcom')->user()->id;
         $client = Client::find($id);
+
+        if((isset($client)) && ($client->user_id != $auth_id))
+        return redirect()->route('adcom.clients');      
+        else if(!isset($client))
+        return redirect()->route('adcom.clients');
+
         $client->société =  $request->société;
         $client->adresse = $request->adresse;
         $client->téléphone = $request->téléphone;
@@ -138,6 +163,8 @@ class ClientController extends Controller
      */
     public function delete($id)
     {
-             $client = Client::whereIn('id',[$id])->delete();
+        $ids = explode(",",$id);
+        //return $ids;
+        $client = Client::whereIn('id', $ids)->delete();
     }
 }

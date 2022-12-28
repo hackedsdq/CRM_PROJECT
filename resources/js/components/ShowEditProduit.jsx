@@ -1,6 +1,6 @@
 import React from "react";
 import { InertiaLink, useForm } from "@inertiajs/inertia-react";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import SideBar from "./static_components/SideBar";
 import Header from "./static_components/Header";
 
@@ -13,6 +13,25 @@ export default function ShowEditProduit({produits,type}) {
         photo:"",
     });
 
+
+    const cloudinaryRef = useRef();
+    const widgetRef = useRef();
+     // uploading the image
+     cloudinaryRef.current =  window.cloudinary;
+     widgetRef.current = cloudinaryRef.current.createUploadWidget({
+       cloudName: 'dbttd3n1v', 
+       uploadPreset: 'j5xeceeh'
+     }
+       , (error, result) => { 
+         if (!error && result && result.event === "success") { 
+         let photo = result.info.thumbnail_url
+         setData(data.photo = photo) 
+         console.log(result.info)
+         }
+       }
+     )
+    
+
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(data);
@@ -21,7 +40,6 @@ export default function ShowEditProduit({produits,type}) {
 
      useEffect(()=>{
         //console.log(produits.nom)
-
      handleGetProduit()
       },[])
      
@@ -59,7 +77,7 @@ return (
             <div className="modal-body">
                             {/* bodyyyyy of the modal */}
                 <div style={{textAlign:"center"}}>
-                { type==="edit" && <i onClick={()=> widgetRef.current.open()} style={{position:"relative", top:-10,right:10 }} className='mdi mdi-square-edit-outline'></i>}            <img style={{backgroundColor:"black", borderRadius:40, width:80}} src={data.photo} alt='' />
+                { type==="edit" && <i onClick={()=> widgetRef.current.open()} style={{position:"relative", top:-10,right:10 }} className='mdi mdi-square-edit-outline'></i>}            <img className="me-3 rounded-circle" style={{objectFit:'contain'}} width={80} height={80} src={data.photo} alt='' />
                 </div>
 
                 <div className="mb-3">
@@ -85,7 +103,6 @@ return (
                             {/* end of the modal body */}
                 </div>
                     <div className="modal-footer">
-                      <InertiaLink href="/adcom/produits"> <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" >Close </button></InertiaLink>
                        { type==="edit" && <button type="submit" className="btn btn-primary">Mise à jour</button>}
                         </div>
                     </div>

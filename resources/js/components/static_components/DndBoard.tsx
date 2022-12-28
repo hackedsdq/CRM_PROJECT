@@ -24,14 +24,19 @@ function DndBoard({opportunities_one, opportunities_two, opportunities_three, op
  useEffect(()=>{
   console.log("drdrddddrdd")
   console.log(opportunities_one)
+  
+  mockTasks_1=[];
+  mockTasks_2=[];
+  mockTasks_3=[];
+  mockTasks_4=[];
 
   opportunities_one?.map((opportunity)=>(addingOpportunities(opportunity)))
   opportunities_two?.map((opportunity)=>(addingOpportunities(opportunity)))
   opportunities_three?.map((opportunity)=>(addingOpportunities(opportunity)))
   opportunities_four?.map((opportunity)=>(addingOpportunities(opportunity)))
 
-  console.log(opportunities_one)
-  },[opportunities_one])
+  //console.log(opportunities_two)
+  },[])
 
 
 
@@ -39,8 +44,8 @@ function DndBoard({opportunities_one, opportunities_two, opportunities_three, op
     //console.log("=>" + opportunity.nom + "=>" + opportunity.étape)
     
     if(opportunity.étape === "one"){
-    let check = mockTasks_1.filter(opp =>(opp.id === `${opportunity.id}`))
-    if(check.length == 0)
+    //let check = mockTasks_1.filter(opp =>(opp.id === `${opportunity.id}`))
+    //if(check.length == 0)
     mockTasks_1.push(
       {
         id: `${opportunity.id}`,
@@ -53,8 +58,8 @@ function DndBoard({opportunities_one, opportunities_two, opportunities_three, op
     console.log(mockTasks_1)
     }
     else if(opportunity.étape === "two"){
-      let check2 = mockTasks_2.filter(opp =>(opp.id === `${opportunity.id}`))
-      if(check2.length == 0)
+      //let check2 = mockTasks_2.filter(opp =>(opp.id === `${opportunity.id}`))
+      //if(check2.length == 0)
       mockTasks_2.push(
         {
           id: `${opportunity.id}`,
@@ -65,8 +70,8 @@ function DndBoard({opportunities_one, opportunities_two, opportunities_three, op
       )
       }
       else if(opportunity.étape === "three"){
-        let check3 = mockTasks_3.filter(opp =>(opp.id === `${opportunity.id}`))
-        if(check3.length == 0)
+        //let check3 = mockTasks_3.filter(opp =>(opp.id === `${opportunity.id}`))
+        //if(check3.length == 0)
         mockTasks_3.push(
           {
             id: `${opportunity.id}`,
@@ -77,8 +82,8 @@ function DndBoard({opportunities_one, opportunities_two, opportunities_three, op
         )
         }
         else if(opportunity.étape === "four"){
-          let check4 = mockTasks_4.filter(opp =>(opp.id === `${opportunity.id}`))
-          if(check4.length == 0)
+          //let check4 = mockTasks_4.filter(opp =>(opp.id === `${opportunity.id}`))
+          //if(check4.length == 0)
           mockTasks_4.push(
             {
               id: `${opportunity.id}`,

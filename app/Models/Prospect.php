@@ -24,10 +24,15 @@ class Prospect extends Model
         'Statut',
         'Source',
         'photo',
-        'logo'
+        'logo',
+        'user_id'
     ];
     public function clients()
     {
         return $this->belongsTo(Client::class, 'prospect_id');
+    }
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

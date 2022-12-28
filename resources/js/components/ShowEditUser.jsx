@@ -22,7 +22,7 @@ const widgetRef = useRef();
  cloudinaryRef.current =  window.cloudinary;
  widgetRef.current = cloudinaryRef.current.createUploadWidget({
    cloudName: 'dbttd3n1v', 
-   uploadPreset: 'j5xeceeh'
+   uploadPreset: 'j5xeceeh',
  }
    , (error, result) => { 
      if (!error && result && result.event === "success") { 
@@ -82,7 +82,7 @@ return (
   {/*   bodyyyyy of the modal    */}
 
               <div style={{textAlign:"center"}}>
-              {type==="edit" && <i onClick={()=> widgetRef.current.open()} style={{position:"relative", top:-10,right:10 }} className='mdi mdi-square-edit-outline'></i>}              <img style={{backgroundColor:"black", borderRadius:40, width:80}} src={data.photo} alt='' />
+              {type==="edit" && <i onClick={()=> widgetRef.current.open()} style={{position:"relative", top:-10,right:10 }} className='mdi mdi-square-edit-outline'></i>}<img className="me-3 rounded-circle" style={{objectFit:'contain'}} width={80} height={80} src={data.photo} alt='' />
               </div>
 
               <div className="mb-3">

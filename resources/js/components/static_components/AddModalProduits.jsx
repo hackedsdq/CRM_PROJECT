@@ -45,6 +45,7 @@ export default function AddModalProduits(props) {
                 Inertia.reload({only:['produits']})
                 $('#scrollable-modal').hide();
                 $('.modal-backdrop').remove(); 
+                document.body.style.overflow = 'scroll'
             },
             //onError:errors=>{Inertia.reload({only:['produits']})}
         });

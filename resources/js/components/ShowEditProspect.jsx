@@ -46,6 +46,7 @@ post(`/adcom/prospects/update/${prospect.id}`,{
 }
 
 useEffect(()=>{
+  console.log(prospect)
   handleGetProspect()
 },[])
 

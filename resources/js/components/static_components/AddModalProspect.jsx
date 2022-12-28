@@ -71,6 +71,7 @@ post('/adcom/prospects',{
                 Inertia.reload({only:['prospects']})
                 $('#scrollable-modal').hide();
                 $('.modal-backdrop').remove(); 
+                document.body.style.overflow = 'scroll'
             },
 });
 }

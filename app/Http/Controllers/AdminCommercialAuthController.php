@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Prospect;
+use App\Models\Client;
+use App\Models\Contact;
+use App\Models\Opportunities;
+use DB;
 
 class AdminCommercialAuthController extends Controller
 {
@@ -17,12 +22,35 @@ class AdminCommercialAuthController extends Controller
         $user_role = Auth::guard('webadcom')->user()->role;
         $user_id = Auth::guard('webadcom')->user()->id;
 
+        $perContacts = array();
+        $recent_prospects = Prospect::latest()->where('user_id', $user_id)->take(10)->get(['nom', 'prenom', 'photo', 'Statut', 'email']);
+        //$recent_contacts = Contact::all()->groupBy('client_id');
+        $recent_contacts = Contact::groupBy('client_id')->selectRaw('count(*) as total,client_id')->orderBy('total','DESC')->take(5)->get();
+        foreach ($recent_contacts as $e) {
+            array_push($perContacts, strval($e['client_id']));
+        };
+
+        //$ids = explode(",", $perContacts);
+        //echo(json_encode($perContacts));
+        $clients = Client::WhereIn('id', $perContacts)->where('user_id', $user_id)->get();
+        
+        $opportunities = Opportunities::groupBy('étape')->selectRaw('count(*) as total,étape')->get();
+
+        $opportunitiesBenifits = Opportunities::select(DB::raw('sum(montant) as `montant`'), DB::raw("DATE_FORMAT(created_at, '%m-%Y') new_date"),  DB::raw('YEAR(created_at) year, MONTH(created_at) month'))
+                                                ->groupby('year','month')
+                                                ->get();
+
         return Inertia::render('Home',[
             'user_pic'=>$user_pic,
             'user_nom'=>$user_nom,
             'user_prenom'=>$user_prenom,
             'user_role'=>$user_role,
             'user_id'=>$user_id,
+            'totalContacts'=>$recent_contacts,
+            'clients'=>$clients,
+            'recent_prospects'=>$recent_prospects,
+            'opportunities'=>$opportunities,
+            'opportunitiesBenifits'=>$opportunitiesBenifits
         ]);
     }
 

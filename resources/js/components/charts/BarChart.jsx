@@ -1,11 +1,13 @@
 import React from 'react';
 import Chart from "react-apexcharts";
 
-const BarChart = () => {
+const BarChart = (props) => {
+  let barChartData = props.barChartData
+
     const barChartDataCharts1 = [
         {
-          name: "Sales by age",
-          data: [20, 30, 40, 20, 45, 30]
+          name: "opportunité par montant",
+          data: barChartData
         }
       ];
       const barChartOptionsCharts1 = {
@@ -28,7 +30,7 @@ const BarChart = () => {
           theme: "dark"
         },
         xaxis: {
-          categories: ["16-20", "21-25", "26-30", "31-35", "36-42", "42+"],
+          categories: ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "aout", "septembre", "octobre", "novembre", "décembre"],
           show: true,
           labels: {
             show: true,
@@ -91,7 +93,7 @@ const BarChart = () => {
         series={barChartDataCharts1}
         type="bar"
         width="100%"
-        height="100%"
+        height="170%"
       />
         </div>
     );

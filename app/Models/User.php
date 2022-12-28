@@ -56,4 +56,8 @@ class User extends Authenticatable
     {
     return $this->hasMany(Client::class, 'client_id');
     }
+    public function prospects()
+    {
+    return $this->hasMany(Prospect::class, 'user_id');
+    }
 }

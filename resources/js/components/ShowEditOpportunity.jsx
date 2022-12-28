@@ -55,8 +55,10 @@ const  handleSubmit = (e) => {
  e.preventDefault()
 console.log(data)
 post(`/adcom/opportunity/edit`,{
-  preserveState:false
-}) 
+  preserveState:false,
+  onSuccess:page=>{
+    Inertia.reload({only:['opportunities_one']})
+}}) 
 }
 const handleFilterProducts=(products)=>{
   let filtred;
@@ -247,8 +249,8 @@ return (
                       {errors.nom && <h6 style={{color:"red"}}>{errors.nom}</h6>}
                   </div>
                   <div className="mb-3">
-                      <label htmlFor="simpleinput" className="form-label">Montant</label>
-                      <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data?.montant} name="montant" type="text" className="form-control" />
+                      <label  htmlFor="simpleinput" className="form-label">Montant</label>
+                      <input disabled onChange={(e)=>handleChange(e)} value={data?.montant} name="montant" type="text" className="form-control" />
                       {errors.montant && <h6 style={{color:"red"}}>{errors.montant}</h6>}
                   </div>
 
@@ -257,11 +259,11 @@ return (
                       <select disabled={type==="edit" ? false : true } onChange={e => handleChange(e)} value={data?.étape} name="étape" className="form-select" id="example-select">
                         <option value="one">Proposition/Devis</option>
                         <option value="two">Négotiation/Vérification</option>
-                        <option value="three">Cloturé/Ganée</option>
-                        <option value="four">Cloturé/Perdue</option>
+                        <option value="four">Cloturé/Gagnée</option>
+                        <option value="three">Cloturé/Perdue</option>
                       </select>
                   </div>
-                  { type==="edit" &&
+                  { ((type==="edit") && !(opportunity?.étape==="four" || opportunity?.étape==="three" )) &&
                   <div className="mb-3">                
                   <div style={{display:"flex", alignItems:"center",justifyContent:"space-between"}}>  
                   <div style={{marginTop:0,}}>
@@ -298,7 +300,7 @@ return (
             </div>
             <div className="modal-footer">
               { type==="edit" && <button type="submit" className="btn btn-primary">Mise à jour</button>}
-          <button  type="button" className="btn btn-primary" disabled={opportunity?.étape==="three" ? false : true } onClick={async () => {
+    {opportunity?.étape==="four"  && <button  type="button" className="btn btn-primary"  onClick={async () => {
           //let props = await getProp();
           
           let doc = <DocumentPdf titre="Facture" filtredProducts={opportunityProducts} opp={opp} />;
@@ -311,9 +313,9 @@ return (
           // saveAs(blob, 'document.pdf');
         } } >
         Generer Facture
-      </button>
+      </button>}
 
-      <button  type="button" className="btn btn-primary" disabled={opportunity?.étape==="two" ? false : true } onClick={ async() => {
+{!(opportunity?.étape==="four" || opportunity?.étape==="three" ) && <button  type="button" className="btn btn-primary"  onClick={ async() => {
             //let props = await getProp();
           
             let doc = <DocumentPdf titre="Devis" filtredProducts={opportunityProducts} opp={opp} />;
@@ -323,7 +325,7 @@ return (
             saveAs(blob, 'Devis.pdf')
         } } >
         Generer Devis
-      </button>
+      </button> }
             </div>
 
 

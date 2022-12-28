@@ -18,7 +18,7 @@ let [user_id, setUserId]=useState("");
 const [open, setOpen] = useState(false);
 
 const handleSignOut = () =>{
-  Inertia.post('logout')
+  Inertia.post('http://localhost:8000/adcom/logout')
 }
 
 const handleClickOpen = () => {
@@ -52,7 +52,7 @@ const handleClose = () => {
                 <li className="dropdown notification-list ">
                   <a className="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                     <span className="account-user-avatar"> 
-                      <img src={user_pic} alt="user-image" className="rounded-circle" />
+                      <img src={user_pic} alt="" className="rounded-circle" />
                     </span>
                     <span>
                       <span className="account-user-name">{user_nom} {user_prenom}</span>
@@ -148,7 +148,7 @@ const handleClose = () => {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Est-ce-que vous voullez supprimer les données.
+            Est-ce-que vous voullez déconnecté.
           </DialogContentText>
         </DialogContent>
         <DialogActions>

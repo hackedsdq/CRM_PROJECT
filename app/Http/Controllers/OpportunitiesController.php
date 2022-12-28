@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-
+use DB;
 class OpportunitiesController extends Controller
 {
     /**
@@ -19,10 +19,35 @@ class OpportunitiesController extends Controller
      */
     public function index()
     {
-        $opportunities_one = Opportunities::where('étape', 'one')->get();
-        $opportunities_two = Opportunities::where('étape', 'two')->get();
-        $opportunities_three = Opportunities::where('étape', 'three')->get();
-        $opportunities_four = Opportunities::where('étape', 'four')->get();
+        $auth_id = Auth::guard('webadcom')->user()->id;
+
+        //$contacts = Contact::all();
+         $opportunities = DB::table('opportunities')
+                            ->Join('clients', 'clients.id', '=' , 'opportunities.client_id')
+                            ->Join('users', 'users.id' ,'=' , 'clients.user_id')
+                            ->where('users.id', '=', $auth_id)
+                            ->where('opportunities.deleted_at', '=', null)
+                            ->select('opportunities.id', 'opportunities.nom', 'opportunities.montant', 'opportunities.étape' , 'opportunities.date_de_clôture')
+                            ->get(); 
+        //return $opportunities;
+        //return $opportunities;
+
+        $opportunities_one = array();
+        $opportunities_two = array();
+        $opportunities_three = array();
+        $opportunities_four = array();
+        
+        foreach($opportunities as $e){
+            if($e->étape == 'one')
+            array_push($opportunities_one, $e);
+            else if($e->étape == 'two')
+            array_push($opportunities_two, $e);
+            else if($e->étape == 'three')
+            array_push($opportunities_three, $e);
+            else if($e->étape == 'four')
+            array_push($opportunities_four, $e);
+        }
+
 
         //return $opportunities_one;
         return Inertia::render('Opportunities',[
@@ -30,6 +55,7 @@ class OpportunitiesController extends Controller
             'opportunities_two'=> $opportunities_two,
             'opportunities_three'=> $opportunities_three,
             'opportunities_four'=> $opportunities_four,
+            'opportunities'=> $opportunities,
         ]);
     }
 
@@ -181,7 +207,7 @@ class OpportunitiesController extends Controller
         //$opportunity->montant = $request->montant ;
         $opportunity->étape = $request->étape;
         $opportunity->save();
-        return redirect()->back();
+        return redirect()->route('adcom.opportunities');
 
     }
 

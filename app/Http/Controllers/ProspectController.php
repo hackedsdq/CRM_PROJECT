@@ -6,11 +6,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Prospect;
 use App\Models\Client;
+use App\Models\User;
+
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Validation\Rule;
-
+use DB;
 class ProspectController extends Controller
 {
     /**
@@ -21,7 +23,16 @@ class ProspectController extends Controller
 
     public function index(Request $request)
     {
-       $prospects = Prospect::all();
+      $auth_id = Auth::guard('webadcom')->user()->id;
+    $prospects = User::find($auth_id)->prospects;
+    //echo($prospects);
+       /*  $prospects = DB::table('prospects')
+                            ->Join('users', 'users.id', '=' , 'prospects.user_id')
+                            ->where('users.id', '=', $auth_id)
+                            ->select('prospects.nom', 'prospects.prenom', 'prospects.fonction' , 'prospects.téléphone','prospects.Statut', 'prospects.Source', 'prospects.id')
+                            ->get();   */
+
+       //$prospects = Prospect::all();
        //$session = $request->session()->get('key');
       // return $session;
         return Inertia::render('Prospects',[
@@ -30,7 +41,18 @@ class ProspectController extends Controller
     }
 
     public function editIndex($id){
+
+        $auth_id = Auth::guard('webadcom')->user()->id;
+
         $prospect = Prospect::find($id);
+
+        //return $prospect;
+        if((isset($prospect)) && ($prospect->user_id != $auth_id))
+        return redirect()->route('adcom.prospects');   
+        else if(!isset($prospect))
+        return redirect()->route('adcom.prospects');   
+
+
         return Inertia::render('ShowEditProspect',[
             'prospect'=>$prospect,
             'type'=>'edit',
@@ -38,7 +60,16 @@ class ProspectController extends Controller
     }
 
     public function showIndex($id){
+        $auth_id = Auth::guard('webadcom')->user()->id;
         $prospect = Prospect::find($id);
+
+        //return $prospect;
+        if((isset($prospect)) && ($prospect->user_id != $auth_id))
+        return redirect()->route('adcom.prospects');   
+        else if(!isset($prospect))
+        return redirect()->route('adcom.prospects');
+
+
         return Inertia::render('ShowEditProspect',[
             'prospect'=>$prospect,
             'type'=>'show',
@@ -66,9 +97,11 @@ class ProspectController extends Controller
        ]
        ); 
 
+       
 
         $newProspect = new Prospect();
-        
+        $user_id = Auth::guard('webadcom')->user()->id;
+
         $newProspect->nom = $request->nom;
         $newProspect->prenom = $request->prenom ;
         $newProspect->société = $request->société;
@@ -81,6 +114,8 @@ class ProspectController extends Controller
         $newProspect->Source = $request->Source;
         $newProspect->logo = $request->logo;
         $newProspect->photo = $request->photo;
+        $newProspect->user_id = $user_id;
+
         $newProspect->save();
 
         return redirect()->back();
@@ -144,7 +179,6 @@ class ProspectController extends Controller
 
        //return $request;
         $prospect = Prospect::find($id);
-        
         $prospect->nom = $request->nom;
         $prospect->prenom = $request->prenom ;
         $prospect->société = $request->société;
@@ -182,7 +216,7 @@ class ProspectController extends Controller
        // get id from the laravel_session of a default Auth
         // $user_id = Auth::guard('webadcom')->user()->id;
         // get id from the laravel_session of a guarded Auth
-        //$user_id = Auth::guard('webadcom')->user()->id;
+        $user_id = Auth::guard('webadcom')->user()->id;
 
         if(count($existingClient)==0){
             $client = Client::create([
@@ -192,7 +226,7 @@ class ProspectController extends Controller
                 'site_web'=>$prospect->site_web, 
                 'prospect_id'=>$prospect->id,
                 'logo'=>$prospect->logo,
-                'user_id'=>1
+                'user_id'=>$user_id
             ]);
             $contact = Contact::create([
                 'nom'=> $prospect->nom,

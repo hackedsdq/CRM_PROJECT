@@ -37,7 +37,8 @@ export default function DataGridTable(props) {
               Inertia.reload({only:['contacts']})
               handleClose()
               $('#scrollable-modal').hide();
-              $('.modal-backdrop').remove(); 
+              $('.modal-backdrop').remove();
+              document.body.style.overflow = 'scroll' 
           }});
         else if(props.title==='Prospects')
         Inertia.delete(`/adcom/prospects/${selectedRows}`,{ 
@@ -47,6 +48,7 @@ export default function DataGridTable(props) {
               handleClose()
               $('#scrollable-modal').hide();
               $('.modal-backdrop').remove(); 
+              document.body.style.overflow = 'scroll'
           }});
         else if(props.title==='produits')
         Inertia.delete(`/adcom/produits/${selectedRows}`,{
@@ -55,7 +57,8 @@ export default function DataGridTable(props) {
               Inertia.reload({only:['produits']})
               handleClose()
               $('#scrollable-modal').hide();
-              $('.modal-backdrop').remove(); 
+              $('.modal-backdrop').remove();
+              document.body.style.overflow = 'scroll' 
           }});
         else if (props.title === 'Clients'){
           Inertia.delete(`/adcom/clients/${selectedRows}`,{ 
@@ -64,7 +67,8 @@ export default function DataGridTable(props) {
                 Inertia.reload({only:['clients']})
                 handleClose()
                 $('#scrollable-modal').hide();
-                $('.modal-backdrop').remove(); 
+                $('.modal-backdrop').remove();
+                document.body.style.overflow = 'scroll' 
             }});
         }
         else if (props.title === 'utilisateur'){

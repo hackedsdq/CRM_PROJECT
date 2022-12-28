@@ -7,7 +7,7 @@ export default function ShowEditContact({contact,type})  {
 
 
   const { data, setData, post, processing, errors } = useForm({
-    nom:"test",
+    nom:"",
     prenom :"",  
     fonction:"", 
     email :"" , 
@@ -35,22 +35,23 @@ const widgetRef = useRef();
 
 const  handleSubmit = (e) => {
  e.preventDefault()
-//console.log(data)
+console.log(data)
 post(`/adcom/contacts/update/${contact.id}`) 
 }
 
 useEffect(()=>{
+  console.log(contact.email)
   handleGetContact()
 },[])
 
 
 const handleGetContact = ()=>{
   setData(data.nom = contact.nom)
-  setData(data.prenom = contact.prenom)
+   setData(data.prenom = contact.prenom)
   setData(data.fonction = contact.fonction)
   setData(data.email = contact.email)
   setData(data.photo = contact.photo)
-  setData(data.telephone = contact.telephone.toString())
+  setData(data.telephone = contact.telephone)
 }
 
 const handleChange = (e) =>{
@@ -91,7 +92,7 @@ return (
     {/*   bodyyyyy of the modal    */}
               <div style={{textAlign:"center"}}>
               {type==="edit" && <i onClick={()=> widgetRef.current.open()} style={{position:"relative", top:-10,right:10 }} className='mdi mdi-square-edit-outline'></i>}             
-              <img style={{backgroundColor:"black", borderRadius:40, width:80}} src={data.photo} alt='' />
+              <img className="me-3 rounded-circle" style={{objectFit:'contain'}} width={80} height={80} src={data.photo} alt='' />
               </div>
 
                 <div className="mb-3">

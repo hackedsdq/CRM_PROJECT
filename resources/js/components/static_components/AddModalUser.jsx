@@ -42,6 +42,7 @@ export default function AddModalProduits(props) {
                 Inertia.reload({only:['users']})
                 $('#scrollable-modal').hide();
                 $('.modal-backdrop').remove(); 
+                document.body.style.overflow = 'scroll'
             },});
     };
 

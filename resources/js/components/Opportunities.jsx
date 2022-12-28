@@ -5,13 +5,15 @@ import PageTitle from './static_components/PageTitle'
 import DndBoard from './static_components/DndBoard'
 import { ChakraProvider } from '@chakra-ui/react';
 import theme from './dnd_board_resources/config/theme';
+import { Inertia } from '@inertiajs/inertia';
 
 import AddModalOpportunity from './static_components/AddModalOpportunity'
 
-export default function Opportunities({clients,opportunities_one, opportunities_two, opportunities_three, opportunities_four}) {
+export default function Opportunities({clients,opportunities_one, opportunities_two, opportunities_three, opportunities_four, opportunities}) {
 
   let title = "Opportunités"
   let [filtredClients, setFiltredClients]=useState([])
+  let [rendred, setRendreded]=useState(false)
   //let [firstRender, setFirstRender]=useState(true)
 /*   let [opp1, setOpp1]=useState([])
   let [opp2, setOpp2]=useState([])
@@ -20,14 +22,14 @@ export default function Opportunities({clients,opportunities_one, opportunities_
 
   //const [open,setOpen]=useState(false);
 
-  useEffect(()=>{
+useEffect(()=>{
 /*   setOpp1(opportunities_one)
   setOpp2(opportunities_two)
   setOpp3(opportunities_three)
   setOpp4(opportunities_four) */
-
-  handleFilter(clients)
-  },[clients])
+console.log(opportunities)
+handleFilter(clients)
+},[clients])
 
 const handleFilter=(clients)=>{
   let filtred;
@@ -51,17 +53,19 @@ const handleFilter=(clients)=>{
         <SideBar />
         <Header />
         
-        <div className="content-page">
-          <div className="content">
+        <div className="container-login100">
+    <div className="wrap-login100">
+        <div className="modal-content">
+          <div className="modal-body">
             <div className="container-fluid">
-              <PageTitle title={title} />
-              <button  className="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#scrollable-modal">
+{/*               <PageTitle title={title} />*/}  
+            <button  className="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#scrollable-modal">
                   <i className="mdi mdi-plus-circle me-2" /> Add Opportunity
               </button>
 
               <AddModalOpportunity clients={filtredClients} />
           
-              <ChakraProvider   resetCSS={false} theme={theme} >
+               <ChakraProvider   resetCSS={false} theme={theme} >
                   <DndBoard opportunities_one={opportunities_one} opportunities_two={opportunities_two} opportunities_three={opportunities_three} opportunities_four={opportunities_four} />
               </ChakraProvider>
             
@@ -70,6 +74,9 @@ const handleFilter=(clients)=>{
         </div>
 
     </div>
+    </div>
+  </div>
+
   )
 }
 

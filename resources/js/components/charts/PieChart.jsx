@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactApexChart from "react-apexcharts";
 
-const PieChart = () => {
-    const pieChartData = [10, 10, 10];
+const PieChart = (props) => {
+    let pieChartData = props.pieChartData ;
     const pieChartOptions = {
-        labels: ["Your files", "System", "Empty"],
-        colors: ["#4318FF", "#6AD2FF", "#EFF4FB"],
+        labels: ["Devis/Proposition", "Négociation", "Gagnée", "Perdue"],
+        colors: ["#FBC42D", "#6AD2FF",  "#09A837", "#D9534F"],
         chart: {
           width: "50px"
         },
@@ -34,7 +34,7 @@ const PieChart = () => {
           }
         },
         fill: {
-          colors: ["#4318FF", "#6AD2FF", "#EFF4FB"]
+          colors: ["#FBC42D", "#6AD2FF",  "#09A837", "#D9534F",]
         },
         tooltip: {
           enabled: true,
@@ -48,7 +48,7 @@ const PieChart = () => {
         series={pieChartData}
         type="pie"
         width="100%"
-        height="100%"
+        height="180%"
         />
         </div>
     );

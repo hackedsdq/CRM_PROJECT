@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('téléphone');
             $table->string('adresse');
             $table->string('site_web');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->enum('Statut',['chaud', 'froid']);
             $table->enum('Source',['Web', 'Téléphone', 'Partenaire', 'Autre']);
             $table->string('logo');

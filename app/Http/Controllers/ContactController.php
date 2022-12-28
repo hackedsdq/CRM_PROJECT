@@ -6,6 +6,9 @@ use App\Models\Contact;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Http\RedirectResponse;
+use DB;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 
 class ContactController extends Controller
@@ -18,22 +21,67 @@ class ContactController extends Controller
     public function index()
     {
      
-        $contacts = Contact::all();
+        $auth_id = Auth::guard('webadcom')->user()->id;
+
+        //$contacts = Contact::all();
+         $contacts = DB::table('contacts')
+                            ->Join('clients', 'clients.id', '=' , 'contacts.client_id')
+                            ->Join('users', 'users.id' ,'=' , 'clients.user_id')
+                            ->where('users.id', '=', $auth_id)
+                            ->where('contacts.deleted_at', '=', null)
+                            ->select('contacts.nom', 'contacts.prenom', 'contacts.email', 'contacts.id' , 'contacts.fonction')
+                            ->get(); 
+        //$contacts = Client::find($clients[0]->user_id)-
+        //return $clients;
+
         return Inertia::render('Contacts',['contacts'=>$contacts]);
 
     }
     public function editIndex($id){
-        $contact = Contact::find($id);
+        //$contact = Contact::find($id);
+
+        $auth_id = Auth::guard('webadcom')->user()->id;
+
+        //$contacts = Contact::all();
+        //$contact = DB::table('contacts')
+         $contact = DB::table('contacts')
+                            ->Join('clients', 'clients.id', '=' , 'contacts.client_id')
+                            ->Join('users', 'users.id' ,'=' , 'clients.user_id')
+                            ->where('users.id', '=', $auth_id)
+                            ->where('contacts.id', '=', $id)
+                            ->where('contacts.deleted_at', '=', null)
+                            ->select('contacts.nom', 'contacts.prenom', 'contacts.email', 'contacts.id' , 'contacts.fonction','contacts.photo', 'contacts.telephone')
+                            ->get(); 
+
+        if(count($contact)==0)
+        return redirect()->route('adcom.contacts');
+
         return Inertia::render('ShowEditContact',[
-            'contact'=>$contact,
+            'contact'=>$contact[0],
             'type'=>'edit',
         ]);
     }
 
     public function showIndex($id){
-        $contact = Contact::find($id);
+
+        $auth_id = Auth::guard('webadcom')->user()->id;
+
+        $contact = DB::table('contacts')
+                ->Join('clients', 'clients.id', '=' , 'contacts.client_id')
+                ->Join('users', 'users.id' ,'=' , 'clients.user_id')
+                ->where('users.id', '=', $auth_id)
+                ->where('contacts.id', '=', $id)
+                ->where('contacts.deleted_at', '=', null)
+                ->select('contacts.nom', 'contacts.prenom', 'contacts.email', 'contacts.id' , 'contacts.fonction','contacts.photo', 'contacts.telephone')
+                ->get();
+
+
+        if(count($contact)==0)
+        return redirect()->route('adcom.contacts');
+
+
         return Inertia::render('ShowEditContact',[
-            'contact'=>$contact,
+            'contact'=>$contact[0],
             'type'=>'show',
         ]);
     }

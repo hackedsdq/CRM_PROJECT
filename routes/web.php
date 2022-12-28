@@ -146,3 +146,4 @@ Route::post('/adcom/opprtunities/edit/{opp}',[\App\Http\Controllers\Opportunitie
 Route::post('/adcom/opportunity/edit',[\App\Http\Controllers\OpportunitiesController::class, 'update']);
 //profil
 Route::get('/home/profil',[\App\Http\Controllers\ProfilController::class, 'editIndex']);
+Route::post('/home/profil/{id}',[\App\Http\Controllers\ProfilController::class, 'update']);

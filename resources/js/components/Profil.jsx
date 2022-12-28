@@ -41,7 +41,7 @@ const handleSetOpportunities = () =>{
     const  handleSubmit = (e) => {
      e.preventDefault()
     //console.log(data)
-    post(`/adcom/contacts/update/${contact.id}`) 
+    post(`/home/profil/${contact.id}`) 
     }
 
 const cloudinaryRef = useRef();
@@ -57,7 +57,9 @@ uploadPreset: 'j5xeceeh'
 if (!error && result && result.event === "success") { 
 photo = result.info.thumbnail_url
 //data.photo = photo;
-setData('photo',photo) 
+data.photo=photo
+// setData('photo',photo) 
+setData('photo', photo)
 console.log(result.info)
 }
 }
@@ -199,7 +201,7 @@ Recommended thumbnail size 800x400 (px).
 <span><img src="assets/images/logo-dark.png" alt="" height="18"/></span>
 </a>
 </div>
-<form class="ps-3 pe-3" action="#"onSubmit={(e)=>handleSubmit(e)} >
+<form class="ps-3 pe-3" action="#" onSubmit={(e)=>handleSubmit(e)} >
 <div class="py-2" >
 <div class="row py-2">
 <div class="col-md-6">
@@ -218,34 +220,13 @@ Recommended thumbnail size 800x400 (px).
 </div>
 <div class="col-md-6 pt-md-0 pt-3">
 <label for="phone">Phone Number</label>
-<input type="tel" class="bg-light form-control"id ="textffil"onChange={(e)=>handleChange(e)} value={data.telephone} name="téléphone" placeholder="+1 213-548-6015"/>
+<input type="tel" class="bg-light form-control"id ="textffil"onChange={(e)=>handleChange(e)} value={data.telephone} name="telephone" placeholder="+1 213-548-6015"/>
 </div>
 </div>
-<div class="row py-2">
-<div class="col-md-6">
-<label for="country">Country</label>
-<select name="country" id="country" class="bg-light">
-<option value="india" selected>India</option>
-<option value="usa">USA</option>
-<option value="uk">UK</option>
-<option value="uae">UAE</option>
-</select>
-</div>
-<div class="col-md-6 pt-md-0 pt-3" id="lang">
-<label for="language">Language</label>
-<div class="arrow">
-<select name="language" id="language" class="bg-light">
-<option value="english" selected>English</option>
-<option value="english_us">English (United States)</option>
-<option value="enguk">English UK</option>
-<option value="arab">Arabic</option>
-</select>
-</div>
-</div>
-</div>
+
 <div class="py-3 pb-4 border-bottom">
 <button class="btn btn-primary mr-3" type="submit" >Save Changes</button>
-<button class="btn border button">Cancel</button>
+<button class="btn border button" >Cancel</button>
 </div>
 <div class="d-sm-flex align-items-center pt-3" id="deactivate">
 <div>
@@ -253,6 +234,7 @@ Recommended thumbnail size 800x400 (px).
 <p>Details about your company account and password</p>
 </div>
 <div class="ml-auto">
+<button type="button"   class="btn btn-danger" >Edit Profil</button>
 
 </div>
 </div>

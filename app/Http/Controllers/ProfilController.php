@@ -6,16 +6,18 @@ use App\Models\Client;
 use App\Models\Contact;
 use App\Models\Opportunities;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 
 class ProfilController extends Controller
 {
     public function editIndex(){
-        $contact = Contact::find(1);
-        $client = Client:: find($contact ->Client_id);
-        $opportun= Opportunities::where('client_id', 'like', $contact ->Client_id)->get();
-              return Inertia::render('Profil',[
+        $contact_id= Auth::user()->id;
+         $contact= Contact::find($contact_id);
+        $client = Client::find($contact->Client_id);
+        $opportun= Opportunities::where('client_id', 'like', $contact->Client_id)->get();
+            return Inertia::render('Profil',[
             'contact'=>$contact,
             'client' => $client,
             'opportunity' => $opportun
@@ -38,7 +40,7 @@ class ProfilController extends Controller
         $client->société = $request->societe;
         $client->save();
         $contact->save();
-        return redirect()->back();
+        return redirect()->route('home.profile');
 }
 
 //  public function showOpportu ($id){

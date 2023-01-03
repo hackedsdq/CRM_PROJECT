@@ -28,7 +28,7 @@ Route::get('/SigninCostumer',[\App\Http\Controllers\SiginCostumerController::cla
 // contact routes
 Route::get('login/', [\App\Http\Controllers\ContactsAuthController::class, 'login'])->name('contacts.login');
 Route::post('login/', [\App\Http\Controllers\ContactsAuthController::class, 'handleLogin'])->name('contacts.handleLogin');
-Route::get('logout/', [\App\Http\Controllers\ContactsAuthController::class, 'index'])->name('contacts.logout');
+Route::get('/logout', [\App\Http\Controllers\ContactsAuthController::class, 'handlelogout'])->name('contacts.logout');
 
 Route::get('opportunities/',[\App\Http\Controllers\OpportunitiesController::class, 'index'])->name('contacts.opportunities');
 Route::get('calendar/',[\App\Http\Controllers\CalendarController::class, 'index'])->name('contacts.calendar');
@@ -58,9 +58,10 @@ Route::get('adcom/produits',[\App\Http\Controllers\ProduitController::class, 'in
 
 // auth middlewares
 Route::get('adcom/', [\App\Http\Controllers\AdminCommercialAuthController::class, 'index'])->name('adcom.home')->middleware('auth:webadcom');
-Route::get('/', [\App\Http\Controllers\ContactsAuthController::class, 'index'])->middleware('auth:web');
+// Route::get('/', [\App\Http\Controllers\ContactsAuthController::class, 'index'])->name('home.profile')->middleware('auth:web');
 
-
+//log
+// Route::get('/logout', [\App\Http\Controllers\ContactsAuthController::class, 'handlelogout'])->name('contacts.logout');
 
 // add prospect
 Route::post('/adcom/prospects',[\App\Http\Controllers\ProspectController::class, 'create']);
@@ -145,6 +146,6 @@ Route::post('/adcom/opprtunities/edit/{opp}',[\App\Http\Controllers\Opportunitie
 // edit an opportunity infos 
 Route::post('/adcom/opportunity/edit',[\App\Http\Controllers\OpportunitiesController::class, 'update']);
 //profil
-Route::get('/home/profil',[\App\Http\Controllers\ProfilController::class, 'editIndex']);
-Route::post('/home/profil/{id}',[\App\Http\Controllers\ProfilController::class, 'update']);
-Route::get('/home/profil/show/{id}',[\App\Http\Controllers\ProfilController::class, 'showOpportun']);
+// Route::get('/home/profil',[\App\Http\Controllers\ProfilController::class, 'editIndex']); -->
+Route::post('/Profile/{id}',[\App\Http\Controllers\ProfilController::class, 'update']);
+Route::get('/Profile/show/{id}',[\App\Http\Controllers\ProfilController::class, 'showOpportun']);

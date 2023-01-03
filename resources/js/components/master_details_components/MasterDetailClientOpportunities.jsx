@@ -121,7 +121,7 @@ const MasterDetailClientOpportunities = ({rows}) => {
         customBodyRender: (data)=>{
           console.log(data)
           return(
-           <InertiaLink href={`/home/profil/show/${data}`}><i className='mdi mdi-eye'></i> </InertiaLink>
+           <InertiaLink href={`/Profile/show/${data}`}><i className='mdi mdi-eye'></i> </InertiaLink>
            
           );
       }

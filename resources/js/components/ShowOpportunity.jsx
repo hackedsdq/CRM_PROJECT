@@ -22,6 +22,7 @@ import InvoiceTableBlankSpace from './table/InvoiceTableBlankSpace'
 import InvoiceTableFooter from './table/InvoiceTableFooter'
 import InvoiceThankYouMsg from './table/InvoiceThankYouMsg'
 import BillTo from './table/BillTo'
+import HeaderContact from './static_components/HeaderContact'
 
 export default function ShowOpportunity({client,opportunity,type,products,opportunityProducts})  {
   let [filtredProducts, setFiltredProducts]=useState([])
@@ -36,7 +37,7 @@ export default function ShowOpportunity({client,opportunity,type,products,opport
     prix:"",
     quantité:"",
     opportunity_id:"",
-})
+});
 const [rows, setRows] = useState([])
 
 
@@ -188,62 +189,11 @@ const DocumentPdf = (props) => (
 
 return (
   <div>
-     <header class="header_section">
-      
-      <div class="header_bottom">
-        <div class="container-fluid">
-          <nav class="navbar navbar-expand-lg custom_nav-container ">
-            <a class="navbar-brand" href="index.html">
-              <img src="../../../assets/images/logo.png" alt=""/>
-            </a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class=""> </span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav ">
-                <li class="nav-item active">
-                
-                {/* <InertiaLink href={`/homeOffice`}> */}
-                    <a class="nav-link">
-                      Home
-                    </a><span class="sr-only">(current)</span>
-                    {/* </InertiaLink>  */}
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="about.html"> About</a>
-                </li>
-                <li class="nav-item">
-                {/* <InertiaLink href={`/Products`}> */}
-                    <a class="nav-link">
-                      Products
-                    </a>
-                    {/* </InertiaLink> */}
-                </li>
-                <li class="nav-item">
-                {/* <InertiaLink href={`/ContactUs`}> */}
-                    <a class="nav-link">
-                     Contact Us
-                    </a>
-                    {/* </InertiaLink> */}
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="why.html">Why Us</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="testimonial.html">Testimonial</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </div>
-    </header>
+   <HeaderContact />
 <div className="container-login100">
   
 			<div className="wrap-login100">
-      <InertiaLink href='/home/profil'><button class="btn btn-success">My Account</button></InertiaLink>
+      <InertiaLink href='/Profile'><button class="btn btn-success">My Account</button></InertiaLink>
     <form onSubmit={(e)=>handleSubmit(e)} >
       <div className="modal-content">
         <div className="modal-body">
@@ -251,7 +201,7 @@ return (
   {/*   bodyyyyy of the modal    */}
 
               <div className="mb-3">
-                  <label htmlFor="simpleinput" className="form-label">First Name</label>
+                  <label htmlFor="simpleinput" className="form-label">Titre de l'Opportunité </label>
                   <input disabled={true } value={data?.nom} name="nom"  type="text" className="form-control" />
                   {errors.nom && <h6 style={{color:"red"}}>{errors.nom}</h6>}
               </div>

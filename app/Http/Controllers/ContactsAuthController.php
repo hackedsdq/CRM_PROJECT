@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
 use App\Models\Contact;
+use App\Models\Opportunities;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -12,9 +14,15 @@ class ContactsAuthController extends Controller
 {
     public function index(Request $req)
     {
-        //$value = $req->user();
-        //return $value;
-        return Inertia::render('Profile');
+        $contact_id= Auth::user()->id;
+        $contact= Contact::find($contact_id);
+        $client = Client::find($contact ->Client_id);
+        $opportun= Opportunities::where('client_id', 'like', $contact ->Client_id)->get();
+              return Inertia::render('Profil',[
+            'contact'=>$contact,
+            'client' => $client,
+            'opportunity' => $opportun
+        ]);
     }
 
     public function login()
@@ -36,10 +44,10 @@ class ContactsAuthController extends Controller
         return redirect()->back()->with('error', 'Invalid Credentials');
     }
 
-    public function logout()
+    public function handlelogout()
     {
-        Auth::logout();
-
+        Auth::guard()->logout();
+       
         return redirect()->route('contacts.login');
     }
 }

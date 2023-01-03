@@ -5,9 +5,10 @@ import { useForm } from '@inertiajs/inertia-react';
 
 
 import MasterDetailClientOpportunities from './master_details_components/MasterDetailClientOpportunities';
+import HeaderContact from './static_components/HeaderContact';
 function Profil({contact, client,opportunity}) {
     const { data, setData, post, processing, errors } = useForm({
-        nom:"test",
+        nom:"",
         prenom :"",  
         client_id:"", 
         fonction:"", 
@@ -24,6 +25,10 @@ function Profil({contact, client,opportunity}) {
     useEffect(()=>{
       handleGetContact()
       handleSetOpportunities()
+      localStorage.setItem('contact_id',contact.id)
+localStorage.setItem('contact_pic',data.photo)
+localStorage.setItem('contact_nom',contact.nom)
+localStorage.setItem('contact_prenom',contact.prenom)
     },[])
   
     
@@ -43,7 +48,7 @@ const handleSetOpportunities = () =>{
     const  handleSubmit = (e) => {
      e.preventDefault()
     //console.log(data)
-    post(`/home/profil/${contact.id}`) 
+    post(`/profil/${contact.id}`) 
     }
 
 const cloudinaryRef = useRef();
@@ -107,58 +112,10 @@ console.log( client.société)
 
 return (
   <div>
- <header class="header_section">
-      
-      <div class="header_bottom">
-        <div class="container-fluid">
-          <nav class="navbar navbar-expand-lg custom_nav-container ">
-            <a class="navbar-brand" href="index.html">
-              <img src="../../../assets/images/logo.png" alt=""/>
-            </a>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class=""> </span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav ">
-                <li class="nav-item active">
-                
-                {/* <InertiaLink href={`/homeOffice`}> */}
-                    <a class="nav-link">
-                      Home
-                    </a><span class="sr-only">(current)</span>
-                    {/* </InertiaLink>  */}
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="about.html"> About</a>
-                </li>
-                <li class="nav-item">
-                {/* <InertiaLink href={`/Products`}> */}
-                    <a class="nav-link">
-                      Products
-                    </a>
-                    {/* </InertiaLink> */}
-                </li>
-                <li class="nav-item">
-                {/* <InertiaLink href={`/ContactUs`}> */}
-                    <a class="nav-link">
-                     Contact Us
-                    </a>
-                    {/* </InertiaLink> */}
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="why.html">Why Us</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="testimonial.html">Testimonial</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </div>
-    </header>
+      <HeaderContact />
+     
+  
 
 <div class="wrapper bg-white mt-sm-5">
   
@@ -197,11 +154,11 @@ Recommended thumbnail size 800x400 (px).
 </div>
 <div class="row py-2">
 <div class="col-md-6">
-<label for="firstname">First Name</label><br/>
+<label for="firstname">Prénom</label><br/>
 <span id ="textffil">{data?.nom}</span>
 </div>
 <div class="col-md-6 pt-md-0 pt-3">
-<label for="lastname">Last Name</label>
+<label for="lastname">Nom</label>
 <br/>
 <span id ="textffil">{data.prenom}</span>
 
@@ -209,11 +166,11 @@ Recommended thumbnail size 800x400 (px).
 </div>
 <div class="row py-2">
 <div class="col-md-6">
-<label for="email">Email Address</label><br/>
+<label for="email">Email:</label><br/>
 <span id ="textffil">{data.email}</span>
 </div>
 <div class="col-md-6 pt-md-0 pt-3">
-<label for="phone">Phone Number</label><br/>
+<label for="phone">Téléphone</label><br/>
 <span id ="textffil">{data.telephone}</span>
 </div>
 </div>
@@ -233,7 +190,7 @@ Recommended thumbnail size 800x400 (px).
 <span id ="textffil">{client.téléphone}</span>
 </div>
 <div class="col-md-6 pt-md-0 pt-3">
-<label for="phone"> Adresse </label><br/>
+<label for="phone"> Adresse: </label><br/>
  <span id ="textffil"> {client.adresse}</span>
 </div>
 </div>
@@ -259,21 +216,21 @@ Recommended thumbnail size 800x400 (px).
 <div class="row py-2">
   
 <div class="col-md-6">
-<label for="firstname">First Name</label>
+<label for="firstname">Prénom</label>
 <input type="text" class="bg-light form-control"id ="textffil"onChange={(e)=>handleChange(e)} value={data.nom} name="nom" placeholder="Steve"/>
 </div>
 <div class="col-md-6 pt-md-0 pt-3">
-<label for="lastname">Last Name</label>
+<label for="lastname">Nom</label>
 <input type="text" class="bg-light form-control" id ="textffil"onChange={(e)=>handleChange(e)} value={data.prenom} name="prenom" placeholder="Smith"/>
 </div>
 </div>
 <div class="row py-2">
 <div class="col-md-6">
-<label for="email">Email Address</label>
+<label for="email">Email </label>
 <input type="email" class="bg-light form-control" id ="textffil"onChange={(e)=>handleChange(e)} value={data.email} name="email" placeholder="steve_@email.com"/>
 </div>
 <div class="col-md-6 pt-md-0 pt-3">
-<label for="phone">Phone Number</label>
+<label for="phone">Téléphone</label>
 <input type="text" class="bg-light form-control"id ="textffil"onChange={(e)=>handleChange(e)} value={data.telephone} name="telephone" placeholder="+1 213-548-6015"/>
 </div>
 </div>
@@ -291,16 +248,7 @@ Recommended thumbnail size 800x400 (px).
 <button class="btn btn-primary mr-3" type="submit" >Save Changes</button> 
 <button class="btn border button" >Cancel</button>
 </div>
-<div class="d-sm-flex align-items-center pt-3" id="deactivate">
-<div>
-<b>Deactivate your account</b>
-<p>Details about your company account and password</p>
-</div>
-<div class="ml-auto">
-<button type="button"   class="btn btn-danger" >Edit Profil</button>
 
-</div>
-</div>
 </div>
 </form>
 </div>

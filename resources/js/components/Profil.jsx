@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import'../../css/ProfileP.css'
 import'../../css/ContactUs.css'
-import { useForm } from '@inertiajs/inertia-react';
+import { InertiaLink, useForm } from '@inertiajs/inertia-react';
 
 
 import MasterDetailClientOpportunities from './master_details_components/MasterDetailClientOpportunities';
@@ -29,6 +29,7 @@ function Profil({contact, client,opportunity}) {
 localStorage.setItem('contact_pic',data.photo)
 localStorage.setItem('contact_nom',contact.nom)
 localStorage.setItem('contact_prenom',contact.prenom)
+let photo= localStorage.getItem('contact_pic')
     },[])
   
     
@@ -48,7 +49,7 @@ const handleSetOpportunities = () =>{
     const  handleSubmit = (e) => {
      e.preventDefault()
     //console.log(data)
-    post(`/profil/${contact.id}`) 
+    post(`/Profile/${contact.id}`) 
     }
 
 const cloudinaryRef = useRef();
@@ -108,7 +109,7 @@ console.log(result.info)
     setData(data.societe = inputValue)
   
   }
-console.log( client.société)
+
 
 return (
   <div>
@@ -203,18 +204,19 @@ Recommended thumbnail size 800x400 (px).
 </div>
 <hr/>
 <div id="signup-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+
 <div class="modal-dialog">
 <div class="modal-content">
 <div class="modal-body">
 <div class="text-center mt-2 mb-4">
                   <h1>Edit Profil</h1>
 </div>
+<form class="ps-3 pe-3"   action="#" onSubmit={(e) => handleSubmit(e)}>
 
-<form class="ps-3 pe-3" action="#" onSubmit={(e)=>handleSubmit(e)} >
+
 
 <div class="py-2" >
 <div class="row py-2">
-  
 <div class="col-md-6">
 <label for="firstname">Prénom</label>
 <input type="text" class="bg-light form-control"id ="textffil"onChange={(e)=>handleChange(e)} value={data.nom} name="nom" placeholder="Steve"/>
@@ -246,7 +248,7 @@ Recommended thumbnail size 800x400 (px).
 </div>
 <div class="py-3 pb-4 border-bottom">
 <button class="btn btn-primary mr-3" type="submit" >Save Changes</button> 
-<button class="btn border button" >Cancel</button>
+ <button class="btn border button" >Cancel</button>
 </div>
 
 </div>
@@ -256,7 +258,7 @@ Recommended thumbnail size 800x400 (px).
 </div>
 </div>
  <MasterDetailClientOpportunities rows={rows2}/>
- <button type="button"   class="headerchang" data-bs-toggle="modal" data-bs-target="#signup-modal">Edit Profil</button>
+ <button type="button"   class="headerchang" data-bs-toggle="modal"  data-bs-target="#signup-modal">Edit Profil</button>
 
 </div>
 </div>

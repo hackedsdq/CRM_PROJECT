@@ -40,7 +40,7 @@ class ProfilController extends Controller
         $client->société = $request->societe;
         $client->save();
         $contact->save();
-        return redirect()->route('home.profile');
+        return redirect()->route('contacts.profile');
 }
 
 //  public function showOpportu ($id){

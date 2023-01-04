@@ -244,7 +244,7 @@ return (
     Facture
   </button> 
 
-  <InertiaLink href='/home/profil'> <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+  <InertiaLink href='/Profile'> <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 </InertiaLink>
         </div>
 

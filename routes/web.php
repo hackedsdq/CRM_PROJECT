@@ -26,13 +26,13 @@ Route::get('/SigninCostumer',[\App\Http\Controllers\SiginCostumerController::cla
 // end of guest routes
 
 // contact routes
-Route::get('login/', [\App\Http\Controllers\ContactsAuthController::class, 'login'])->name('contacts.login');
+Route::get('/', [\App\Http\Controllers\ContactsAuthController::class, 'login'])->name('contacts.login');
 Route::post('login/', [\App\Http\Controllers\ContactsAuthController::class, 'handleLogin'])->name('contacts.handleLogin');
 Route::get('/logout', [\App\Http\Controllers\ContactsAuthController::class, 'handlelogout'])->name('contacts.logout');
 
 Route::get('opportunities/',[\App\Http\Controllers\OpportunitiesController::class, 'index'])->name('contacts.opportunities');
 Route::get('calendar/',[\App\Http\Controllers\CalendarController::class, 'index'])->name('contacts.calendar');
-Route::get('Profile/',[\App\Http\Controllers\ContactsAuthController::class, 'index'])->name('contacts.profile');
+Route::get('Profile/',[\App\Http\Controllers\ContactsAuthController::class, 'index'])->name('contacts.profile')->middleware('auth:web');
 // end of contacts route
 
 
@@ -147,5 +147,5 @@ Route::post('/adcom/opprtunities/edit/{opp}',[\App\Http\Controllers\Opportunitie
 Route::post('/adcom/opportunity/edit',[\App\Http\Controllers\OpportunitiesController::class, 'update']);
 //profil
 // Route::get('/home/profil',[\App\Http\Controllers\ProfilController::class, 'editIndex']); -->
-Route::post('/Profile/{id}',[\App\Http\Controllers\ProfilController::class, 'update']);
-Route::get('/Profile/show/{id}',[\App\Http\Controllers\ProfilController::class, 'showOpportun']);
+Route::post('/Profile/{id}',[\App\Http\Controllers\ProfilController::class, 'update'])->middleware('auth:web');
+Route::get('/Profile/show/{id}',[\App\Http\Controllers\ProfilController::class, 'showOpportun'])->middleware('auth:web');

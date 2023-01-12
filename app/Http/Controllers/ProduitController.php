@@ -67,6 +67,8 @@ class ProduitController extends Controller
         $newProduit->save();
         return Redirect::route('adcom.produits');
     }
+   
+
 
     /**
      * Store a newly created resource in storage.
@@ -75,8 +77,7 @@ class ProduitController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
     }
 
     /**
@@ -87,7 +88,7 @@ class ProduitController extends Controller
      */
     public function show(Produit $produit)
     {
-        //
+       
     }
 
     /**

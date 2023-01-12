@@ -25,6 +25,7 @@ class Contact extends Authenticatable
     'user_id',
     'photo'
     ];
+
     /**
      * The attributes that should be hidden for serialization.
      *

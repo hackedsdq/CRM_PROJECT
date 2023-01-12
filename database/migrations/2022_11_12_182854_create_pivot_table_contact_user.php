@@ -21,8 +21,8 @@ return new class extends Migration
             $table->date('Date');
             $table->time('heure');
             $table->string('compte_rendu');
-            $table->foreignId('users_id')->constrained()->onDelete('cascade');
-            $table->foreignId('contacts_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('contact_id')->constrained()->onDelete('cascade');
 
             $table->timestamps();
         });

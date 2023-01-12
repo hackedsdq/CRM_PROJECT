@@ -66,7 +66,8 @@ const getAllProspects = () =>{
               {/* ------------------------ edit modal ------------------ 
               <EditModalProspect type="edit" object={editedObject} />*/}
 
-{/*               <ShowProspect/>*/}             
+{/*               <ShowProspect/>*/}  
+              <AddModalProspect />
   {/* ------------------------ show datagrid table search ------------------ */}
               <DataGridTable title={title} columns={columns} rows={prospects}  />
               {/* end row */}

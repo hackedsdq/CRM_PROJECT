@@ -3,6 +3,7 @@ import {useForm}  from "@inertiajs/inertia-react"
 import { Inertia } from '@inertiajs/inertia'
 
 
+
 export default function AddModalProspect(props) {
 
   const { data, setData, post, processing, errors } = useForm({

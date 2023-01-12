@@ -20,7 +20,7 @@ class OpportunitiesController extends Controller
     public function index()
     {
         $auth_id = Auth::guard('webadcom')->user()->id;
-
+    //$contact_id = Auth::guard()->contacts()->id;
         //$contacts = Contact::all();
          $opportunities = DB::table('opportunities')
                             ->Join('clients', 'clients.id', '=' , 'opportunities.client_id')

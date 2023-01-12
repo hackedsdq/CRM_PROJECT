@@ -6,18 +6,25 @@ import PieChart from '../charts/PieChart'
 
 export default function Main({recent_prospects, totalContacts , clients, opportunities, opportunitiesBenifits}) {
 let [pieChartData, setPieChartData]=useState([0, 0, 0, 0])
-let [barChartData, setBarChartData]=useState([0, 0, 0, 0, 0, 0, 150, 0, 0, 0, 0, 0])
+let [barChartData, setBarChartData]=useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+let [opportunitiesNumber, setOpportunitiesNumber] = useState(0)
+let [opportunitiesMontant  , setOpportunitiesMontant] = useState(0)
 
 //let [rendred, setRendreded]=useState();
 useEffect(()=>{
 console.log(opportunities)
+console.log(opportunitiesBenifits)
+
 handlePieChartData();
 handleBarChartData()
 },[])
 
 const handlePieChartData = () =>{
   let pieData = [0, 0, 0, 0]
+  let total=0 ;
   opportunities.map((data)=>{
+    //setOpportunitiesNumber(data.total++)
+    total += data.total
     if(data.étape === "one")
     pieData[0]=data.total
     else if(data.étape === "two")
@@ -27,11 +34,17 @@ const handlePieChartData = () =>{
     else if(data.étape === "four")
     pieData[3]=data.total
   })
+  setOpportunitiesNumber(total)
   setPieChartData(pieData)
 }
 const handleBarChartData = () =>{
   let barChart = [0, 0, 0, 0, 0, 0, 0, 0 ,0, 0, 0, 0]
+  let montant = 0;
+  let month = new Date().getMonth()+1
   opportunitiesBenifits.map((data)=>{
+    if(data.month === month )
+    montant += data.montant
+
     if(data.month === 1)
     barChart[0]=data.montant
     else if(data.month === 2)
@@ -57,7 +70,7 @@ const handleBarChartData = () =>{
     else if(data.month === 12)
     barChart[11]=data.montant
   })
-  console.log(barChart)
+  setOpportunitiesMontant(montant)
   setBarChartData(barChart)
 }
 
@@ -80,7 +93,7 @@ const handleBarChartData = () =>{
               <div className="row align-items-center">
                 <div className="col-12">
                   <h5 className="text-muted fw-normal mt-0 text-truncate" title="Campaign Sent">Opportunités Par étapes</h5>
-                  <h3 className="my-2 py-1">{opportunities.length} </h3>
+                  <h3 className="my-2 py-1">{opportunitiesNumber} </h3>
                   <p className="mb-0 text-muted">
                   </p>
                 </div>
@@ -119,7 +132,7 @@ const handleBarChartData = () =>{
               <div className="row align-items-center">
                 <div className="col-12">
                   <h5 className="text-muted fw-normal mt-0 text-truncate" title="Booked Revenue">Les Revenues De ce Mois</h5>
-                  <h3 className="my-2 py-1 text-truncate">{opportunitiesBenifits.filter(e=>e.month===new Date().getMonth()).map(e => <>DZD {e.montant}</>)}</h3>
+                  <h3 className="my-2 py-1 text-truncate">{opportunitiesMontant}</h3>
                   <p className="mb-0 text-muted">
                   </p>
                 </div>

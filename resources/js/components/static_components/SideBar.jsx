@@ -110,7 +110,7 @@ export default function SideBar() {
  
     <li className="side-nav-item">
 
-<InertiaLink href="/opportunities" className="side-nav-link">
+<InertiaLink href="/adcom/opportunities" className="side-nav-link">
   <i className="uil-store" />
   <span> Opportunities</span>
 </InertiaLink>

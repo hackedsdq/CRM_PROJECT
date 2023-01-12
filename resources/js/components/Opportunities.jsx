@@ -79,6 +79,3 @@ const handleFilter=(clients)=>{
 
   )
 }
-
-
-

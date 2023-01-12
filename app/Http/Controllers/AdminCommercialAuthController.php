@@ -34,11 +34,21 @@ class AdminCommercialAuthController extends Controller
         //echo(json_encode($perContacts));
         $clients = Client::WhereIn('id', $perContacts)->where('user_id', $user_id)->get();
         
-        $opportunities = Opportunities::groupBy('étape')->selectRaw('count(*) as total,étape')->get();
+        $opportunities = Opportunities::groupBy('étape')->selectRaw('count(*) as total,étape')
+        ->Join('clients', 'clients.id', '=' , 'opportunities.client_id')
+        ->Join('users', 'users.id' ,'=' , 'clients.user_id')
+        ->where('users.id', '=', $user_id)
+        ->get();
 
-        $opportunitiesBenifits = Opportunities::select(DB::raw('sum(montant) as `montant`'), DB::raw("DATE_FORMAT(created_at, '%m-%Y') new_date"),  DB::raw('YEAR(created_at) year, MONTH(created_at) month'))
-                                                ->groupby('year','month')
-                                                ->get();
+        $opportunitiesBenifits = Opportunities::select(DB::raw('sum(montant) as `montant`'), DB::raw("DATE_FORMAT(opportunities.created_at, '%m-%Y') new_date"),  DB::raw('YEAR(opportunities.created_at) year, MONTH(opportunities.created_at) month'))
+        ->Join('clients', 'clients.id', '=' , 'opportunities.client_id')
+        ->Join('users', 'users.id' ,'=' , 'clients.user_id')
+        ->where('users.id', '=', $user_id)
+        ->whereYear("opportunities.created_at", '2023')
+        ->groupby('year','month')
+        ->get();
+
+       // return $opportunities;
 
         return Inertia::render('Home',[
             'user_pic'=>$user_pic,
@@ -77,6 +87,7 @@ class AdminCommercialAuthController extends Controller
     {
         //return redirect()->route('adcom.login');
         Auth::guard('webadcom')->logout();
+        //Auth::guard()->logout();
         return redirect()->route('adcom.login');
     }
 }

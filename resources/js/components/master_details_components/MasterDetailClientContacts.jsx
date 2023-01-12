@@ -13,12 +13,9 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-
-
 function Row(props) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
-
   return (
     <React.Fragment>
       <TableRow sx={{ '& > *': { borderBottom: 'unset', } }}>
@@ -48,7 +45,6 @@ function Row(props) {
     </React.Fragment>
   );
 }
-
 Row.propTypes = {
   row: PropTypes.shape({
     id: PropTypes.number.isRequired,
@@ -58,8 +54,6 @@ Row.propTypes = {
     date_de_clôture: PropTypes.string.isRequired,
   }).isRequired,
 };
-
-
 export default function CollapsibleTable(props) {
   const rows = props.rows;
   return (

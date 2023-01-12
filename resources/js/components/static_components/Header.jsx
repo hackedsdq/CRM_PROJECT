@@ -144,7 +144,7 @@ const handleClose = () => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Confirmation de Suppression?"}
+          {"Deconnexion ?"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">

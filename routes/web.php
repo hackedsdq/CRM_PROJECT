@@ -29,8 +29,8 @@ Route::get('login/', [\App\Http\Controllers\ContactsAuthController::class, 'logi
 Route::post('login/', [\App\Http\Controllers\ContactsAuthController::class, 'handleLogin'])->name('contacts.handleLogin');
 Route::get('logout/', [\App\Http\Controllers\ContactsAuthController::class, 'index'])->name('contacts.logout');
 
-Route::get('opportunities/',[\App\Http\Controllers\OpportunitiesController::class, 'index'])->name('contacts.opportunities');
-Route::get('calendar/',[\App\Http\Controllers\CalendarController::class, 'index'])->name('contacts.calendar');
+Route::get('opportunities/',[\App\Http\Controllers\OpportunitiesContactController::class, 'index'])->name('contacts.opportunities');
+Route::get('calendar/',[\App\Http\Controllers\CalendarContactController::class, 'index'])->name('contacts.calendar');
 Route::get('Profile/',[\App\Http\Controllers\ContactsAuthController::class, 'index'])->name('contacts.profile');
 // end of contacts route
 
@@ -143,3 +143,16 @@ Route::post('/adcom/opprtunities/edit/{opp}',[\App\Http\Controllers\Opportunitie
 
 // edit an opportunity infos 
 Route::post('/adcom/opportunity/edit',[\App\Http\Controllers\OpportunitiesController::class, 'update']);
+
+
+Route::post('adcom/calendar/create',[\App\Http\Controllers\CalendarController::class, 'create']);
+Route::post('adcom/calendar/add',[\App\Http\Controllers\CalendarController::class, 'add']);
+Route::post('adcom/calendar/edit',[\App\Http\Controllers\CalendarController::class, 'edit']);
+Route::post('adcom/calendar',[\App\Http\Controllers\CalendarController::class, 'searchContacts']);
+Route::delete('adcom/calendar/{id}',[\App\Http\Controllers\CalendarController::class, 'delete']);
+//Front Office Routes
+Route::get('homeOffice/',[\App\Http\Controllers\homeOfficeController::class, 'index']);
+Route::get('Products/',[\App\Http\Controllers\homeOfficeController::class, 'index1']);
+Route::get('PrivacyPolicy/',[\App\Http\Controllers\homeOfficeController::class, 'index2']);
+Route::get('ContactUs/',[\App\Http\Controllers\homeOfficeController::class, 'index3']);
+Route::get('ProductDetails/{id}',[\App\Http\Controllers\homeOfficeController::class, 'index4']);

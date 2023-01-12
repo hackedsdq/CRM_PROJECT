@@ -13,6 +13,8 @@ class ContactsAuthController extends Controller
     public function index(Request $req)
     {
         //$value = $req->user();
+        $auth_id = Auth::user()->id;
+        //return $auth_id;
         //return $value;
         return Inertia::render('Profile');
     }
@@ -38,7 +40,7 @@ class ContactsAuthController extends Controller
 
     public function logout()
     {
-        Auth::logout();
+        //Auth::guard()->logout();
 
         return redirect()->route('contacts.login');
     }

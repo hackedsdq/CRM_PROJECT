@@ -26,7 +26,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
-        'photo'
+        'photo',
     ];
 
     /**
@@ -49,7 +49,7 @@ class User extends Authenticatable
     ];
 
     public function contacts(){
-        return $this->belongsToMany(Contact::class, 'contact_id');
+        return $this->belongsToMany(Contact::class, 'pivot_table_contact_user')->withPivot('id','Date','heure','compte_rendu');
     }
 
     public function clients()

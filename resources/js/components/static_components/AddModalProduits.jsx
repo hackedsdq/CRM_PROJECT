@@ -1,5 +1,4 @@
-import React,{useState,useEffect,useRef} from 'react'
-
+import React,{useRef, useEffect} from 'react'
 import { InertiaLink, useForm } from "@inertiajs/inertia-react";
 import { Inertia } from "@inertiajs/inertia";
 import $ from 'jquery'
@@ -18,8 +17,6 @@ export default function AddModalProduits(props) {
 
 
 
-    useEffect(()=>{
-        console.log("heloodarkness")
         // uploading the image
         cloudinaryRef.current =  window.cloudinary;
         widgetRef.current = cloudinaryRef.current.createUploadWidget({
@@ -28,13 +25,12 @@ export default function AddModalProduits(props) {
         }
           , (error, result) => { 
             if (!error && result && result.event === "success") { 
-                let photo = result.info.thumbnail_url
+                let photo = result.info.url
             setData(data.photo = photo) 
             console.log(result.info)
             }
         }
         )
-        },[])
 
     const handleSubmit = (e) => {
         e.preventDefault();

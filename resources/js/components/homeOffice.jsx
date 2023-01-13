@@ -2,15 +2,8 @@ import React from 'react';
 import { InertiaLink } from '@inertiajs/inertia-react'
 import '../../css/style.css'
 
-import '../../css/bootstrap.css'
-import '../../css/font-awesome.min.css'
-import '../../css/ion.rangeSlider.min.css'
-import '../../css/ion.rangeSlider.min.css'
-import '../../css/responsive.css'
-import '../../css/style.scss'
-import '../../../public/assets/fonts/fontawesome-webfont.ttf'
-import '../../../public/assets/fonts/fontawesome-webfont.woff'
-import '../../../public/assets/fonts/fontawesome-webfont.woff2'
+
+
 import p4 from'../../../public/assets/images/products/p4.png';
 import p3 from'../../../public/assets/images/products/p3.png';
 import p2 from'../../../public/assets/images/products/p2.png';
@@ -28,131 +21,17 @@ import banner1 from '../../../public/assets/images/products/banner1.jpg';
 import bigmatic from '../../../public/assets/images/products/bigmatic.jpg';
 import fevicon from '../../../public/assets/images/products/fevicon.png';
 import licb2 from'../../../public/assets/images/products/licb2.png'
+import HeaderContact from './static_components/HeaderContact';
 
 
-export default function homeOffice({}){
+export default function homeOffice({products}){
 
 return(
 
 <div>
-<head>
-
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
- 
-  <link rel="icon" href={fevicon} type="image/gif" />
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
-
-  <title>Hyper</title>
-  <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
-
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet"/> 
-
-  
-  <link href="css/font-awesome.min.css" rel="stylesheet" />
-
-
-  <link href="css/style.css" rel="stylesheet" />
- 
-  <link href="css/responsive.css" rel="stylesheet" />
-
-</head>
-
-
-
-<link href="css/responsive.css" rel="stylesheet" />
+  <HeaderContact />
   <div class="hero_area">
     
-    <header class="header_section">
-      <div class="header_top">
-        <div class="container-fluid">
-          <div class="top_nav_container">
-            <div class="contact_nav">
-              <a href="">
-                <i class="fa fa-phone" aria-hidden="true"></i>
-                <span>
-                  Call : +213 5560616263
-                </span>
-              </a>
-              <a href="">
-                <i class="fa fa-envelope" aria-hidden="true"></i>
-                <span>
-                  Email HyperSociety.@gmail.com
-                </span>
-              </a>
-            </div>
-            <from class="search_form">
-              <input type="text" class="form-control" placeholder="Search here..."/>
-              <button class="" type="submit">
-                <i class="fa fa-search" aria-hidden="true"></i>
-              </button>
-            </from>
-            <div class="user_option_box">
-              <a href="" class="account-link">
-                <i class="fa fa-user" aria-hidden="true"></i>
-                <InertiaLink href={`/login`}>
-             <span>
-                  My Account
-                </span></InertiaLink>
-              </a>
-             
-            </div>
-          </div>
-
-        </div>
-      </div>
-      <div class="header_bottom">
-        <div class="container-fluid">
-          <nav class="navbar navbar-expand-lg custom_nav-container ">
-            <a class="navbar-brand" href="index.html">
-              <img src="../../../assets/images/logo.png" alt=""/>
-            </a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class=""> </span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav ">
-                <li class="nav-item active">
-                
-                <InertiaLink href={`/homeOffice`}>
-                    <a class="nav-link">
-                      Home
-                    </a><span class="sr-only">(current)</span></InertiaLink> 
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="about.html"> About</a>
-                </li>
-                <li class="nav-item">
-                <InertiaLink href={`/Products`}>
-                    <a class="nav-link">
-                      Products
-                    </a></InertiaLink>
-                </li>
-                <li class="nav-item">
-                <InertiaLink href={`/ContactUs`}>
-                    <a class="nav-link">
-                     Contact Us
-                    </a></InertiaLink>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="why.html">Why Us</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="testimonial.html">Testimonial</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </div>
-    </header>
    
     <section class="slider_section ">
       <div id="customCarousel1" class="carousel slide" data-ride="carousel">
@@ -178,78 +57,18 @@ return(
                 </div>
                 <div class="col-md-6">
                   <div class="img-box">
-                    <img src={slider} alt=""/>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="container ">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="detail-box">
-                    <h1>
-                    Featured Products For Worlds Continents
-                    </h1>
-                    <h2>
-                    matched supplier , Targeted trade opportunities 
-                    </h2>
-                    <a href="">
-                      Read More
-                    </a>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="img-box">
-                    <img src="images/slider-img.png" alt=""/>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="container ">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="detail-box">
-                    <h1>
-                      Welcome to our shop
-                    </h1>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quam velit saepe dolorem deserunt quo quidem ad optio.
-                    </p>
-                    <a href="">
-                      Read More
-                    </a>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="img-box">
-                    <img src="images/slider-img.png" alt=""/>
+                    <img src={p9} alt=""/>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="carousel_btn_box">
-          <a class="carousel-control-prev" href="#customCarousel1" role="button" data-slide="prev">
-            <i class="fa fa-angle-left" aria-hidden="true"></i>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#customCarousel1" role="button" data-slide="next">
-            <i class="fa fa-angle-right" aria-hidden="true"></i>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
+
       </div>
     </section>
   
   </div>
-
-
- 
 
   <section class="product_section layout_padding">
     <div class="container">
@@ -259,227 +78,39 @@ return(
         </h2>
       </div>
       <div class="row">
-        <div class="col-sm-6 col-lg-4">
-          <div class="box">
-            <div class="img-box">
-              <img src={p1} alt=""/>
-              <InertiaLink href={`/Products`}>
-              <a class="add_cart_btn">
-                <span>
-                Show Product
-                </span>
-              </a></InertiaLink>
-            </div>
-            <div class="detail-box">
-              <h5>
-                Product Name
-              </h5>
-              <div class="product_info">
-                <h5>
-             
-                </h5>
-               
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="box">
-            <div class="img-box">
-              <img src={p2} alt=""/>
-              <InertiaLink href={`/Products`}>
-              <a class="add_cart_btn">
-                <span>
-                Show Product
-                </span>
-              </a></InertiaLink>
-            </div>
-            <div class="detail-box">
-              <h5>
-                Product Name
-              </h5>
-              <div class="product_info">
-                <h5>
-                 
-                </h5>
-                
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="box">
-            <div class="img-box">
-              <img src={p3} alt=""/>
-              <InertiaLink href={`/Products`}>
-              <a class="add_cart_btn">
-                <span>
-                Show Product
-                </span>
-              </a></InertiaLink>
-            </div>
-            <div class="detail-box">
-              <h5>
-                Product Name
-              </h5>
-              <div class="product_info">
-                <h5>
-             
-                </h5>
-               
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="box">
-            <div class="img-box">
-              <img src={p4} alt=""/>
-              <InertiaLink href={`/Products`}>
-              <a class="add_cart_btn">
-                <span>
-                Show Product
-                </span>
-              </a></InertiaLink>
-            </div>
-            <div class="detail-box">
-              <h5>
-                Product Name
-              </h5>
-              <div class="product_info">
-                <h5>
-                
-                </h5>
-             
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="box">
-            <div class="img-box">
-              <img src={p5} alt=""/>
-              <InertiaLink href={`/Products`}>
-              <a class="add_cart_btn">
-                <span>
-                Show Product
-                </span>
-              </a></InertiaLink>
-            </div>
-            <div class="detail-box">
-              <h5>
-                Product Name
-              </h5>
-              <div class="product_info">
-                <h5>
-                
-                </h5>
-              
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="box">
-            <div class="img-box">
-              <img src={p6} alt=""/>
-              <InertiaLink href={`/Products`}>
-              <a class="add_cart_btn">
-                <span>
-                Show Product
-                </span>
-              </a></InertiaLink>
-            </div>
-            <div class="detail-box">
-              <h5>
-                Product Name
-              </h5>
-              <div class="product_info">
-                <h5>
-                
-                </h5>
-             
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="box">
-            <div class="img-box">
-              <img src={p7} alt=""/>
-              <InertiaLink href={`/Products`}>
-              <a class="add_cart_btn">
-                <span>
-                Show Product
-                </span>
-              </a></InertiaLink>
-            </div>
-            <div class="detail-box">
-              <h5>
-                Product Name
-              </h5>
-              <div class="product_info">
-                <h5>
-                 
-                </h5>
-               
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="box">
-            <div class="img-box">
-              <img src={p8} alt=""/>
-              <InertiaLink href={`/Products`}>
-              <a class="add_cart_btn">
-                <span>
-                Show Product
-                </span>
-              </a></InertiaLink>
-            </div>
-            <div class="detail-box">
-              <h5>
-                Product Name
-              </h5>
-              <div class="product_info">
-                <h5>
-              
-                </h5>
-                
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="box">
-            <div class="img-box">
-              <img src={p9} alt="/"/>
-              <InertiaLink href={`/Products`}>
-              <a class="add_cart_btn">
-                <span>
-                Show Product
-                </span>
-              </a></InertiaLink>
-            </div>
-            <div class="detail-box">
-              <h5>
-                Product Name
-              </h5>
-              <div class="product_info">
-                <h5>
-     
-                </h5>
-               
-              </div>
-            </div>
-          </div>
+      { products.map((item, index)=>{
+  return(
+    <div key={index} class="col-sm-6 col-lg-4">
+    <div class="box">
+      <div class="img-box">
+        <img src={item.photo} alt=""/>
+        <InertiaLink class="add_cart_btn" href={`ProductDetails/${item.id}`}>
+          <span>
+            Show Product
+          </span>
+        </InertiaLink>
+      </div>
+      <div class="detail-box">
+        <h4 style={{}}>
+          {item.nom}
+        </h4>
+        <div class="product_info">
+          <h5>
+            <span>Dn</span> {item.prix}
+          </h5>
+
         </div>
       </div>
+    </div>
+  </div>
+  )
+})}
+
+      </div>
       <div class="btn_box">
-        <a href="" class="view_more-link">
+        <InertiaLink href='/Products' class="view_more-link">
           View More
-        </a>
+        </InertiaLink>
       </div>
     </div>
   </section>

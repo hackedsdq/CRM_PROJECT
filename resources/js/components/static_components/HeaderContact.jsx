@@ -47,8 +47,8 @@ setOpen(false);
 
           <div >
            
-              <i class="fa fa-user" aria-hidden="true"></i>
-              {/* <InertiaLink href={`/login`}> */}
+{/*               <i class="fa fa-user" aria-hidden="true"></i>
+ */}              {/* <InertiaLink href={`/login`}> */}
               <ul className="list-unstyled topbar-menu float-end mb-0">
               <li className="dropdown notification-list">
                   <a className="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
@@ -63,13 +63,13 @@ setOpen(false);
                   <div className="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
                     {/* item*/}
                     <div className=" dropdown-header noti-title">
-                      <h6 className="text-overflow m-0">Welcome !</h6>
+                      <h6 className="text-overflow m-0">Bienvenue !</h6>
                     </div>
                     {/* item*/}
                     <div  className="dropdown-item notify-item">
                     <InertiaLink href={`/Profile`}>
                       <i className="mdi mdi-account-circle me-1" />
-                      <span>My Account</span>
+                      <span>Mon compte</span>
                       </InertiaLink>
                       </div>
                     {/* item*/}
@@ -81,7 +81,7 @@ setOpen(false);
                     {/* item*/}
                     <div onClick={handleClickOpen} className="dropdown-item notify-item">
                       <i className="mdi mdi-logout me-1" />
-                      <span>Logout</span>
+                      <span>Déconnecter</span>
                     </div>
                   </div>
                 </li>
@@ -100,7 +100,7 @@ setOpen(false);
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Confirmation de Suppression?"}
+          {"Déconnecter "}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -128,37 +128,46 @@ setOpen(false);
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ">
-              <li class="nav-item active">
               
               {/* <InertiaLink href={`/homeOffice`}> */}
               <li class="nav-item">
-              <a class="nav-link" href="about.html"> Home</a>
+              <InertiaLink class="nav-link" href={`/homeOffice`}>
+                Accueil
+                </InertiaLink> 
+
+                  </li>
+                  
+                  <li class="nav-item">
+              <InertiaLink class="nav-link" href={`/opportunities`}>
+                Opportunités
+                </InertiaLink> 
+
+                  </li>
+                  <li class="nav-item">
+              <InertiaLink class="nav-link" href={`/calendar`}>
+                Calendrier
+                </InertiaLink> 
+
                   </li>
                   {/* </InertiaLink>  */}
+              <li class="nav-item">
+              <InertiaLink class="nav-link" href={`/a-propos`}>
+                A propos              
+              </InertiaLink> 
+
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html"> About</a>
+             <InertiaLink class="nav-link" href={`/Products`}>
+                    Produits
+              </InertiaLink> 
               </li>
+
               <li class="nav-item">
-              {/* <InertiaLink href={`/Products`}> */}
-                  <a class="nav-link">
-                    Products
-                  </a>
-                  {/* </InertiaLink> */}
+             <InertiaLink class="nav-link" href={`/ContactUs`}>
+                    Contactez-nous
+              </InertiaLink> 
               </li>
-              <li class="nav-item">
-              {/* <InertiaLink href={`/ContactUs`}> */}
-                  <a class="nav-link">
-                   Contact Us
-                  </a>
-                  {/* </InertiaLink> */}
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="why.html">Why Us</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="testimonial.html">Testimonial</a>
-              </li>
+
             </ul>
           </div>
         </nav>

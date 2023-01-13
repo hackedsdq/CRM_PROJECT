@@ -48,7 +48,6 @@ const handleSetOpportunities = () =>{
 const  handleSubmit = (e) => {
   e.preventDefault()
  //console.log(data)
- alert(contact.id)
 
  post(`/Profile/${contact.id}`,
  {
@@ -56,7 +55,6 @@ const  handleSubmit = (e) => {
    preserveScroll:true,
    onSuccess:page=>{
        Inertia.reload({only:['contact','client','opportunity']})
-       alert('success')
        $('#edit-modal').hide();
        $('.modal-backdrop').remove(); 
        document.body.style.overflow = 'scroll'
@@ -235,7 +233,7 @@ Recommended thumbnail size 800x400 (px).
 <div class="modal-content">
 <div class="modal-body">
 <div class="text-center mt-2 mb-4">
-                  <h1>Edit Profil</h1>
+  <h1>Edit Profil</h1>
 </div>
 <form class="ps-3 pe-3" onSubmit={(e) => handleSubmit(e)}>
 

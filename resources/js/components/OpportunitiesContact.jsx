@@ -8,6 +8,7 @@ import theme from './dnd_board_resources/config/theme';
 import { Inertia } from '@inertiajs/inertia';
 
 import AddModalOpportunity from './static_components/AddModalOpportunity'
+import HeaderContact from './static_components/HeaderContact'
 
 export default function OpportunitiesContact({clients,opportunities_one, opportunities_two, opportunities_three, opportunities_four, opportunities}) {
 
@@ -49,9 +50,9 @@ const handleFilter=(clients)=>{
 
 
   return (
-    <div className='wrapper' >
+    <div className='front-wrapper' >
 
-        
+        <HeaderContact />
         <div className="">
     <div className="">
         <div className="modal-content">

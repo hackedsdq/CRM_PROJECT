@@ -18,7 +18,7 @@ let [user_id, setUserId]=useState("");
 const [open, setOpen] = useState(false);
 
 const handleSignOut = () =>{
-  Inertia.post('http://localhost:8000/adcom/logout')
+  Inertia.post('/adcom/logout')
 }
 
 const handleClickOpen = () => {

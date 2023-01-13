@@ -12,7 +12,10 @@ class homeOfficeController extends Controller
 {
     public function index()
     {
-    return Inertia::render('homeOffice');
+    $products = Produit::latest()->take(3)->get();
+    return Inertia::render('homeOffice',[
+        'products'=>$products
+    ]);
     }
 
     public function index1()

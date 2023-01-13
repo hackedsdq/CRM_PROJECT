@@ -12,7 +12,7 @@ import interactionPlugin from '@fullcalendar/interaction'
 import listPlugin from '@fullcalendar/list'
 import { Autocomplete, TextField } from '@mui/material'
 import SideBar from './static_components/SideBar';
-import '../../css/Calendar.css'
+import HeaderContact from './static_components/HeaderContact';
 //import { INITIAL_EVENTS, createEventId } from './event-utils'
 
 export default function CalendarContact({Events,contacts})  {
@@ -168,12 +168,11 @@ const handleDelete = () =>{
    
 
   return (
-    <div  className='wrapper' >
+    <div  className='front-wrapper' >
 
-        
-    <div  className="">
-      <div className="">
-        <div className="">
+        <HeaderContact />
+    
+        <div style={{padding:'50px'}}>
          <div onClick={()=>{
           if(!$('#myModal2').is(':visible')){
             handleInitData()
@@ -226,29 +225,14 @@ const handleDelete = () =>{
           //  eventBackgroundColor="#ff0000"
             
            // eventBorderColor="#ff0000"
-            customButtons={{
-              myCustomButton: {
-                text: 'Add Event',
 
-                click: function() {
-                  $("#myModal").modal("show");
-                 
-                 
-  
-               //  $(".modal-body").html("");
-             // $(".modal-body").html("<h3>"+arg.dateStr+"</h3>");
-                },
-               
-              },
-            }}
             
           />
  
  
 
     </div></div>
-    </div>
-    </div>
+ 
 
 {/* modal modifier l'evenement */}
 <form>

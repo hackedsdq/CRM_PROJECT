@@ -1,142 +1,19 @@
 import React from 'react';
 import { InertiaLink } from '@inertiajs/inertia-react'
 import '../../css/style.css'
-import '../../css/bootstrap.css'
-import '../../css/font-awesome.min.css'
-import '../../../public/assets/fonts/fontawesome-webfont.ttf'
-import '../../../public/assets/fonts/fontawesome-webfont.woff'
-import '../../../public/assets/fonts/fontawesome-webfont.woff2'
+
+import HeaderContact from './static_components/HeaderContact';
 
 export default function Products({products}){
   return(
    <div>
-      <meta charset="utf-8" />
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-     
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-      <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
-
-      <link rel="icon" href="images/fevicon.png" type="image/gif" />
-      <meta name="keywords" content="" />
-      <meta name="description" content="" />
-      <meta name="author" content="" />
     
-      
-    
-    
-     
-      <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-    
-     
-      <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet"/> 
-    
-     
-      <link href="css/font-awesome.min.css" rel="stylesheet" />
-    
-      
-      <link href="css/style.css" rel="stylesheet" />
-     
-      <link href="css/responsive.css" rel="stylesheet" />
-    
-    
-    
-    <body class="sub_page">
-    
-     
-      <div class="hero_area">
-    
-    <header class="header_section">
-      <div class="header_top">
-        <div class="container-fluid">
-          <div class="top_nav_container">
-            <div class="contact_nav">
-              <a href="">
-                <i class="fa fa-phone" aria-hidden="true"></i>
-                <span>
-                  Call : +213 5560616263
-                </span>
-              </a>
-              <a href="">
-                <i class="fa fa-envelope" aria-hidden="true"></i>
-                <span>
-                  Email Society.@gmail.com
-                </span>
-              </a>
-            </div>
-            <from class="search_form">
-              <input type="text" class="form-control" placeholder="Search here..."/>
-              <button class="" type="submit">
-                <i class="fa fa-search" aria-hidden="true"></i>
-              </button>
-            </from>
-            <div class="user_option_box">
-              <a href="" class="account-link">
-                <i class="fa fa-user" aria-hidden="true"></i>
-                <InertiaLink href={`/login`}>
-             <span>
-                  My Account
-                </span></InertiaLink>
-              </a>
-             
-            </div>
-          </div>
-
-        </div>
-      </div>
-      <div class="header_bottom">
-        <div class="container-fluid">
-          <nav class="navbar navbar-expand-lg custom_nav-container ">
-            <a class="navbar-brand" href="index.html">
-              <img src="../../../assets/images/logo.png" alt=""/>
-            </a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class=""> </span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav ">
-                <li class="nav-item active">
-                
-                <InertiaLink href={`/homeOffice`}>
-                    <a class="nav-link">
-                      Home
-                    </a><span class="sr-only">(current)</span></InertiaLink> 
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="about.html"> About</a>
-                </li>
-                <li class="nav-item">
-                <InertiaLink href={`/Products`}>
-                    <a class="nav-link">
-                      Products
-                    </a></InertiaLink>
-                </li>
-                <li class="nav-item">
-                <InertiaLink href={`/ContactUs`}>
-                    <a class="nav-link">
-                      Contact Us
-                    </a></InertiaLink>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="why.html">Why Us</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="testimonial.html">Testimonial</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </div>
-    </header>
-   
-  </div>
+    <HeaderContact />
     
     
     
       <section class="product_section layout_padding">
-        <div class="container">
+       <div class="container">
           <div class="heading_container heading_center">
             <h2>
               Our Products
@@ -323,7 +200,6 @@ export default function Products({products}){
       <script src="js/custom.js"></script>
     
     
-    </body>
     
     </div>
 

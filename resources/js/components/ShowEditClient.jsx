@@ -71,7 +71,6 @@ const handleSetContacts = () =>{
       email:data.email,
       telephone:data.telephone,
       photo:data.photo
-
     }
   )) 
 }

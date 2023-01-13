@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
-body {
-	background:#546583;
+
+.ccheader {
 	color: #fff;
 	font-weight: 400;
 	font-size: 1em;
@@ -8,8 +8,6 @@ body {
 	margin:0;
 	padding:0;
 	padding-bottom:80px;
-}
-.ccheader {
 	margin: 0 auto;
 	padding: 2em;
 	text-align: center;
@@ -106,10 +104,7 @@ text-decoration: none;
     padding-left: 25px;
   }
   
-  .header_section .header_top {
-    padding: 15px 0;
-    background-color: #434f78;
-  }
+ 
   
   .header_section .header_bottom {
     padding: 10px 0;

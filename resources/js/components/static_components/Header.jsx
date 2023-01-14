@@ -61,12 +61,13 @@ const handleClose = () => {
                   </a>
                   <div className="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
                     <div className=" dropdown-header noti-title">
-                      <h6 className="text-overflow m-0">Welcome !</h6>
+                      <h6 className="text-overflow m-0">Bienvenu(e) !</h6>
                     </div>
                     <div  className="dropdown-item notify-item">
                     <InertiaLink href={`/adcom/users/edit/${user_id}`} /* className="side-nav-link" */ >
                       <i className="mdi mdi-account-circle me-1" />
-                      <span>My Account</span>
+                      <span>Mon Compte
+</span>
                     </InertiaLink>
                     </div>
                     {/* <a href="" className="dropdown-item notify-item">
@@ -83,7 +84,8 @@ const handleClose = () => {
                     </a> */}
                     <div onClick={handleClickOpen} className="dropdown-item notify-item btn">
                       <i className="mdi mdi-logout me-1" />
-                      <span>Logout</span>
+                      <span>Se déconnecter
+</span>
                     </div>
                   </div>
                 </li>

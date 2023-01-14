@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('prospects', function (Blueprint $table) {
-
+            $table->softDeletes();
             $table->id();
             $table->string('nom');
             $table->string('prenom');
@@ -24,8 +24,12 @@ return new class extends Migration
             $table->string('téléphone');
             $table->string('adresse');
             $table->string('site_web');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->enum('Statut',['chaud', 'froid']);
-            $table->string('Source');
+            $table->enum('Source',['Web', 'Téléphone', 'Partenaire', 'Autre']);
+            $table->string('logo');
+            $table->string('photo');
             $table->timestamps();
         });
     }

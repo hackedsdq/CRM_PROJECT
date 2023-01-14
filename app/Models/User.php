@@ -7,11 +7,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-
+    use SoftDeletes;
+    
+    protected $dates=['deleted_at'];
     /**
      * The attributes that are mass assignable.
      *
@@ -23,6 +26,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'photo',
     ];
 
     /**
@@ -44,7 +48,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function contact(){
-        return $this->belongsToMany(Contact::class);
+    public function contacts(){
+        return $this->belongsToMany(Contact::class, 'pivot_table_contact_user')->withPivot('id','Date','heure','compte_rendu');
+    }
+
+    public function clients()
+    {
+    return $this->hasMany(Client::class, 'client_id');
+    }
+    public function prospects()
+    {
+    return $this->hasMany(Prospect::class, 'user_id');
     }
 }

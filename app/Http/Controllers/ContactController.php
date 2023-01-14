@@ -6,6 +6,9 @@ use App\Models\Contact;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Http\RedirectResponse;
+use DB;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 
 class ContactController extends Controller
@@ -18,22 +21,67 @@ class ContactController extends Controller
     public function index()
     {
      
-        $contacts = Contact::all();
+        $auth_id = Auth::guard('webadcom')->user()->id;
+
+        //$contacts = Contact::all();
+         $contacts = DB::table('contacts')
+                            ->Join('clients', 'clients.id', '=' , 'contacts.client_id')
+                            ->Join('users', 'users.id' ,'=' , 'clients.user_id')
+                            ->where('users.id', '=', $auth_id)
+                            ->where('contacts.deleted_at', '=', null)
+                            ->select('contacts.nom', 'contacts.prenom', 'contacts.email', 'contacts.id' , 'contacts.fonction')
+                            ->get(); 
+        //$contacts = Client::find($clients[0]->user_id)-
+        //return $clients;
+
         return Inertia::render('Contacts',['contacts'=>$contacts]);
 
     }
     public function editIndex($id){
-        $contact = Contact::find($id);
+        //$contact = Contact::find($id);
+
+        $auth_id = Auth::guard('webadcom')->user()->id;
+
+        //$contacts = Contact::all();
+        //$contact = DB::table('contacts')
+         $contact = DB::table('contacts')
+                            ->Join('clients', 'clients.id', '=' , 'contacts.client_id')
+                            ->Join('users', 'users.id' ,'=' , 'clients.user_id')
+                            ->where('users.id', '=', $auth_id)
+                            ->where('contacts.id', '=', $id)
+                            ->where('contacts.deleted_at', '=', null)
+                            ->select('contacts.nom', 'contacts.prenom', 'contacts.email', 'contacts.id' , 'contacts.fonction','contacts.photo', 'contacts.telephone')
+                            ->get(); 
+
+        if(count($contact)==0)
+        return redirect()->route('adcom.contacts');
+
         return Inertia::render('ShowEditContact',[
-            'contact'=>$contact,
+            'contact'=>$contact[0],
             'type'=>'edit',
         ]);
     }
 
     public function showIndex($id){
-        $contact = Contact::find($id);
+
+        $auth_id = Auth::guard('webadcom')->user()->id;
+
+        $contact = DB::table('contacts')
+                ->Join('clients', 'clients.id', '=' , 'contacts.client_id')
+                ->Join('users', 'users.id' ,'=' , 'clients.user_id')
+                ->where('users.id', '=', $auth_id)
+                ->where('contacts.id', '=', $id)
+                ->where('contacts.deleted_at', '=', null)
+                ->select('contacts.nom', 'contacts.prenom', 'contacts.email', 'contacts.id' , 'contacts.fonction','contacts.photo', 'contacts.telephone')
+                ->get();
+
+
+        if(count($contact)==0)
+        return redirect()->route('adcom.contacts');
+
+
         return Inertia::render('ShowEditContact',[
-            'contact'=>$contact,
+            'contact'=>$contact[0],
             'type'=>'show',
         ]);
     }
@@ -56,25 +104,8 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nom'=>'required',
-            'prenom'=>'required',
-            'email'=>'required|integer',
-            'password'=>'required|integer',
-            'fonction'=>'required',
-            'telephone'=>'required|integer'
-        ]);
-        try{return response()->json([
-            'message'=>'contact Created Successfully!!'
-        ]);
-    }catch(\Exception $e){
-        \Log::error($e->getMessage());
-        return response()->json([
-            'message'=>'Something goes wrong while creating a contact!!'
-        ],500);
+    
     }
-    }
-       
     
 
     /**
@@ -111,11 +142,11 @@ class ContactController extends Controller
         /*by soundouss*/
 
        $request->validate([
-            'nom'=>'required|min:3|max:255',
-            'prenom'=>'required|min:3|max:255',
-            'email'=>'required',
+            'nom'=>['required','regex:/^[a-zA-Z]+$/'],
+            'prenom'=>['required','regex:/^[a-zA-Z]+$/'],
+            'email'=>'required|email',
             'fonction'=>'required',
-            'telephone'=>'required'
+            'telephone'=>['required','regex:/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/']
         ]);
 
         $contact = Contact::find($id);
@@ -124,7 +155,11 @@ class ContactController extends Controller
         $contact->fonction = $request->fonction;
         $contact->email = $request->email;
         $contact->telephone =  $request->telephone;
+        $contact->photo =  $request->photo;
+
         $contact->save();
+
+        return redirect()->route('adcom.contacts');
     }
         
     
@@ -137,6 +172,8 @@ class ContactController extends Controller
      */
     public function delete($id)
     {
+        $ids = explode(",",$id);
+
         $request=Contact::find($id);
         $request->delete();
         

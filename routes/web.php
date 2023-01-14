@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProduitController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,14 +26,16 @@ Route::get('/SigninCostumer',[\App\Http\Controllers\SiginCostumerController::cla
 // end of guest routes
 
 // contact routes
-Route::get('login/', [\App\Http\Controllers\ContactsAuthController::class, 'login'])->name('contacts.login');
+Route::get('/', [\App\Http\Controllers\ContactsAuthController::class, 'login'])->name('contacts.login');
 Route::post('login/', [\App\Http\Controllers\ContactsAuthController::class, 'handleLogin'])->name('contacts.handleLogin');
-Route::get('logout/', [\App\Http\Controllers\ContactsAuthController::class, 'index'])->name('contacts.logout');
+Route::get('/logout', [\App\Http\Controllers\ContactsAuthController::class, 'handlelogout'])->name('contacts.logout');
 
-Route::get('opportunities/',[\App\Http\Controllers\OpportunitiesController::class, 'index'])->name('contacts.opportunities');
-Route::get('calendar/',[\App\Http\Controllers\CalendarController::class, 'index'])->name('contacts.calendar');
-Route::get('Profile/',[\App\Http\Controllers\ContactsAuthController::class, 'index'])->name('contacts.profile');
+Route::get('opportunities/',[\App\Http\Controllers\OpportunitiesContactController::class, 'index'])->name('contacts.opportunities');
+Route::get('calendar/',[\App\Http\Controllers\CalendarContactController::class, 'index'])->name('contacts.calendar');
+Route::get('Profile/',[\App\Http\Controllers\ContactsAuthController::class, 'index'])->name('contacts.profile')->middleware('auth:web');
 // end of contacts route
+
+
 
 
 
@@ -40,14 +43,14 @@ Route::get('Profile/',[\App\Http\Controllers\ContactsAuthController::class, 'ind
 Route::get('adcom/', [\App\Http\Controllers\AdminCommercialAuthController::class, 'index'])->name('adcom.home');
 Route::get('adcom/login', [\App\Http\Controllers\AdminCommercialAuthController::class, 'login'])->name('adcom.login');
 Route::post('adcom/login', [\App\Http\Controllers\AdminCommercialAuthController::class, 'handleLogin'])->name('adcom.handleLogin');
-Route::get('adcom/logout', [\App\Http\Controllers\AdminCommercialAuthController::class, 'index'])->name('adcom.logout');
+Route::post('adcom/logout', [\App\Http\Controllers\AdminCommercialAuthController::class, 'handleLogout'])->name('adcom.logout');
 
 
 Route::get('adcom/prospects',[\App\Http\Controllers\ProspectController::class, 'index'])->name('adcom.prospects');
 Route::get('adcom/clients',[\App\Http\Controllers\ClientController::class, 'index'])->name('adcom.clients');
 Route::get('adcom/opportunities',[\App\Http\Controllers\OpportunitiesController::class, 'index'])->name('adcom.opportunities');
 Route::get('adcom/contacts',[\App\Http\Controllers\ContactController::class, 'index'])->name('adcom.contacts');
-Route::get('adcom/users',[\App\Http\Controllers\HomeController::class, 'users'])->name('adcom.users');
+Route::get('adcom/users',[\App\Http\Controllers\UserController::class, 'index'])->name('adcom.users');
 Route::get('adcom/calendar',[\App\Http\Controllers\CalendarController::class, 'index'])->name('adcom.calendar');
 Route::get('adcom/produits',[\App\Http\Controllers\ProduitController::class, 'index'])->name('adcom.produits');
 // end of admins and commercials routes
@@ -55,14 +58,15 @@ Route::get('adcom/produits',[\App\Http\Controllers\ProduitController::class, 'in
 
 // auth middlewares
 Route::get('adcom/', [\App\Http\Controllers\AdminCommercialAuthController::class, 'index'])->name('adcom.home')->middleware('auth:webadcom');
-Route::get('/', [\App\Http\Controllers\ContactsAuthController::class, 'index'])->middleware('auth:web');
+// Route::get('/', [\App\Http\Controllers\ContactsAuthController::class, 'index'])->name('home.profile')->middleware('auth:web');
 
-
+//log
+// Route::get('/logout', [\App\Http\Controllers\ContactsAuthController::class, 'handlelogout'])->name('contacts.logout');
 
 // add prospect
 Route::post('/adcom/prospects',[\App\Http\Controllers\ProspectController::class, 'create']);
+// convert prospect
 Route::post('/adcom/prospects/{id}',[\App\Http\Controllers\ProspectController::class, 'conversion']);
-
 //delete prospect
 Route::delete('/adcom/prospects/{id}',[\App\Http\Controllers\ProspectController::class, 'delete']);
 
@@ -75,12 +79,17 @@ Route::post('/adcom/prospects/update/{id}',[\App\Http\Controllers\ProspectContro
 // post 
 Route::post('/adcom/prospects/update/{id}',[\App\Http\Controllers\ProspectController::class, 'update']);
  
+ 
 // get edit clients page
 Route::get('/adcom/clients/edit/{id}',[\App\Http\Controllers\ClientController::class, 'editIndex']);
 // get clients with master details
 Route::get('/adcom/clients/show/{id}',[\App\Http\Controllers\ClientController::class, 'showIndex']);
 // update clients data  
 Route::post('/adcom/clients/update/{id}',[\App\Http\Controllers\ClientController::class, 'update']);
+// update clients data
+Route::post('/adcom/clients/update/{id}',[\App\Http\Controllers\ClientController::class, 'update']);
+// delete clients
+Route::delete('/adcom/clients/{id}',[\App\Http\Controllers\ClientController::class, 'delete']);
 
 
 
@@ -94,8 +103,6 @@ Route::get('/adcom/contacts/show/{id}',[\App\Http\Controllers\ContactController:
 Route::post('/adcom/contacts/update/{id}',[\App\Http\Controllers\ContactController::class, 'update']);
 //delete contact
 Route::delete('/adcom/contacts/{id}',[\App\Http\Controllers\ContactController::class, 'delete']);
-// update clients data
-Route::post('/adcom/clients/update/{id}',[\App\Http\Controllers\ClientController::class, 'update']);
 
 
 
@@ -110,3 +117,48 @@ Route::get('/adcom/produits/show/{id}',[\App\Http\Controllers\ProduitController:
 // post 
 Route::post('/adcom/produits/update/{id}',[\App\Http\Controllers\ProduitController::class, 'update']);
 
+
+//add user 
+Route::post('/adcom/users', [\App\Http\Controllers\UserController::class, 'create']);
+// get edit users page
+Route::get('/adcom/users/edit/{id}',[\App\Http\Controllers\UserController::class, 'editIndex']);
+// get show users page
+Route::get('/adcom/users/show/{id}',[\App\Http\Controllers\UserController::class, 'showIndex']);
+// update user
+Route::post('/adcom/users/update/{id}',[\App\Http\Controllers\UserController::class, 'update']);
+Route::delete('/adcom/users/{id}',[\App\Http\Controllers\UserController::class, 'delete']);
+
+
+// opportunities
+Route::post('/adcom/opportunities',[\App\Http\Controllers\OpportunitiesController::class, 'searchClients']);
+Route::post('/adcom/opportunities/add',[\App\Http\Controllers\OpportunitiesController::class, 'create']);
+// get edit opportunities page
+Route::get('/adcom/opportunities/edit/{id}',[\App\Http\Controllers\OpportunitiesController::class, 'editIndex'])->name('opportunity.edit');
+// get opportunities with master details
+Route::get('/adcom/opportunities/show/{id}',[\App\Http\Controllers\OpportunitiesController::class, 'showIndex']);
+
+// search for products
+Route::post('/adcom/opportunities/edit/{opp}',[\App\Http\Controllers\OpportunitiesController::class, 'searchProduits']);
+
+// assign product to an opportunity
+Route::post('/adcom/opprtunities/edit/{opp}',[\App\Http\Controllers\OpportunitiesController::class, 'addProduit']);
+
+// edit an opportunity infos 
+Route::post('/adcom/opportunity/edit',[\App\Http\Controllers\OpportunitiesController::class, 'update']);
+
+
+Route::post('adcom/calendar/create',[\App\Http\Controllers\CalendarController::class, 'create']);
+Route::post('adcom/calendar/add',[\App\Http\Controllers\CalendarController::class, 'add']);
+Route::post('adcom/calendar/edit',[\App\Http\Controllers\CalendarController::class, 'edit']);
+Route::post('adcom/calendar',[\App\Http\Controllers\CalendarController::class, 'searchContacts']);
+Route::delete('adcom/calendar/{id}',[\App\Http\Controllers\CalendarController::class, 'delete']);
+//Front Office Routes
+Route::get('homeOffice/',[\App\Http\Controllers\homeOfficeController::class, 'index']);
+Route::get('Products/',[\App\Http\Controllers\homeOfficeController::class, 'index1']);
+Route::get('PrivacyPolicy/',[\App\Http\Controllers\homeOfficeController::class, 'index2']);
+Route::get('ContactUs/',[\App\Http\Controllers\homeOfficeController::class, 'index3']);
+Route::get('ProductDetails/{id}',[\App\Http\Controllers\homeOfficeController::class, 'index4']);
+//profil
+// Route::get('/home/profil',[\App\Http\Controllers\ProfilController::class, 'editIndex']); -->
+Route::post('/Profile/{id}',[\App\Http\Controllers\ProfilController::class, 'update'])->middleware('auth:web');
+Route::get('/Profile/show/{id}',[\App\Http\Controllers\ProfilController::class, 'showOpportun'])->middleware('auth:web');

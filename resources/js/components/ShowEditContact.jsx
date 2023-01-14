@@ -1,36 +1,57 @@
-import React,{useEffect, useState} from 'react'
+import React,{useEffect, useState,useRef} from 'react'
 import {useForm}  from "@inertiajs/inertia-react"
+import SideBar from './static_components/SideBar'
+import Header from './static_components/Header'
 
 export default function ShowEditContact({contact,type})  {
 
 
   const { data, setData, post, processing, errors } = useForm({
-    nom:"test",
+    nom:"",
     prenom :"",  
     fonction:"", 
     email :"" , 
     telephone:"", 
-
+    photo:""
 })
+
+const cloudinaryRef = useRef();
+const widgetRef = useRef();
+ // uploading the image
+ cloudinaryRef.current =  window.cloudinary;
+ widgetRef.current = cloudinaryRef.current.createUploadWidget({
+   cloudName: 'dbttd3n1v', 
+   uploadPreset: 'j5xeceeh'
+ }
+   , (error, result) => { 
+     if (!error && result && result.event === "success") { 
+     let photo = result.info.thumbnail_url
+     setData(data.photo = photo) 
+     console.log(result.info)
+     }
+   }
+ )
 
 
 const  handleSubmit = (e) => {
  e.preventDefault()
-//console.log(data)
+console.log(data)
 post(`/adcom/contacts/update/${contact.id}`) 
 }
 
 useEffect(()=>{
+  console.log(contact.email)
   handleGetContact()
 },[])
 
 
 const handleGetContact = ()=>{
   setData(data.nom = contact.nom)
-  setData(data.prenom = contact.prenom)
+   setData(data.prenom = contact.prenom)
   setData(data.fonction = contact.fonction)
   setData(data.email = contact.email)
-  setData(data.telephone = contact.telephone.toString())
+  setData(data.photo = contact.photo)
+  setData(data.telephone = contact.telephone)
 }
 
 const handleChange = (e) =>{
@@ -58,55 +79,64 @@ const handleChange = (e) =>{
 
 
 return (
-<form onSubmit={(e)=>handleSubmit(e)} >
-    <div className="modal-content">
-      <div className="modal-body">
+<div className='wrapper' >
+      <SideBar />
+      <Header />
 
- {/*   bodyyyyy of the modal    */}
+      <div className="container-login100">
+          <div className="wrap-login100">
+    <form onSubmit={(e)=>handleSubmit(e)} >
+        <div className="modal-content">
+          <div className="modal-body">
 
-            <div className="mb-3">
-                <label htmlFor="simpleinput" className="form-label">First Name</label>
-                <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data.nom} name="nom"  type="text" className="form-control" />
-                {errors.nom && <h6 style={{color:"red"}}>{errors.nom}</h6>}
-            </div>
-            <div className="mb-3">
-                <label htmlFor="simpleinput" className="form-label">Last Name</label>
-                <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data.prenom} name="prenom" type="text" className="form-control" />
-                {errors.prenom && <h6 style={{color:"red"}}>{errors.prenom}</h6>}
+    {/*   bodyyyyy of the modal    */}
+              <div style={{textAlign:"center"}}>
+              {type==="edit" && <i onClick={()=> widgetRef.current.open()} style={{position:"relative", top:-10,right:10 }} className='mdi mdi-square-edit-outline'></i>}             
+              <img className="me-3 rounded-circle" style={{objectFit:'contain'}} width={80} height={80} src={data.photo} alt='' />
+              </div>
 
-            </div>
+                <div className="mb-3">
+                    <label htmlFor="simpleinput" className="form-label">Nom</label>
+                    <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data.nom} name="nom"  type="text" className="form-control" />
+                    {errors.nom && <h6 style={{color:"red"}}>{errors.nom}</h6>}
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="simpleinput" className="form-label">Prenom</label>
+                    <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data.prenom} name="prenom" type="text" className="form-control" />
+                    {errors.prenom && <h6 style={{color:"red"}}>{errors.prenom}</h6>}
 
-            <div className="mb-3">
-                <label htmlFor="simpleinput" className="form-label">Fonction</label>
-                <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data.fonction} name="fonction" type="text"  className="form-control" />
-                {errors.fonction && <h6 style={{color:"red"}}>{errors.fonction}</h6>}
-            </div>
+                </div>
 
-           <div className="mb-3">
-                <label htmlFor="example-email" className="form-label">Email</label>
-                <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data.email} name="email" type="email" className="form-control" placeholder="Email" />
-                {errors.email && <h6 style={{color:"red"}}>{errors.email}</h6>}
-            </div>
-            <div className="mb-3">
-                <label htmlFor="example-palaceholder" className="form-label">Telephone</label>
-                <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data.telephone} name="téléphone" type="text" className="form-control" placeholder="Telephone" />
-                {errors.telephone && <h6 style={{color:"red"}}>{errors.telephone}</h6>}
-            </div>
+                <div className="mb-3">
+                    <label htmlFor="simpleinput" className="form-label">Fonction</label>
+                    <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data.fonction} name="fonction" type="text"  className="form-control" />
+                    {errors.fonction && <h6 style={{color:"red"}}>{errors.fonction}</h6>}
+                </div>
 
-
- {/*   end  of the modal  body    */}
-
-      </div>
-      <div className="modal-footer">
-        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" className="btn btn-primary">Save changes</button>
-      </div>
+              <div className="mb-3">
+                    <label htmlFor="example-email" className="form-label">Email</label>
+                    <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data.email} name="email" type="email" className="form-control" placeholder="Email" />
+                    {errors.email && <h6 style={{color:"red"}}>{errors.email}</h6>}
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="example-palaceholder" className="form-label">Téléphone</label>
+                    <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data.telephone} name="téléphone" type="text" className="form-control" placeholder="Telephone" />
+                    {errors.telephone && <h6 style={{color:"red"}}>{errors.telephone}</h6>}
+                </div>
 
 
-    </div>{/* /.modal-content */}
+    {/*   end  of the modal  body    */}
 
-</form>  
+          </div>
+          <div className="modal-footer">
+            { type==="edit" && <button type="submit" className="btn btn-primary">Mise à jour</button>}
+          </div>
+        </div>{/* /.modal-content */}
+    </form> 
 
+    </div>
+    </div>
+</div>
 )
 
 

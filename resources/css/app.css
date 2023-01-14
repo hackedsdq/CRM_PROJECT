@@ -1,0 +1,78 @@
+.container-login100 {
+    background-image: url(./wave.png);
+    background-size: cover;
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: absolute;
+    flex-wrap: wrap;
+    margin-left: 100px;
+    margin-right: 200px;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    padding-Top: 100px;
+    align-self: center;
+}
+
+
+  .wrap-login100 {
+    width: 75%;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 33px 33px 33px 33px;
+  
+    box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+    -o-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+    -ms-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+.wrap-login101 {
+  width: 85%;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 33px 33px 33px 33px;
+
+  box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+  -o-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+  -ms-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+.ccheader {
+	color: #fff;
+	font-weight: 400;
+	font-size: 1em;
+	font-family: 'Lato', Arial, sans-serif;
+	margin:0;
+	padding:0;
+	padding-bottom:80px;
+	margin: 0 auto;
+	padding: 2em;
+	text-align: center;
+}
+
+.gradient-custom {
+/* fallback for old browsers */
+background: #f6d365;
+
+/* Chrome 10-25, Safari 5.1-6 */
+background: -webkit-linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
+
+/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1))
+}
+
+@media screen and (min-width:1030px) {
+  .container-login100 {
+    margin-left: 200px;
+} 
+}

@@ -1,19 +1,30 @@
 import React,{useState} from 'react';
 import { Inertia } from '@inertiajs/inertia';
+import {useForm}  from "@inertiajs/inertia-react"
 
  
 function SigninCostumer() {
-  const [values, setValues] = useState({
-    email:"hnad@gmail.com",
-    password:"12345678",
-  })
+  const { data, setData, post, processing, errors } = useForm({
+    email: "",
+    password :"", 
 
+})
 const  handleSubmit = (e) => {
     e.preventDefault()
-    Inertia.post('/login', values)
-    console.log('submitted')
-  }
+    post('/login')
+    console.log(data)
+}
 
+const handleChange = (e) =>{
+  let inputType = e.target.name
+  let inputValue = e.target.value
+  if( inputType === "email")
+  setData(data.email = inputValue )
+
+  else if(inputType === "password")
+  setData(data.password = inputValue)
+
+}
 return (
   <div class="auth-fluid">
 
@@ -23,10 +34,10 @@ return (
 
               <div class="auth-brand text-center text-lg-start">
                   <a href="index.html" class="logo-dark">
-                      <span><img src="assets/images/logo-dark.png" alt="" height="18"/></span>
+                      <span><img src="https://res.cloudinary.com/dbttd3n1v/image/upload/v1671906267/logo_wwkgud.png" alt="" height="18"/></span>
                   </a>
                   <a href="index.html" class="logo-light">
-                      <span><img src="assets/images/logo.png" alt="" height="18"/></span>
+                      <span><img src="https://res.cloudinary.com/dbttd3n1v/image/upload/v1671906267/logo_wwkgud.png" alt="" height="18"/></span>
                   </a>
               </div>
 
@@ -38,12 +49,16 @@ return (
               <form action="#">
                   <div class="mb-3">
                       <label for="emailaddress" class="form-label">Email address</label>
-                      <input class="form-control" type="email" id="emailaddress" required="" placeholder="Enter your email"/>
+                      <input  onChange={(e)=>handleChange(e)} value={data.email} name="email" class="form-control" type="email" id="emailaddress" required="" placeholder="Enter your email"/>
+                      {errors.email && <h6 style={{color:"red"}}>{errors.email}</h6>}
+
                   </div>
                   <div class="mb-3">
                       <a href="pages-recoverpw-2.html" class="text-muted float-end"><small>Forgot your password?</small></a>
                       <label for="password" class="form-label">Password</label>
-                      <input class="form-control" type="password" required="" id="password" placeholder="Enter your password"/>
+                      <input onChange={(e)=>handleChange(e)} value={data.password} name="password" class="form-control" type="password" required="" id="password" placeholder="Enter your password"/>
+                      {errors.password && <h6 style={{color:"red"}}>{errors.password}</h6>}
+
                   </div>
                   <div class="mb-3">
                       <div class="form-check">

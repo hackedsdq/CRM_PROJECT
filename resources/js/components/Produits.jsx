@@ -1,4 +1,3 @@
-
 import React,{useState,useEffect} from 'react'
 import Header from './static_components/Header'
 import SideBar from './static_components/SideBar'
@@ -14,16 +13,15 @@ export default function Produits({produits}) {
 let title = "Produits"
 const [pageLoaded, setPageLoaded]=useState(false)
 
-const [allProduits, setProduits]=useState([]);
+//const [allProduits, setProduits]=useState([]);
 
 const columns = [
 { field: 'id', headerName: 'id', width: 70 },
 { field: 'nom', headerName: 'nom', width: 130 },
-{ field: 'description', headerName: 'description', width: 130},
+/* { field: 'description', headerName: 'description', width: 130},*/
 {
 field: 'quantité',
 headerName: 'quantité',
-type: 'number',
 width: 90,
 },
 {
@@ -31,9 +29,9 @@ field: 'prix',
 headerName: 'prix',
 width: 90,
 },
-{ field: 'delete', headerName: 'Delete', width: 70, renderCell:(params)=> <UserActions title="produits" user={params.row} action="delete"/> },
-{ field: 'modify', headerName: 'Modify', width: 70, renderCell:(params)=> <UserActions title="produits" user={params.row} action="modify"/> },
-{ field: 'show', headerName: 'show', width: 70, renderCell:(params)=> <UserActions title="produits" user={params.row} action="show"/> },
+{ field: 'delete', headerName: 'supprimer', width: 100, renderCell:(params)=> <UserActions title="produits" user={params.row} action="delete"/> },
+{ field: 'modify', headerName: 'modifier', width: 100, renderCell:(params)=> <UserActions title="produits" user={params.row} action="modify"/> },
+{ field: 'show', headerName: 'afficher', width: 100, renderCell:(params)=> <UserActions title="produits" user={params.row} action="show"/> },
 ];
 // const rows = [
 // { id: 2, nom: 'Lannister', description: 'Cersei',photo:""
@@ -51,7 +49,8 @@ width: 90,
 //const [open,setOpen]=useState(false);
 
 useEffect(()=>{
-produits.map((prc)=> allProduits.push(prc))
+    console.log("salam khoti")
+//produits.map((prc)=> allProduits.push(prc))
 setPageLoaded(true)
 },[])
 
@@ -59,17 +58,18 @@ setPageLoaded(true)
 // console.log(allProduits)
 // }
 
-if(pageLoaded){
 
 return (
 <div className='wrapper' >
 <SideBar />
 <Header />
-<div className="content-page">
-<div className="content">
+<div className="container-login100">
+    <div className="wrap-login100">
+        <div className="modal-content">
+          <div className="modal-body">
 {/* Start Content*/}
 <div className="container-fluid">
-{/* start page title */}
+{/* start page title 
 <PageTitle title={title} />
 {/* end page title */} 
 
@@ -77,16 +77,13 @@ return (
 <AddModalProduits/>
 
 {/* ------------------------ show datagrid table search ------------------ */}
-<DataGridTable title={title} columns={columns} rows={allProduits}/>
+<DataGridTable title={title} columns={columns} rows={produits}/>
 {/* end row */}
 </div> {/* container */}
 </div> {/* content */}
 </div>
-
 </div>
-)
-}else
-return(
-<div></div>
+</div>
+</div>
 )
 }

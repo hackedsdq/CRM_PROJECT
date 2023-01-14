@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitca5e2d1d9a6bb56870c192cdca7173bc
+class ComposerStaticInit5736c852e0e9ac68b455f024adadde2a
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -523,17 +523,22 @@ class ComposerStaticInitca5e2d1d9a6bb56870c192cdca7173bc
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\AdminCommercialAuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminCommercialAuthController.php',
+        'App\\Http\\Controllers\\CalendarContactController' => __DIR__ . '/../..' . '/app/Http/Controllers/CalendarContactController.php',
         'App\\Http\\Controllers\\CalendarController' => __DIR__ . '/../..' . '/app/Http/Controllers/CalendarController.php',
         'App\\Http\\Controllers\\ClientController' => __DIR__ . '/../..' . '/app/Http/Controllers/ClientController.php',
         'App\\Http\\Controllers\\ContactController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContactController.php',
         'App\\Http\\Controllers\\ContactsAuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContactsAuthController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\OpportunitiesContactController' => __DIR__ . '/../..' . '/app/Http/Controllers/OpportunitiesContactController.php',
         'App\\Http\\Controllers\\OpportunitiesController' => __DIR__ . '/../..' . '/app/Http/Controllers/OpportunitiesController.php',
         'App\\Http\\Controllers\\ProduitController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProduitController.php',
+        'App\\Http\\Controllers\\ProfilController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfilController.php',
         'App\\Http\\Controllers\\ProspectController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProspectController.php',
         'App\\Http\\Controllers\\SiginCostumerController' => __DIR__ . '/../..' . '/app/Http/Controllers/SiginCostumerController.php',
         'App\\Http\\Controllers\\SigninController' => __DIR__ . '/../..' . '/app/Http/Controllers/SigninController.php',
+        'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
+        'App\\Http\\Controllers\\homeOfficeController' => __DIR__ . '/../..' . '/app/Http/Controllers/homeOfficeController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -5791,10 +5796,10 @@ class ComposerStaticInitca5e2d1d9a6bb56870c192cdca7173bc
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitca5e2d1d9a6bb56870c192cdca7173bc::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitca5e2d1d9a6bb56870c192cdca7173bc::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitca5e2d1d9a6bb56870c192cdca7173bc::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitca5e2d1d9a6bb56870c192cdca7173bc::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit5736c852e0e9ac68b455f024adadde2a::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit5736c852e0e9ac68b455f024adadde2a::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit5736c852e0e9ac68b455f024adadde2a::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit5736c852e0e9ac68b455f024adadde2a::$classMap;
 
         }, null, ClassLoader::class);
     }

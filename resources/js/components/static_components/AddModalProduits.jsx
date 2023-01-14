@@ -1,6 +1,7 @@
-import React from "react";
+import React,{useRef, useEffect} from 'react'
 import { InertiaLink, useForm } from "@inertiajs/inertia-react";
 import { Inertia } from "@inertiajs/inertia";
+import $ from 'jquery'
 
 export default function AddModalProduits(props) {
     const { data, setData, post, processing, errors } = useForm({
@@ -8,25 +9,59 @@ export default function AddModalProduits(props) {
         description: "",
         prix: "",
         quantité: "",
+        photo:"https://res.cloudinary.com/dbttd3n1v/image/upload/v1671754616/default-image_150_zknf15.png"
     });
+
+    const cloudinaryRef = useRef();
+    const widgetRef = useRef();
+
+
+
+        // uploading the image
+        cloudinaryRef.current =  window.cloudinary;
+        widgetRef.current = cloudinaryRef.current.createUploadWidget({
+          cloudName: 'dbttd3n1v', 
+          uploadPreset: 'j5xeceeh'
+        }
+          , (error, result) => { 
+            if (!error && result && result.event === "success") { 
+                let photo = result.info.url
+            setData(data.photo = photo) 
+            console.log(result.info)
+            }
+        }
+        )
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(data);
-        post("/adcom/produits");
+        post("/adcom/produits",{
+            preserveState:true,
+            onSuccess:page=>{
+                Inertia.reload({only:['produits']})
+                $('#scrollable-modal').hide();
+                $('.modal-backdrop').remove(); 
+                document.body.style.overflow = 'scroll'
+            },
+            //onError:errors=>{Inertia.reload({only:['produits']})}
+        });
     };
 
     const handleChange = (e) => {
         let inputType = e.target.name;
         let inputValue = e.target.value;
 
-        if (inputType === "nom") setData((data.nom = inputValue));
+        if (inputType === "nom") 
+        setData((data.nom = inputValue));
         else if (inputType === "description")
-            setData((data.description = inputValue));
-        else if (inputType === "prix") setData((data.prix = inputValue));
+        setData((data.description = inputValue));
+        else if (inputType === "prix") 
+        setData((data.prix = inputValue));
         else if (inputType === "quantité")
-            setData((data.quantité = inputValue));
+        setData((data.quantité = inputValue));
     };
+
+
     return (
         <form onSubmit={(e) => handleSubmit(e)}>
             <div
@@ -64,7 +99,7 @@ export default function AddModalProduits(props) {
                                     htmlFor="simpleinput"
                                     className="form-label"
                                 >
-                                    Name
+                                    Nom
                                 </label>
                                 <input
                                     onChange={(e) => handleChange(e)}
@@ -116,18 +151,18 @@ export default function AddModalProduits(props) {
                                         data-plugin="dropzone"
                                         data-previews-container="#file-previews"
                                         data-upload-preview-template="#uploadPreviewTemplate"
+                                        style={{textAlign:"center",alignItems:"center"}}
                                     >
-                                        <div>
-                                            <input name="file" type="file" />
-                                        </div>
 
-                                        <div class="dz-message needsclick">
+
+                                        <div onClick={()=> widgetRef.current.open()} class="dz-message needsclick">
                                             <i class="h3 text-muted dripicons-cloud-upload"></i>
                                             <h4>
                                                 Drop files here or click to
                                                 upload.
                                             </h4>
                                         </div>
+                                        <img style={{height:100,width:100}} src={data.photo}  alt="" />
                                     </div>
                                 </div>
                             </div>
@@ -136,7 +171,7 @@ export default function AddModalProduits(props) {
                                     htmlFor="simpleinput"
                                     className="form-label"
                                 >
-                                    Price
+                                    Prix
                                 </label>
                                 <input
                                     onChange={(e) => handleChange(e)}
@@ -156,7 +191,7 @@ export default function AddModalProduits(props) {
                                     htmlFor="simpleinput"
                                     className="form-label"
                                 >
-                                    Quantity
+                                    Quantité
                                 </label>
                                 <input
                                     onChange={(e) => handleChange(e)}
@@ -167,7 +202,7 @@ export default function AddModalProduits(props) {
                                 />
                                 {errors.quantité && (
                                     <h6 style={{ color: "red" }}>
-                                        {errors.quantité}
+                                        {errors?.quantité}
                                     </h6>
                                 )}
                             </div>

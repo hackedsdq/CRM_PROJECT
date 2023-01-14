@@ -4,10 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Prospect extends Model
 {
+    use SoftDeletes;
     use HasFactory;
+
+    protected $dates=['deleted_at'];
     protected $fillable = [
         'nom',
         'prenom',
@@ -18,10 +22,17 @@ class Prospect extends Model
         'adresse',
         'site_web',
         'Statut',
-        'Source'
+        'Source',
+        'photo',
+        'logo',
+        'user_id'
     ];
     public function clients()
     {
-        return $this->belongsTo(Client::class, 'prospects_id');
+        return $this->belongsTo(Client::class, 'prospect_id');
+    }
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

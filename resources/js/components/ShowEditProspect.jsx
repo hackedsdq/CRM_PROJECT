@@ -1,5 +1,7 @@
-import React,{useEffect} from 'react'
+import React,{useEffect,useRef} from 'react'
 import {useForm}  from "@inertiajs/inertia-react"
+import SideBar from './static_components/SideBar'
+import Header from './static_components/Header'
 
 export default function ShowEditProspect({prospect,type})  {
 
@@ -13,31 +15,55 @@ export default function ShowEditProspect({prospect,type})  {
     adresse:'', 
     site_web:'', 
     Statut:"", 
-    Source:""
+    Source:"",
+    photo:"",
+    logo:""
 })
+
+const cloudinaryRef = useRef();
+const widgetRef = useRef();
+ // uploading the image
+ cloudinaryRef.current =  window.cloudinary;
+ widgetRef.current = cloudinaryRef.current.createUploadWidget({
+   cloudName: 'dbttd3n1v', 
+   uploadPreset: 'j5xeceeh'
+ }
+   , (error, result) => { 
+     if (!error && result && result.event === "success") { 
+     let photo = result.info.thumbnail_url
+     setData(data.photo = photo) 
+     console.log(result.info)
+     }
+   }
+ )
 
 const  handleSubmit = (e) => {
  e.preventDefault()
 console.log(data)
-post(`/adcom/prospects/update/${prospect.id}`) 
+post(`/adcom/prospects/update/${prospect.id}`,{
+  preserveState:true
+}) 
 }
 
 useEffect(()=>{
+  console.log(prospect)
   handleGetProspect()
 },[])
 
 
 const handleGetProspect = ()=>{
-  setData(data.nom = prospect.nom )
-  setData(data.prenom = prospect.prenom)
-  setData(data.société = prospect.société)
-  setData(data.fonction = prospect.fonction)
-  setData(data.email = prospect.email)
-  setData(data.téléphone = prospect.téléphone)
-  setData(data.adresse = prospect.adresse)
-  setData(data.site_web = prospect.site_web)
-  setData(data.Statut = prospect.site_web)
-  setData(data.Source = prospect.Source)
+  setData(data.nom = prospect?.nom )
+  setData(data.prenom = prospect?.prenom)
+  setData(data.société = prospect?.société)
+  setData(data.fonction = prospect?.fonction)
+  setData(data.email = prospect?.email)
+  setData(data.téléphone = prospect?.téléphone)
+  setData(data.adresse = prospect?.adresse)
+  setData(data.site_web = prospect?.site_web)
+  setData(data.Statut = prospect?.Statut)
+  setData(data.Source = prospect?.Source)
+  setData(data.photo = prospect?.photo)
+  setData(data.logo = prospect?.logo)
 }
 
 const handleChange = (e) =>{
@@ -80,25 +106,34 @@ const handleChange = (e) =>{
 
 
 return (
-<form onSubmit={(e)=>handleSubmit(e)} >
+  <div className='wrapper' >
+  <SideBar />
+  <Header />
+<div className="container-login100">
+	<div className="wrap-login100">
+
+  <form onSubmit={(e)=>handleSubmit(e)} >
     <div className="modal-content">
       <div className="modal-body">
  
  {/*   bodyyyyy of the modal    */}
+            <div style={{textAlign:"center"}}>
+            { type==="edit" && <i onClick={()=> widgetRef.current.open()} style={{position:"relative", top:-10,right:10 }} className='mdi mdi-square-edit-outline'></i>}            <img style={{backgroundColor:"black", borderRadius:40, width:80}} src={data.photo} alt='' />
+            </div>
 
             <div className="mb-3">
-                <label htmlFor="simpleinput" className="form-label">First Name</label>
+                <label htmlFor="simpleinput" className="form-label">Nom</label>
                 <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data.nom} name="nom"  type="text" className="form-control" />
                 {errors.nom && <h6 style={{color:"red"}}>{errors.nom}</h6>}
             </div>
             <div className="mb-3">
-                <label htmlFor="simpleinput" className="form-label">Last Name</label>
+                <label htmlFor="simpleinput" className="form-label">Prenom</label>
                 <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data.prenom} name="prenom" type="text" className="form-control" />
                 {errors.prenom && <h6 style={{color:"red"}}>{errors.prenom}</h6>}
 
             </div>
             <div className="mb-3">
-                <label htmlFor="simpleinput" className="form-label">Society</label>
+                <label htmlFor="simpleinput" className="form-label">Société</label>
                 <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data.société} name="société" type="text"  className="form-control" />
                 {errors.société && <h6 style={{color:"red"}}>{errors.société}</h6>}
 
@@ -115,7 +150,7 @@ return (
                 {errors.email && <h6 style={{color:"red"}}>{errors.email}</h6>}
             </div>
             <div className="mb-3">
-                <label htmlFor="example-palaceholder" className="form-label">Telephone</label>
+                <label htmlFor="example-palaceholder" className="form-label">Téléphone</label>
                 <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data.téléphone} name="téléphone" type="text" className="form-control" placeholder="Telephone" />
                 {errors.téléphone && <h6 style={{color:"red"}}>{errors.téléphone}</h6>}
             </div>
@@ -125,7 +160,7 @@ return (
                 {errors.adresse && <h6 style={{color:"red"}}>{errors.adresse}</h6>}
             </div>
             <div className="mb-3">
-                <label htmlFor="example-Website" className="form-label">Website</label>
+                <label htmlFor="example-Website" className="form-label">Site_Web</label>
                 <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data.site_web} name="site_web" type="text" className="form-control" placeholder="Https://" />
                 {errors.site_web && <h6 style={{color:"red"}}>{errors.site_web}</h6>}
             </div>
@@ -148,14 +183,16 @@ return (
 
       </div>
       <div className="modal-footer">
-        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" className="btn btn-primary">Save changes</button>
+        { type==="edit" && <button type="submit" className="btn btn-primary">Mise à jour</button>}
       </div>
 
 
     </div>{/* /.modal-content */}
 
 </form>
+</div>
+</div>
+</div>
 
   )
 }

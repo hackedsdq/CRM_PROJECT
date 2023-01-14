@@ -4,6 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <link href="https://cdn.syncfusion.com/ej2/material.css" rel="stylesheet" type="text/css" />
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
+    <link href="C:\Users\user\Documents\CRM_PROJECT\resources\css\app.css" rel="stylesheet"/>
+
     <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 
 
@@ -36,7 +39,6 @@
 @viteReactRefresh
     @vite(['resources/css/app.css', 'resources/js/app.jsx'])
     @inertiaHead
-
 
   </head>
   <body class="loading" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>   
@@ -96,6 +98,7 @@
         <script src="assets/js/ui/component.todo.js"></script>
         <script src="assets/js/pages/demo.dashboard-crm.js"></script> -->
         <!-- bundle -->
+        <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>  
         <script src="{{URL::asset('assets/js/vendor.min.js')}}"></script>
         <script src="{{URL::asset('assets/js/app.min.js')}}"></script>
   </body>

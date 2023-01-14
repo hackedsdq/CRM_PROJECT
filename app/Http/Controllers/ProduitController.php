@@ -25,6 +25,8 @@ class ProduitController extends Controller
         ]);
     }
     public function editIndex($id){
+
+        
         $produits = Produit::find($id);
         return Inertia::render('ShowEditProduit',[
             'produits'=>$produits,
@@ -46,26 +48,27 @@ class ProduitController extends Controller
      */
     public function create(Request $request)
     {
+        //return $request;
         $request->validate([
-            'nom'=> 'required',
-           'description'=> 'required',
-             'prix'=> 'required',
-             'quantité'=> 'required',
+            'nom'=>['required','regex:/^[a-zA-Z]+$/'],
+           'description'=> 'required|min:20',
+             'prix'=> 'required|integer',
+             'quantité'=> 'required|integer',
         ]
         );
 
         $newProduit = new Produit();
-        
         $newProduit->nom = $request->nom;
         $newProduit->description = $request->description ;
         $newProduit->prix = $request->prix;
         $newProduit->quantité = $request->quantité;
-   
-  
+        $newProduit->photo = $request->photo;
 
         $newProduit->save();
-        return redirect()->route('adcom.produits');
+        return Redirect::route('adcom.produits');
     }
+   
+
 
     /**
      * Store a newly created resource in storage.
@@ -74,8 +77,7 @@ class ProduitController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
     }
 
     /**
@@ -86,7 +88,7 @@ class ProduitController extends Controller
      */
     public function show(Produit $produit)
     {
-        //
+       
     }
 
     /**
@@ -110,10 +112,10 @@ class ProduitController extends Controller
     public function update(Request $request,  $id)
     {$produits= Produit::find($id);
         $request->validate([
-            'nom'=> 'required',
-            'description'=> 'required| min:20',
-             'prix'=> 'required',
-             'quantité'=> 'required',
+            'nom'=>['required','regex:/^[a-zA-Z]+$/'],
+           'description'=> 'required|min:20',
+             'prix'=> 'required|integer',
+             'quantité'=> 'required|integer',
         ]
         );
         $produits->update([
@@ -121,6 +123,7 @@ class ProduitController extends Controller
             'description'=> $request->description,
             'prix'=> $request->prix,
             'quantité'=> $request->quantité,
+            'photo'=> $request->photo,
             
         ]);
         $produits->save();

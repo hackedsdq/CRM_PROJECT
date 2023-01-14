@@ -6,19 +6,26 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Contact extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    use SoftDeletes;
     
+    protected $dates=['deleted_at'];
     protected $fillable = [
     'nom',
     'prenom',
     'email',
     'password',
     'fonction',
-    'telephone'
+    'telephone',
+    'client_id',
+    'user_id',
+    'photo'
     ];
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -40,10 +47,10 @@ class Contact extends Authenticatable
 
 public function client(){
 
-    return $this->hasMany(Client::class, 'Client_id');
+    return $this->hasMany(Client::class, 'client_id');
 }
 public function user(){
 
-    return $this->belongsToMany(User::class);
+    return $this->belongsToMany(User::class, 'pivot_table_contact_user')->withPivot('id','Date','heure','compte_rendu');
 }
 }

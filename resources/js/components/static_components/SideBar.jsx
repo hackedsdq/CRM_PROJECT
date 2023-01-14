@@ -1,5 +1,6 @@
 import { InertiaLink } from '@inertiajs/inertia-react'
 import React from 'react'
+//import "../../../../public/assets/images/logo.png"
 
 export default function SideBar() {
   return (
@@ -7,21 +8,14 @@ export default function SideBar() {
   {/* LOGO */}
   <a href="index.html" className="logo text-center logo-light">
     <span className="logo-lg">
-      <img src="assets/images/logo.png" alt height={16} />
+      <img src="https://res.cloudinary.com/dbttd3n1v/image/upload/v1671906267/logo_wwkgud.png" alt="" height={16} />
     </span>
     <span className="logo-sm">
-      <img src="assets/images/logo_sm.png" alt height={16} />
+      <img src="https://res.cloudinary.com/dbttd3n1v/image/upload/v1671906267/logo_wwkgud.png" alt="" height={0} />
     </span>
   </a>
   {/* LOGO */}
-  <a href="index.html" className="logo text-center logo-dark">
-    <span className="logo-lg">
-      <img src="assets/images/logo-dark.png" alt height={16} />
-    </span>
-    <span className="logo-sm">
-      <img src="assets/images/logo_sm_dark.png" alt height={16} />
-    </span>
-  </a>
+ 
   <div className="h-100" id="leftside-menu-container" data-simplebar>
     {/*- Sidemenu */}
     <ul className="side-nav">
@@ -51,12 +45,12 @@ export default function SideBar() {
   </div>
       </li>
       */}
-      <li className="side-nav-title side-nav-item">Home</li>
+      <li className="side-nav-title side-nav-item">Accueil</li>
       <li className="side-nav-item">
         <InertiaLink href='/adcom/' className="side-nav-link" >
         <i className="uil-home-alt" />
           <span>
-          Dashboard
+          Accueil
           </span>
         </InertiaLink>
       </li>
@@ -67,7 +61,7 @@ export default function SideBar() {
         <InertiaLink href='/adcom/calendar' className="side-nav-link" >
         <i className="uil-calender" />
           <span>
-          Calendar
+          Calendrier
           </span>
         </InertiaLink>
       </li>
@@ -75,14 +69,14 @@ export default function SideBar() {
       <li className="side-nav-item">
         <InertiaLink href="/adcom/clients" className="side-nav-link">
           <i className="uil-comments-alt" />
-          <span> Client</span>
+          <span>Clients</span>
         </InertiaLink>
       </li>
       <li className="side-nav-item">
 
         <InertiaLink href="/adcom/produits" className="side-nav-link">
           <i className="uil-store" />
-          <span> Product</span>
+          <span> Produits</span>
         </InertiaLink>
        {/* <div className="collapse" id="sidebarEcommerce">
           <ul className="side-nav-second-level">
@@ -116,9 +110,9 @@ export default function SideBar() {
  
     <li className="side-nav-item">
 
-<InertiaLink href="/opportunities" className="side-nav-link">
+<InertiaLink href="/adcom/opportunities" className="side-nav-link">
   <i className="uil-store" />
-  <span> opportunities</span>
+  <span> Opportunities</span>
 </InertiaLink>
        {/* <a data-bs-toggle="collapse" href="#sidebarEmail" aria-expanded="false" aria-controls="sidebarEmail" className="side-nav-link">*/}
          
@@ -161,10 +155,26 @@ export default function SideBar() {
       
     <li className="side-nav-item">
 
-<InertiaLink href="/opportunities" className="side-nav-link">
+<InertiaLink href="/adcom/prospects" className="side-nav-link">
   <i className="uil-store" />
-  <span> Activity Report</span>
+  <span> Prospects</span>
 </InertiaLink></li>
+
+<li className="side-nav-item">
+
+<InertiaLink href="/adcom/contacts" className="side-nav-link">
+  <i className="uil-store" />
+  <span> Contacts</span>
+</InertiaLink></li>
+
+<li className="side-nav-item">
+
+<InertiaLink href="/adcom/users" className="side-nav-link">
+  <i className="uil-store" />
+  <span>Utilisateurs</span>
+</InertiaLink></li>
+
+
      {/* <li className="side-nav-item">
         <a href="apps-social-feed.html" className="side-nav-link">
           <i className="uil-rss" />
@@ -652,7 +662,7 @@ export default function SideBar() {
 </div>
       </li>*/}
     </ul>
-    {/* Help Box */}
+    {/* Help Box 
     <div className="help-box text-white text-center">
       <a href="javascript: void(0);" className="float-end close-btn text-white">
         <i className="mdi mdi-close" />
@@ -661,8 +671,8 @@ export default function SideBar() {
       <h5 className="mt-3">Unlimited Access</h5>
       <p className="mb-3">Upgrade to plan to get access to unlimited reports</p>
       <a href="javascript: void(0);" className="btn btn-outline-light btn-sm">Upgrade</a>
-    </div>
-    {/* end Help Box */}
+    </div> */}
+    {/* end Help Box 
     {/* End Sidebar */}
     <div className="clearfix" />
   </div>

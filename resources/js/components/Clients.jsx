@@ -11,60 +11,59 @@ import AddModalClient from './static_components/AddModalClient'
 export default function Clients({clients}) {
 
   let title = "Clients"
-  const [pageLoaded, setPageLoaded]=useState(false)
-  const [allClients, setProspects]=useState([]);
+/*   const [pageLoaded, setPageLoaded]=useState(false)
+  const [allClients, setProspects]=useState([]); */
 
   const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
+    { field: 'id', headerName: 'ID', width: 130 },
     { field: 'société', headerName: 'société', width: 130 },
-    { field: 'téléphone', headerName: 'téléphone', width: 400 },
-    { field: 'adresse',headerName: 'adresse',type: 'number',width: 150},
-    { field: 'site_web', headerName: 'site_web', width: 200 },
-    { field: 'delete', headerName: 'Delete', width: 70, renderCell: (params) => <UserActions title="clients" user={params.row} action="delete" /> },
-    { field: 'modify', headerName: 'Modify', width: 70, renderCell: (params) => <UserActions title="clients" user={params.row} action="modify" /> },
-    { field: 'show', headerName: 'show', width: 70, renderCell:(params)=> <UserActions title="clients" user={params.row} action="show"/> },
+    { field: 'téléphone', headerName: 'téléphone', width:130 },
+    { field: 'adresse',headerName: 'adresse',width: 130},
+    { field: 'delete', headerName: 'supprimer', width: 100, renderCell: (params) => <UserActions title="clients" user={params.row} action="delete" /> },
+    { field: 'modify', headerName: 'modifier', width: 100, renderCell: (params) => <UserActions title="clients" user={params.row} action="modify" /> },
+    { field: 'show', headerName: 'afficher', width: 100, renderCell:(params)=> <UserActions title="clients" user={params.row} action="show"/> },
   ];
 
   //const [open,setOpen]=useState(false);
 
 useEffect(()=>{
-  console.log(clients)
+/*   console.log(clients)
   clients.map((prc)=> allClients.push(prc))
-  setPageLoaded(true)
+  setPageLoaded(true) */
 },[])
 
 
 
-if(pageLoaded){
   return (
     <div className='wrapper' >
       <SideBar />
       <Header />
 
-      <div className="content-page">
-        <div className="content">
+  <div className="container-login100">
+    <div className="wrap-login100">
+      <div className="modal-content">
+         <div className="modal-body">
           {/* Start Content*/}
           <div className="container-fluid">
-            {/* start page title */}
-            <PageTitle title={title} />
+            {/* start page title 
+            <PageTitle title={title} />*/}
             {/* end page title */}
 
             {/* ------------------------ edit modalClient ------------------ 
             <AddModalClient />*/}
             {/* ------------------------ show datagrid table search ------------------ */}
-            <DataGridTable title={title} columns={columns} rows={allClients} />
+            <DataGridTable title={title} columns={columns} rows={clients} />
             {/* end row */}
           </div> {/* container */}
         </div> {/* content */}
       </div>
 
     </div>
+    </div>
+</div>
+
   )
-  }
-  else 
-  return(
-    <div></div>
-  )
+
 }
 
 

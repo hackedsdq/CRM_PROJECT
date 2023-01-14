@@ -82,7 +82,7 @@ export default function AddModalProduits(props) {
                                 className="modal-title"
                                 id="scrollableModalTitle"
                             >
-                                Add Products
+                                Ajouter un Produit
                             </h5>
                             <button
                                 type="button"
@@ -143,7 +143,7 @@ export default function AddModalProduits(props) {
                                         Photo
                                     </label>
                                     <p class="text-muted font-14">
-                                        Recommended thumbnail size 800x400 (px).
+                                    Taille de vignette recommandée 800x400 (px).
                                     </p>
 
                                     <div
@@ -158,8 +158,8 @@ export default function AddModalProduits(props) {
                                         <div onClick={()=> widgetRef.current.open()} class="dz-message needsclick">
                                             <i class="h3 text-muted dripicons-cloud-upload"></i>
                                             <h4>
-                                                Drop files here or click to
-                                                upload.
+                                            Déposez les fichiers ici ou cliquez pour
+                                                télécharger.
                                             </h4>
                                         </div>
                                         <img style={{height:100,width:100}} src={data.photo}  alt="" />

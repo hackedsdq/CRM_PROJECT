@@ -119,7 +119,8 @@ return (
   <div className="modal-dialog modal-dialog-scrollable" role="document">
     <div className="modal-content">
       <div className="modal-header">
-        <h5 className="modal-title" id="scrollableModalTitle">Add Prospects</h5>
+        <h5 className="modal-title" id="scrollableModalTitle">Ajouter un prospect
+</h5>
         <button  type="button" className="btn-close" data-bs-dismiss="modal" aria-hidden="true" />
       </div>
 
@@ -172,10 +173,11 @@ return (
             <div class="col-xl-6">
                                 <div class="mb-3 mt-3 mt-xl-0">
                                     <label for="projectname" class="mb-0">
-                                        Logo Society
+                                    Logo Société
+
                                     </label>
                                     <p class="text-muted font-14">
-                                        Recommended thumbnail size 800x400 (px).
+                                        Taille de vignette recommandée 800x400 (px).
                                     </p>
 
                                     <div
@@ -190,8 +192,8 @@ return (
                                         <div  onClick={()=> widgetRef2.current.open()} class="dz-message needsclick">
                                             <i class="h3 text-muted dripicons-cloud-upload"></i>
                                             <h4>
-                                                Drop files here or click to
-                                                upload.
+                                                Déposez les fichiers ici ou cliquez pour
+                                                télécharger.
                                             </h4>
                                         </div>
                                         <img style={{height:50,width:50}} src={data.logo}  alt="" />

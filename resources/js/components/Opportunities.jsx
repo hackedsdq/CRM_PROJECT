@@ -60,7 +60,7 @@ const handleFilter=(clients)=>{
             <div className="container-fluid">
 {/*               <PageTitle title={title} />*/}  
             <button  className="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#scrollable-modal">
-                  <i className="mdi mdi-plus-circle me-2" /> Add Opportunity
+                  <i className="mdi mdi-plus-circle me-2" />Ajouter opportunités
               </button>
 
               <AddModalOpportunity clients={filtredClients} />

@@ -20,7 +20,7 @@ export default function Prospects({prospects}) {
   let[editedObject,setEditedObject]=useState(null);
 
   const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
+   
     { field: 'nom', headerName: 'nom', width: 130 },
     { field: 'prenom', headerName: 'prenom', width: 130 },
 /*     { field: 'société', headerName: 'société', width: 130 },*/

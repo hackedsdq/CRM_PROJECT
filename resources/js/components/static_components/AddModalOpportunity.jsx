@@ -76,7 +76,7 @@ return (
   <div className="modal-dialog modal-dialog-scrollable" role="document">
     <div className="modal-content">
       <div className="modal-header">
-        <h5 className="modal-title" id="scrollableModalTitle">Add Opportunity</h5>
+        <h5 className="modal-title" id="scrollableModalTitle">Ajouter une opportunité</h5>
         <button  type="button" className="btn-close" data-bs-dismiss="modal" aria-hidden="true" />
       </div>
 

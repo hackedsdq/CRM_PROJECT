@@ -16,7 +16,7 @@ const [pageLoaded, setPageLoaded]=useState(false)
 //const [allProduits, setProduits]=useState([]);
 
 const columns = [
-{ field: 'id', headerName: 'id', width: 70 },
+
 { field: 'nom', headerName: 'nom', width: 130 },
 /* { field: 'description', headerName: 'description', width: 130},*/
 {

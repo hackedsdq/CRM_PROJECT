@@ -15,7 +15,7 @@ export default function Clients({clients}) {
   const [allClients, setProspects]=useState([]); */
 
   const columns = [
-    { field: 'id', headerName: 'ID', width: 130 },
+    
     { field: 'société', headerName: 'société', width: 130 },
     { field: 'téléphone', headerName: 'téléphone', width:130 },
     { field: 'adresse',headerName: 'adresse',width: 130},

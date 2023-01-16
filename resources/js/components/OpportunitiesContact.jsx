@@ -9,6 +9,7 @@ import { Inertia } from '@inertiajs/inertia';
 
 import AddModalOpportunity from './static_components/AddModalOpportunity'
 import HeaderContact from './static_components/HeaderContact'
+import FooterFrontoffice from './static_components/FooterFrontoffice'
 
 export default function OpportunitiesContact({clients,opportunities_one, opportunities_two, opportunities_three, opportunities_four, opportunities}) {
 
@@ -73,6 +74,7 @@ const handleFilter=(clients)=>{
 
     </div>
     </div>
+    <FooterFrontoffice/>
   </div>
 
   )

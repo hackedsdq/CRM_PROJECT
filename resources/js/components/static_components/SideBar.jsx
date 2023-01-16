@@ -112,7 +112,7 @@ export default function SideBar() {
 
 <InertiaLink href="/adcom/opportunities" className="side-nav-link">
   <i className="uil-store" />
-  <span> Opportunities</span>
+  <span> Opportunités</span>
 </InertiaLink>
        {/* <a data-bs-toggle="collapse" href="#sidebarEmail" aria-expanded="false" aria-controls="sidebarEmail" className="side-nav-link">*/}
          

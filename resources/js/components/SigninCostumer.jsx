@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import { Inertia } from '@inertiajs/inertia';
-import {useForm}  from "@inertiajs/inertia-react"
+import {InertiaLink, useForm}  from "@inertiajs/inertia-react"
 
  
 function SigninCostumer() {
@@ -42,72 +42,43 @@ return (
               </div>
 
              
-              <h4 class="mt-0">Sign In</h4>
-              <p class="text-muted mb-4">Enter your email address and password to access account.</p>
+              <h4 class="mt-0">S'identifier</h4>
+              <p class="text-muted mb-4">Entrez votre adresse e-mail et votre mot de passe pour accéder au compte.</p>
 
 
               <form action="#">
                   <div class="mb-3">
-                      <label for="emailaddress" class="form-label">Email address</label>
+                      <label for="emailaddress" class="form-label">Adresse e-mail</label>
                       <input  onChange={(e)=>handleChange(e)} value={data.email} name="email" class="form-control" type="email" id="emailaddress" required="" placeholder="Enter your email"/>
                       {errors.email && <h6 style={{color:"red"}}>{errors.email}</h6>}
 
                   </div>
                   <div class="mb-3">
-                      <a href="pages-recoverpw-2.html" class="text-muted float-end"><small>Forgot your password?</small></a>
-                      <label for="password" class="form-label">Password</label>
+                      <a href="pages-recoverpw-2.html" class="text-muted float-end"><small>Mot de passe oublié?</small></a>
+                      <label for="password" class="form-label">Mot de passe
+</label>
                       <input onChange={(e)=>handleChange(e)} value={data.password} name="password" class="form-control" type="password" required="" id="password" placeholder="Enter your password"/>
                       {errors.password && <h6 style={{color:"red"}}>{errors.password}</h6>}
 
                   </div>
-                  <div class="mb-3">
-                      <div class="form-check">
-                          <input type="checkbox" class="form-check-input" id="checkbox-signin"/>
-                          <label class="form-check-label" for="checkbox-signin">Remember me</label>
-                      </div>
-                  </div>
+                 
                   <div class="d-grid mb-0 text-center">
-                      <button onClick={handleSubmit} class="btn btn-primary" type="submit"><i class="mdi mdi-login"></i> Log In </button>
+                      <button onClick={handleSubmit} class="btn btn-primary" type="submit"><i class="mdi mdi-login"></i> Connexion </button>
                   </div>
                   
-                  <div class="text-center mt-4">
-                      <p class="text-muted font-16">Sign in with</p>
-                      <ul class="social-list list-inline mt-3">
-                          <li class="list-inline-item">
-                              <a href="javascript: void(0);" class="social-list-item border-primary text-primary"><i class="mdi mdi-facebook"></i></a>
-                          </li>
-                          <li class="list-inline-item">
-                              <a href="javascript: void(0);" class="social-list-item border-danger text-danger"><i class="mdi mdi-google"></i></a>
-                          </li>
-                          <li class="list-inline-item">
-                              <a href="javascript: void(0);" class="social-list-item border-info text-info"><i class="mdi mdi-twitter"></i></a>
-                          </li>
-                          <li class="list-inline-item">
-                              <a href="javascript: void(0);" class="social-list-item border-secondary text-secondary"><i class="mdi mdi-github"></i></a>
-                          </li>
-                      </ul>
-                  </div>
+              
               </form>
              
 
               <footer class="footer footer-alt">
-                  <p class="text-muted">Don't have an account? <a href="pages-register-2.html" class="text-muted ms-1"><b>Sign Up</b></a></p>
+                  <p class="text-muted">s'authentifier en tant que <InertiaLink href="/adcom/login" class=""><b>commercial/admin</b></InertiaLink></p>
               </footer>
 
           </div> 
       </div> 
   </div>
   
-  <div class="auth-fluid-right text-center">
-      <div class="auth-user-testimonial">
-          <h2 class="mb-3">I love the color!</h2>
-          <p class="lead"><i class="mdi mdi-format-quote-open"></i> It's a elegent templete. I love it very much! . <i class="mdi mdi-format-quote-close"></i>
-          </p>
-          <p>
-              - Hyper Admin User
-          </p>
-      </div> 
-  </div>
+ 
 
 </div>
  /* <div className="loading authentication-bg" data-layout-config="{&quot;leftSideBarTheme&quot;:&quot;dark&quot;,&quot;layoutBoxed&quot;:false, &quot;leftSidebarCondensed&quot;:false, &quot;leftSidebarScrollable&quot;:false,&quot;darkMode&quot;:false, &quot;showRightSidebarOnStart&quot;: true}">

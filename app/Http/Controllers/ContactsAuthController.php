@@ -48,6 +48,6 @@ class ContactsAuthController extends Controller
     {
         Auth::guard()->logout();
        
-        return redirect()->route('contacts.login');
+        return redirect()->route('home.contact');
     }
 }

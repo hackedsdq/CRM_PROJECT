@@ -67,7 +67,7 @@ export default function AddModalProduits(props) {
             <div className="modal-dialog modal-dialog-scrollable" role="document">
                 <div className="modal-content">
                 <div className="modal-header">
-                    <h5 className="modal-title" id="scrollableModalTitle">Ajouter utilisateur</h5>
+                    <h5 className="modal-title" id="scrollableModalTitle">Ajouter un utilisateur</h5>
                     <button  type="button" className="btn-close" data-bs-dismiss="modal" aria-hidden="true" />
                 </div>
                         <div className="modal-body">
@@ -119,7 +119,7 @@ export default function AddModalProduits(props) {
                                         Photo
                                     </label>
                                     <p class="text-muted font-14">
-                                        Recommended thumbnail size 800x400 (px).
+                                    Taille de vignette recommandée 800x400 (px).
                                     </p>
 
                                     <div
@@ -134,8 +134,8 @@ export default function AddModalProduits(props) {
                                         <div onClick={()=> widgetRef.current.open()} class="dz-message needsclick">
                                             <i class="h3 text-muted dripicons-cloud-upload"></i>
                                             <h4>
-                                                Drop files here or click to
-                                                upload.
+                                                Déposez les fichiers ici ou cliquez pour
+                                                télécharger.
                                             </h4>
                                         </div>
                                         <img style={{height:50,width:50}} src={data.photo} alt='' />

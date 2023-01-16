@@ -144,7 +144,7 @@ return (
   
 
 
-<h4 class="pb-4 border-bottom">Account settings</h4>
+<h4 class="pb-4 border-bottom">Paramètres du compte</h4>
 <div class="d-flex align-items-start py-3 border-bottom">
   <img src= {data.photo} style={{
     width:"200px",
@@ -160,7 +160,7 @@ return (
 photo 
 </label>
 <p class="text-muted font-14">
-Recommended thumbnail size 800x400 (px).
+Taille de vignette recommandée 800x400 (px).
 </p>
 
 
@@ -168,7 +168,7 @@ Recommended thumbnail size 800x400 (px).
   
 <button class="btn btn-success"  >
 
-<i class=" dripicons-cloud-upload">Upload</i>
+<i class=" dripicons-cloud-upload">Télécharger</i>
 </button>
 </div>
 
@@ -177,11 +177,11 @@ Recommended thumbnail size 800x400 (px).
 </div>
 <div class="row py-2">
 <div class="col-md-6">
-<label for="firstname">Prénom</label><br/>
+<label for="firstname">Nom</label><br/>
 <span id ="textffil">{data?.nom}</span>
 </div>
 <div class="col-md-6 pt-md-0 pt-3">
-<label for="lastname">Nom</label>
+<label for="lastname">Prénom</label>
 <br/>
 <span id ="textffil">{data.prenom}</span>
 
@@ -209,7 +209,7 @@ Recommended thumbnail size 800x400 (px).
 </div>
 <div class="row py-2">
 <div class="col-md-6">
-<label for="email">Telephone societe</label><br/>
+<label for="email">Téléphone Société</label><br/>
 <span id ="textffil">{client.téléphone}</span>
 </div>
 <div class="col-md-6 pt-md-0 pt-3">
@@ -220,9 +220,9 @@ Recommended thumbnail size 800x400 (px).
 <div class="row py-2">
 <div class="col-md-6">
 </div>
-
-<button type="button" class="btn btn-info" data-bs-toggle="modal" >voir les rendez-vous</button>
-
+<InertiaLink href={`/calendar`} >
+<button type="button" class="btn btn-info"  style={{marginLeft: "150px"}} >voir les rendez-vous</button>
+</InertiaLink>
 </div>
 <hr/>
 
@@ -271,8 +271,8 @@ Recommended thumbnail size 800x400 (px).
 </div>
 </div>
 <div class="py-3 pb-4 border-bottom">
-<button class="btn btn-primary mr-3" type="submit" >Save Changes</button> 
- <div class="btn border button" onClick={()=>hideModal()} >Cancel</div>
+<button class="btn btn-primary mr-3" type="submit" >Sauvegarder les modifications</button> 
+ <div class="btn border button" onClick={()=>hideModal()} >Annuler</div>
 </div>
 
 </div>
@@ -282,7 +282,7 @@ Recommended thumbnail size 800x400 (px).
 </div>
 </div>
  <MasterDetailClientOpportunities rows={rows2}/>
- <button type="button"   class="headerchang" data-bs-toggle="modal"  data-bs-target="#edit-modal">Edit Profil</button>
+ <button type="button"   class="headerchang" data-bs-toggle="modal"  data-bs-target="#edit-modal">Modifier Profile</button>
 
 </div>
 </div>

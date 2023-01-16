@@ -22,6 +22,7 @@ import bigmatic from '../../../public/assets/images/products/bigmatic.jpg';
 import fevicon from '../../../public/assets/images/products/fevicon.png';
 import licb2 from'../../../public/assets/images/products/licb2.png'
 import HeaderContact from './static_components/HeaderContact';
+import FooterFrontoffice from './static_components/FooterFrontoffice';
 
 
 export default function homeOffice({products}){
@@ -42,17 +43,15 @@ return(
                 <div class="col-md-6">
                   <div class="detail-box">
                     <h1>
-                      Welcome to our society
+                    Bienvenue dans notre société
                     </h1>
                     <h2>
-                    verified Suppliers and best quality Products
+                    Fournisseurs vérifiés et produits de la meilleure qualité
                     </h2>
                     <p>
-                    Our society works straightforwardly! Whether you are looking for the right supplier for your project or the right project to increase your production agenda,our society is the right place to connect with potential clients!
+                    Fournisseurs vérifiés et Notre société fonctionne en toute simplicité ! Que vous recherchiez le bon fournisseur pour votre projet ou le bon projet pour augmenter votre agenda de production, notre société est le bon endroit pour entrer en contact avec des clients potentiels!produits de la meilleure qualité
                     </p>
-                    <a href="">
-                      Read More
-                    </a>
+                  
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -74,7 +73,7 @@ return(
     <div class="container">
       <div class="heading_container heading_center">
         <h2>
-          Our Products
+        Nos produits
         </h2>
       </div>
       <div class="row">
@@ -86,7 +85,7 @@ return(
         <img src={item.photo} alt=""/>
         <InertiaLink class="add_cart_btn" href={`ProductDetails/${item.id}`}>
           <span>
-            Show Product
+          Afficher le produit
           </span>
         </InertiaLink>
       </div>
@@ -108,9 +107,9 @@ return(
 
       </div>
       <div class="btn_box">
-        <InertiaLink href='/Products' class="view_more-link">
-          View More
-        </InertiaLink>
+      <InertiaLink href='/Products' class="view_more-link">
+          voir plus
+       </InertiaLink>
       </div>
     </div>
   </section>
@@ -123,16 +122,14 @@ return(
           <div class="detail-box pr-md-3">
             <div class="heading_container">
               <h2>
-                We Provide Best For You
+              Nous vous offrons le meilleur
               </h2>
             </div>
             <p>
-            We are proud of the things our customers are saying about us, and we’d like to share some of their comments with you. Here is a collection of quotes taken directly from our customers in response to this question:
-            We appreciate all of the feedback our customers have given us over the years. Thank you for allowing us to become your trusted precision gear manufacturing partner. We will continue to provide the quality and service we’ve become known for and will continue to look for new ways to exceed your expectations.
+            Nous sommes fiers de ce que nos clients disent de nous et nous aimerions partager certains de leurs commentaires avec vous. Voici une collection de citations tirées directement de nos clients en réponse à cette question :
+            Nous apprécions tous les commentaires que nos clients nous ont donnés au fil des ans. Merci de nous avoir permis de devenir votre partenaire de confiance dans la fabrication d'engrenages de précision. Nous continuerons à fournir la qualité et le service pour lesquels nous sommes devenus connus et continuerons à chercher de nouvelles façons de dépasser vos attentes.
             </p>
-            <a href="">
-              Read More
-            </a>
+           
           </div>
         </div>
         <div class="col-md-6 px-0">
@@ -150,7 +147,7 @@ return(
     <div class="container">
       <div class="heading_container heading_center">
         <h2>
-          Why Choose Us
+        Pourquoi nous choisir
         </h2>
       </div>
       <div class="row">
@@ -161,11 +158,9 @@ return(
             </div>
             <div class="detail-box">
               <h5>
-                Fast Delivery
+              Livraison rapide
               </h5>
-              <p>
-                variations of passages of Lorem Ipsum available
-              </p>
+           
             </div>
           </div>
         </div>
@@ -176,11 +171,9 @@ return(
             </div>
             <div class="detail-box">
               <h5>
-                Free Shiping
+              Livraison gratuite
               </h5>
-              <p>
-                variations of passages of Lorem Ipsum available
-              </p>
+             
             </div>
           </div>
         </div>
@@ -191,11 +184,9 @@ return(
             </div>
             <div class="detail-box">
               <h5>
-                Best Quality
+              Meilleure qualité
               </h5>
-              <p>
-                variations of passages of Lorem Ipsum available
-              </p>
+             
             </div>
           </div>
         </div>
@@ -209,7 +200,7 @@ return(
     <div class="container">
       <div class="heading_container heading_center">
         <h2>
-          What Says Our Customers
+        Ce que disent nos clients
         </h2>
       </div>
     </div>
@@ -224,11 +215,11 @@ return(
                     <i class="fa fa-quote-left" aria-hidden="true"></i>
                   </p>
                   <p>
-                  At Gear Motions, customer satisfaction is very important to us. 
-                  That’s why we like to regularly check in with our customers and ask them how we’re doing.
-                   When our customers provide us with feedback, we can learn about which areas we are excelling in and do our best to keep delivering favorably in those areas. We can also learn about areas where our customers feel we could use improvement, and work to find new ways to enhance their customer experience.
-                   As a means of collecting feedback, we generally ask our customers to complete a customer satisfaction survey about once a year. 
-                   Below are some of the results from this year’s survey that we think you may be interested in.
+                  Chez Gear Motions, la satisfaction du client est très importante pour nous.
+                  C'est pourquoi nous aimons vérifier régulièrement avec nos clients et leur demander comment nous allons.
+                   Lorsque nos clients nous font part de leurs commentaires, nous pouvons découvrir les domaines dans lesquels nous excellons et faire de notre mieux pour continuer à livrer favorablement dans ces domaines. Nous pouvons également en savoir plus sur les domaines dans lesquels nos clients pensent que nous pourrions être améliorés et travailler pour trouver de nouvelles façons d'améliorer leur expérience client.
+                   Afin de recueillir des commentaires, nous demandons généralement à nos clients de répondre à une enquête de satisfaction environ une fois par an.
+                   Vous trouverez ci-dessous quelques-uns des résultats de l'enquête de cette année qui pourraient vous intéresser.
                   </p>
                 </div>
                 <div class="client-id">
@@ -269,7 +260,7 @@ return(
                     <i class="fa fa-quote-left" aria-hidden="true"></i>
                   </p>
                   <p>
-                    It is a long established fact that a reader will be distracted by the readable content of a page
+                  It is a long established fact that a reader will be distracted by the readable content of a page
                     when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
                     distribution of letters, as opposed to using 'Content here, content here', making it lookIt is a
                     long established fact that a reader will be distracted by the readable content of a page when
@@ -331,143 +322,20 @@ return(
             <span>
               <i class="fa fa-angle-left" aria-hidden="true"></i>
             </span>
-            <span class="sr-only">Previous</span>
+            <span class="sr-only"></span>
           </a>
           <a class="carousel-control-next" href="#carouselExample2Controls" role="button" data-slide="next">
             <span>
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </span>
-            <span class="sr-only">Next</span>
+            <span class="sr-only"></span>
           </a>
         </div>
       </div>
     </div>
   </section>
   
-  <section class="info_section ">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3">
-          <div class="info_contact">
-            <h5>
-              <a href="" class="navbar-brand">
-              <img src="../../../assets/images/logo.png" alt=""/>
-              </a>
-            </h5>
-            <p>
-              <i class="fa fa-map-marker" aria-hidden="true"></i>
-              Address:Tlemcen 13000 Algeria
-            </p>
-            <p>
-              <i class="fa fa-phone" aria-hidden="true"></i>
-              +213 5560616263
-            </p>
-            <p>
-              <i class="fa fa-envelope" aria-hidden="true"></i>
-              HyperSociety@gmail.com
-            </p>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="info_info">
-            <h5>
-              Information
-            </h5>
-            <InertiaLink href={`/PrivacyPolicy`}>
-                    <a>
-                    Privacy Policy
-                    </a></InertiaLink> <br/>
-              <a href=''>Terms and conditions</a>
-            <br/>
-            <InertiaLink href={`/ContactUs`}>
-                    <a class="nav-link">
-                     Contact Us
-                    </a></InertiaLink>
-            
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="info_links">
-            <h5>
-              Useful Link
-            </h5>
-            <ul>
-              <li>
-              <InertiaLink href={`/homeOffice`}>
-                    <a class="nav-link">
-                      Home
-                    </a><span class="sr-only"></span></InertiaLink> 
-              </li>
-              <li>
-                <a href="about.html">
-                  About
-                </a>
-              </li>
-              <li>
-              <InertiaLink href={`/Products`}>
-                    <a class="nav-link">
-                      Products
-                    </a></InertiaLink>
-              </li>
-              <li>
-                <a href="why.html">
-                  Why Us
-                </a>
-              </li>
-              <li>
-              <InertiaLink href={`/ContactUs`}>
-                    <a class="nav-link">
-                      Contact Us
-                    </a><span class="sr-only"></span></InertiaLink> 
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="info_form ">
-            <h5>
-              Newsletter
-            </h5>
-            <p>Be the first to know. Sign up for the newsletter today!</p>
-            <form action="">
-              <input type="email" placeholder="Enter your email"/>
-              <button>
-                Subscribe
-              </button>
-            </form>
-            <div class="social_box">
-              <a href="">
-                <i class="fa fa-facebook" aria-hidden="true"></i>
-              </a>
-              <a href="">
-                <i class="fa fa-twitter" aria-hidden="true"></i>
-              </a>
-              <a href="">
-                <i class="fa fa-instagram" aria-hidden="true"></i>
-              </a>
-              <a href="">
-                <i class="fa fa-youtube" aria-hidden="true"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <footer class="footer_section">
-    <div class="container">
-      <p>
-        &copy; <span id="displayYear"></span> All Rights Reserved By
-        
-        <InertiaLink href={`/homeOffice`}>
-                    <a class="nav-link">
-                    HyperSociety
-                    </a></InertiaLink>
-      </p>
-    </div>
-  </footer>
+ <FooterFrontoffice/>
 
   </div>
 

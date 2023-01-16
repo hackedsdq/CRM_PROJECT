@@ -17,7 +17,7 @@ export default function User({users}) {
 let [deleteConfirmation, setDeleteConfirmation]=useState(false);
 
   let columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
+   
     { field: 'name', headerName: 'nom', width: 130 },
     { field: 'prenom', headerName: 'prenom', width: 130 },
     { field: 'email', headerName: 'email', width: 230 },

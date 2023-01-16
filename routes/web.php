@@ -153,7 +153,7 @@ Route::post('adcom/calendar/edit',[\App\Http\Controllers\CalendarController::cla
 Route::post('adcom/calendar',[\App\Http\Controllers\CalendarController::class, 'searchContacts']);
 Route::delete('adcom/calendar/{id}',[\App\Http\Controllers\CalendarController::class, 'delete']);
 //Front Office Routes
-Route::get('homeOffice/',[\App\Http\Controllers\homeOfficeController::class, 'index']);
+Route::get('homeOffice/',[\App\Http\Controllers\homeOfficeController::class, 'index'])->name('home.contact');
 Route::get('Products/',[\App\Http\Controllers\homeOfficeController::class, 'index1']);
 Route::get('PrivacyPolicy/',[\App\Http\Controllers\homeOfficeController::class, 'index2']);
 Route::get('ContactUs/',[\App\Http\Controllers\homeOfficeController::class, 'index3']);

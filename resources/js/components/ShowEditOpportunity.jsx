@@ -126,7 +126,7 @@ const addProduct = async() =>{
     },{
       preserveState:false
     })
-    console.log("<<<<<<<<<<<<<< damn >>>>>>>>>>>>>>>>>>>")
+   
   }
 }
 const  createData = (id, nom, description, prix, quantité, photo) => {

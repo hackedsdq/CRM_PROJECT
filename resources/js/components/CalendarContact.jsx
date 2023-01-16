@@ -13,6 +13,7 @@ import listPlugin from '@fullcalendar/list'
 import { Autocomplete, TextField } from '@mui/material'
 import SideBar from './static_components/SideBar';
 import HeaderContact from './static_components/HeaderContact';
+import FooterFrontoffice from './static_components/FooterFrontoffice';
 //import { INITIAL_EVENTS, createEventId } from './event-utils'
 
 export default function CalendarContact({Events,contacts})  {
@@ -333,6 +334,7 @@ const handleDelete = () =>{
           </div>
          
 </form>
+<FooterFrontoffice/>
     </div>
   );
 }

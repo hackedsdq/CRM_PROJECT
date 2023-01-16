@@ -214,10 +214,10 @@ export default function AddModalProduits(props) {
                                 className="btn btn-secondary"
                                 data-bs-dismiss="modal"
                             >
-                                Close
+                                Fermer
                             </button>
                           <button type="submit" className="btn btn-primary">
-                                Save changes
+                          Ajouter un produit
                             </button>
                          
                         </div>

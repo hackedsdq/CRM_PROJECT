@@ -108,7 +108,10 @@ const MasterDetailClientContacts = ({rows}) => {
       name: "prenom"
     },
     {
-      name: "fonction"
+      name: "fonction",
+      options: {
+        display: false,
+      }
     },
     {
       name: "email",
@@ -153,13 +156,10 @@ const MasterDetailClientContacts = ({rows}) => {
         <React.Fragment>
           <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={4}>
-            <div>{rowData[0]}
-            {rowData[1]}
-            {rowData[2]}
-            {rowData[3]}
- <section className="vh-100" style={{}}>
-  <div className="container py-5 h-100">
-    <div className="row d-flex justify-content-center align-items-center h-100">
+            <div>
+ <section >
+  <div className="container">
+    <div className="row d-flex justify-content-center align-items-center ">
       <div className="col col-lg-12 mb-4 mb-lg-0">
         <div className="card mb-3" style={{borderRadius: '.5rem'}}>
           <div className="row g-0">
@@ -168,7 +168,7 @@ const MasterDetailClientContacts = ({rows}) => {
             </div>
             <div className="col-md-8">
               <div className="card-body p-4">
-                <h6>Information</h6>
+                <h6>Informations</h6>
                 <hr className="mt-0 mb-4" />
                 <div className="row pt-1">
                 <div className="col-6 mb-3">
@@ -188,7 +188,7 @@ const MasterDetailClientContacts = ({rows}) => {
                     <p className="text-muted">{rowData[3]}</p>
                   </div>
                   <div className="col-6 mb-3">
-                    <h6>Phone</h6>
+                    <h6>Téléphone</h6>
                     <p className="text-muted">{rowData[5]}</p>
                   </div>
                 </div>

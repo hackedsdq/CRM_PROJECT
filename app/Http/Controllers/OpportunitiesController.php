@@ -195,14 +195,20 @@ class OpportunitiesController extends Controller
      */
     public function update(Request $request)
     {
+        $opportunity = Opportunities::find($request->opportunity_id);
+
+        if(!isset($request->nom)){
+            $opportunity->étape = $request->étape;
+            $opportunity->save();
+            return redirect()->route('adcom.opportunities');
+        }
+
         $request->validate([
             'nom'=> ['required','regex:/^[a-zA-Z]+$/'],
            'montant'=> 'required|integer',
            'étape'=> 'required'
-           
         ]
         );
-        $opportunity = Opportunities::find($request->opportunity_id);
         $opportunity->nom = $request->nom;
         //$opportunity->montant = $request->montant ;
         $opportunity->étape = $request->étape;

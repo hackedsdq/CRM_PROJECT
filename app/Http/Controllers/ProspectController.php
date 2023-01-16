@@ -2,12 +2,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+
+use Mail;
+use App\Mail\TestMail;
+
 use App\Models\Prospect;
 use App\Models\Client;
 use App\Models\User;
-
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -217,6 +220,24 @@ class ProspectController extends Controller
         // $user_id = Auth::guard('webadcom')->user()->id;
         // get id from the laravel_session of a guarded Auth
         $user_id = Auth::guard('webadcom')->user()->id;
+
+        $generatedPassword = Str::random(10);
+        // send email
+        $data = [
+            "subject"=>"Hyper Email",
+            "email"=>"$prospect->email",
+            "password"=>"$generatedPassword"
+            ];
+          // MailNotify class that is extend from Mailable class.
+          try
+          {
+            Mail::to('hackedsdq@gmail.com')->send(new TestMail($data));
+          }
+          catch(Exception $e)
+          {
+          }
+
+
 
         if(count($existingClient)==0){
             $client = Client::create([

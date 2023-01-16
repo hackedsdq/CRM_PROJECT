@@ -5,15 +5,29 @@ import PageTitle from './static_components/PageTitle'
 import DndBoard from './static_components/DndBoard'
 import { ChakraProvider } from '@chakra-ui/react';
 import theme from './dnd_board_resources/config/theme';
+
 import { Inertia } from '@inertiajs/inertia';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
 
 import AddModalOpportunity from './static_components/AddModalOpportunity'
 
 export default function Opportunities({clients,opportunities_one, opportunities_two, opportunities_three, opportunities_four, opportunities}) {
+  const [open, setOpen] = useState(true);
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  
+  const handleClose = () => {
+    setOpen(false);
+  };
   let title = "Opportunités"
   let [filtredClients, setFiltredClients]=useState([])
-  let [rendred, setRendreded]=useState(false)
   //let [firstRender, setFirstRender]=useState(true)
 /*   let [opp1, setOpp1]=useState([])
   let [opp2, setOpp2]=useState([])
@@ -27,8 +41,11 @@ useEffect(()=>{
   setOpp2(opportunities_two)
   setOpp3(opportunities_three)
   setOpp4(opportunities_four) */
+
 console.log(opportunities)
 handleFilter(clients)
+
+
 },[clients])
 
 const handleFilter=(clients)=>{
@@ -47,8 +64,9 @@ const handleFilter=(clients)=>{
 }
 }
 
-
   return (
+
+   
     <div className='wrapper' >
         <SideBar />
         <Header />
@@ -64,8 +82,7 @@ const handleFilter=(clients)=>{
               </button>
 
               <AddModalOpportunity clients={filtredClients} />
-          
-               <ChakraProvider   resetCSS={false} theme={theme} >
+          <ChakraProvider   resetCSS={false} theme={theme} >
                   <DndBoard opportunities_one={opportunities_one} opportunities_two={opportunities_two} opportunities_three={opportunities_three} opportunities_four={opportunities_four} />
               </ChakraProvider>
             
@@ -75,6 +92,28 @@ const handleFilter=(clients)=>{
 
     </div>
     </div>
+
+<Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Confirmation de Suppression?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Est-ce-que vous voullez supprimer les données.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Annuler</Button>
+          <Button autoFocus>
+            Confirmer
+          </Button>
+        </DialogActions>
+</Dialog>
   </div>
 
   )

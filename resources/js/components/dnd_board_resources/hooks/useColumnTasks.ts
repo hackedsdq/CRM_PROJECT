@@ -1,3 +1,4 @@
+import { Inertia } from '@inertiajs/inertia';
 import { useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { ColumnType } from '../utils/enums';
@@ -67,18 +68,37 @@ function useColumnTasks(column: ColumnType) {
     [column, setTasks],
   );
 
+  const  handleSubmit = (id, from, column) => {
+    if(from === column)
+    return 0;
+
+    let étape;  
+    if(column === "Proposition/Devis")
+    étape = "one"
+    else if(column === "Négociation")
+    étape = "two"
+    else if(column === "Perdue")
+    étape = "three"
+    else if(column === "Gagnée")
+    étape = "four"
+
+    Inertia.post(`/adcom/opportunity/edit`,{
+     opportunity_id: id,
+     étape : étape
+    },{
+      preserveState:false,
+      onSuccess: page =>{
+        Inertia.reload({only:['opportunities_one']})
+    }}) 
+    }
+
+  
   const dropTaskFrom = useCallback(
     (from: ColumnType, id: TaskModel['id']) => {
       setTasks((allTasks) => {
-        const fromColumnTasks = allTasks[from];
-        const toColumnTasks = allTasks[column];
-        const movingTask = fromColumnTasks.find((task) => task.id === id);
         
-        console.log(`Moving task ${movingTask?.id} from ${from} to ${column}`);
-
-        if (!movingTask) {
-          return allTasks;
-        }
+        console.log(`Moving task ${id} from ${from} to ${column}`);
+        handleSubmit(id, from, column)
 
         // if the task from TO_DO don't dragit . @hackedsdq
         /*
@@ -90,8 +110,6 @@ function useColumnTasks(column: ColumnType) {
         // remove the task from the original column and copy it within the destination column
         return {
           ...allTasks,
-          [from]: fromColumnTasks.filter((task) => task.id !== id),
-          [column]: [{ ...movingTask, column }, ...toColumnTasks],
         };
       });
     },

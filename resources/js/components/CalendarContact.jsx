@@ -239,7 +239,6 @@ const handleDelete = () =>{
           <div class="modal" id="myModal2">
             <div class="modal-dialog">
               <div class="modal-content">
-            
                 <div class="modal-header">
                   <h4 class="modal-title align-center">infos d'évenement</h4>
                   <button

@@ -106,8 +106,21 @@ const MasterDetailClientOpportunities = ({rows}) => {
       name: "nom"
     },
     {
-      name: "montant"
+      name: "montant",
+      options: {
+        display: false,
+      }
     },
+    {
+      name: "étape"
+    },
+    {
+      name: "date_de_clôture",
+      options: {
+        display: false,
+      }
+    },
+    
     {
       name: "id",
       label: "show",
@@ -138,8 +151,46 @@ const MasterDetailClientOpportunities = ({rows}) => {
       return (
         <React.Fragment>
           <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={3}>
-            <div>{rowData[0]}</div>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+        <section >
+  <div className="container">
+    <div className="row d-flex justify-content-center align-items-center ">
+      <div className="col col-lg-12 mb-4 mb-lg-0">
+        <div className="card mb-3" style={{borderRadius: '.5rem'}}>
+          <div className="row g-0">
+            <div className="col-md-4 gradient-custom text-center text-white" style={{borderTopLeftRadius: '.5rem', borderBottomLeftRadius: '.5rem', alignItems:"center"}}>
+{/*               <img src={rowData[6]} alt="Avatar" className="me-3 rounded-circle "  width={80} height={80} style={{objectFit:'contain', margin:'160px auto',  }} />
+ */}            </div>
+            <div className="col-md-8">
+              <div className="card-body p-4">
+                <h6>Informations</h6>
+                <hr className="mt-0 mb-4" />
+                <div className="row pt-1">
+                <div className="col-6 mb-3">
+                    <h6>Nom</h6>
+                    <p className="text-muted">{rowData[0]}</p>
+                  </div>
+                  <div className="col-6 mb-3">
+                    <h6>Montant</h6>
+                    <p className="text-muted">{rowData[1]}</p>
+                  </div>
+                  <div className="col-6 mb-3">
+                    <h6>étape</h6>
+                    <p className="text-muted">{rowData[2]}</p>
+                  </div>
+                  <div className="col-6 mb-3">
+                    <h6>Date_de_clôture</h6>
+                    <p className="text-muted">{rowData[3]}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
         </TableCell>
       </TableRow>        
         </React.Fragment>

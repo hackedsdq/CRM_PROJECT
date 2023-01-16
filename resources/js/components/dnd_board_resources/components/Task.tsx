@@ -1,13 +1,16 @@
 import {  MdEditNote as EditIcon } from 'react-icons/md';
+import {  MdDelete as DeleteIcon } from 'react-icons/md';
+
 //import EditModal from '../../static_components/EditModal';
 import { Box, IconButton, ScaleFade } from '@chakra-ui/react';
 import _ from 'lodash';
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import { useTaskDragAndDrop } from '../hooks/useTaskDragAndDrop';
 import { TaskModel } from '../utils/models';
 import { AutoResizeTextarea } from './AutoResizeTextArea';
 import React from 'react';
 import { Inertia } from '@inertiajs/inertia';
+
 
 type TaskProps = {
   index: number;
@@ -35,9 +38,6 @@ function Task({
     console.log("clicked")
   };
 
-  const handleOpenModal = () => {
-  };
-
 
   const handleEditOpportunity = () => {
     //handleDelete(task.id);
@@ -53,7 +53,7 @@ function Task({
         role="group"
         position="relative"
         rounded="lg"
-        w={100}
+        w={200}
         pl={3}
         pr={7}
         pt={3}
@@ -67,26 +67,46 @@ function Task({
       >
         <IconButton
           position="absolute"
-          top={0}
-          right={0}
+          backgroundColor='transparent'
+          border="none"
+          top={1}
+          right={1}
           zIndex={100}
           aria-label="delete-task"
-          size="md"
           colorScheme="solid"
-          color={'gray.700'}
+          color={'blue.700'}
           icon={<EditIcon />}
           opacity={0}
+        
           _groupHover={{
             opacity: 1,
           }}
           onClick={handleEditOpportunity}
         />
     
-        <div  data-bs-toggle="modal" data-bs-target="#scrollable-modal">
+    <IconButton
+          position="absolute"
+          backgroundColor='transparent'
+          border="none"
+          top={8}
+          right={1}
+          zIndex={100}
+          aria-label="delete-task"
+          colorScheme="solid"
+          color={'blue.700'}
+          icon={<DeleteIcon />}
+          opacity={0}
+          _groupHover={{
+            opacity: 1,
+          }}
+          
+        />
           <AutoResizeTextarea
+            
             value={task.title}
             fontWeight="semibold"
             cursor="inherit"
+            textAlign="center"
             border="none"
             p={0}
             resize="none"
@@ -94,12 +114,11 @@ function Task({
             maxH={200}
             focusBorderColor="none"
             color="gray.700"
-            onChange={handleTitleChange}
-            onClick={handleOpenModal}
           />
           {/* ------------------------ edit modal ------------------ 
           <EditModal />*/}
-        </div>
+        
+
       </Box>
     </ScaleFade>
   );

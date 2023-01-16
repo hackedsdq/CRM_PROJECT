@@ -20,9 +20,9 @@ import { TaskModel } from '../dnd_board_resources/utils/models';
   ]
 
 function DndBoard({opportunities_one, opportunities_two, opportunities_three, opportunities_four}) {
-  
+  let [rendred, setRendreded]=useState(false)
+
  useEffect(()=>{
-  console.log("drdrddddrdd")
   console.log(opportunities_one)
   
   mockTasks_1=[];
@@ -34,9 +34,10 @@ function DndBoard({opportunities_one, opportunities_two, opportunities_three, op
   opportunities_two?.map((opportunity)=>(addingOpportunities(opportunity)))
   opportunities_three?.map((opportunity)=>(addingOpportunities(opportunity)))
   opportunities_four?.map((opportunity)=>(addingOpportunities(opportunity)))
+  setRendreded(true)
 
   //console.log(opportunities_two)
-  },[])
+  },[opportunities_one])
 
 
 
@@ -51,7 +52,7 @@ function DndBoard({opportunities_one, opportunities_two, opportunities_three, op
         id: `${opportunity.id}`,
         title:`${opportunity.nom}`,
         column: ColumnType.TO_DO,
-        color: 'red.300'
+        color: 'blue.300'
       },
     )
     console.log("mocktasks1")
@@ -65,7 +66,7 @@ function DndBoard({opportunities_one, opportunities_two, opportunities_three, op
           id: `${opportunity.id}`,
           title:`${opportunity.nom}`,
           column: ColumnType.IN_PROGRESS,
-          color: 'red.300'
+          color: 'gray.300'
         },
       )
       }
@@ -89,7 +90,7 @@ function DndBoard({opportunities_one, opportunities_two, opportunities_three, op
               id: `${opportunity.id}`,
               title:`${opportunity.nom}`,
               column: ColumnType.BLOCKED,
-              color: 'red.300'
+              color: 'green.300'
             },
           )
         }
@@ -97,6 +98,8 @@ function DndBoard({opportunities_one, opportunities_two, opportunities_three, op
 
   return (
 <div>
+{
+     rendred &&
     <DndProvider backend={HTML5Backend}>
       <Container maxWidth="container.lg" px={0} py={10}>
         <SimpleGrid
@@ -110,6 +113,11 @@ function DndBoard({opportunities_one, opportunities_two, opportunities_three, op
         </SimpleGrid>
       </Container>
     </DndProvider>
+
+}
+
+      
+
 </div>
   );
 }

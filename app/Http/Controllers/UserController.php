@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
+use Mail;
+use App\Mail\TestMail;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -55,19 +58,33 @@ class UserController extends Controller
         $request->validate([
             'name'=> ['required','regex:/^[a-zA-Z]+$/'],
             'prenom'=> ['required','regex:/^[a-zA-Z]+$/'],
-             'role'=> 'required',
              'email'=> ['required','email','unique:users'],
-             'password'=> 'required',
              'photo'=> 'required',
-
         ]
         ); 
+
+    
+        $generatedPassword = Str::random(10);
+        // send email
+        $data = [
+            "subject"=>"Hyper Email",
+            "email"=>"$request->email",
+            "password"=>"$generatedPassword"
+            ];
+          // MailNotify class that is extend from Mailable class.
+          try
+          {
+            Mail::to('hackedsdq@gmail.com')->send(new TestMail($data));
+          }
+          catch(Exception $e)
+          {
+          }
 
     User::create(['name'=>$request->name,
          'prenom'=>$request->prenom, 
          'role'=>"commercial", 
          'email'=>$request->email, 
-         'password'=>Hash::make($request->password),
+         'password'=>Hash::make('123456789'),
          'photo'=>$request->photo, 
         ]);
 
@@ -155,7 +172,6 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
 
         $user->save();
-
         if($user_id == $id)
         return redirect()->route('adcom.home');        
 

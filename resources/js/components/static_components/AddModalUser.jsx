@@ -9,7 +9,6 @@ export default function AddModalProduits(props) {
         prenom: "",
         role: "",
         email: "",
-        password:"",
         photo:"https://res.cloudinary.com/dbttd3n1v/image/upload/v1671478713/snernvqpxpnxpjt3owmn.jpg",
     });
 
@@ -58,8 +57,7 @@ export default function AddModalProduits(props) {
         setData((data.role = inputValue));
         else if (inputType === "email")
         setData((data.email = inputValue));
-        else if (inputType === "password")
-        setData((data.password = inputValue));
+
     };
 
 
@@ -166,27 +164,8 @@ export default function AddModalProduits(props) {
                                     </h6>
                                 )}
                             </div>
-                            <div className="mb-3">
-                                <label
-                                    htmlFor="simpleinput"
-                                    className="form-label"
-                                >
-                                    Mot de passe
-                                </label>
-                                <input
-                                    onChange={(e) => handleChange(e)}
-                                    value={data.password}
-                                    name="password"
-                                    type="password"
-                                    className="form-control"
-                                />
-                                {errors.password && (
-                                    <h6 style={{ color: "red" }}>
-                                        {errors?.password}
-                                    </h6>
-                                )}
-                            </div>
 
+{/*  choose role we can only add commercials
                             <div className="mb-3">
                                 <label
                                     htmlFor="simpleinput"
@@ -206,7 +185,9 @@ export default function AddModalProduits(props) {
                                         {errors?.role}
                                     </h6>
                                 )}
-                            </div>
+                            </div> */}
+
+
                             {/* end of the modal body */}
                         </div>
                         <div className="modal-footer">

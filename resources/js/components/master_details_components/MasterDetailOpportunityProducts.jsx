@@ -40,7 +40,7 @@ function Row(props) {
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
-            <article class="card card-product-list">
+{/*             <article class="card card-product-list">
             <div class="row no-gutters">
                 <aside class="col-md-3">
                     <a href="#" className="img-wrap">
@@ -60,7 +60,45 @@ function Row(props) {
                     </div>
                 </div> 
             </div> 
-          </article> 
+          </article>  */}
+
+          <section >
+  <div className="container">
+    <div className="row d-flex justify-content-center align-items-center ">
+      <div className="col col-lg-12 mb-4 mb-lg-0">
+        <div className="card mb-3" style={{borderRadius: '.5rem'}}>
+          <div className="row g-0">
+            <div className="col-md-4 gradient-custom text-center text-white" style={{borderTopLeftRadius: '.5rem', borderBottomLeftRadius: '.5rem', alignItems:"center"}}>
+              <img src={row.photo} alt="Avatar" className="me-3 rounded-circle "  width={80} height={80} style={{objectFit:'contain', margin:'160px auto',  }} />
+            </div>
+            <div className="col-md-8">
+              <div className="card-body p-4">
+                <h6>Informations</h6>
+                <hr className="mt-0 mb-4" />
+                <div className="row pt-1">
+                <div className="col-6 mb-3">
+                    <h6>Nom</h6>
+                    <p className="text-muted">{row.nom}</p>
+                  </div>
+                  <div className="col-6 mb-3">
+                    <h6>Description</h6>
+                    <p className="text-muted">{row.description}</p>
+                  </div>
+                  <div className="col-6 mb-3">
+                    <h6>Prix</h6>
+                    <p className="text-muted">{row.prix} Dn</p>
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
             </Box>
           </Collapse>
         </TableCell>

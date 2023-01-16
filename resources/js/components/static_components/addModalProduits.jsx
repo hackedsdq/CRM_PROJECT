@@ -5,6 +5,7 @@ import { Inertia } from '@inertiajs/inertia'
 
 
 export default function EditModalProduits(props) {
+  let rendred;
   const { data, setData, post, processing, errors } = useForm({
     nom: "",
     description :"", 

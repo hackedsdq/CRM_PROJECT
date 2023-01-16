@@ -9,9 +9,8 @@ export default function EditModalProduits(props) {
     nom: "",
     description :"", 
     prix: "",
-    quantité:""
-   
-   
+    quantité:"",
+   photo :""
 })
 
 const  handleSubmit = (e) => {

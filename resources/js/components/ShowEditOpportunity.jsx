@@ -80,7 +80,7 @@ const handleSetOpportunity = ()=>{
   setData(data.client_id = opportunity?.client_id)
   setData(data.date_de_clôture = opportunity?.date_de_clôture)
   setData(data.étape = opportunity?.étape)
-  setData(data.opportunity_id = opportunity?.id.toString())
+  setData(data.opportunity_id = opp.toString())
 /*   setData(data.prix = "15")
   setData(data.quantité = "4") */
 }
@@ -129,22 +129,23 @@ const addProduct = async() =>{
    
   }
 }
-const  createData = (id, nom, description, prix, quantité, photo) => {
+const  createData = (id, nom, description, prix, quantité, photo, opportunity_id) => {
   return{
     id,
     nom,
     description,
     prix,
     quantité,
-    photo
+    photo,
   };
 }
 
 const handleSetProducts = () =>{
   console.log(opportunityProducts)
-  opportunityProducts?.map((data)=>rows.push(
+  opportunityProducts?.map((data)=> {rows.push(
     createData(data.id, data.nom, data.description, data.prix, data.quantité, data.photo)
-  ))
+  );
+})
 /*   createData('Frozen yoghurt', 159),
   createData('Ice cream sandwich', 237),
   createData('Eclair', 262),
@@ -242,7 +243,7 @@ return (
       {/*   bodyyyyy of the modal    */}
 
                   <div className="mb-3">
-                      <label htmlFor="simpleinput" className="form-label">Nom d'opportunité</label>
+                      <label htmlFor="simpleinput" className="form-label" >Nom d'opportunité</label>
                       <input disabled={type==="edit" ? false : true } onChange={(e)=>handleChange(e)} value={data?.nom} name="nom"  type="text" className="form-control" />
                       {errors.nom && <h6 style={{color:"red"}}>{errors.nom}</h6>}
                   </div>
@@ -292,7 +293,7 @@ return (
                   </div> 
                 }
 
-                  <MasterDetailOpportunityProducts rows={rows}/>
+                  <MasterDetailOpportunityProducts opportunity_id='{opp.toString()}'  rows={rows}/>
       {/*   end  of the modal  body    */}
 
             </div>

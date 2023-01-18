@@ -156,9 +156,9 @@ class OpportunitiesController extends Controller
         
         $opportunity = Opportunities::find($opport);
         $product = Produit::find($request->product_id);
-       // return $product->opportunities;
-        $product->opportunities()->detach();
-        
+        //$product->opportunities()->detach();
+        $product->opportunities()->wherePivot('id', $id)->detach();
+
         return redirect()->back();
         //$product->user()->newPivotStatementForId($contact->user->find(1)->pivot->user_id)->where("id",$request->id)->update(["Date"=>$request->Date,"compte_rendu"=>$request->compte_rendu,"heure"=>$request->heure]);
         

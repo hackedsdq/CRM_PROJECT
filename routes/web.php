@@ -142,6 +142,7 @@ Route::post('/adcom/opportunities/edit/{opp}',[\App\Http\Controllers\Opportuniti
 
 // assign product to an opportunity
 Route::post('/adcom/opprtunities/edit/{opp}',[\App\Http\Controllers\OpportunitiesController::class, 'addProduit']);
+Route::delete('/adcom/oportunities/edit/{opp}',[\App\Http\Controllers\OpportunitiesController::class, 'deleteProduit']);
 
 // edit an opportunity infos 
 Route::post('/adcom/opportunity/edit',[\App\Http\Controllers\OpportunitiesController::class, 'update']);

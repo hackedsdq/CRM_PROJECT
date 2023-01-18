@@ -26,7 +26,7 @@ import { useState } from 'react';
 
 
 function Row(props) {
-  const { row } = props;
+  const { row , opportunity_id } = props;
   const [open, setOpen] = useState(false);
 
   const [opendel, setOpenDel] = useState(false);
@@ -38,13 +38,16 @@ function Row(props) {
   const handleClose = () => {
     setOpenDel(false);
   };
-const handleDeleteProduct = () => {
-  Inertia.post('/adcom/oportunities/edit/{opp}',{},{
+const handleDeleteProduct = (opp) => {
+  console.log(props)
+  /* Inertia.post(`/adcom/oportunities/edit/${opp}`,{
+    opportunityId : 
+  },{
     preserveState:true,
           onSuccess:page=>{
               Inertia.reload({only:['opportunityProducts']})
           }
-  })
+  }) */
 }
 
   return (
@@ -63,7 +66,7 @@ const handleDeleteProduct = () => {
           {row.nom}
         </TableCell>
         <TableCell >{row.quantité}</TableCell>
-        <TableCell ><InertiaLink><i onClick={handleClickOpen} className='mdi mdi-delete'></i></InertiaLink></TableCell>
+        <TableCell ><i onClick={()=>handleDeleteProduct(row.id)} className='mdi mdi-delete'></i></TableCell>
 
       </TableRow>
       <TableRow>
@@ -144,7 +147,8 @@ Row.propTypes = {
     nom: PropTypes.string.isRequired,
     prix: PropTypes.number.isRequired,
     quantité: PropTypes.number.isRequired,
-    photo : PropTypes.string.isRequired
+    photo : PropTypes.string.isRequired,
+    opportunity_id : PropTypes.string.isRequired
   }).isRequired,
 };
 

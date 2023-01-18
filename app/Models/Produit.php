@@ -23,6 +23,6 @@ class Produit extends Model
 
     public function opportunities()
     {
-        return $this->belongsToMany(Opportunities::class,'opportunities_produit');
+        return $this->belongsToMany(Opportunities::class,'opportunities_produit')->withPivot('opportunities_id');
     }
 }

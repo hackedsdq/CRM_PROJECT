@@ -7,13 +7,13 @@
 }
 .fc .fc-daygrid-day-events {
     margin-top: 1px;
-    color: black;
+    color: rgb(255, 255, 255);
 }
-.fc-event-time, .fc-event-title {
+.fc-list-event-time, .fc-list-event-title {
     color: black;
 }
 a.fc-event, a.fc-event::after{
-background-color: aqua;
+background-color:#afb5bb ;
 }
  a.fc-event:hover {
     text-decoration: none;
@@ -21,5 +21,6 @@ background-color: aqua;
     text-decoration-thickness: initial;
     text-decoration-style: initial;
     text-decoration-color: initial;
-    background-color: blue;
+    background-color:#6c757d;
 }
+

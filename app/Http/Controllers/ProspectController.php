@@ -121,7 +121,9 @@ class ProspectController extends Controller
 
         $newProspect->save();
 
-        return redirect()->back();
+        return redirect()->back()->with([
+            'message' => 'Prospect créer avec succées',
+        ]);
     }
 
     /**
@@ -275,7 +277,7 @@ class ProspectController extends Controller
         }
 
         $prospect->delete();
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Something went wrong!');
         //return $existingClient[0];
     }
 

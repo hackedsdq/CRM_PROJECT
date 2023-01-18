@@ -3,7 +3,6 @@ import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink, useForm } from "@inertiajs/inertia-react";
 import SideBar from './static_components/SideBar';
 import Header from './static_components/Header';
-import "../../css/app.css"
 
 
 function ShowEditUser({type,user}) {

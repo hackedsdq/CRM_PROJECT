@@ -24,7 +24,10 @@ export default function Calendar({Events,contacts})  {
     compte_rendu:"",
     contact_id:"",
     id:"",
-    client_id:""
+    client_logo:"",
+    client_name : "",
+    client_id:"",
+    client_téléphone:""
 })
 
 
@@ -33,9 +36,14 @@ let [events, setEvents]=useState([]);
 let [filtredcontacts, setFiltredcontacts]=useState([])
 
 
+
 useEffect(()=>{
 console.log(Events)
 //handleSetEvent()
+$(document).on('hide.bs.modal', '#myModal2', function () {
+  handleInitData()
+});
+
 }, [Events])
 
 useEffect(()=>{
@@ -90,6 +98,10 @@ setData(data.compte_rendu="")
 setData(data.heure="")
 setData(data.id="")
 setData(data.contact_id="")
+setData(data.client_id="")
+setData(data.client_logo="")
+setData(data.client_name="")
+setData(data.client_téléphone="")
 }
 
 
@@ -172,30 +184,33 @@ const handleDelete = () =>{
         <SideBar />
         <Header />
         
-        <div  className="container-login100">
+        <div className="container-login100">
       <div className="wrap-login100">
       <div className="modal-content">
-         <div onClick={()=>{
-          if(!$('#myModal2').is(':visible')){
-            handleInitData()
-            }
-          }} 
+         <div 
           className="modal-body">
 
           <FullCalendar
             plugins={[ dayGridPlugin, interactionPlugin ,listPlugin, ]}
             editable={true}
             eventClick={(clickInfo) => {
+              
               const date= new Date(clickInfo.event.start)
               const jour = ("0"+date.getDate()).slice(-2)
               const mois = ("0"+date.getMonth() + 1).slice(-2)
               const annee = (date.getFullYear())
               const heure= ("0"+date.getHours()).slice(-2)
               const minute= ("0"+date.getMinutes()).slice(-2)
-
+              const client = clickInfo.event.extendedProps.client
+              console.log(client)
              $('#myModal2').modal('toggle');
             //alert('hacked')
-            
+              setData(data.client_logo = clickInfo.event.extendedProps.client[0].logo)
+              setData(data.client_id = clickInfo.event.extendedProps.client[0].id)
+              setData(data.client_name = clickInfo.event.extendedProps.client[0].société)
+              setData(data.client_téléphone = clickInfo.event.extendedProps.client[0].téléphone)
+
+              
               setData(data.Date=[annee, mois, jour].join("-"))
               setData(data.compte_rendu=clickInfo.event.title)
            
@@ -219,9 +234,9 @@ const handleDelete = () =>{
             }}
             initialView="dayGridMonth"
             events={Events}
-            eventColor= '#378006'
-            eventTextColor='blue'
-      
+            eventColor= 'purple'
+            eventTextColor='purple'
+            eventBackgroundColor='rgb(255,0,0)'
             
             
           //  eventBackgroundColor="#ff0000"
@@ -252,7 +267,7 @@ const handleDelete = () =>{
     </div>
 {/* modal ajouter l'evenement */}
 <form onSubmit={handleSubmit}>
-          <div class="modal" id="myModal">
+          <div  className="modal fade" id="myModal">
             <div class="modal-dialog">
               <div class="modal-content">
             
@@ -345,7 +360,7 @@ const handleDelete = () =>{
 
 {/* modal modifier l'evenement */}
 <form onSubmit={handleSubmit2}>
-          <div class="modal" id="myModal2">
+          <div className="modal fade" id="myModal2">
             <div class="modal-dialog">
               <div class="modal-content">
             
@@ -407,12 +422,25 @@ const handleDelete = () =>{
                                 {errors.Date && <h6 style={{color:"red"}}>{errors.Date}</h6>}  
                               </div>
                               
-                              <div class="form-group mb-3">
-                              <label form="">
-                                   Contact
-                                </label>
-                              <input class="form-control" name="contact" ></input>
-                              </div> 
+
+            <div  className="card p-3 ">
+  <div className="d-flex align-items-center">
+    <div className="image">
+      <img src={data.client_logo} className="rounded" width={155} />
+    </div>
+    <div style={{marginLeft:12}} className="ml-5 w-100">
+      <h4 className="mb-0 mt-0">{data.client_name}</h4>
+      <span>{data.client_téléphone}</span>
+
+      <div className="button mt-1 d-flex flex-row align-items-right">
+        <InertiaLink className="btn btn-sm btn-outline-primary w-50" href={`adcom/clients/show/${data.client_id}`}>Voir</InertiaLink>
+        <InertiaLink  className="btn btn-sm btn-primary w-50 ml-2" href={`adcom/clients/edit/${data.client_id}`}>Modifier</InertiaLink>
+      </div>
+    </div>
+  </div>
+            </div>
+
+            
                              
                   </div>
                 <div class="modal-body text-center">
@@ -443,6 +471,6 @@ const handleDelete = () =>{
           </div>
          
 </form>
-    </div>
+</div>
   );
 }

@@ -13,11 +13,10 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
-
 import AddModalOpportunity from './static_components/AddModalOpportunity'
 
 export default function Opportunities({clients,opportunities_one, opportunities_two, opportunities_three, opportunities_four, opportunities}) {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -75,7 +74,6 @@ const handleFilter=(clients)=>{
     <div className="wrap-login100">
         <div className="modal-content">
           <div className="modal-body">
-            <div className="container-fluid">
 {/*               <PageTitle title={title} />*/}  
             <button  className="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#scrollable-modal">
                   <i className="mdi mdi-plus-circle me-2" />Ajouter opportunités
@@ -87,7 +85,6 @@ const handleFilter=(clients)=>{
               </ChakraProvider>
             
             </div> 
-          </div>
         </div>
 
     </div>

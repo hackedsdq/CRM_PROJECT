@@ -9,8 +9,7 @@ import { usePage } from '@inertiajs/inertia-react'
 import "../../public/assets/css/icons.min.css"
 import "../../public/assets/css/app-dark.min.css"
 
-import '../css/app.css'
-
+import $ from "jquery"
 
 //import { InertiaProgress } from '@inertiajs/progress'
 
@@ -30,6 +29,7 @@ loadScript('./assets/js/ui/component.todo.js')
 loadScript('./assets/js/app.min.js')
 loadScript('./assets/js/vendor.min.js') */
 
+$('body').css('overflow-x', 'hidden');
 
 
 createInertiaApp({

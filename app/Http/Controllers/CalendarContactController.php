@@ -70,7 +70,7 @@ class CalendarContactController extends Controller
         $contact=Contact::find($request->contact_id);
         $contact->user()->attach($auth_id,["Date"=>$request->Date,"compte_rendu"=>$request->compte_rendu,"heure"=>$request->heure]);
        
-        return redirect()->route('adcom.calendar');
+        return redirect()->route('contacts.calendar');
 }
 
     /**
@@ -83,7 +83,7 @@ class CalendarContactController extends Controller
         $contact_name = $request->contact;
         $contacts = Contact::where('nom', 'like', $contact_name.'%')->get();
         //return $id=Auth::id();  
-        return Inertia::render('Calendar',[
+        return Inertia::render('CalendarContact',[
             'contacts'=>$contacts
         ]);
        
@@ -131,7 +131,7 @@ class CalendarContactController extends Controller
         "heure"=>$request->heure
         ]);
 
-        return redirect()->route('adcom.calendar');
+        return redirect()->route('contacts.calendar');
        //return Inertia::render('Calendar');
       //  $contact->user()->updateExistingPivot($request->user_id,["Date"=>$request->Date,"compte_rendu"=>$request->compte_rendu,"heure"=>$request->heure]);
     }
@@ -160,7 +160,7 @@ class CalendarContactController extends Controller
         $user=User::find($auth_id);
         $user->contacts()->wherePivot('id', $id)->detach();
 
-        return redirect()->route('adcom.calendar');
+        return redirect()->route('contacts.calendar');
         
        // $contact=Contact::find($request->contact_id);
        // $contact->user()->where($request->id)->wherePivot()->detach();

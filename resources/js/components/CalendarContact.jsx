@@ -174,11 +174,7 @@ const handleDelete = () =>{
         <HeaderContact />
     
         <div style={{padding:'50px'}}>
-         <div onClick={()=>{
-          if(!$('#myModal2').is(':visible')){
-            handleInitData()
-            }
-          }} 
+         <div  
           className="modal-body">
 
           <FullCalendar
@@ -237,7 +233,7 @@ const handleDelete = () =>{
 
 {/* modal modifier l'evenement */}
 <form>
-          <div class="modal" id="myModal2">
+          <div className="modal fade" id="myModal2">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">

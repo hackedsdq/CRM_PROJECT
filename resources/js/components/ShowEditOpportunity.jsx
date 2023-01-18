@@ -162,8 +162,6 @@ const handleSetProducts = () =>{
 }*/
 const handleSeoducts = () =>{
   console.log(client)
-  
-
 }
 const delay = (t) => new Promise((resolve)=> setTimeout(resolve, t));
 

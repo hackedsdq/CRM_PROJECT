@@ -77,7 +77,8 @@ return (
             <div className="modal-body">
                             {/* bodyyyyy of the modal */}
                 <div style={{textAlign:"center"}}>
-                { type==="edit" && <i onClick={()=> widgetRef.current.open()} style={{position:"relative", top:-10,right:10 }} className='mdi mdi-square-edit-outline'></i>}            <img className="me-3 rounded-circle" style={{objectFit:'contain'}} width={80} height={80} src={data.photo} alt='' />
+                { type==="edit" && <i onClick={()=> widgetRef.current.open()} style={{position:"relative", top:-10,right:10 }} className='mdi mdi-square-edit-outline'></i>}            
+                <img  className="me-3 rounded-circle" style={{objectFit:'contain'}} width={80} height={80} src={data.photo} alt='' />
                 </div>
 
                 <div className="mb-3">

@@ -152,6 +152,20 @@ class OpportunitiesController extends Controller
         ]); */
     }
 
+    public function deleteProduit(Request $request, $opport){
+        
+        $opportunity = Opportunities::find($opport);
+        $product = Produit::find($request->product_id);
+       // return $product->opportunities;
+        $product->opportunities()->detach();
+        
+        return redirect()->back();
+        //$product->user()->newPivotStatementForId($contact->user->find(1)->pivot->user_id)->where("id",$request->id)->update(["Date"=>$request->Date,"compte_rendu"=>$request->compte_rendu,"heure"=>$request->heure]);
+        
+        /*         return Inertia::render("ShowEditOpportunity",[
+            'opportunityProducts' => "41"
+        ]); */
+    }
     
     /**
      * Store a newly created resource in storage.

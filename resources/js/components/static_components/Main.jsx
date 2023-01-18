@@ -82,7 +82,6 @@ const handleBarChartData = () =>{
          <div className="modal-body">
 
     {/* Start Content*/}
-    <div className="container-fluid">
       {/* start page title */}
   
       {/* end page title */} 
@@ -295,7 +294,6 @@ const handleBarChartData = () =>{
         {/* end col */}  
       </div>
       {/* end row*/}
-    </div> {/* container */}
   </div> {/* content */}
   {/* Footer Start */}
   <footer className="footer">

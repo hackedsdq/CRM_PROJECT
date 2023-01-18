@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <link href="https://cdn.syncfusion.com/ej2/material.css" rel="stylesheet" type="text/css" />
     <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
-    <link href="C:\Users\user\Documents\CRM_PROJECT\resources\css\app.css" rel="stylesheet"/>
 
     <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 
@@ -26,16 +25,15 @@
 <!-- App favicon -->
 <link rel="shortcut icon" href="{{URL::asset('assets/images/favicon.ico')}}">
 
+<link href="{{URL::asset('assets/css/app.css')}}" rel="stylesheet" type="text/css">
 
 <!-- third party css -->
-<link href="{{URL::asset('assets/css/vendor/jquery-jvectormap-1.2.2.css')}}" rel="stylesheet" type="text/css">
 <!-- third party css end -->
 
 <!-- App css
-<link href="{{URL::asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css">
 <link href="{{URL::asset('assets/css/app.min.css')}}" rel="stylesheet" type="text/css" id="light-style">
-<link href="{{URL::asset('assets/css/app-dark.min.css')}}" rel="stylesheet" type="text/css" id="dark-style">
  -->
+
 @viteReactRefresh
     @vite(['resources/css/app.css', 'resources/js/app.jsx'])
     @inertiaHead

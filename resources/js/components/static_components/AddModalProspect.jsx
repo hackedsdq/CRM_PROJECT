@@ -69,7 +69,7 @@ console.log(data)
 post('/adcom/prospects',{
   preserveState:true,
             onSuccess:page=>{
-                Inertia.reload({only:['prospects']})
+                Inertia.reload({only:['prospects', 'message']})
                 $('#scrollable-modal').hide();
                 $('.modal-backdrop').remove(); 
                 document.body.style.overflow = 'scroll'

@@ -11,13 +11,18 @@ import AddModalProspect from './static_components/AddModalProspect'
 import $ from 'jquery'
 import {InertiaProgress} from '@inertiajs/progress'
 
-InertiaProgress.init()
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import { usePage } from '@inertiajs/inertia-react'
 
 export default function Prospects({prospects}) {
+  
+  const notify = () => toast("Wow so easy!");
+
+
   let title = "Prospects"
-  let[pageLoaded, setPageLoaded]=useState(false)
   let[allProspects, setProspects]=useState([]);
-  let[editedObject,setEditedObject]=useState(null);
 
   const columns = [
    
@@ -38,13 +43,8 @@ export default function Prospects({prospects}) {
   
 
 useEffect(()=>{
-  console.log(prospects)
-/*   // hide modal and the backdrop
-   $('#scrollable-modal').hide();
-  $('.modal-backdrop').remove(); 
-  //prospects.map((prc)=> allProspects.push(prc))
-  setPageLoaded(true) */
 },[])
+
 
 
 const getAllProspects = () =>{
@@ -54,6 +54,8 @@ const getAllProspects = () =>{
 
   return (
     <div className='wrapper' >
+
+      <ToastContainer />
         <SideBar />
         <Header />
         <div className="container-login100">

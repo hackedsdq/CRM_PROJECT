@@ -44,7 +44,6 @@ useEffect(()=>{
       <div className="modal-content">
          <div className="modal-body">
           {/* Start Content*/}
-          <div className="container-fluid">
             {/* start page title 
             <PageTitle title={title} />*/}
             {/* end page title */}
@@ -54,7 +53,6 @@ useEffect(()=>{
             {/* ------------------------ show datagrid table search ------------------ */}
             <DataGridTable title={title} columns={columns} rows={clients} />
             {/* end row */}
-          </div> {/* container */}
         </div> {/* content */}
       </div>
 

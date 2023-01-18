@@ -13,15 +13,43 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { InertiaLink } from '@inertiajs/inertia-react';
+import { Inertia } from '@inertiajs/inertia';
+
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
+import { useState } from 'react';
 
 
 function Row(props) {
   const { row } = props;
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+
+  const [opendel, setOpenDel] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpenDel(true);
+  };
+  
+  const handleClose = () => {
+    setOpenDel(false);
+  };
+const handleDeleteProduct = () => {
+  Inertia.post('/adcom/oportunities/edit/{opp}',{},{
+    preserveState:true,
+          onSuccess:page=>{
+              Inertia.reload({only:['opportunityProducts']})
+          }
+  })
+}
 
   return (
     <React.Fragment>
-      <TableRow sx={{ '& > *': { borderBottom: 'unset', } }}>
+      <TableRow sx={{ '& > *': { borderBottom: 'unset',  } }}>
         <TableCell style={{width:20}}>
           <IconButton
             aria-label="expand row"
@@ -35,6 +63,8 @@ function Row(props) {
           {row.nom}
         </TableCell>
         <TableCell >{row.quantité}</TableCell>
+        <TableCell ><InertiaLink><i onClick={handleClickOpen} className='mdi mdi-delete'></i></InertiaLink></TableCell>
+
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -129,6 +159,8 @@ export default function CollapsibleTable(props) {
             <TableCell></TableCell>
             <TableCell>Produit</TableCell>
             <TableCell>Quantité</TableCell>
+            <TableCell>Supprimer</TableCell>
+
           </TableRow>
         </TableHead>
         <TableBody>

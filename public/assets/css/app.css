@@ -1,3 +1,7 @@
+body{
+  overflow-x: hidden;
+}
+
 .container-login100 {
   position: fixed;
     background-image: url(./wave.png);
@@ -19,8 +23,6 @@
     align-items: center;
     padding-Top: 100px;
     align-self: center;
-    overflow-x: hidden;
-
 }
 
 

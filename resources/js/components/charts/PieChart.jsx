@@ -4,8 +4,8 @@ import ReactApexChart from "react-apexcharts";
 const PieChart = (props) => {
     let pieChartData = props.pieChartData ;
     const pieChartOptions = {
-        labels: ["Devis/Proposition", "Négociation", "Gagnée", "Perdue"],
-        colors: ["#FBC42D", "#6AD2FF",  "#09A837", "#D9534F"],
+        labels: ["Devis/Proposition", "Négociation", "Perdue", "Gagnée"],
+        colors: ["#FBC42D", "#6AD2FF", "#D9534F",  "#09A837"],
         chart: {
           width: "50px"
         },
@@ -20,7 +20,8 @@ const PieChart = (props) => {
           show: false
         },
         dataLabels: {
-          enabled: false
+          enabled: true,
+
         },
         hover: { mode: null },
         plotOptions: {
@@ -34,7 +35,7 @@ const PieChart = (props) => {
           }
         },
         fill: {
-          colors: ["#FBC42D", "#6AD2FF",  "#09A837", "#D9534F",]
+          colors: ["#FBC42D", "#6AD2FF",  "#D9534F", "#09A837",]
         },
         tooltip: {
           enabled: true,

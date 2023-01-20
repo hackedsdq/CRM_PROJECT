@@ -3,7 +3,15 @@ import {useForm}  from "@inertiajs/inertia-react"
 import SideBar from './static_components/SideBar'
 import Header from './static_components/Header'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import { usePage } from '@inertiajs/inertia-react'
+
+
 export default function ShowEditProspect({prospect,type})  {
+  let {flash} = usePage().props;
+  const notify = (message) => toast(message);
 
   const { data, setData, post, processing, errors } = useForm({
     nom: "",
@@ -46,9 +54,12 @@ post(`/adcom/prospects/update/${prospect.id}`,{
 }
 
 useEffect(()=>{
-  console.log(prospect)
+
+  if(flash.message === null)
   handleGetProspect()
-},[])
+  else
+  notify(flash.message);
+},[flash])
 
 
 const handleGetProspect = ()=>{
@@ -116,6 +127,17 @@ return (
     <div className="modal-content">
       <div className="modal-body">
  
+      <div class="row">
+      <div class="col">
+        <nav aria-label="breadcrumb" class="rounded-0 p-0 mb-0">
+          <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="/adcom">Home</a></li>
+            <li class="breadcrumb-item"><a href="/adcom/prospects">Prospects</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Prospect</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
  {/*   bodyyyyy of the modal    */}
             <div style={{textAlign:"center"}}>
             { type==="edit" && <i onClick={()=> widgetRef.current.open()} style={{position:"relative", top:-10,right:10 }} className='mdi mdi-square-edit-outline'></i>}            <img style={{backgroundColor:"black", borderRadius:40, width:80}} src={data.photo} alt='' />

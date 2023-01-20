@@ -122,7 +122,7 @@ class ProspectController extends Controller
         $newProspect->save();
 
         return redirect()->back()->with([
-            'message' => 'Prospect créer avec succées',
+            'message' => 'Prospect créer avec succées 👌',
         ]);
     }
 
@@ -173,7 +173,7 @@ class ProspectController extends Controller
             'prenom'=> ['required','regex:/^[a-zA-Z]+$/'],
             'société'=> ['required','regex:/^[a-zA-Z]+$/'],
              'fonction'=> ['required','regex:/^[a-zA-Z]/'],
-            'email'=> ['required','email',Rule::unique('users')->ignore($id)],
+            'email'=> ['required','email',Rule::unique('users')->ignore($id),'unique:prospects'],
             'téléphone'=> ['required','regex:/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/'],
             'adresse'=> 'required',
             'site_web'=> ['required','url'],
@@ -198,6 +198,7 @@ class ProspectController extends Controller
         $prospect->photo = $request->photo;
 
         $prospect->save();
+
         return redirect()->route('adcom.prospects');
 
     }
@@ -233,7 +234,7 @@ class ProspectController extends Controller
           // MailNotify class that is extend from Mailable class.
           try
           {
-            Mail::to('hackedsdq@gmail.com')->send(new TestMail($data));
+            Mail::to($prospect->email)->send(new TestMail($data));
           }
           catch(Exception $e)
           {
@@ -270,7 +271,7 @@ class ProspectController extends Controller
                 'email' => $prospect->email,
                 'photo'=>$prospect->photo,
                 'telephone'=>$prospect->téléphone, 
-                'password'=>Hash::make('123456789'), 
+                'password'=>Hash::make($generatedPassword), 
                 'client_id'=> $existingClient['0']->id,
             ]);
             $existingClient[0]->contact;

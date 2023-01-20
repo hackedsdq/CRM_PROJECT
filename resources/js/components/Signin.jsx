@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import { Inertia } from '@inertiajs/inertia';
-import {useForm}  from "@inertiajs/inertia-react"
+import {InertiaLink, useForm}  from "@inertiajs/inertia-react"
 
 function Signin() {
   const { data, setData, post, processing, errors } = useForm({
@@ -61,6 +61,10 @@ return (
                   <button className="btn btn-primary" type="submit"> Connexion </button>
                 </div>
               </form>
+              <br/>
+              <footer class="footer footer-alt">
+                  <p class="text-muted">s'authentifier en tant que <InertiaLink href="/login" class=""><b>client/utilisateur</b></InertiaLink></p>
+              </footer>
             </div> {/* end card-body */}
           </div>
           {/* end card */}

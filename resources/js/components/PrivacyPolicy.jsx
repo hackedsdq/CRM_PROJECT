@@ -13,7 +13,7 @@ export default function PrivacyPolicy({}){
     
     <header class="header_section">
       <div class="header_top">
-        <div class="container-fluid">
+        <div >
           <div class="top_nav_container">
             <div class="contact_nav">
               <a href="">
@@ -50,7 +50,6 @@ export default function PrivacyPolicy({}){
         </div>
       </div>
       <div class="header_bottom">
-        <div class="container-fluid">
           <nav class="navbar navbar-expand-lg custom_nav-container ">
             <a class="navbar-brand" href="index.html">
               <img src="../../../assets/images/logo.png" alt=""/>
@@ -87,7 +86,6 @@ export default function PrivacyPolicy({}){
               </ul>
             </div>
           </nav>
-        </div>
       </div>
     </header>
     <div>

@@ -105,8 +105,6 @@ export default function FooterFrontoffice(){
     <div class="container">
       <p>
         &copy; <span id="displayYear"></span> All Rights Reserved By
-        
-      
       </p>
     </div>
   </footer>

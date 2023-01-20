@@ -37,15 +37,15 @@ class CalendarController extends Controller
         $client = DB::table('contacts')
         ->Join('clients', 'clients.id', '=' , 'contacts.client_id')
         ->where('contacts.id', '=', $e->pivot->contact_id)
-        ->where('clients.deleted_at', '=', null)
-        ->select('clients.id', 'clients.société', 'clients.téléphone', 'clients.logo' )
+/*         ->where('clients.deleted_at', '=', null)
+ */        ->select('clients.id', 'clients.société', 'clients.téléphone', 'clients.logo' )
         ->get(); 
-
 
         $event = array(
             "start"=> date('Y-m-d H:i:s', strtotime($date.''.$heure )),
             "heure"=> $e->pivot->heure ,
-            "title" => $e->pivot->compte_rendu ,
+            "title" => $client[0]->société,
+            "compte_rendu" => $e->pivot->compte_rendu ,
             "contact_id" => $e->pivot->contact_id ,
             "client" => $client ,
             "id" => $e->pivot->id

@@ -88,6 +88,6 @@ class AdminCommercialAuthController extends Controller
         //return redirect()->route('adcom.login');
         Auth::guard('webadcom')->logout();
         //Auth::guard()->logout();
-        return redirect()->route('adcom.login');
+        return redirect()->route('home.contact');
     }
 }

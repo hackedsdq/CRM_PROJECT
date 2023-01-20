@@ -36,14 +36,7 @@ export default function ProductDetails({product}){
         <p>{product.description}</p>
     </div>
         <h3>{product.prix} Dn</h3>
-        <div class="ratings d-flex flex-row align-items-center">	<div class="d-flex flex-row">	<i class='bx bxs-star' ></i>
-        <i class='bx bxs-star' ></i>
-            <i class='bx bxs-star' ></i>
-            <i class='bx bxs-star' ></i>
-            <i class='bx bx-star' ></i>	
-            </div>
-                <span>441 reviews</span>
-                </div>	
+	
                 <div class="mt-5">
                         <span class="fw-bold">Colors</span>
                             <div class="colors">	

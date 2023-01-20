@@ -885,7 +885,7 @@ return (
           </div>
         </div>
       </div>
-      <div className="container-fluid">
+      <div >
         <div className="row">
           <div className="col-12">
             <div className="page-title-box">
@@ -1118,7 +1118,7 @@ return (
       </div> 
     </div>
     <footer className="footer">
-      <div className="container-fluid">
+      <div >
         <div className="row">
           <div className="col-md-6">
             © Hyper - Coderthemes.com

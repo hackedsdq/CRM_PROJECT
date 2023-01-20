@@ -1,6 +1,5 @@
 import React from 'react';
 import { InertiaLink } from '@inertiajs/inertia-react'
-import '../../css/style.css'
 
 
 
@@ -116,9 +115,8 @@ return(
 
 
   <section class="about_section">
-    <div class="container-fluid  ">
       <div class="row">
-        <div class="col-md-5 ml-auto">
+        <div class="col-md-5 offset-md-1 ml-auto">
           <div class="detail-box pr-md-3">
             <div class="heading_container">
               <h2>
@@ -137,7 +135,6 @@ return(
             <img src={banner1} alt=""/>
           </div>
         </div>
-      </div>
     </div>
   </section>
 
@@ -227,21 +224,22 @@ return(
                     <img src={bigmatic} alt=""/>
                     
                   </div>
+                  <br />
                   <div class="name">
                     <h5>
                       bigMatic collaboration
                     </h5>
-                   
                   </div>
                   <div class="img-box">
                     <img src={licb2} alt=""/>
                     
                   </div>
+                  <br />
+
                   <div class="name">
                     <h5>
                      LICB+ collaboration
                     </h5>
-                   
                   </div>
                 </div>
               

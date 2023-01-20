@@ -1,10 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
-body {
-  font-family: 'Poppins', sans-serif;
-  color: #0c0c0c;
-  background-color: #ffffff;
-  overflow-x: hidden;
-}
+
 
 .layout_padding {
   padding: 90px 0;

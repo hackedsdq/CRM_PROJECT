@@ -1,6 +1,5 @@
 import React from 'react';
 import { InertiaLink } from '@inertiajs/inertia-react'
-import '../../css/style.css'
 
 import HeaderContact from './static_components/HeaderContact';
 import FooterFrontoffice from './static_components/FooterFrontoffice';
@@ -15,7 +14,7 @@ export default function Products({products}){
     
       <section class="product_section layout_padding">
        <div class="container">
-          <div class="heading_container heading_center">
+          <div style={{textAlign:"center"}}>
             <h2>
               Nos Produits
             </h2>
@@ -59,24 +58,12 @@ export default function Products({products}){
 
 
           </div>
-          <div class="btn_box">
-            <a href="" class="view_more-link">
-              Voir plus
-            </a>
-          </div>
         </div>
       </section>
     
      
-     <FooterFrontoffice></FooterFrontoffice>
-      
-      <script src="js/jquery-3.4.1.min.js"></script>
-      
-      <script src="js/bootstrap.js"></script>
-     
-      <script src="js/custom.js"></script>
-    
-    
+     <FooterFrontoffice/>
+
     
     </div>
 

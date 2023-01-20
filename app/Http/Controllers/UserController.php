@@ -69,12 +69,12 @@ class UserController extends Controller
         $data = [
             "subject"=>"Hyper Email",
             "email"=>"$request->email",
-            "password"=>"$generatedPassword"
+            "password"=>$generatedPassword
             ];
           // MailNotify class that is extend from Mailable class.
           try
           {
-            Mail::to('hackedsdq@gmail.com')->send(new TestMail($data));
+            Mail::to($request->email)->send(new TestMail($data));
           }
           catch(Exception $e)
           {
@@ -84,7 +84,7 @@ class UserController extends Controller
          'prenom'=>$request->prenom, 
          'role'=>"commercial", 
          'email'=>$request->email, 
-         'password'=>Hash::make('123456789'),
+         'password'=>Hash::make($generatedPassword),
          'photo'=>$request->photo, 
         ]);
 

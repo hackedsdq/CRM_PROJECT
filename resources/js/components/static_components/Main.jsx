@@ -131,7 +131,7 @@ const handleBarChartData = () =>{
               <div className="row align-items-center">
                 <div className="col-12">
                   <h5 className="text-muted fw-normal mt-0 text-truncate" title="Booked Revenue">Les Revenues De ce Mois</h5>
-                  <h3 className="my-2 py-1 text-truncate">{opportunitiesMontant}</h3>
+                  <h3 className="my-2 py-1 text-truncate">{opportunitiesMontant} DZD</h3>
                   <p className="mb-0 text-muted">
                   </p>
                 </div>
@@ -296,22 +296,7 @@ const handleBarChartData = () =>{
       {/* end row*/}
   </div> {/* content */}
   {/* Footer Start */}
-  <footer className="footer">
-    <div className="container-fluid">
-      <div className="row">
-        <div className="col-md-6">
-          © Hyper - Coderthemes.com
-        </div>
-        <div className="col-md-6">
-          <div className="text-md-end footer-links d-none d-md-block">
-            <a >About</a>
-            <a >Support</a>
-            <a >Contact Us</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
+ 
   {/* end Footer */}
 </div>
 </div>

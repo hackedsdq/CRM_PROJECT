@@ -20,10 +20,10 @@ let [deleteConfirmation, setDeleteConfirmation]=useState(false);
    
     { field: 'name', headerName: 'nom', width: 130 },
     { field: 'prenom', headerName: 'prenom', width: 130 },
-    { field: 'email', headerName: 'email', width: 230 },
-    { field: 'delete', headerName: 'supprimer', width: 70, renderCell:(params)=> <UserActions  title="users" user={params.row} action="delete"/>  },
-    { field: 'modify', headerName: 'modifier', width: 70, renderCell:(params)=> <UserActions  title="users" user={params.row} action="modify"/> },
-    { field: 'show', headerName: 'afficher', width: 70, renderCell:(params)=> <UserActions title="users" user={params.row} action="show" /> },
+    { field: 'email', headerName: 'email', width: 130 },
+    { field: 'delete', headerName: 'supprimer', width: 100, renderCell:(params)=> <UserActions  title="users" user={params.row} action="delete"/>  },
+    { field: 'modify', headerName: 'modifier', width: 100, renderCell:(params)=> <UserActions  title="users" user={params.row} action="modify"/> },
+    { field: 'show', headerName: 'afficher', width: 100, renderCell:(params)=> <UserActions title="users" user={params.row} action="show" /> },
   ];
   
 
@@ -49,6 +49,16 @@ let [deleteConfirmation, setDeleteConfirmation]=useState(false);
               {/* start page title 
               <PageTitle title={title} />*/}
               {/* end page title */} 
+              <div class="row">
+              <div class="col">
+                <nav aria-label="breadcrumb" class="rounded-0 p-0 mb-0">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Utilisateurs</li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
               <AddModalUser/>
 
               {/* ------------------------ delete modal ------------------ */}

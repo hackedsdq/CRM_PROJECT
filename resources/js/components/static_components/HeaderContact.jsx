@@ -3,6 +3,7 @@ import { InertiaLink, useForm } from '@inertiajs/inertia-react'
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import React, { useEffect, useState } from 'react'
 import'../../../css/HeaderProfil.css'
+import HeaderFrontOffice from './HeaderFrontOffice';
 export default function HeaderContact({}) {
   let [contact_pic, setUserPic]=useState("");
   let [contact_nom, setUserNom]=useState("");
@@ -27,6 +28,12 @@ export default function HeaderContact({}) {
 
     const handleSignOut = () =>{
       Inertia.get('/logout')
+      localStorage.removeItem('contact_pic');
+      localStorage.removeItem('contact_nom');
+      localStorage.removeItem('contact_prenom');
+      localStorage.removeItem('contact_role');
+      localStorage.removeItem('contact_id');
+
     }
     
 const handleClickOpen = () => {
@@ -38,9 +45,11 @@ setOpen(false);
 };
 
   return (
-    <header class="header_section">
+ <div>
+{ contact_id ?
+  <header class="header_section">
     <div class="header_top">
-      <div class="container-fluid">
+      <div class="">
         <div class="top_nav_container">
      
           <from class="search_form"></from>
@@ -116,12 +125,11 @@ setOpen(false);
   </Dialog>
     </div>
     <div class="header_bottom">
-      <div class="container-fluid">
+      <div >
         <nav class="navbar navbar-expand-lg custom_nav-container ">
-          <a class="navbar-brand" href="index.html">
-            <img src="../../../assets/images/logo.png" alt=""/>
-          </a>
-
+          <InertiaLink href='/'>
+            <img width={170}  src="../../../assets/images/logo.png" alt=""/>
+            </InertiaLink>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class=""> </span>
           </button>
@@ -131,7 +139,7 @@ setOpen(false);
               
               {/* <InertiaLink href={`/homeOffice`}> */}
               <li class="nav-item">
-              <InertiaLink class="nav-link" href={`/homeOffice`}>
+              <InertiaLink class="nav-link" href={`/`}>
                 Accueil
                 </InertiaLink> 
 
@@ -149,13 +157,7 @@ setOpen(false);
                 </InertiaLink> 
 
                   </li>
-                  {/* </InertiaLink>  */}
-              <li class="nav-item">
-              <InertiaLink class="nav-link" href={`/a-propos`}>
-                A propos              
-              </InertiaLink> 
 
-              </li>
               <li class="nav-item">
              <InertiaLink class="nav-link" href={`/Products`}>
                     Produits
@@ -174,6 +176,9 @@ setOpen(false);
       </div>
     </div>
  
-  </header>
+  </header> : 
+  <HeaderFrontOffice/>
+}
+  </div>
   )
 }

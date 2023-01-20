@@ -93,7 +93,7 @@ class OpportunitiesController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-        'nom'=> ['required','regex:/^[a-zA-Z]+$/'],
+        'nom'=> ['required'],
        //'montant'=> 'required|min:3',
          'date_de_clôture'=> 'required|date',
          'client_id'=> 'required|integer',
@@ -130,20 +130,24 @@ class OpportunitiesController extends Controller
     }
 
     public function addProduit(Request $request, $opport){
-        $request->validate([
-             'quantité'=> 'required|integer'
-        ]
-        );
-        $opportunity = Opportunities::find($opport);
-        $product = Produit::find($request->product_id);
-       // return $product->opportunities;
-        $product->opportunities()->attach($opport, ["quantité"=>$request->quantité]);
-            $montant = (($product->prix)*($request->quantité))+($opportunity->montant);
-            //return $montant;
-            $opportunity->montant = $montant;
-            $opportunity->save();
+ 
 
-        
+try {
+    $request->validate([
+        'quantité'=> 'required|integer'
+   ]
+   );
+   $opportunity = Opportunities::find($opport);
+   $product = Produit::find($request->product_id);
+  // return $product->opportunities;
+   $product->opportunities()->attach($opport, ["quantité"=>$request->quantité]);
+       $montant = (($product->prix)*($request->quantité))+($opportunity->montant);
+       //return $montant;
+       $opportunity->montant = $montant;
+       $opportunity->save();
+} catch (\Throwable $th) {
+   return $request;
+}
       
         //$product->user()->newPivotStatementForId($contact->user->find(1)->pivot->user_id)->where("id",$request->id)->update(["Date"=>$request->Date,"compte_rendu"=>$request->compte_rendu,"heure"=>$request->heure]);
         
@@ -152,12 +156,17 @@ class OpportunitiesController extends Controller
         ]); */
     }
 
-    public function deleteProduit(Request $request, $opport){
-        
-        $opportunity = Opportunities::find($opport);
-        $product = Produit::find($request->product_id);
+    public function deleteProduit(Request $request, $product){
+        $id = $request->opportunityId;
+        $product = Produit::find($product);
         //$product->opportunities()->detach();
-        $product->opportunities()->wherePivot('id', $id)->detach();
+        $opportunity = Opportunities::find($id);
+        $productPrice = $product->prix;
+        $productQte = $product->opportunities()->wherePivot('opportunities_id', $id)->get();
+        $productQuantity = $productQte[0]['pivot']['quantité'];
+        $opportunity->montant = ($opportunity->montant)-( $productPrice * (int)$productQuantity );
+        $opportunity->save();
+        $product->opportunities()->wherePivot('opportunities_id', $id)->detach();
 
         return redirect()->back();
         //$product->user()->newPivotStatementForId($contact->user->find(1)->pivot->user_id)->where("id",$request->id)->update(["Date"=>$request->Date,"compte_rendu"=>$request->compte_rendu,"heure"=>$request->heure]);
@@ -218,7 +227,7 @@ class OpportunitiesController extends Controller
         }
 
         $request->validate([
-            'nom'=> ['required','regex:/^[a-zA-Z]+$/'],
+            'nom'=> ['required'],
            'montant'=> 'required|integer',
            'étape'=> 'required'
         ]
@@ -242,5 +251,6 @@ class OpportunitiesController extends Controller
     public function delete($id)
    {
     $opportunity = Opportunities::whereIn('id',[$id])->delete();
+    return redirect()->route('adcom.opportunities');
    }
 }

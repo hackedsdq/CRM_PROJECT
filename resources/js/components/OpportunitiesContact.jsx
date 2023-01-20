@@ -16,6 +16,7 @@ export default function OpportunitiesContact({clients,opportunities_one, opportu
   let title = "Opportunités"
   let [filtredClients, setFiltredClients]=useState([])
   let [rendred, setRendreded]=useState(false)
+  let type = "contact"
   //let [firstRender, setFirstRender]=useState(true)
 /*   let [opp1, setOpp1]=useState([])
   let [opp2, setOpp2]=useState([])
@@ -58,18 +59,16 @@ const handleFilter=(clients)=>{
     <div className="">
         <div className="modal-content">
           <div className="modal-body">
-            <div className="container-fluid">
 {/*               <PageTitle title={title} />*/}  
 
 
               <AddModalOpportunity clients={filtredClients} />
           
                <ChakraProvider   resetCSS={false} theme={theme} >
-                  <DndBoard opportunities_one={opportunities_one} opportunities_two={opportunities_two} opportunities_three={opportunities_three} opportunities_four={opportunities_four} />
+                  <DndBoard type={type} opportunities_one={opportunities_one} opportunities_two={opportunities_two} opportunities_three={opportunities_three} opportunities_four={opportunities_four} />
               </ChakraProvider>
             
             </div> 
-          </div>
         </div>
 
     </div>

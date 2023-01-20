@@ -1,9 +1,8 @@
 .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
-    width: 80%;
+    width: 100%;
     padding-right: var(--bs-gutter-x,12px);
     padding-left: var(--bs-gutter-x,12px);
     margin-right: auto;
-    margin-left: 20%;
 }
 .fc .fc-daygrid-day-events {
     margin-top: 1px;

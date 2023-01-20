@@ -9,7 +9,7 @@ use App\Models\Client;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
-
+use DB;
 use DateTime;
 class CalendarContactController extends Controller
 {
@@ -32,12 +32,21 @@ class CalendarContactController extends Controller
         $date = $e->pivot->Date;
         $heure = $e->pivot->heure;
 
+        $user = DB::table('contacts')
+        ->Join('clients', 'clients.id', '=' , 'contacts.client_id')
+        ->Join('users', 'users.id', '=' , 'clients.user_id')
+        ->where('contacts.id', '=', $e->pivot->contact_id)
+        ->where('clients.deleted_at', '=', null)
+        ->select('users.id', 'users.name', 'users.prenom', 'users.photo', 'users.email')
+        ->get(); 
+
         $event = array(
             "start"=> date('Y-m-d H:i:s', strtotime($date.''.$heure )),
             "heure"=> $e->pivot->heure ,
-            "title" => $e->pivot->compte_rendu ,
+            "title" =>  $user[0]->name,
             "contact_id" => $e->pivot->contact_id ,
-            "user_id" => $e->pivot->user_id ,
+            "user" => $user ,
+            "compte_rendu"=> $e->pivot->compte_rendu,
             "id" => $e->pivot->id
         );
         array_push($Events , $event);

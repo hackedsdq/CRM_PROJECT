@@ -32,13 +32,16 @@ return (
       <div class="align-items-center d-flex h-100">
           <div class="card-body">
 
-              <div class="auth-brand text-center text-lg-start">
+          <div class="auth-brand text-center text-lg-start">
                   <a href="index.html" class="logo-dark">
-                      <span><img src="https://res.cloudinary.com/dbttd3n1v/image/upload/v1671906267/logo_wwkgud.png" alt="" height="18"/></span>
+                       <span className="logo-lg">
+      <img src="https://res.cloudinary.com/dbttd3n1v/image/upload/v1671906267/logo_wwkgud.png" alt="" height={16} />
+    </span>
+    <span className="logo-sm">
+      <img src="https://res.cloudinary.com/dbttd3n1v/image/upload/v1671906267/logo_wwkgud.png" alt="" height={0} />
+    </span>
                   </a>
-                  <a href="index.html" class="logo-light">
-                      <span><img src="https://res.cloudinary.com/dbttd3n1v/image/upload/v1671906267/logo_wwkgud.png" alt="" height="18"/></span>
-                  </a>
+
               </div>
 
              
@@ -54,7 +57,6 @@ return (
 
                   </div>
                   <div class="mb-3">
-                      <a href="pages-recoverpw-2.html" class="text-muted float-end"><small>Mot de passe oublié?</small></a>
                       <label for="password" class="form-label">Mot de passe
 </label>
                       <input onChange={(e)=>handleChange(e)} value={data.password} name="password" class="form-control" type="password" required="" id="password" placeholder="Enter your password"/>

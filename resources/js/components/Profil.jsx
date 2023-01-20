@@ -21,6 +21,7 @@ function Profil({contact, client,opportunity}) {
     })
 
     const [rows2, setRows2] = useState([])
+    const [isRendred, setIsRendred] = useState(false)
 
     useEffect(()=>{
       handleGetContact()
@@ -29,6 +30,7 @@ function Profil({contact, client,opportunity}) {
   localStorage.setItem('contact_pic',contact.photo)
   localStorage.setItem('contact_nom',contact.nom)
   localStorage.setItem('contact_prenom',contact.prenom)
+  setIsRendred(true)
   },[])
   
     
@@ -60,8 +62,6 @@ const  handleSubmit = (e) => {
        document.body.style.overflow = 'scroll'
    },
    onError : ()=>{
-    alert('fail')
-
    }
  }) 
  }
@@ -136,16 +136,16 @@ console.log(result.info)
 return (
   <div>
 
-      <HeaderContact />
+      {isRendred && <HeaderContact />}
      
   
 
-<div class="wrapper bg-white mt-sm-5">
+<div className="wrapper bg-white mt-sm-5">
   
 
 
-<h4 class="pb-4 border-bottom">Paramètres du compte</h4>
-<div class="d-flex align-items-start py-3 border-bottom">
+<h4 className="pb-4 border-bottom">Paramètres du compte</h4>
+<div className="d-flex align-items-start py-3 border-bottom">
   <img src= {data.photo} style={{
     width:"200px",
     height:"200px",
@@ -154,125 +154,118 @@ return (
     border:"4px solid #2d5070"
 
   }}></img>
-<div class="col-xl-6" >
-<div class="mb-3 mt-3 mt-xl-0"style={{marginLeft:"30px"}}>
-<label for="projectname" class="mb-0">
-photo 
-</label>
-<p class="text-muted font-14">
-Taille de vignette recommandée 800x400 (px).
-</p>
+<div className="col-xl-6" >
+<div className="mb-3 mt-3 mt-xl-0"style={{marginLeft:"30px"}}>
 
-
-<div onClick={()=> widgetRef.current.open()} class="dz-message needsclick">
+<div onClick={()=> widgetRef.current.open()} className="dz-message needsclick">
   
-<button class="btn btn-success"  >
+<button className="btn btn-success"  >
 
-<i class=" dripicons-cloud-upload">Télécharger</i>
+<i className=" dripicons-cloud-upload">Télécharger</i>
 </button>
 </div>
 
 </div>
 </div>
 </div>
-<div class="row py-2">
-<div class="col-md-6">
+<div className="row py-2">
+<div className="col-md-6">
 <label for="firstname">Nom</label><br/>
 <span id ="textffil">{data?.nom}</span>
 </div>
-<div class="col-md-6 pt-md-0 pt-3">
+<div className="col-md-6 pt-md-0 pt-3">
 <label for="lastname">Prénom</label>
 <br/>
-<span id ="textffil">{data.prenom}</span>
+<span id ="textffil">  {data.prenom}</span>
 
 </div>
 </div>
-<div class="row py-2">
-<div class="col-md-6">
+<div className="row py-2">
+<div className="col-md-6">
 <label for="email">Email:</label><br/>
-<span id ="textffil">{data.email}</span>
+<span id ="textffil">  {data.email}</span>
 </div>
-<div class="col-md-6 pt-md-0 pt-3">
+<div className="col-md-6 pt-md-0 pt-3">
 <label for="phone">Téléphone</label><br/>
-<span id ="textffil">{data.telephone}</span>
+<span id ="textffil">  {data.telephone}</span>
 </div>
 </div>
-<div class="row py-2">
-<div class="col-md-6">
+<div className="row py-2">
+<div className="col-md-6">
 <label for="email">Fonction</label><br/>
-<span id ="textffil">{data.fonction}</span>
+<span id ="textffil">  {data.fonction}</span>
 </div>
-<div class="col-md-6 pt-md-0 pt-3">
+<div className="col-md-6 pt-md-0 pt-3">
 <label for="phone"> Société </label><br/>
  <span id ="textffil"> {data.societe}</span>
 </div>
 </div>
-<div class="row py-2">
-<div class="col-md-6">
+<div className="row py-2">
+<div className="col-md-6">
 <label for="email">Téléphone Société</label><br/>
-<span id ="textffil">{client.téléphone}</span>
+<span id ="textffil">  {client.téléphone}</span>
 </div>
-<div class="col-md-6 pt-md-0 pt-3">
+<div className="col-md-6 pt-md-0 pt-3">
 <label for="phone"> Adresse: </label><br/>
  <span id ="textffil"> {client.adresse}</span>
 </div>
 </div>
-<div class="row py-2">
-<div class="col-md-6">
+<div className="row py-2">
+<div className="col-md-6">
 </div>
 <InertiaLink href={`/calendar`} >
-<button type="button" class="btn btn-info"  style={{marginLeft: "150px"}} >voir les rendez-vous</button>
+<button type="button" className="btn btn-info"  >voir les rendez-vous (calendrier)</button>
 </InertiaLink>
 </div>
 <hr/>
 
 {/* edit modal Profile */}
-<div id="edit-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="edit-modal" className="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 
-<div class="modal-dialog">
-<div class="modal-content">
-<div class="modal-body">
-<div class="text-center mt-2 mb-4">
+<div className="modal-dialog">
+<div className="modal-content">
+<div className="modal-body">
+<div className="text-center mt-2 mb-4">
   <h1>Edit Profil</h1>
 </div>
-<form class="ps-3 pe-3" onSubmit={(e) => handleSubmit(e)}>
+<form className="ps-3 pe-3" onSubmit={(e) => handleSubmit(e)}>
 
 
 
-<div class="py-2" >
-<div class="row py-2">
-<div class="col-md-6">
+<div className="py-2" >
+<div className="row py-2">
+<div className="col-md-6">
 <label for="firstname">Prénom</label>
-<input type="text" class="bg-light form-control"id ="textffil"onChange={(e)=>handleChange(e)} value={data.nom} name="nom" placeholder="Steve"/>
+<input type="text" className="bg-light form-control"id ="textffil"onChange={(e)=>handleChange(e)} value={data.nom} name="nom" placeholder="Steve"/>
 </div>
-<div class="col-md-6 pt-md-0 pt-3">
+<div className="col-md-6 pt-md-0 pt-3">
 <label for="lastname">Nom</label>
-<input type="text" class="bg-light form-control" id ="textffil"onChange={(e)=>handleChange(e)} value={data.prenom} name="prenom" placeholder="Smith"/>
+<input type="text" className="bg-light form-control" id ="textffil"onChange={(e)=>handleChange(e)} value={data.prenom} name="prenom" placeholder="Smith"/>
 </div>
 </div>
-<div class="row py-2">
-<div class="col-md-6">
+<div className="row py-2">
+<div className="col-md-6">
 <label for="email">Email </label>
-<input type="email" class="bg-light form-control" id ="textffil"onChange={(e)=>handleChange(e)} value={data.email} name="email" placeholder="steve_@email.com"/>
+<input type="email" className="bg-light form-control" id ="textffil"onChange={(e)=>handleChange(e)} value={data.email} name="email" placeholder="steve_@email.com"/>
 </div>
-<div class="col-md-6 pt-md-0 pt-3">
+<div className="col-md-6 pt-md-0 pt-3">
 <label for="phone">Téléphone</label>
-<input type="text" class="bg-light form-control"id ="textffil"onChange={(e)=>handleChange(e)} value={data.telephone} name="telephone" placeholder="+1 213-548-6015"/>
+<input type="text" className="bg-light form-control"id ="textffil"onChange={(e)=>handleChange(e)} value={data.telephone} name="telephone" placeholder="+1 213-548-6015"/>
 </div>
 </div>
-<div class="row py-2">
-<div class="col-md-6">
+<div className="row py-2">
+<div className="col-md-6">
 <label for="email">Fonction</label>
-<input type="text" class="bg-light form-control" id ="textffil"onChange={(e)=>handleChange(e)} value={data.fonction} name="fonction" />
+<input type="text" className="bg-light form-control" id ="textffil"onChange={(e)=>handleChange(e)} value={data.fonction} name="fonction" />
 </div>
-<div class="col-md-6 pt-md-0 pt-3">
+<div className="col-md-6 pt-md-0 pt-3">
 <label>Société</label>
-<input type="text" class="bg-light form-control" id ="textffil"onChange={(e)=>handleChange(e)} value={data.societe} name="societe" />
+<input type="text" className="bg-light form-control" id ="textffil"onChange={(e)=>handleChange(e)} value={data.societe} name="societe" />
 </div>
 </div>
-<div class="py-3 pb-4 border-bottom">
-<button class="btn btn-primary mr-3" type="submit" >Sauvegarder les modifications</button> 
- <div class="btn border button" onClick={()=>hideModal()} >Annuler</div>
+<div className="py-3 pb-4 border-bottom">
+<button className="btn btn-primary mr-3" type="submit" >Sauvegarder les modifications</button> 
+ <div className="btn border button" onClick={()=>hideModal()} >Annuler</div>
 </div>
 
 </div>
@@ -282,7 +275,8 @@ Taille de vignette recommandée 800x400 (px).
 </div>
 </div>
  <MasterDetailClientOpportunities rows={rows2}/>
- <button type="button"   class="headerchang" data-bs-toggle="modal"  data-bs-target="#edit-modal">Modifier Profile</button>
+ <br />
+ <button type="button"  className="btn btn-info" data-bs-toggle="modal"  data-bs-target="#edit-modal">Modifier Profile</button>
 
 </div>
 </div>

@@ -1,19 +1,26 @@
 import { InertiaLink } from '@inertiajs/inertia-react'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useState } from 'react';
 //import "../../../../public/assets/images/logo.png"
 
 export default function SideBar() {
+let [role, setRole]=useState('');
+useEffect(()=>{
+role = localStorage.getItem('user_role');
+setRole(role)
+},[])
+
   return (
 <div className="leftside-menu">
   {/* LOGO */}
-  <a href="index.html" className="logo text-center logo-light">
+  <InertiaLink href='/adcom' className="logo text-center logo-light">
     <span className="logo-lg">
       <img src="https://res.cloudinary.com/dbttd3n1v/image/upload/v1671906267/logo_wwkgud.png" alt="" height={16} />
     </span>
     <span className="logo-sm">
       <img src="https://res.cloudinary.com/dbttd3n1v/image/upload/v1671906267/logo_wwkgud.png" alt="" height={0} />
     </span>
-  </a>
+  </InertiaLink>
   {/* LOGO */}
  
   <div className="h-100" id="leftside-menu-container" data-simplebar>
@@ -74,10 +81,10 @@ export default function SideBar() {
       </li>
       <li className="side-nav-item">
 
-        <InertiaLink href="/adcom/produits" className="side-nav-link">
+      { role === "admin" &&    <InertiaLink href="/adcom/produits" className="side-nav-link">
           <i className="uil-store" />
           <span> Produits</span>
-        </InertiaLink>
+        </InertiaLink> }
        {/* <div className="collapse" id="sidebarEcommerce">
           <ul className="side-nav-second-level">
             <li>
@@ -167,12 +174,12 @@ export default function SideBar() {
   <span> Contacts</span>
 </InertiaLink></li>
 
-<li className="side-nav-item">
+{ role === "admin" && <li className="side-nav-item">
 
 <InertiaLink href="/adcom/users" className="side-nav-link">
   <i className="uil-store" />
   <span>Utilisateurs</span>
-</InertiaLink></li>
+</InertiaLink></li>}
 
 
      {/* <li className="side-nav-item">

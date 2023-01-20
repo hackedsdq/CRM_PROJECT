@@ -27,6 +27,8 @@ class ContactsAuthController extends Controller
 
     public function login()
     {
+        if(isset(Auth::user()->id))
+        return redirect()->back();
         return Inertia::render('SigninCostumer');
     }
 

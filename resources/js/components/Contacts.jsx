@@ -10,19 +10,22 @@ import AddModalContacts from './static_components/AddModalContacts'
 
 
 
+
+
 export default function Contacts({contacts}) {
   let title = "contacts"
 /*   const [pageLoaded, setPageLoaded]=useState(false)
   const [allContacts, setContacts]=useState([]);
   const [editedObject,setEditedObject]=useState(null); */
+
+
   
   const columns = [
     { field: 'nom', headerName: 'nom', width: 130 },
     { field: 'prenom', headerName: 'prenom', width: 130 },
-    { field: 'email', headerName: 'email', width: 130 },
+    { field: 'fonction', headerName: 'fonction', width: 130 },
 /*     { field: 'password', headerName: 'password', width: 130 },  
  { field: 'telephone', headerName: 'télephone', width: 130 },*/ 
-    { field: 'fonction', headerName: 'fonction', width: 130 },
     { field: 'delete', headerName: 'supprimer', width: 100, renderCell:(params)=> <UserActions user={params.row} action="delete" title='contacts'/>  },
     { field: 'modify', headerName: 'modifier', width: 100, renderCell:(params)=> <UserActions user={params.row} action="modify" title='contacts'/> },
     { field: 'show', headerName: 'afficher', width: 100, renderCell:(params)=> <UserActions user={params.row} action="show" title='contacts'/> },
@@ -38,8 +41,7 @@ export default function Contacts({contacts}) {
   ];*/
 
   useEffect(()=>{
-/*     contacts.map((prc)=> allContacts.push(prc))
-    setPageLoaded(true) */
+
   },[])
   
 
@@ -56,7 +58,16 @@ return (
               {/* start page title 
               <PageTitle title={title} />
               {/* end page title */} 
-
+    <div class="row">
+      <div class="col">
+        <nav aria-label="breadcrumb" class="rounded-0 p-0 mb-0">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Contacts</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
               {/* ------------------------ edit modal ------------------ */}
               <AddModalContacts />
                {/* ------------------------ show datagrid table search ------------------ */}

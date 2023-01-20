@@ -9,7 +9,7 @@ import useTaskCollection from './useTaskCollection';
 
 const MAX_TASK_PER_COLUMN = 100;
 
-function useColumnTasks(column: ColumnType) {
+function useColumnTasks(column: ColumnType , type : string) {
   const [tasks, setTasks] = useTaskCollection();
 
   const columnTasks = tasks[column];
@@ -69,9 +69,8 @@ function useColumnTasks(column: ColumnType) {
   );
 
   const  handleSubmit = (id, from, column) => {
-    if(from === column)
+    if(from === column || type === "contact")
     return 0;
-
     let étape;  
     if(column === "Proposition/Devis")
     étape = "one"

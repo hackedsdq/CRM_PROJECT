@@ -152,45 +152,57 @@ const MasterDetailClientOpportunities = ({rows}) => {
         <React.Fragment>
           <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-        <section >
-  <div className="container">
-    <div className="row d-flex justify-content-center align-items-center ">
-      <div className="col col-lg-12 mb-4 mb-lg-0">
-        <div className="card mb-3" style={{borderRadius: '.5rem'}}>
-          <div className="row g-0">
-            <div className="col-md-4 gradient-custom text-center text-white" style={{borderTopLeftRadius: '.5rem', borderBottomLeftRadius: '.5rem', alignItems:"center"}}>
-{/*               <img src={rowData[6]} alt="Avatar" className="me-3 rounded-circle "  width={80} height={80} style={{objectFit:'contain', margin:'160px auto',  }} />
- */}            </div>
-            <div className="col-md-8">
-              <div className="card-body p-4">
-                <h6>Informations</h6>
-                <hr className="mt-0 mb-4" />
-                <div className="row pt-1">
-                <div className="col-6 mb-3">
-                    <h6>Nom</h6>
-                    <p className="text-muted">{rowData[0]}</p>
-                  </div>
-                  <div className="col-6 mb-3">
-                    <h6>Montant</h6>
-                    <p className="text-muted">{rowData[1]}</p>
-                  </div>
-                  <div className="col-6 mb-3">
-                    <h6>étape</h6>
-                    <p className="text-muted">{rowData[2]}</p>
-                  </div>
-                  <div className="col-6 mb-3">
-                    <h6>Date_de_clôture</h6>
-                    <p className="text-muted">{rowData[3]}</p>
-                  </div>
+
+<div class="row">
+        <div class="col-lg-4">
+          <div class="card mb-4" >
+            <div style={{height:228}} class="card-body text-center">
+              
+            </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">nom</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{rowData[0]}</p>
+                </div>
+              </div>
+              <hr/>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">montant</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{rowData[1]} DZD</p>
+                </div>
+              </div>
+              <hr/>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">étape</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{rowData[2]}</p>
+                </div>
+              </div>
+              <hr/>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">date de cloture</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{rowData[3]}</p>
                 </div>
               </div>
             </div>
           </div>
-        </div>
       </div>
-    </div>
-  </div>
-</section>
+      </div>
         </TableCell>
       </TableRow>        
         </React.Fragment>

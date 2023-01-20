@@ -22,38 +22,40 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
+
 import { useState } from 'react';
 
+let selectedProduct;
 
 function Row(props) {
-  const { row , opportunity_id } = props;
+  const { row , opportunity_id, setConfirmDeletion, confirmDeletion, openDialog, setOpenDialog, handleClickOpen, type} = props;
   const [open, setOpen] = useState(false);
 
-  const [opendel, setOpenDel] = useState(false);
+ 
+ const handleSelectedProduct = (product) =>{
+  selectedProduct = product;
+ }
 
-  const handleClickOpen = () => {
-    setOpenDel(true);
-  };
-  
-  const handleClose = () => {
-    setOpenDel(false);
-  };
-const handleDeleteProduct = (opp) => {
-  console.log(props)
-  /* Inertia.post(`/adcom/oportunities/edit/${opp}`,{
-    opportunityId : 
-  },{
-    preserveState:true,
-          onSuccess:page=>{
-              Inertia.reload({only:['opportunityProducts']})
-          }
-  }) */
-}
+
+  const handleDeleteProduct = () => {
+    if(confirmDeletion)
+     Inertia.post(`/adcom/oportunities/edit/${selectedProduct}`,{
+      opportunityId : opportunity_id
+    },{
+      preserveState:false,
+            onSuccess:page=>{
+              setConfirmDeletion(false)
+            }
+    }) 
+  }
+
+  if(confirmDeletion)
+  handleDeleteProduct()
 
   return (
     <React.Fragment>
       <TableRow sx={{ '& > *': { borderBottom: 'unset',  } }}>
-        <TableCell style={{width:20}}>
+        <TableCell style={{width:40}}>
           <IconButton
             aria-label="expand row"
             size="small"
@@ -62,75 +64,61 @@ const handleDeleteProduct = (opp) => {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell style={{width:20}} component="th" scope="row">
+        <TableCell style={{width:200}} component="th" scope="row">
           {row.nom}
         </TableCell>
         <TableCell >{row.quantité}</TableCell>
-        <TableCell ><i onClick={()=>handleDeleteProduct(row.id)} className='mdi mdi-delete'></i></TableCell>
+        {type ==="edit" && <TableCell ><i onClick={()=>{handleClickOpen(); handleSelectedProduct(row.id) }} className='mdi mdi-delete'></i></TableCell>}
 
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
-{/*             <article class="card card-product-list">
-            <div class="row no-gutters">
-                <aside class="col-md-3">
-                    <a href="#" className="img-wrap">
-                        <span className="badge badge-danger"> NEW </span>
-                        <img src={row.photo} />
-                    </a>
-                </aside> 
-                <div className="col-md-6">
-                <a href="#" className="h5 title"> Great product name goes here  </a>                        
-                    <div className="info-main">
-                        <h5>Description</h5> 
-                        <p>{row.description}</p>
-                    </div>
-                    <div className="info-main">
-                        <h5>Prix</h5> 
-                        <p>{row.prix} DZD</p>
-                    </div>
-                </div> 
-            </div> 
-          </article>  */}
 
-          <section >
-  <div className="container">
-    <div className="row d-flex justify-content-center align-items-center ">
-      <div className="col col-lg-12 mb-4 mb-lg-0">
-        <div className="card mb-3" style={{borderRadius: '.5rem'}}>
-          <div className="row g-0">
-            <div className="col-md-4 gradient-custom text-center text-white" style={{borderTopLeftRadius: '.5rem', borderBottomLeftRadius: '.5rem', alignItems:"center"}}>
-              <img src={row.photo} alt="Avatar" className="me-3 rounded-circle "  width={80} height={80} style={{objectFit:'contain', margin:'160px auto',  }} />
+<div class="row">
+        <div class="col-lg-4">
+          <div class="card mb-4" >
+            <div class="card-body text-center">
+              <img src={row.photo} alt="avatar"
+                class="rounded-circle img-fluid" style={{height:130}}/>
             </div>
-            <div className="col-md-8">
-              <div className="card-body p-4">
-                <h6>Informations</h6>
-                <hr className="mt-0 mb-4" />
-                <div className="row pt-1">
-                <div className="col-6 mb-3">
-                    <h6>Nom</h6>
-                    <p className="text-muted">{row.nom}</p>
-                  </div>
-                  <div className="col-6 mb-3">
-                    <h6>Description</h6>
-                    <p className="text-muted">{row.description}</p>
-                  </div>
-                  <div className="col-6 mb-3">
-                    <h6>Prix</h6>
-                    <p className="text-muted">{row.prix} Dn</p>
-                  </div>
-                
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Nom</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{row.nom}</p>
+                </div>
+              </div>
+              <hr/>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Description</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{row.description}</p>
+                </div>
+              </div>
+              <hr/>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Prix</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{row.prix} DZD</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+      </div>
+      </div>
 
             </Box>
           </Collapse>
@@ -148,13 +136,31 @@ Row.propTypes = {
     prix: PropTypes.number.isRequired,
     quantité: PropTypes.number.isRequired,
     photo : PropTypes.string.isRequired,
-    opportunity_id : PropTypes.string.isRequired
   }).isRequired,
+  opportunity : PropTypes.shape({
+    opportunity_id: PropTypes.string.isRequired,
+  })
 };
 
 
 export default function CollapsibleTable(props) {
   const rows = props.rows;
+  let opportunity_id = props.opportunity_id;
+  let type = props.type
+
+  const [open, setOpen] = useState(false);
+  const [confirmDeletion, setConfirmDeletion] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  
+  
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
@@ -163,16 +169,37 @@ export default function CollapsibleTable(props) {
             <TableCell></TableCell>
             <TableCell>Produit</TableCell>
             <TableCell>Quantité</TableCell>
-            <TableCell>Supprimer</TableCell>
-
+          {type==="edit" && <TableCell>Supprimer</TableCell>}
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <Row key={row.nom} row={row} />
+            <Row type={type} key={row.nom} openDialog={open} setOpenDialog={setOpen} setConfirmDeletion={setConfirmDeletion} confirmDeletion={confirmDeletion} handleClose={handleClose} handleClickOpen={handleClickOpen}  opportunity_id={opportunity_id} row={row} />
           ))}
         </TableBody>
       </Table>
+
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Confirmation de Suppression?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Est-ce-que vous voullez supprimer les données.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Annuler</Button>
+          <Button onClick={()=> {setConfirmDeletion(true)} } autoFocus>
+            Confirmer
+          </Button>
+        </DialogActions>
+      </Dialog>
     </TableContainer>
   );
 }

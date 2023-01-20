@@ -23,8 +23,7 @@ const ColumnColorScheme: Record<ColumnType, string> = {
 };
 
 
-
-function Column({ column,opportunities,mockTasks }: { column: ColumnType, opportunities:[],mockTasks: TaskModel[]}) {
+function Column({ column,opportunities,mockTasks,  type }: { column: ColumnType, opportunities:[],mockTasks: TaskModel[],type : any}) {
 const {
     tasks,
     addEmptyTask,
@@ -32,8 +31,7 @@ const {
     dropTaskFrom,
     swapTasks,
     updateTask,
-} = useColumnTasks(column);
-
+} = useColumnTasks(column, type);
 
   let PropColumn = column;
 
@@ -67,6 +65,7 @@ const {
       onDropHover={swapTasks}
       onUpdate={updateTask}
       onDelete={deleteTask}
+      type={type}
     />
   ));
 
@@ -117,3 +116,5 @@ const {
 }
 
 export default Column;
+
+

@@ -9,6 +9,12 @@ import { ColumnType } from '../dnd_board_resources/utils/enums';
 import { TaskModel } from '../dnd_board_resources/utils/models';
 
 
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
 
   let mockTasks_1: TaskModel[]=[
   ]
@@ -19,11 +25,19 @@ import { TaskModel } from '../dnd_board_resources/utils/models';
   let mockTasks_4: TaskModel[]=[
   ]
 
-function DndBoard({opportunities_one, opportunities_two, opportunities_three, opportunities_four}) {
+function DndBoard({opportunities_one, opportunities_two, opportunities_three, opportunities_four, type}) {
   let [rendred, setRendreded]=useState(false)
 
+  const [open, setOpen] = useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  
+  const handleClose = () => {
+    setOpen(false);
+  };
+
  useEffect(()=>{
-  console.log(opportunities_one)
   
   mockTasks_1=[];
   mockTasks_2=[];
@@ -96,6 +110,8 @@ function DndBoard({opportunities_one, opportunities_two, opportunities_three, op
         }
     }
 
+
+    
   return (
 <div>
 {
@@ -106,11 +122,13 @@ function DndBoard({opportunities_one, opportunities_two, opportunities_three, op
           columns={{ base: 1, md: 4 }}
           spacing={{ base: 16, md: 0 }}
         >
-          <Column opportunities={opportunities_one}  column={ColumnType.TO_DO} mockTasks={mockTasks_1} />
-          <Column opportunities={opportunities_two} column={ColumnType.IN_PROGRESS} mockTasks={mockTasks_2}  />
-          <Column opportunities={opportunities_three} column={ColumnType.BLOCKED} mockTasks={mockTasks_3}  />
-          <Column opportunities={opportunities_four} column={ColumnType.COMPLETED} mockTasks={mockTasks_4}  />
+          <Column type={type} opportunities={opportunities_one}  column={ColumnType.TO_DO} mockTasks={mockTasks_1} />
+          <Column type={type} opportunities={opportunities_two} column={ColumnType.IN_PROGRESS} mockTasks={mockTasks_2}  />
+          <Column type={type} opportunities={opportunities_three} column={ColumnType.BLOCKED} mockTasks={mockTasks_3}  />
+          <Column type={type} opportunities={opportunities_four} column={ColumnType.COMPLETED} mockTasks={mockTasks_4}  />
         </SimpleGrid>
+
+        
       </Container>
     </DndProvider>
 

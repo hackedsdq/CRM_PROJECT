@@ -15,6 +15,7 @@ import SideBar from './static_components/SideBar';
 import HeaderContact from './static_components/HeaderContact';
 import FooterFrontoffice from './static_components/FooterFrontoffice';
 //import { INITIAL_EVENTS, createEventId } from './event-utils'
+import '../../css/Calendar.css'
 
 export default function CalendarContact({Events,contacts})  {
   
@@ -190,12 +191,17 @@ const handleDelete = () =>{
 
              $('#myModal2').modal('toggle');
             //alert('hacked')
-            
+              console.log(clickInfo.event.extendedProps.compte_rendu)
               setData(data.Date=[annee, mois, jour].join("-"))
-              setData(data.compte_rendu=clickInfo.event.title)
-           
+              setData(data.compte_rendu=clickInfo.event.extendedProps.compte_rendu)
+          
               setData(data.heure=[heure, minute].join(":"))
-              setData(data.id=clickInfo.event.id)            
+              setData(data.id=clickInfo.event.id)
+              
+              setData(data.user_photo = clickInfo.event.extendedProps.user[0].photo) 
+              setData(data.user_prenom = clickInfo.event.extendedProps.user[0].prenom)
+              setData(data.user_name = clickInfo.event.extendedProps.user[0].name) 
+              setData(data.user_email = clickInfo.event.extendedProps.user[0].email) /**/
             }
             }
             dateClick={function(arg) {
@@ -256,16 +262,19 @@ const handleDelete = () =>{
                                 >
                                     Compte rendu
                                 </label>
-                                <input
-                                  
+                                <textarea
+                                  onChange={(e)=>handleChange(e)} value={data.compte_rendu}
+                                  disabled
                                     name="compte_rendu"
                                     type="text"
                                     className="form-control"
-                                  disabled={true} 
-                                    value={data.compte_rendu}
+                                    id="example-textarea"
+                                    rows={5}
+                                    defaultValue={""}
+                                    placeholder="Compte_Rendu ..."
                                 />
                 {errors.compte_rendu && <h6 style={{color:"red"}}>{errors.compte_rendu}</h6>}  
-                </div>
+                </div> 
 
                 <div className="mb-3"><label for=""  id="date">
                                     Heure
@@ -294,12 +303,17 @@ const handleDelete = () =>{
                                 {errors.Date && <h6 style={{color:"red"}}>{errors.Date}</h6>}  
                               </div>
                               
-                              <div class="form-group mb-3">
-                              <label form="">
-                                   Contact
-                                </label>
-                              <input class="form-control" name="contact" ></input>
-                              </div> 
+                              <div  className="card p-3 ">
+                                    <div className="d-flex align-items-center">
+                                      <div className="image">
+                                        <img src={data.user_photo} className="rounded" width={155} style={{objectFit:"contain"}} />
+                                      </div>
+                                      <div style={{marginLeft:12}} className="ml-5 w-100">
+                                        <h4 className="mb-0 mt-0">{data.user_name}</h4>
+                                        <span>{data.user_email}</span>
+                                      </div>
+                                    </div>
+                              </div>
                              
                   </div>
                 <div class="modal-body text-center">
@@ -314,15 +328,8 @@ const handleDelete = () =>{
                                 
                                 onClick={handleInitData}
                             >
-                                Close
+                                Fermer
                             </button>
-                          <button type="submit" className="btn btn-primary" id="btn"
-                           >
-                                Update
-                            </button>
-                            <div onClick={()=>handleDelete()}  className="btn btn-primary" id="btn" >
-                                Delete
-                            </div>
                         </div>
               </div>
             </div>

@@ -36,9 +36,11 @@ export default function ContactUs({}){
         <textarea class="ccformfield" name="comments" rows="8" placeholder="Message" required></textarea>
     </div>
     <div class="ccfield-prepend">
-        <input class="ccbtn" type="submit" value="Submit"/>
+        <input class="ccbtn" type="submit" value="envoyer"/>
     </div>
     </form><br/>
+    <br/>
+    <br/>
 </div>
 
 <FooterFrontoffice/>

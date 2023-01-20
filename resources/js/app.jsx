@@ -8,12 +8,15 @@ import { usePage } from '@inertiajs/inertia-react'
 
 import "../../public/assets/css/icons.min.css"
 import "../../public/assets/css/app-dark.min.css"
-
 import $ from "jquery"
+import { InertiaProgress } from '@inertiajs/progress';
 
-//import { InertiaProgress } from '@inertiajs/progress'
+InertiaProgress.init({
+  showSpinner:true,
+  color:'red',
+  includeCSS:true,
+})
 
-//InertiaProgress.init()
 
 var loadScript = function (src) {
   var tag = document.createElement('script');

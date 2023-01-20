@@ -1,19 +1,12 @@
 import React,{useState} from 'react'
 import { InertiaLink } from '@inertiajs/inertia-react'
 import { Inertia } from '@inertiajs/inertia';
-import { InertiaProgress } from '@inertiajs/progress';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
-
-InertiaProgress.init({
-  showSpinner:true,
-  color:'red',
-  includeCSS:true,
-})
 
 
 export default function UserActions(props) {

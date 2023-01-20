@@ -16,6 +16,15 @@ export default function AddModalProduits(props) {
     const widgetRef = useRef();
 
 
+    const handleInitProduct = ()=>{
+        setData({
+            nom: "",
+            description: "",
+            prix: "",
+            quantité: "",
+            photo:"https://res.cloudinary.com/dbttd3n1v/image/upload/v1671754616/default-image_150_zknf15.png"
+        })
+    }
 
         // uploading the image
         cloudinaryRef.current =  window.cloudinary;
@@ -42,6 +51,7 @@ export default function AddModalProduits(props) {
                 $('#scrollable-modal').hide();
                 $('.modal-backdrop').remove(); 
                 document.body.style.overflow = 'scroll'
+                handleInitProduct()
             },
             //onError:errors=>{Inertia.reload({only:['produits']})}
         });

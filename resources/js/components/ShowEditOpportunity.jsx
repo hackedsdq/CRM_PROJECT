@@ -24,6 +24,16 @@ import BillTo from './table/BillTo'
 import SideBar from './static_components/SideBar'
 import Header from './static_components/Header'
 
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
+
+
+
+
 export default function ShowEditOpportunity({client,opportunity,type,products,opportunityProducts})  {
   let [filtredProducts, setFiltredProducts]=useState([])
   let [opp, setOpp]=useState(opportunity?.id)
@@ -40,6 +50,10 @@ export default function ShowEditOpportunity({client,opportunity,type,products,op
 })
 const [rows, setRows] = useState([])
 
+const [open, setOpen] = useState(false);
+
+
+
 
 useEffect(()=>{
   console.log(client)
@@ -51,11 +65,25 @@ useEffect(()=>{
 },[products])
 
 
+const handleDelete = () =>{
+Inertia.delete(`/adcom/opprtunities/edit/${opportunity.id}`)
+}
+
+const handleClickOpen = () => {
+  setOpen(true);
+};
+
+const handleClose = () => {
+  setOpen(false);
+};
+
+
 const  handleSubmit = (e) => {
  e.preventDefault()
 console.log(data)
 post(`/adcom/opportunity/edit`,{
   preserveState:false,
+  preserveScroll : true,
   onSuccess:page=>{
     Inertia.reload({only:['opportunities_one']})
 }}) 
@@ -105,9 +133,13 @@ const handleChange = (e) =>{
 const handleSearchProduct= (product) =>{
   console.log(opp)
     if(product !== "" && opp !==undefined)
-  Inertia.post(`/adcom/opportunities/edit/${opp}`),{
+  Inertia.post(`/adcom/opportunities/edit/${opp}`,
+  {
     product : product
-  }
+  },
+  {
+    preserveScroll : true
+  })
 }
 
 const handleChangeAutoComplete = (value) =>{
@@ -152,15 +184,7 @@ const handleSetProducts = () =>{
   createData('Cupcake', 305),
   createData('Gingerbread', 356) */
 }
-/*const  createData2 = (id, société, téléphone, adresse, site_web) => {
-  return{
-    id,
-    société,
-    téléphone,
-    adresse,
-    site_web,
-  };
-}*/
+
 const handleSeoducts = () =>{
   console.log(client)
 }
@@ -240,6 +264,17 @@ return (
           <div className="modal-content">
             <div className="modal-body">
 
+            <div class="row">
+      <div class="col">
+        <nav aria-label="breadcrumb" class="rounded-0 p-0 mb-0">
+          <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="/adcom">Home</a></li>
+            <li class="breadcrumb-item"><a href="/adcom/opportunities">Opportunités</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Opportunité</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
       {/*   bodyyyyy of the modal    */}
 
                   <div className="mb-3">
@@ -293,7 +328,7 @@ return (
                   </div> 
                 }
 
-                  <MasterDetailOpportunityProducts opportunity_id='{opp.toString()}'  rows={rows}/>
+                  <MasterDetailOpportunityProducts type={type} opportunity_id={opp.toString()}  rows={rows}/>
       {/*   end  of the modal  body    */}
 
             </div>
@@ -324,16 +359,45 @@ return (
             saveAs(blob, 'Devis.pdf')
         } } >
         Generer Devis
+      </button>
+}
+      
+   { type === "edit" &&  <button onClick={handleClickOpen}  type="button" className="btn btn-primary" >
+        Supprimer l'opportunité
       </button> }
+            </div>
+  
             </div>
 
 
-          </div>{/* /.modal-content */}
+
 
       </form> 
     </div>
     </div>   
     </div>
+
+    <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Confirmation de Suppression?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Est-ce-que vous voullez supprimer les données.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Annuler</Button>
+          <Button  onClick={handleDelete} autoFocus>
+            Confirmer
+          </Button>
+        </DialogActions>
+  </Dialog>
 </div>
 
 )

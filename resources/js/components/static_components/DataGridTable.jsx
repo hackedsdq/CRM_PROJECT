@@ -121,6 +121,8 @@ export default function DataGridTable(props) {
     }
   }
 
+
+
   return (
     <div className="row">
     <div className="col-12">
@@ -175,7 +177,7 @@ export default function DataGridTable(props) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Annuler</Button>
-          <Button onClick={handleDelete} autoFocus>
+          <Button  onClick={handleDelete} autoFocus>
             Confirmer
           </Button>
         </DialogActions>

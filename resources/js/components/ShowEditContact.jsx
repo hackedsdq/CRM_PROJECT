@@ -89,6 +89,17 @@ return (
         <div className="modal-content">
           <div className="modal-body">
 
+          <div class="row">
+      <div class="col">
+        <nav aria-label="breadcrumb" class="rounded-0 p-0 mb-0">
+          <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="/adcom">Home</a></li>
+            <li class="breadcrumb-item"><a href="/adcom/contacts">Contacts</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Contact</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
     {/*   bodyyyyy of the modal    */}
               <div style={{textAlign:"center"}}>
               {type==="edit" && <i onClick={()=> widgetRef.current.open()} style={{position:"relative", top:-10,right:10 }} className='mdi mdi-square-edit-outline'></i>}             

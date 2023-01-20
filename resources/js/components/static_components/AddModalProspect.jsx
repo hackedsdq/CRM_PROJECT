@@ -21,6 +21,25 @@ export default function AddModalProspect(props) {
     photo:"https://res.cloudinary.com/dbttd3n1v/image/upload/v1671478713/snernvqpxpnxpjt3owmn.jpg"
 })
 
+const handleInitProspect = () =>{
+  setData(
+    {
+      nom: "",
+      prenom :"", 
+      société: '', 
+      fonction:'', 
+      email : "" , 
+      téléphone:'', 
+      adresse:'', 
+      site_web:'', 
+      Statut:"chaud", 
+      Source:"Web",
+      logo:"https://res.cloudinary.com/dbttd3n1v/image/upload/v1671478713/snernvqpxpnxpjt3owmn.jpg",
+      photo:"https://res.cloudinary.com/dbttd3n1v/image/upload/v1671478713/snernvqpxpnxpjt3owmn.jpg"
+  }
+  )
+}
+
 const cloudinaryRef = useRef();
 const widgetRef = useRef();
 
@@ -73,6 +92,7 @@ post('/adcom/prospects',{
                 $('#scrollable-modal').hide();
                 $('.modal-backdrop').remove(); 
                 document.body.style.overflow = 'scroll'
+                handleInitProspect()
             },
 });
 }
@@ -128,10 +148,8 @@ return (
       <div className="modal-body">
  
  {/*   bodyyyyy of the modal    */}
-            <div onClick={()=> widgetRef.current.open()} className="mb-3">
-                <label htmlFor="simpleinput" className="form-label">photo</label>
-                <br/>
-                {data.photo !== "" && <img style={{height:50,width:50}} src={data.photo}  alt="" />}
+            <div   className="mb-3">
+                {data.photo !== "" && <><img  style={{backgroundColor:"black", borderRadius:40, width:80}} src={data.photo}  alt="" /><i onClick={()=> widgetRef.current.open()}  style={{position:"relative", top:-10,left:10 }} className='mdi mdi-square-edit-outline'></i></>}
             </div>
 
             <div className="mb-3">
@@ -196,7 +214,7 @@ return (
                                                 télécharger.
                                             </h4>
                                         </div>
-                                        <img style={{height:50,width:50}} src={data.logo}  alt="" />
+                                        <img style={{height:50,width:50, borderRadius:50}} src={data.logo}  alt="" />
 
                                     </div>
                                 </div>

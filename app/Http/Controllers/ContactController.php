@@ -59,6 +59,8 @@ class ContactController extends Controller
         return Inertia::render('ShowEditContact',[
             'contact'=>$contact[0],
             'type'=>'edit',
+        ])->with([
+            'message' => 'Contact Modifier avec succées 👌',
         ]);
     }
 
@@ -156,7 +158,6 @@ class ContactController extends Controller
         $contact->email = $request->email;
         $contact->telephone =  $request->telephone;
         $contact->photo =  $request->photo;
-
         $contact->save();
 
         return redirect()->route('adcom.contacts');

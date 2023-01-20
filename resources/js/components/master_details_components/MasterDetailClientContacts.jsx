@@ -156,8 +156,7 @@ const MasterDetailClientContacts = ({rows}) => {
         <React.Fragment>
           <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={4}>
-            <div>
- <section >
+{/*  <section >
   <div className="container">
     <div className="row d-flex justify-content-center align-items-center ">
       <div className="col col-lg-12 mb-4 mb-lg-0">
@@ -199,9 +198,53 @@ const MasterDetailClientContacts = ({rows}) => {
       </div>
     </div>
   </div>
-</section>
+</section> */}
+<div class="row">
+        <div class="col-lg-4">
+          <div class="card mb-4" style={{height:193}}>
+            <div class="card-body text-center">
+              <img src={rowData[6]} alt="avatar"
+                class="rounded-circle img-fluid" style={{height:150}}/>   
+            </div>
+        </div>
+        
+      </div>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Nom complet</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{rowData[0]} {rowData[1]}</p>
+                </div>
+              </div>
+              <hr/>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Email</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{rowData[3]}</p>
+                </div>
+              </div>
+              <hr/>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Téléphone</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{rowData[5]}</p>
+                </div>
+              </div>
+              <br />
+            </div>
+          </div>
+      </div>
+      </div>
 
-</div>
+
         </TableCell>
       </TableRow>        
         </React.Fragment>

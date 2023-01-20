@@ -1,5 +1,5 @@
 import {  MdEditNote as EditIcon } from 'react-icons/md';
-import {  MdDelete as DeleteIcon } from 'react-icons/md';
+import {  BiShowAlt as BiShow } from 'react-icons/bi';
 
 //import EditModal from '../../static_components/EditModal';
 import { Box, IconButton, ScaleFade } from '@chakra-ui/react';
@@ -12,9 +12,18 @@ import React from 'react';
 import { Inertia } from '@inertiajs/inertia';
 
 
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
+
+
 type TaskProps = {
   index: number;
   task: TaskModel;
+  type:string;
   onUpdate: (id: TaskModel['id'], updatedTask: TaskModel) => void;
   onDelete: (id: TaskModel['id']) => void;
   onDropHover: (i: number, j: number) => void;
@@ -26,6 +35,7 @@ function Task({
   onUpdate: handleUpdate,
   onDropHover: handleDropHover,
   onDelete: handleDelete,
+  type
 }: TaskProps) {
   const { ref, isDragging } = useTaskDragAndDrop<HTMLDivElement>(
     { task, index: index },
@@ -38,12 +48,25 @@ function Task({
     console.log("clicked")
   };
 
+  const [open, setOpen] = useState(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
+
 
   const handleEditOpportunity = () => {
     //handleDelete(task.id);
     console.log(`${task.id} edited`)
     Inertia.get(`/adcom/opportunities/edit/${task.id}`)
+
+    
   };
+  const handleShowOpportunity = () => {
+    if(type !== "contact")
+    Inertia.get(`/adcom/opportunities/show/${task.id}`)
+    else
+    Inertia.get(`/Profile/show/${task.id}`)
+  }
 
   return (
     <ScaleFade in={true} unmountOnExit>
@@ -64,12 +87,31 @@ function Task({
         userSelect="none"
         bgColor={task.color}
         opacity={isDragging ? 0.5 : 1}
+        
       >
-        <IconButton
+
+<IconButton
+          onClick={handleShowOpportunity}
           position="absolute"
           backgroundColor='transparent'
           border="none"
           top={1}
+          right={1}
+          zIndex={100}
+          aria-label="delete-task"
+          colorScheme="solid"
+          color={'blue.700'}
+          icon={<BiShow />}
+          opacity={0}
+          _groupHover={{
+            opacity: 1,
+          }}
+    />
+{ type !== "contact" &&    <IconButton
+          position="absolute"
+          backgroundColor='transparent'
+          border="none"
+          top={8}
           right={1}
           zIndex={100}
           aria-label="delete-task"
@@ -83,24 +125,10 @@ function Task({
           }}
           onClick={handleEditOpportunity}
         />
-    
-    <IconButton
-          position="absolute"
-          backgroundColor='transparent'
-          border="none"
-          top={8}
-          right={1}
-          zIndex={100}
-          aria-label="delete-task"
-          colorScheme="solid"
-          color={'blue.700'}
-          icon={<DeleteIcon />}
-          opacity={0}
-          _groupHover={{
-            opacity: 1,
-          }}
-          
-        />
+ }
+
+        
+       
           <AutoResizeTextarea
             
             value={task.title}
@@ -117,9 +145,10 @@ function Task({
           />
           {/* ------------------------ edit modal ------------------ 
           <EditModal />*/}
-        
+
 
       </Box>
+
     </ScaleFade>
   );
 }

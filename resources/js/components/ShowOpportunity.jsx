@@ -1,6 +1,5 @@
 import React,{useEffect, useState} from 'react'
 import {InertiaLink, useForm}  from "@inertiajs/inertia-react"
-import'../../css/ContactUs.css'
 
 import MasterDetailOpportunityProducts from "./master_details_components/MasterDetailOpportunityProducts"
 import { Autocomplete, TextField } from '@mui/material'
@@ -190,10 +189,9 @@ const DocumentPdf = (props) => (
 return (
   <div>
    <HeaderContact />
-<div className="container-login100">
+<div className="container-login101">
   
 			<div className="wrap-login100">
-      <InertiaLink href='/Profile'><button class="btn btn-success">My Account</button></InertiaLink>
     <form onSubmit={(e)=>handleSubmit(e)} >
       <div className="modal-content">
         <div className="modal-body">
@@ -229,23 +227,34 @@ return (
         </div>
         <div className="modal-footer">
          
-       <button  type="button" className="btn btn-primary"  onClick={async () => {
-      let props = await getProp();
-      
-      let doc = <DocumentPdf titre="Facture" filtredProducts={opportunityProducts} opp={opp} />;
-      let asPdf = pdf(); // {} is important, throws without an argument
-      asPdf.updateContainer(doc);
-      let blob = await asPdf.toBlob();
-      saveAs(blob, 'facture.pdf')
-      // asPdf.updateContainer(doc);
-      // const blob = await asPdf.toBlob();
-      // saveAs(blob, 'document.pdf');
-    } } >
-    Facture
-  </button> 
+        {opportunity?.étape==="four"  && <button  type="button" className="btn btn-primary"  onClick={async () => {
+          //let props = await getProp();
+          
+          let doc = <DocumentPdf titre="Facture" filtredProducts={opportunityProducts} opp={opp} />;
+          let asPdf = pdf(); // {} is important, throws without an argument
+          asPdf.updateContainer(doc);
+          let blob = await asPdf.toBlob();
+          saveAs(blob, 'facture.pdf')
+          // asPdf.updateContainer(doc);
+          // const blob = await asPdf.toBlob();
+          // saveAs(blob, 'document.pdf');
+        } } >
+        Generer Facture
+      </button>}
 
-  <InertiaLink href='/Profile'> <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-</InertiaLink>
+{!(opportunity?.étape==="four" || opportunity?.étape==="three" ) && <button  type="button" className="btn btn-primary"  onClick={ async() => {
+            //let props = await getProp();
+          
+            let doc = <DocumentPdf titre="Devis" filtredProducts={opportunityProducts} opp={opp} />;
+            let asPdf = pdf(); // {} is important, throws without an argument
+            asPdf.updateContainer(doc);
+            let blob = await asPdf.toBlob();
+            saveAs(blob, 'Devis.pdf')
+        } } >
+        Generer Devis
+      </button>
+}
+
         </div>
 
 

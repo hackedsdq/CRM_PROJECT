@@ -15,6 +15,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import AddModalOpportunity from './static_components/AddModalOpportunity'
 
+import '../../css/style.css'
+
 export default function Opportunities({clients,opportunities_one, opportunities_two, opportunities_three, opportunities_four, opportunities}) {
   const [open, setOpen] = useState(false);
 
@@ -74,6 +76,17 @@ const handleFilter=(clients)=>{
     <div className="wrap-login100">
         <div className="modal-content">
           <div className="modal-body">
+
+          <div class="row">
+      <div class="col">
+        <nav aria-label="breadcrumb" class="rounded-0 p-0 mb-0">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="/adcom">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Opportunités</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
 {/*               <PageTitle title={title} />*/}  
             <button  className="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#scrollable-modal">
                   <i className="mdi mdi-plus-circle me-2" />Ajouter opportunités

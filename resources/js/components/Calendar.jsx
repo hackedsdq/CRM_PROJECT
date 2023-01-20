@@ -60,7 +60,7 @@ if(contacts !== undefined){
   if(filtred.length !== 0){
   for(let i=0;i<filtred.length;i++){
     if(filtred[i].length===0){
-      filtredcontacts.push({ label: `${contacts[i].nom}`, id:contacts[i].id})
+      filtredcontacts.push({ label: `${contacts[i].nom} ${contacts[i].prenom}`, id:contacts[i].id})
     }
   }
 }
@@ -190,9 +190,21 @@ const handleDelete = () =>{
          <div 
           className="modal-body">
 
+<div class="row">
+      <div class="col">
+        <nav aria-label="breadcrumb" class="rounded-0 p-0 mb-0">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="/adcom">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Calendrier</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
           <FullCalendar
             plugins={[ dayGridPlugin, interactionPlugin ,listPlugin, ]}
             editable={true}
+
             eventClick={(clickInfo) => {
               
               const date= new Date(clickInfo.event.start)
@@ -212,7 +224,7 @@ const handleDelete = () =>{
 
               
               setData(data.Date=[annee, mois, jour].join("-"))
-              setData(data.compte_rendu=clickInfo.event.title)
+              setData(data.compte_rendu=clickInfo.event.extendedProps.compte_rendu)
            
               setData(data.heure=[heure, minute].join(":"))
               setData(data.id=clickInfo.event.id)            
@@ -289,14 +301,17 @@ const handleDelete = () =>{
                                     className="form-label"
                                     id="title"
                                 >
-                                    Compte rendu
+                                    Compte_Rendu
                                 </label>
-                                <input
+                                <textarea
                                   onChange={(e)=>handleChange(e)} value={data.compte_rendu}
                                     name="compte_rendu"
                                     type="text"
                                     className="form-control"
-                                    
+                                    id="example-textarea"
+                                    rows={5}
+                                    defaultValue={""}
+                                    placeholder="Compte_Rendu ..."
                                 />
                     {errors.compte_rendu && <h6 style={{color:"red"}}>{errors.compte_rendu}</h6>}          
                 </div>
@@ -344,10 +359,10 @@ const handleDelete = () =>{
                                 data-bs-dismiss="modal"
                               onClick={handleInitData}
                             >
-                                Close
+                                Fermer
                             </button>
                           <button type="submit" className="btn btn-primary" id="btn" >
-                                Save changes
+                                Sauvegarder
                             </button>
                          
                         </div>
@@ -384,15 +399,17 @@ const handleDelete = () =>{
                                 >
                                     Compte rendu
                                 </label>
-                                <input
-                                
+                                <textarea
+                                  onChange={(e)=>handleChange(e)} value={data.compte_rendu}
                                     name="compte_rendu"
                                     type="text"
                                     className="form-control"
-                                  onChange={(e)=>handleChange(e)} 
-                                    value={data.compte_rendu}
+                                    id="example-textarea"
+                                    rows={5}
+                                    defaultValue={""}
+                                    placeholder="Compte_Rendu ..."
                                 />
-                {errors.compte_rendu && <h6 style={{color:"red"}}>{errors.compte_rendu}</h6>}  
+                    {errors.compte_rendu && <h6 style={{color:"red"}}>{errors.compte_rendu}</h6>}
                 </div>
 
                 <div className="mb-3"><label for=""  id="date">
